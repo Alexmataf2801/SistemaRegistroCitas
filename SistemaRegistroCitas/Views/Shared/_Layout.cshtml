@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <link href="~/Estilos/bootstrap.css" rel="stylesheet" />
+    <link href="~/Estilos/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/Estilos/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Estilos/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Estilos/fullcalendar/main.min.css" rel="stylesheet" />
+    <link href="~/Estilos/fullcalendar-daygrid/main.min.css" rel="stylesheet" />
+    <link href="~/Estilos/fullcalendar-timegrid/main.min.css" rel="stylesheet" />
+    <link href="~/Estilos/fullcalendar-bootstrap/main.min.css" rel="stylesheet" />
+
+</head>
+
+    <body class="hold-transition skin-blue sidebar-mini">
+
+        <form runat="server">
+
+            <div class="wrapper">
+                <header class="main-header">
+                    <!-- Logo -->
+                    <a href="#" class="logo">
+                        <span class="logo-mini">
+                            <div class="fa fa-home"></div>
+                        </span>
+                        <span class="logo-lg">
+                            <p style="font-size: x-large"><b>Administración</b></p>
+                        </span>
+
+                    </a>
+
+                    <nav class="navbar navbar-static-top">
+                        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+
+                        <div class="navbar-custom-menu">
+                            <div style="text-align: center; margin-bottom: 20px">
+                                <div class="col-md-12">
+                                    <div class="row" style="margin: 15px">
+                                        <asp:Label runat="server" CssClass="EsconderNombre" ID="lblNombre" Style="color: #FFFFFF; font-weight: bold; padding: 20px; margin-top: 20px">Bienvenido(a): Usuario</asp:Label>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    @*<%--NO BORRAR--%>*@
+                                    @*<asp:LinkButton runat="server" ID="BtnCerrarSesion" OnClick="BtnCerrarSesion_Click" CssClass="fa fa-sign-out "></asp:LinkButton>*@
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                   
+                </header>
+               
+                <!-- Content Wrapper. Contains page content -->
+                <div class="content-wrapper">
+                    <div class="" style="margin-left: 7px;">
+                        @RenderBody()
+                    </div>
+                    <!-- /.content -->
+                </div>
+                <!-- /.content-wrapper -->
+                <footer class="main-footer">
+                    <div style="text-align: center">
+                        <strong>Copyright &copy;  @DateTime.Now.Year <a target="_blank" href="http://www.google.com/">Sistema de Registro de Citas S.A</a>.</strong>
+                    </div>
+                </footer>
+            </div>
+
+
+
+
+        </form>
+
+        <script src="~/Js/jquery.min.js"></script>
+        <script src="~/Js/bootstrap.min.js"></script>
+        <script src="~/Js/adminlte.min.js"></script>
+        <script src="~/Js/moment/moment.min.js"></script>
+        <script src="~/Js/fullcalendar/main.min.js"></script>
+        <script src="~/Js/fullcalendar-daygrid/main.min.js"></script>
+        <script src="~/Js/fullcalendar-timegrid/main.min.js"></script>
+        <script src="~/Js/fullcalendar-interaction/main.min.js"></script>
+        <script src="~/Js/fullcalendar-bootstrap/main.min.js"></script>
+        <script src="~/Js/fullcalendar/locales/es.js"></script>
+
+    </body>
+
+
+</html>

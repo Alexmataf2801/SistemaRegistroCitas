@@ -1,0 +1,30 @@
+body {
+    background: url(../../Imagenes/Login/fondo.jpg) repeat fixed center center;
+    background-size: cover;
+}
+
+.container {
+    width: 400px;
+    margin-top: 300px;
+    background: url(/../../Imagenes/Login/textura3.png);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.formulario {
+	background: #f2f2f2;
+	
+}
+
+.formulario  .form-control {
+	background: #f2f2f2;
+
+}
+
+.container .formulario  p{
+	 text-align: center;
+	padding: 0;
+	margin: 1px;
+  	
+	
+}

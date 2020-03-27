@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Calendario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin: 0 auto; width: 95%">
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+            <div style="margin: 0 auto; width: 95%">
+                <div style="text-align: center; margin-bottom: 50px">
+
+                </div>
+                <div id='calendar'></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="NuevoEvento" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-top-left-radius: 10px; border-top-right-radius: 10px">
+            <div class="modal-header" style="background-color:#337AB7; border-top-left-radius: 10px; border-top-right-radius: 10px">
+                <h4 style="text-align:center; color:#FFFFFF" class="modal-title">Seleccione el Servicio</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label>Servicio</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <select class="form-control" id="Servicios">
+                            <option value="01">Servicio 1</option>
+                            <option value="02">Servicio 2</option>
+                            <option value="03">Servicio 3</option>
+                            <option value="04">Servicio 4</option>
+                            <option value="05">Servicio 5</option>
+                            <option value="06">Servicio 6</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label>Tiempo aproximado del servicio</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input class="form-control" readonly type="text" value="1 Hora" id="txtTiempoAprox" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label>Horario Seleccionado</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input class="form-control" readonly type="text" id="txtHorario" />
+                    </div>
+                </div>
+                <div class="controls">
+                    <input type="hidden" id="TiempoCita" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnReservar" class="btn btn-primary">Reservar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script src="~/Js/jquery.min.js"></script>
+<script>
+
+    $(function () {
+
+        var calendarEl = document.getElementById('calendar');
+        var Calendar = FullCalendar.Calendar;
+
+
+        var calendar = new Calendar(calendarEl, {
+            plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid'],
+            defaultView: 'timeGridWeek',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            minTime: "08:00:00",
+            maxTime: "19:00:00",
+            locale: 'es',
+            editable: false,
+            dateClick: function (info) {
+                var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm:ss');
+                $('#TiempoCita').val(FechaSeleccionada);
+                $('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
+                $('#NuevoEvento').modal();
+
+            },
+            eventClick: function (info) {
+                $('#NuevoEvento').modal();
+            }
+            //events: [
+            //    {
+            //        title: 'Prueba',
+            //        start: $("#TiempoCita").val(),//'2020-02-17T14:30:00',//new Date(y, m, 1),
+            //        backgroundColor: '#f56954', //red
+            //        borderColor: '#f56954', //red
+            //        allDay: false
+            //    }
+
+            //]
+        });
+
+        calendar.render();
+
+
+
+        $('#btnReservar').on('click', function (e) {
+            e.preventDefault();
+
+            doSubmit();
+        });
+
+        function doSubmit() {
+            $("#NuevoEvento").modal('hide');
+
+            calendar.addEvent({
+                title: $("#Servicios option:selected").text(),
+                start: $("#TiempoCita").val(),
+                allDay: false
+            });
+
+        }
+
+        $("#Servicios").change(function () {
+            switch ($("#Servicios").val()) {
+                case "01":
+                    $("#txtTiempoAprox").val("1 Hora");
+                    break;
+                case "02":
+                    $("#txtTiempoAprox").val("2 Hora");
+                    break;
+                case "03":
+                    $("#txtTiempoAprox").val("3 Hora");
+                    break;
+                case "04":
+                    $("#txtTiempoAprox").val("4 Hora");
+                    break;
+                case "05":
+                    $("#txtTiempoAprox").val("5 Hora");
+                    break;
+                case "06":
+                    $("#txtTiempoAprox").val("6 Hora");
+                    break;
+                default:
+                    break;
+            }
+
+            
+        });
+
+    })
+
+</script>
+
