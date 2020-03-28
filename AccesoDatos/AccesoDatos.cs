@@ -12,7 +12,6 @@ namespace AccesoDatos
     {
         BDSistemaRegistroCitasEntities entities = new BDSistemaRegistroCitasEntities();
 
-
         public bool InsertarUsuario(Usuario usuario) {
             bool Correcto = false;
             ObjectParameter IdUsuario;
@@ -35,9 +34,7 @@ namespace AccesoDatos
                 throw;
             }
 
-           
-
-
+          
             return Correcto;
         }
 
