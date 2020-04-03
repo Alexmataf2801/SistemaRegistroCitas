@@ -15,6 +15,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,7 +28,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -68,33 +68,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Login.cs" />
-    <Compile Include="ModeloBD.Context.cs">
+    <Compile Include="ClasesEntidades\Login.cs" />
+    <Compile Include="ClasesEntidades\Usuario.cs" />
+    <Compile Include="ModelBD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBD.Context.tt</DependentUpon>
+      <DependentUpon>ModelBD.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModeloBD.cs">
+    <Compile Include="ModelBD.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBD.tt</DependentUpon>
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModeloBD.Designer.cs">
+    <Compile Include="ModelBD.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBD.edmx</DependentUpon>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
-    <EntityDeploy Include="ModeloBD.edmx">
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="ModelBD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloBD.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelBD.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ModeloBD.edmx.diagram">
-      <DependentUpon>ModeloBD.edmx</DependentUpon>
+    <None Include="ModelBD.edmx.diagram">
+      <DependentUpon>ModelBD.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -106,15 +108,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>BDSistemaRegistroCitas.mdf</DependentUpon>
     </Content>
-    <Content Include="ModeloBD.Context.tt">
+    <Content Include="ModelBD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloBD.edmx</DependentUpon>
-      <LastGenOutput>ModeloBD.Context.cs</LastGenOutput>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
+      <LastGenOutput>ModelBD.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ModeloBD.tt">
+    <Content Include="ModelBD.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloBD.edmx</DependentUpon>
-      <LastGenOutput>ModeloBD.cs</LastGenOutput>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
+      <LastGenOutput>ModelBD.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
