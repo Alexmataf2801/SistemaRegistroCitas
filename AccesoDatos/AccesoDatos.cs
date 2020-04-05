@@ -16,6 +16,7 @@ namespace AccesoDatos
 
         public void InsertarUsuario(Usuario usuario, ref int Resp)
         {
+            Utilidades utilidades = new Utilidades();
             ObjectParameter IdUsuario;
             ObjectParameter Respuesta;
             try
@@ -35,7 +36,7 @@ namespace AccesoDatos
                 Login login = new Login();
                 login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
                 login.Identificacion = usuario.Identificacion;
-                login.Contrasena = ObtenerClaveTemporal();
+                login.Contrasena = utilidades.ObtenerClaveTemporal();
 
                 if (Convert.ToInt32(IdUsuario.Value.ToString()) > 0)
                 {
@@ -65,31 +66,14 @@ namespace AccesoDatos
             }
             catch (Exception ex)
             {
-
+              
                 throw;
             }
 
             return Correcto;
         }
 
-        private byte[] ObtenerClaveTemporal()
-        {
 
-            Random rdn = new Random();
-            string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890%$#@";
-            int longitud = caracteres.Length;
-            char letra;
-            int longitudContrasenia = 10;
-            string contraseniaAleatoria = string.Empty;
-            for (int i = 0; i < longitudContrasenia; i++)
-            {
-                letra = caracteres[rdn.Next(longitud)];
-                contraseniaAleatoria += letra.ToString();
-            }
-
-
-            return Encoding.ASCII.GetBytes(contraseniaAleatoria);
-        }
 
     }
 }
