@@ -13,7 +13,7 @@ namespace LogicaNegocio
     {
         private AccesoDatos.AccesoDatos AD = new AccesoDatos.AccesoDatos();
 
-        public bool InsertarUsuario(Usuario usuario, ref int Resp)
+        public void InsertarUsuario(Usuario usuario, ref int Resp)
         {
 
             AD.InsertarUsuario(usuario, ref Resp); 
