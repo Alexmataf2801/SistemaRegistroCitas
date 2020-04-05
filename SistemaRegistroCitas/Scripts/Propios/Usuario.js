@@ -16,17 +16,18 @@
         data: { usuario },
         success: function (Info) {
             switch (Info) {
-                case "0":
+                case 0:
                     // FALTA CREAR EL MODAL PARA ERROR
                     break;
-                case "1":
+                case 1:
                     $('#fm-modal').modal('hide');
                     $('#MsjCorreo').modal('show');
                     break;
-                case "2":
+                case 2:
                     // FALTA PARAMETRIZAR EL MODAL MENSAJE
                     break;
                 default:
+                    // FALTA CREAR EL MODAL PARA ERROR
             }
 
         },

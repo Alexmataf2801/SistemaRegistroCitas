@@ -19,8 +19,9 @@ namespace SistemaRegistroCitas.Controllers
             return View();
         }
 
-        public JsonResult InsertarUsuario(Usuario usuario, ref int Resp){
-
+        public JsonResult InsertarUsuario(Usuario usuario)
+        {
+            int Resp = 0;
             LN.InsertarUsuario(usuario, ref Resp);
 
             return Json(Resp, JsonRequestBehavior.AllowGet);
