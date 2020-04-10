@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClasesEntidades\Evento.cs" />
     <Compile Include="ClasesEntidades\Login.cs" />
     <Compile Include="ClasesEntidades\Usuario.cs" />
     <Compile Include="ClasesEntidades\Utilidades.cs" />

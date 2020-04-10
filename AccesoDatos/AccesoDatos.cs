@@ -71,9 +71,26 @@ namespace AccesoDatos
             }
 
             return Correcto;
+
+           
         }
 
+        public bool InsertarEvento (Evento evento)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.paInsertarEvento(evento.IdUsuario, evento.IdServicio, evento.Estado, evento.UsuarioCreacion, evento.HorarioInicial, evento.HoraFinal);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
 
+            return Respuesta;
+
+        }
 
     }
 }

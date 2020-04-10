@@ -20,6 +20,11 @@ namespace LogicaNegocio
 
         }
 
+        public bool InsertarEvento(Evento evento)
+        {
+            
+         return  AD.InsertarEvento(evento);
+        }
 
     }
 }
