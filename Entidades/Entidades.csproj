@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="ClasesEntidades\Evento.cs" />
     <Compile Include="ClasesEntidades\Login.cs" />
+    <Compile Include="ClasesEntidades\Servicio.cs" />
     <Compile Include="ClasesEntidades\Usuario.cs" />
     <Compile Include="ClasesEntidades\Utilidades.cs" />
     <Compile Include="ModelBD.Context.cs">
@@ -86,6 +87,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelBD.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerServiciosActivos_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

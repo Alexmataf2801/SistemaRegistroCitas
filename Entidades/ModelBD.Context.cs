@@ -106,5 +106,10 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarEvento", idUsuarioParameter, idServicioParameter, estadoParameter, usuarioCreacionParameter, horarioInicialParameter, horaFinalParameter);
         }
+    
+        public virtual ObjectResult<paObtenerServiciosActivos_Result> paObtenerServiciosActivos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerServiciosActivos_Result>("paObtenerServiciosActivos");
+        }
     }
 }

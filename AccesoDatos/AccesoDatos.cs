@@ -92,5 +92,37 @@ namespace AccesoDatos
 
         }
 
+        public List<Servicio> ObtenerServicios()
+
+        {
+            List<Servicio> ListaServcios = new List<Servicio>();
+            try
+            {
+                
+              var info = entities.paObtenerServiciosActivos();
+
+                foreach (var item in info )
+                {
+                    Servicio servicio = new Servicio();
+
+                    servicio.Id = item.Id;
+                    servicio.Nombre = item.Nombre;
+                    servicio.Descripcion = item.Descripcion;
+                    servicio.TiempoEstimado = item.TiempoEstimado;
+                    servicio.TipoUnidad = item.TipoUnidad;
+
+                    ListaServcios.Add(servicio);
+                }
+            }
+                         
+            catch(Exception ex)
+            {
+
+            }
+
+            return ListaServcios;
+
+        }
+
     }
 }
