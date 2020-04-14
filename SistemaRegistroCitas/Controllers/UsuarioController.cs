@@ -27,5 +27,12 @@ namespace SistemaRegistroCitas.Controllers
             return Json(Resp, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult Loguear(Login login)
+        {
+            Usuario usuario = LN.Validarlogin(login);
+            Session["Usuario"] = usuario;
+            return Json(usuario,JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
