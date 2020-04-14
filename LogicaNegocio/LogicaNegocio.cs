@@ -16,10 +16,20 @@ namespace LogicaNegocio
         public void InsertarUsuario(Usuario usuario, ref int Resp)
         {
 
-            AD.InsertarUsuario(usuario, ref Resp); 
+            AD.InsertarUsuario(usuario, ref Resp);
 
         }
 
+        public bool InsertarEvento(Evento evento)
+        {
+
+            return AD.InsertarEvento(evento);
+        }
+
+        public List<Servicio> ObtenerServicios()
+        {
+            return AD.ObtenerServicios();
+        }
 
     }
 }
