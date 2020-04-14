@@ -31,5 +31,10 @@ namespace LogicaNegocio
             return AD.ObtenerServicios();
         }
 
+        public Usuario Validarlogin(Login login)
+        {
+            return AD.Validarlogin(login);
+        }
+
     }
 }

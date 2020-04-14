@@ -16,7 +16,7 @@
         <Function Name="paInsertarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
           <Parameter Name="Identificacion" Type="varchar" Mode="In" />
-          <Parameter Name="Contrasena" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="Contrasena" Type="varchar" Mode="In" />
         </Function>
         <Function Name="paInsertarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -30,17 +30,20 @@
           <Parameter Name="Respuesta" Type="int" Mode="InOut" />
         </Function>
         <Function Name="paObtenerServiciosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Identificacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="paValidarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Identificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasena" Type="varchar" Mode="In" />
+          <Parameter Name="EsCorrecto" Type="bit" Mode="InOut" />
+        </Function>
         <EntityContainer Name="BDSistemaRegistroCitasModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BDSistemaRegistroCitasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BDSistemaRegistroCitasEntities" annotation:LazyLoadingEnabled="true" >
-          <FunctionImport Name="paInsertarLogin">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-            <Parameter Name="Identificacion" Mode="In" Type="String" />
-            <Parameter Name="Contrasena" Mode="In" Type="Binary" />
-          </FunctionImport>
           <FunctionImport Name="paInsertarUsuario">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="PrimerApellido" Mode="In" Type="String" />
@@ -61,6 +64,19 @@
             <Parameter Name="HoraFinal" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="paObtenerServiciosActivos" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServiciosActivos_Result)" />
+          <FunctionImport Name="paInsertarLogin">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="Contrasena" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
+          <Parameter Name="Identificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paValidarLogin">
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="Contrasena" Mode="In" Type="String" />
+            <Parameter Name="EsCorrecto" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -69,13 +85,24 @@
           <Property Type="Int32" Name="TiempoEstimado" Nullable="false" />
           <Property Type="Int32" Name="TipoUnidad" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="paObtenerUsuario_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CorreroElectronico" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Telefono" Nullable="false" />
+          <Property Type="Boolean" Name="Genero" Nullable="false" />
+          <Property Type="Int32" Name="IdPerfil" Nullable="false" />
+          <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BDSistemaRegistroCitasModelStoreContainer" CdmEntityContainer="BDSistemaRegistroCitasEntities" >
-          <FunctionImportMapping FunctionImportName="paInsertarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarLogin" />
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
           <FunctionImportMapping FunctionImportName="paInsertarEvento" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarEvento" />
           <FunctionImportMapping FunctionImportName="paObtenerServiciosActivos" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerServiciosActivos">
@@ -89,6 +116,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paInsertarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarLogin" />
+          <FunctionImportMapping FunctionImportName="paObtenerUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerUsuario_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="CorreroElectronico" ColumnName="CorreroElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="IdPerfil" ColumnName="IdPerfil" />
+                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paValidarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarLogin" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

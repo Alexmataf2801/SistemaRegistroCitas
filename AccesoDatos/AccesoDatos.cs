@@ -33,21 +33,38 @@ namespace AccesoDatos
                                                       IdUsuario,
                                                       Respuesta);
 
-                Login login = new Login();
-                login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
-                login.Identificacion = usuario.Identificacion;
-                login.Contrasena = utilidades.ObtenerClaveTemporal();
-
-                if (Convert.ToInt32(IdUsuario.Value.ToString()) > 0)
+                if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
                 {
-                    if (InsertarLogin(login))
+                    switch (Respuesta.Value.ToString())
                     {
-                        Resp = Convert.ToInt32(Respuesta.Value.ToString());
+                        case "1":
+                            Login login = new Login();
+                            login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
+                            login.Identificacion = usuario.Identificacion;
+                            login.Contrasena = utilidades.ObtenerClaveTemporal();
+
+                            if (InsertarLogin(login))
+                            {
+                                Resp = Convert.ToInt32(Respuesta.Value.ToString());
+                                utilidades.EnviarCorreo(login.Contrasena, usuario.CorreoElectronico);
+                            }
+
+                            break;
+
+                        default:
+
+                            Resp = Convert.ToInt32(Respuesta.Value.ToString());
+
+                            break;
                     }
+                    
                 }
-                else {
-                    Resp = Convert.ToInt32(Respuesta.Value.ToString());
+                else
+                {
+                    Resp = 0;
                 }
+
+
             }
             catch (Exception ex)
             {
@@ -66,16 +83,16 @@ namespace AccesoDatos
             }
             catch (Exception ex)
             {
-              
+
                 throw;
             }
 
             return Correcto;
 
-           
+
         }
 
-        public bool InsertarEvento (Evento evento)
+        public bool InsertarEvento(Evento evento)
         {
             bool Respuesta = true;
             try
@@ -98,10 +115,10 @@ namespace AccesoDatos
             List<Servicio> ListaServcios = new List<Servicio>();
             try
             {
-                
-              var info = entities.paObtenerServiciosActivos();
 
-                foreach (var item in info )
+                var info = entities.paObtenerServiciosActivos();
+
+                foreach (var item in info)
                 {
                     Servicio servicio = new Servicio();
 
@@ -114,14 +131,75 @@ namespace AccesoDatos
                     ListaServcios.Add(servicio);
                 }
             }
-                         
-            catch(Exception ex)
+
+            catch (Exception ex)
             {
 
             }
 
             return ListaServcios;
 
+        }
+
+        public Usuario Validarlogin(Login login)
+        {
+
+            bool respuesta = false;
+            ObjectParameter EsCorrecto;
+            Usuario usuario = new Usuario();
+
+            try
+            {
+                EsCorrecto = new ObjectParameter("EsCorrecto", typeof(bool));
+                entities.paValidarLogin(login.Identificacion, login.Contrasena, EsCorrecto);
+                respuesta = Convert.ToBoolean(EsCorrecto.Value.ToString());
+
+                if (respuesta)
+                {
+
+                    usuario = ObtenerUsuario(login.Identificacion);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return usuario;
+        }
+
+        public Usuario ObtenerUsuario(string Identificacion)
+        {
+
+            Usuario usuario = new Usuario();
+            try
+            {
+
+                var Info = entities.paObtenerUsuario(Identificacion);
+
+                foreach (var item in Info)
+                {
+
+                    usuario.Id = item.Id;
+                    usuario.Nombre = item.Nombre;
+                    usuario.PrimerApellido = item.PrimerApellido;
+                    usuario.SegundoApellido = item.SegundoApellido;
+                    usuario.Identificacion = item.Identificacion;
+                    usuario.IdPerfil = item.IdPerfil;
+                    usuario.CorreoElectronico = item.CorreroElectronico;
+                    usuario.Telefono = item.Telefono;
+                    usuario.Genero = item.Genero;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return usuario;
         }
 
     }

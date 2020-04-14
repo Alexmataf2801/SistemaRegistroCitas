@@ -11,7 +11,7 @@ namespace Entidades.ClasesEntidades
         public int Id { get; set; }
         public int IdUsuario { get; set; }
         public string Identificacion { get; set; }
-        public byte[] Contrasena { get; set; }
+        public string Contrasena { get; set; }
         public bool Temporal { get; set; }
         public bool Estado { get; set; }
         public DateTime FehaCreacion { get; set; }
