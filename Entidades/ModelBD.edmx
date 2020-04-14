@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BDSistemaRegistroCitasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="paInsertarEvento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+          <Parameter Name="IdServicio" Type="int" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="HorarioInicial" Type="datetime" Mode="In" />
+          <Parameter Name="HoraFinal" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="paInsertarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
           <Parameter Name="Identificacion" Type="varchar" Mode="In" />
@@ -21,6 +29,7 @@
           <Parameter Name="IdUsuario" Type="int" Mode="InOut" />
           <Parameter Name="Respuesta" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="paObtenerServiciosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="BDSistemaRegistroCitasModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -43,7 +52,23 @@
             <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paInsertarEvento">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdServicio" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="HorarioInicial" Mode="In" Type="DateTime" />
+            <Parameter Name="HoraFinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerServiciosActivos" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServiciosActivos_Result)" />
         </EntityContainer>
+        <ComplexType Name="paObtenerServiciosActivos_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="TiempoEstimado" Nullable="false" />
+          <Property Type="Int32" Name="TipoUnidad" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -52,6 +77,18 @@
         <EntityContainerMapping StorageEntityContainer="BDSistemaRegistroCitasModelStoreContainer" CdmEntityContainer="BDSistemaRegistroCitasEntities" >
           <FunctionImportMapping FunctionImportName="paInsertarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarLogin" />
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
+          <FunctionImportMapping FunctionImportName="paInsertarEvento" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarEvento" />
+          <FunctionImportMapping FunctionImportName="paObtenerServiciosActivos" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerServiciosActivos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerServiciosActivos_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TiempoEstimado" ColumnName="TiempoEstimado" />
+                <ScalarProperty Name="TipoUnidad" ColumnName="TipoUnidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
