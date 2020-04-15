@@ -17,17 +17,20 @@
         success: function (Info) {
             switch (Info) {
                 case 0:
-                    // FALTA CREAR EL MODAL PARA ERROR
+                    $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                    $('#MsjIncorrecto').modal('show');
                     break;
                 case 1:
                     $('#fm-modal').modal('hide');
                     $('#MsjCorreo').modal('show');
                     break;
                 case 2:
-                    // FALTA PARAMETRIZAR EL MODAL MENSAJE
+                    $("#msjModal").html("<label>¡La Identificación ingresada ya existe!</label>");
+                    $('#MsjIncorrecto').modal('show');
                     break;
                 default:
-                    // FALTA CREAR EL MODAL PARA ERROR
+                    $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                    $('#MsjIncorrecto').modal('show');
             }
 
         },

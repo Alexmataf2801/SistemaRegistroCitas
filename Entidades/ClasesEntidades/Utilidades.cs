@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Entidades.ClasesEntidades
 {
-   public  class Utilidades
+    public class Utilidades
     {
-        public byte[] ObtenerClaveTemporal()
+        public string ObtenerClaveTemporal()
         {
 
             Random rdn = new Random();
@@ -24,7 +27,37 @@ namespace Entidades.ClasesEntidades
             }
 
 
-            return Encoding.ASCII.GetBytes(contraseniaAleatoria);
+            return contraseniaAleatoria;
+        }
+
+        public void EnviarCorreo(string Contraseña, string Correo)
+        {
+            try
+            {
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = ConfigurationManager.AppSettings["Host"].ToString();
+                smtp.Port = Convert.ToInt32(ConfigurationManager.AppSettings["Port"].ToString());
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Usuario"].ToString(), ConfigurationManager.AppSettings["Clave"].ToString());
+
+
+
+                MailMessage mail = new MailMessage();
+                mail.Subject = "Contrasena Sistema Registro Citas";
+                mail.Body = "Su Contraseña de Acceso es: " + Contraseña;
+                mail.From = new MailAddress(ConfigurationManager.AppSettings["Usuario"].ToString());
+                mail.To.Add(Correo);
+
+
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
     }
