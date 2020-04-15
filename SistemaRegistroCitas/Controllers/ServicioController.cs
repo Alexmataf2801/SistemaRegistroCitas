@@ -17,16 +17,14 @@ namespace SistemaRegistroCitas.Controllers
         {
             return View();
         }
-
+       
         public JsonResult ObtenerServicios()
         {
             List<Servicio> servicios = new List<Servicio>();
 
             servicios = LN.ObtenerServicios();
-            {
 
-                return Json(servicios, JsonRequestBehavior.AllowGet);
-            }
+            return Json(servicios, JsonRequestBehavior.AllowGet);
         }
     }
 }
