@@ -36,5 +36,10 @@ namespace LogicaNegocio
             return AD.Validarlogin(login);
         }
 
+        public Servicio ServicioTiempo( int IdServicio)
+        {
+            return AD.ServicioTiempo(IdServicio);
+        }
+
     }
 }

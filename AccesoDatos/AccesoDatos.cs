@@ -4,9 +4,6 @@ using Entidades.ClasesEntidades;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AccesoDatos
 {
@@ -201,6 +198,36 @@ namespace AccesoDatos
 
             return usuario;
         }
+
+        public Servicio ServicioTiempo(int IdServicio)
+
+        {
+            Servicio servicio = new Servicio();
+            try
+            {
+                var info = entities.paServicioTiempo(IdServicio);
+
+
+                foreach (var item in info)
+                {
+                    servicio.Id = item.Id;
+                    servicio.Nombre = item.Nombre;
+                    servicio.Descripcion = item.Descripcion;
+                    servicio.TiempoEstimado = item.TiempoEstimado;
+                    servicio.TipoUnidad = item.TipoUnidad;
+                    servicio.Estado = item.Estado;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return servicio;
+
+        }
+
+
 
     }
 }

@@ -282,6 +282,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Evento\" />
+    <Folder Include="Views\ServicioTiempo\" />
     <Folder Include="Views\Servicio\" />
     <Folder Include="Views\Usuario\" />
   </ItemGroup>

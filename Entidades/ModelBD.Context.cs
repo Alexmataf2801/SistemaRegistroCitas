@@ -133,5 +133,14 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paValidarLogin", identificacionParameter, contrasenaParameter, esCorrecto);
         }
+    
+        public virtual ObjectResult<paServicioTiempo_Result> paServicioTiempo(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paServicioTiempo_Result>("paServicioTiempo", idParameter);
+        }
     }
 }
