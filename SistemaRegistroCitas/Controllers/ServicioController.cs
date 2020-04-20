@@ -28,9 +28,9 @@ namespace SistemaRegistroCitas.Controllers
         }
 
 
-      public JsonResult ServicioTiempo(int Id)
+      public JsonResult ServicioXId(int Id)
         {            
-            Servicio InfoServicio = LN.ServicioTiempo(Id);
+            Servicio InfoServicio = LN.ServicioXId(Id);
 
             return Json(InfoServicio, JsonRequestBehavior.AllowGet);
         }

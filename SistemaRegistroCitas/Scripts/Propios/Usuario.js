@@ -21,6 +21,7 @@
                     $('#MsjIncorrecto').modal('show');
                     break;
                 case 1:
+                    LimpiarValores();
                     $('#fm-modal').modal('hide');
                     $('#MsjCorreo').modal('show');
                     break;
@@ -41,4 +42,14 @@
     });
 
 
+}
+
+
+function LimpiarValores() {
+    $("#txtNombre").val('')
+    $("#txtPrimerApellido").val('')
+    $("#txtSegundoApellido").val('')
+    $("#txtIdentificacion").val('')
+    $("#txtCorreoElectronico").val('')
+    $("#txtTelefono").val('')
 }

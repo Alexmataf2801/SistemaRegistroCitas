@@ -13,6 +13,7 @@ namespace Entidades.ClasesEntidades
         public string Descripcion { get; set; }
         public int TiempoEstimado { get; set; }
         public int TipoUnidad { get; set; }
+        public string UnidadMedida { get; set; }
         public bool Estado { get; set; }
         public string UsuarioCreacion { get; set; }
         public DateTime FechaCreacion { get; set; }

@@ -27,28 +27,37 @@
 }
 
 
-function ServicioTiempo() {
+function ServicioXId() {
 
-    $.ajax({
-        type: "GET",
-        dataType: "JSON",
-        url: "/Servicio/ServicioTiempo/",
-        data: { "Id": $("#Servicios").val()} ,
+    if ($("#Servicios").val() !== "0") {
+        $("#btnReservar").prop("disabled", false);
+ 
+        $.ajax({
+            type: "GET",
+            dataType: "JSON",
+            url: "/Servicio/ServicioXId/",
+            data: { "Id": $("#Servicios").val() },
 
-        success: function (InfoServicio) {
-            $("#TiempoAprox").val(InfoServicio.TiempoEstimado);
+            success: function (InfoServicio) {
+                $("#TiempoAprox").val(InfoServicio.TiempoEstimado + " " + InfoServicio.UnidadMedida);
 
-        },
+            },
 
-        error: function () {
-            console.log('error')
-        },
+            error: function () {
+                console.log('error')
+            },
 
-    });
+        });
+    } else {
+        $("#btnReservar").prop("disabled", true);
+        $("#TiempoAprox").val('');
+    }
+
+   
 }
 
 $("#Servicios").change(function () {
-    ServicioTiempo();
+    ServicioXId();
 })
 
 

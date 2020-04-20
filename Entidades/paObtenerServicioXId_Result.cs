@@ -11,13 +11,14 @@ namespace Entidades
 {
     using System;
     
-    public partial class paServicioTiempo_Result
+    public partial class paObtenerServicioXId_Result
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public int TiempoEstimado { get; set; }
         public int TipoUnidad { get; set; }
+        public string UnidadMedida { get; set; }
         public bool Estado { get; set; }
     }
 }

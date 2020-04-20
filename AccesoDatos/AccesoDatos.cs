@@ -199,13 +199,13 @@ namespace AccesoDatos
             return usuario;
         }
 
-        public Servicio ServicioTiempo(int IdServicio)
+        public Servicio ServicioXId(int IdServicio)
 
         {
             Servicio servicio = new Servicio();
             try
             {
-                var info = entities.paServicioTiempo(IdServicio);
+                var info = entities.paObtenerServicioXId(IdServicio);
 
 
                 foreach (var item in info)
@@ -215,6 +215,7 @@ namespace AccesoDatos
                     servicio.Descripcion = item.Descripcion;
                     servicio.TiempoEstimado = item.TiempoEstimado;
                     servicio.TipoUnidad = item.TipoUnidad;
+                    servicio.UnidadMedida = item.UnidadMedida;
                     servicio.Estado = item.Estado;
                 }
 

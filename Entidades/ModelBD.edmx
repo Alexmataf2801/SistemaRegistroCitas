@@ -30,11 +30,11 @@
           <Parameter Name="Respuesta" Type="int" Mode="InOut" />
         </Function>
         <Function Name="paObtenerServiciosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerServicioXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Identificacion" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="paServicioTiempo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="paValidarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Identificacion" Type="varchar" Mode="In" />
@@ -80,8 +80,8 @@
             <Parameter Name="Contrasena" Mode="In" Type="String" />
             <Parameter Name="EsCorrecto" Mode="InOut" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="paServicioTiempo" ReturnType="Collection(BDSistemaRegistroCitasModel.paServicioTiempo_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <FunctionImport Name="paObtenerServicioXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServicioXId_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
@@ -103,12 +103,13 @@
           <Property Type="Int32" Name="IdPerfil" Nullable="false" />
           <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
         </ComplexType>
-        <ComplexType Name="paServicioTiempo_Result">
+        <ComplexType Name="paObtenerServicioXId_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
           <Property Type="Int32" Name="TiempoEstimado" Nullable="false" />
           <Property Type="Int32" Name="TipoUnidad" Nullable="false" />
+          <Property Type="String" Name="UnidadMedida" Nullable="false" MaxLength="50" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
         </ComplexType>
       </Schema>
@@ -148,14 +149,15 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paValidarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarLogin" />
-          <FunctionImportMapping FunctionImportName="paServicioTiempo" FunctionName="BDSistemaRegistroCitasModel.Store.paServicioTiempo">
+          <FunctionImportMapping FunctionImportName="paObtenerServicioXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerServicioXId">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paServicioTiempo_Result">
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerServicioXId_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="TiempoEstimado" ColumnName="TiempoEstimado" />
                 <ScalarProperty Name="TipoUnidad" ColumnName="TipoUnidad" />
+                <ScalarProperty Name="UnidadMedida" ColumnName="UnidadMedida" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </ComplexTypeMapping>
             </ResultMapping>

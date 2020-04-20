@@ -92,10 +92,10 @@
     <Compile Include="paObtenerServiciosActivos_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="paObtenerUsuario_Result.cs">
+    <Compile Include="paObtenerServicioXId_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="paServicioTiempo_Result.cs">
+    <Compile Include="paObtenerUsuario_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
