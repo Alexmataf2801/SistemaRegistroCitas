@@ -142,5 +142,10 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerServicioXId_Result>("paObtenerServicioXId", idParameter);
         }
+    
+        public virtual ObjectResult<paObtenerColaboradoresActivos_Result> paObtenerColaboradoresActivos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerColaboradoresActivos_Result>("paObtenerColaboradoresActivos");
+        }
     }
 }

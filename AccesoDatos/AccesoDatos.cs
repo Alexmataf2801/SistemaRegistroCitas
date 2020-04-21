@@ -228,6 +228,37 @@ namespace AccesoDatos
 
         }
 
+        public List<Colaboradores> ObtenerColaboradoresActivos()
+        {
+            List<Colaboradores> ListaColaboradores = new List<Colaboradores>();
+            try
+            {
+                var info = entities.paObtenerColaboradoresActivos();
+
+                foreach(var item in info)
+                {
+                    Colaboradores colaboradores = new Colaboradores();
+
+                    colaboradores.Id = item.Id;
+                    colaboradores.Nombre = item.Nombre;
+                    colaboradores.PrimerApellido = item.PrimerApellido;
+                    colaboradores.SegundoApellido = item.SegundoApellido;
+                    colaboradores.Identificacion = item.Identificacion;
+                    colaboradores.CorreoElectronico = item.CorreoElectronico;
+                    colaboradores.Telefono = item.Telefono;
+                    colaboradores.FotoPerfil = item.FotoPerfil;
+                    colaboradores.Estado = item.Estado;
+
+                    ListaColaboradores.Add(colaboradores);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return ListaColaboradores;
+        }
 
 
     }
