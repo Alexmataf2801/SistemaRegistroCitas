@@ -46,5 +46,25 @@ namespace LogicaNegocio
             return AD.ObtenerColaboradoresActivos();
         }
 
+        public bool InsertarColaboradores(Colaboradores colaboradores)
+        {
+            return AD.InsertarColaboradores(colaboradores);
+        }
+
+        public bool InsertarRoles(Roles roles)
+        {
+            return AD.InsertarRoles(roles);
+        }
+
+        public bool InsertarServicios(Servicio servicio)
+        {
+            return AD.InsertarServicios(servicio);
+        }
+
+        public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
+        {
+            return AD.InsertarUnidadMedida(unidadMedida);
+        }
+
     }
 }

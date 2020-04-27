@@ -17,6 +17,7 @@ namespace Entidades.ClasesEntidades
         public string CorreoElectronico { get; set; }
         public int Telefono { get; set; }
         public string FotoPerfil { get; set; }
+        public int IdPerfil { get; set;}
         public bool Estado { get; set; }
         public string UsuarioCreacion { get; set; }
         public DateTime FechaCreacion { get; set; }

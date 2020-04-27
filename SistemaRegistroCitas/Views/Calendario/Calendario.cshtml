@@ -14,12 +14,6 @@
                 <div class="form-group col-md-3">
                     <select class="form-control" id="Colaboradores">
                         <option value="0">Seleccione uno...</option>
-                        @*<option value="01">Servicio 1</option>
-                          <option value="02">Colaboradores 2</option>
-                          <option value="03">Colaboradores 3</option>
-                          <option value="04">Colaboradores 4</option>
-                          <option value="05">Colaboradores 5</option>
-                          <option value="06">Colaboradores 6</option>*@
                     </select>
                 </div>
             </div>
@@ -48,11 +42,11 @@
                         <select class="form-control" id="Servicios">
                             <option value="0">Seleccione uno...</option>
                             @*<option value="01">Servicio 1</option>
-                             <option value="02">Servicio 2</option>
-                             <option value="03">Servicio 3</option>
-                             <option value="04">Servicio 4</option>
-                             <option value="05">Servicio 5</option>
-                             <option value="06">Servicio 6</option>*@
+                    <option value="02">Servicio 2</option>
+                    <option value="03">Servicio 3</option>
+                    <option value="04">Servicio 4</option>
+                    <option value="05">Servicio 5</option>
+                    <option value="06">Servicio 6</option>*@
                         </select>
                     </div>
                 </div>
@@ -72,15 +66,28 @@
                     </div>
                     <div class="form-group col-md-5">
                         <input class="form-control" readonly type="text" id="txtHorario" />
+                        <input class="form-control" readonly type="hidden" id="txtHorarioOculta" />
                     </div>
                 </div>
+
+
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label>Horario Final</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input class="form-control" readonly type="text" id="TiempoFinal" />
+                    </div>
+                </div>
+
+
 
                 <div class="controls">
                     <input type="hidden" id="TiempoCita" />
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnReservar" class="btn btn-primary">Reservar</button>
+                <button type="button" id="btnReservar" class="btn btn-primary" onclick="InsertarEvento()">Reservar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -110,9 +117,12 @@
             locale: 'es',
             editable: false,
             dateClick: function (info) {
+                $('#TiempoFinal').val("");
                 var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm:ss');
                 $('#TiempoCita').val(FechaSeleccionada);
                 $('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
+                $('#txtHorarioOculta').val(info.dateStr);
+
                 $('#NuevoEvento').modal();
 
             },
@@ -152,32 +162,32 @@
 
         }
 
-        $("#Servicios").change(function () {
-            switch ($("#Servicios").val()) {
-                case "01":
-                    $("#txtTiempoAprox").val("1 Hora");
-                    break;
-                case "02":
-                    $("#txtTiempoAprox").val("2 Hora");
-                    break;
-                case "03":
-                    $("#txtTiempoAprox").val("3 Hora");
-                    break;
-                case "04":
-                    $("#txtTiempoAprox").val("4 Hora");
-                    break;
-                case "05":
-                    $("#txtTiempoAprox").val("5 Hora");
-                    break;
-                case "06":
-                    $("#txtTiempoAprox").val("6 Hora");
-                    break;
-                default:
-                    break;
-            }
+        //$("#Servicios").change(function () {
+        //    switch ($("#Servicios").val()) {
+        //        case "01":
+        //            $("#txtTiempoAprox").val("1 Hora");
+        //            break;
+        //        case "02":
+        //            $("#txtTiempoAprox").val("2 Hora");
+        //            break;
+        //        case "03":
+        //            $("#txtTiempoAprox").val("3 Hora");
+        //            break;
+        //        case "04":
+        //            $("#txtTiempoAprox").val("4 Hora");
+        //            break;
+        //        case "05":
+        //            $("#txtTiempoAprox").val("5 Hora");
+        //            break;
+        //        case "06":
+        //            $("#txtTiempoAprox").val("6 Hora");
+        //            break;
+        //        default:
+        //            break;
+        //    }
 
             
-        });
+        //} );
 
     })
 
@@ -186,3 +196,4 @@
 
 <script src="~/Scripts/Propios/Servicio.js"></script>
 <script src="~/Scripts/Propios/Colaboradores.js"></script>
+@*<script src="~/Scripts/Propios/Eventos.js"></script>*@

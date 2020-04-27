@@ -131,7 +131,9 @@
     <Compile Include="Controllers\ColaboradoresController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ServicioController.cs" />
+    <Compile Include="Controllers\UnidadMedidaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,6 +263,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
+    <Content Include="Scripts\Propios\Eventos.js" />
     <Content Include="Scripts\Propios\Servicio.js" />
     <Content Include="Scripts\Propios\Usuario.js" />
     <Content Include="Web.config">
@@ -279,14 +282,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Calendario\Calendario.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\Colaboradores\InsertarColaboradores.cshtml" />
+    <Content Include="Views\Roles\InsertarRoles.cshtml" />
+    <Content Include="Views\Servicio\InsertarServicios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Colaboradores\" />
     <Folder Include="Views\Evento\" />
     <Folder Include="Views\ServicioTiempo\" />
-    <Folder Include="Views\Servicio\" />
+    <Folder Include="Views\UnidadMedida\" />
     <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>

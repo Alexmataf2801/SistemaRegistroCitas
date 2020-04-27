@@ -260,6 +260,70 @@ namespace AccesoDatos
             return ListaColaboradores;
         }
 
+        public bool InsertarColaboradores (Colaboradores colaboradores)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaInsertarColaboradores(colaboradores.Nombre, colaboradores.PrimerApellido, colaboradores.SegundoApellido, colaboradores.Identificacion,
+                colaboradores.CorreoElectronico, colaboradores.Telefono, colaboradores.FotoPerfil, colaboradores.IdPerfil, colaboradores.Estado, colaboradores.UsuarioCreacion);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
 
+            return Respuesta;
+
+        }
+
+        public bool InsertarRoles(Roles roles)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaInsertarRoles(roles.Nombre, roles.Descripcion, roles.Estado, roles.UsuarioCreacion);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
+
+            return Respuesta;
+        }
+
+        public bool InsertarServicios(Servicio servicio)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaInsertarServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.Estado, servicio.UsuarioCreacion);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
+
+            return Respuesta;
+        }
+
+        public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaInsertarUnidadMedida(unidadMedida.Nombre, unidadMedida.Descripcion, unidadMedida.Estado, unidadMedida.UsuarioCreacion);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
+
+            return Respuesta;
+        }
     }
 }

@@ -72,7 +72,9 @@
     <Compile Include="ClasesEntidades\Colaboradores.cs" />
     <Compile Include="ClasesEntidades\Evento.cs" />
     <Compile Include="ClasesEntidades\Login.cs" />
+    <Compile Include="ClasesEntidades\Roles.cs" />
     <Compile Include="ClasesEntidades\Servicio.cs" />
+    <Compile Include="ClasesEntidades\UnidadMedida.cs" />
     <Compile Include="ClasesEntidades\Usuario.cs" />
     <Compile Include="ClasesEntidades\Utilidades.cs" />
     <Compile Include="ModelBD.Context.cs">

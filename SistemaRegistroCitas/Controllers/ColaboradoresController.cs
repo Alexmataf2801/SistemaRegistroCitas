@@ -1,5 +1,7 @@
-﻿using Entidades.ClasesEntidades;
+﻿using Entidades;
+using Entidades.ClasesEntidades;
 using System;
+using LogicaNegocio;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,6 +26,10 @@ namespace SistemaRegistroCitas.Controllers
             colaboradores = LN.ObtenerColaboradoresActivos();
 
             return Json(colaboradores, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult InsertarColaboradores() {
+            return View();
         }
 
 

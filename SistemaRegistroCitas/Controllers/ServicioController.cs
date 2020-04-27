@@ -35,6 +35,11 @@ namespace SistemaRegistroCitas.Controllers
             return Json(InfoServicio, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult InsertarServicios()
+        {
+            return View();
+        }
+
 
     }
 }
