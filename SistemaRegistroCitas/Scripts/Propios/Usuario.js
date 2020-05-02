@@ -1,5 +1,6 @@
 ﻿function InsertarUsuario() {
     var usuario = {
+        Empresa: $("#txtIdEmpresaRegistro").val(),
         Nombre: $("#txtNombre").val(),
         PrimerApellido: $("#txtPrimerApellido").val(),
         SegundoApellido: $("#txtSegundoApellido").val(),
@@ -27,6 +28,10 @@
                     break;
                 case 2:
                     $("#msjModal").html("<label>¡La Identificación ingresada ya existe!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                    break;
+                case 3:
+                    $("#msjModal").html("<label>¡La Empresa ingresada no existe!</label>");
                     $('#MsjIncorrecto').modal('show');
                     break;
                 default:

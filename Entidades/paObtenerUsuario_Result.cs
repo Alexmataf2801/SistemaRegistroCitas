@@ -21,7 +21,7 @@ namespace Entidades
         public string CorreroElectronico { get; set; }
         public int Telefono { get; set; }
         public bool Genero { get; set; }
-        public int IdPerfil { get; set; }
+        public string Empresa { get; set; }
         public string FotoPerfil { get; set; }
     }
 }

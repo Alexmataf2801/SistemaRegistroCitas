@@ -25,6 +25,7 @@ namespace AccesoDatos
                                                       usuario.SegundoApellido,
                                                       usuario.Identificacion,
                                                       usuario.CorreoElectronico,
+                                                      usuario.Empresa,
                                                       usuario.Telefono,
                                                       usuario.Genero,
                                                       IdUsuario,
@@ -39,6 +40,7 @@ namespace AccesoDatos
                             login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
                             login.Identificacion = usuario.Identificacion;
                             login.Contrasena = utilidades.ObtenerClaveTemporal();
+                            login.Empresa = usuario.Empresa;
 
                             if (InsertarLogin(login))
                             {
@@ -75,7 +77,7 @@ namespace AccesoDatos
             bool Correcto = false;
             try
             {
-                entities.paInsertarLogin(login.IdUsuario, login.Identificacion, login.Contrasena);
+                entities.paInsertarLogin(login.IdUsuario, login.Identificacion,login.Empresa, login.Contrasena);
                 Correcto = true;
             }
             catch (Exception ex)
@@ -148,7 +150,7 @@ namespace AccesoDatos
             try
             {
                 EsCorrecto = new ObjectParameter("EsCorrecto", typeof(bool));
-                entities.paValidarLogin(login.Identificacion, login.Contrasena, EsCorrecto);
+                entities.paValidarLogin(login.Identificacion, login.Contrasena,login.Empresa, EsCorrecto);
                 respuesta = Convert.ToBoolean(EsCorrecto.Value.ToString());
 
                 if (respuesta)
@@ -183,10 +185,11 @@ namespace AccesoDatos
                     usuario.PrimerApellido = item.PrimerApellido;
                     usuario.SegundoApellido = item.SegundoApellido;
                     usuario.Identificacion = item.Identificacion;
-                    usuario.IdPerfil = item.IdPerfil;
+                    usuario.Empresa = item.Empresa;
                     usuario.CorreoElectronico = item.CorreroElectronico;
                     usuario.Telefono = item.Telefono;
                     usuario.Genero = item.Genero;
+                    usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;
 
                 }
 
@@ -226,58 +229,8 @@ namespace AccesoDatos
             }
             return servicio;
 
-        }
-
-        public List<Colaboradores> ObtenerColaboradoresActivos()
-        {
-            List<Colaboradores> ListaColaboradores = new List<Colaboradores>();
-            try
-            {
-                var info = entities.paObtenerColaboradoresActivos();
-
-                foreach(var item in info)
-                {
-                    Colaboradores colaboradores = new Colaboradores();
-
-                    colaboradores.Id = item.Id;
-                    colaboradores.Nombre = item.Nombre;
-                    colaboradores.PrimerApellido = item.PrimerApellido;
-                    colaboradores.SegundoApellido = item.SegundoApellido;
-                    colaboradores.Identificacion = item.Identificacion;
-                    colaboradores.CorreoElectronico = item.CorreoElectronico;
-                    colaboradores.Telefono = item.Telefono;
-                    colaboradores.FotoPerfil = item.FotoPerfil;
-                    colaboradores.Estado = item.Estado;
-
-                    ListaColaboradores.Add(colaboradores);
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return ListaColaboradores;
-        }
-
-        public bool InsertarColaboradores (Colaboradores colaboradores)
-        {
-            bool Respuesta = true;
-            try
-            {
-                entities.PaInsertarColaboradores(colaboradores.Nombre, colaboradores.PrimerApellido, colaboradores.SegundoApellido, colaboradores.Identificacion,
-                colaboradores.CorreoElectronico, colaboradores.Telefono, colaboradores.FotoPerfil, colaboradores.IdPerfil, colaboradores.Estado, colaboradores.UsuarioCreacion);
-                Respuesta = true;
-            }
-            catch (Exception ex)
-            {
-                Respuesta = false;
-            }
-
-            return Respuesta;
-
-        }
-
+        }              
+              
         public bool InsertarRoles(Roles roles)
         {
             bool Respuesta = true;

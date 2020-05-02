@@ -69,7 +69,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClasesEntidades\Colaboradores.cs" />
     <Compile Include="ClasesEntidades\Evento.cs" />
     <Compile Include="ClasesEntidades\Login.cs" />
     <Compile Include="ClasesEntidades\Roles.cs" />
@@ -91,9 +90,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelBD.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerColaboradoresActivos_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerServiciosActivos_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>

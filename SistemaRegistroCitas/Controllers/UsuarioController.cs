@@ -34,5 +34,17 @@ namespace SistemaRegistroCitas.Controllers
             return Json(usuario,JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult InsertarColaborador()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult InsertarDatosColaborador(Usuario usuario)
+        {
+            return Json("Todo Correcto",JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

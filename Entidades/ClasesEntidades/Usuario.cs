@@ -9,9 +9,11 @@ namespace Entidades.ClasesEntidades
     public class Usuario
     {
         public int Id { get; set; }
+        public string Empresa { get; set; }
         public string Nombre { get; set; }
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
+        public string NombreCompleto { get; set; }
         public string Identificacion { get; set; }
         public string CorreoElectronico { get; set; }
         public int Telefono { get; set; }

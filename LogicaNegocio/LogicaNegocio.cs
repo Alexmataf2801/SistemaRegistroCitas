@@ -41,15 +41,6 @@ namespace LogicaNegocio
             return AD.ServicioXId(IdServicio);
         }
 
-        public List<Colaboradores> ObtenerColaboradoresActivos()
-        {
-            return AD.ObtenerColaboradoresActivos();
-        }
-
-        public bool InsertarColaboradores(Colaboradores colaboradores)
-        {
-            return AD.InsertarColaboradores(colaboradores);
-        }
 
         public bool InsertarRoles(Roles roles)
         {
