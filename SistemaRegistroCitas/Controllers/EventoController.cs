@@ -17,5 +17,6 @@ namespace SistemaRegistroCitas.Controllers
         {
             return View();
         }
+
     }
 }

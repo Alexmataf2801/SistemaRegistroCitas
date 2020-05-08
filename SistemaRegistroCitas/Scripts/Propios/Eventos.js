@@ -1,6 +1,6 @@
 ﻿function InsertarEvento() {
     var evento = {
-        IdUsuario: $(1).val(),
+        IdUsuario: $(5).val(),
         IdServicio: $("#Servicios").val(),
         Estado: $(1).val(),
         UsuarioCreacion: $("Jose").val(),

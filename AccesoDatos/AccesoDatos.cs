@@ -25,9 +25,9 @@ namespace AccesoDatos
                                                       usuario.SegundoApellido,
                                                       usuario.Identificacion,
                                                       usuario.CorreoElectronico,
-                                                      usuario.Empresa,
                                                       usuario.Telefono,
                                                       usuario.Genero,
+                                                      usuario.IdRol,
                                                       IdUsuario,
                                                       Respuesta);
 
@@ -38,9 +38,9 @@ namespace AccesoDatos
                         case "1":
                             Login login = new Login();
                             login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
-                            login.Identificacion = usuario.Identificacion;
+                            login.CorreoElectronico = usuario.CorreoElectronico;
                             login.Contrasena = utilidades.ObtenerClaveTemporal();
-                            login.Empresa = usuario.Empresa;
+                           
 
                             if (InsertarLogin(login))
                             {
@@ -77,7 +77,7 @@ namespace AccesoDatos
             bool Correcto = false;
             try
             {
-                entities.paInsertarLogin(login.IdUsuario, login.Identificacion,login.Empresa, login.Contrasena);
+                entities.paInsertarLogin(login.IdUsuario, login.CorreoElectronico, login.Contrasena);
                 Correcto = true;
             }
             catch (Exception ex)
@@ -150,13 +150,13 @@ namespace AccesoDatos
             try
             {
                 EsCorrecto = new ObjectParameter("EsCorrecto", typeof(bool));
-                entities.paValidarLogin(login.Identificacion, login.Contrasena,login.Empresa, EsCorrecto);
+                entities.paValidarLogin(login.CorreoElectronico, login.Contrasena, EsCorrecto);
                 respuesta = Convert.ToBoolean(EsCorrecto.Value.ToString());
 
                 if (respuesta)
                 {
 
-                    usuario = ObtenerUsuario(login.Identificacion);
+                    usuario = ObtenerUsuario(login.CorreoElectronico);
                 }
 
             }
@@ -168,14 +168,14 @@ namespace AccesoDatos
             return usuario;
         }
 
-        public Usuario ObtenerUsuario(string Identificacion)
+        public Usuario ObtenerUsuario(string CorreroElectronico)
         {
 
             Usuario usuario = new Usuario();
             try
             {
 
-                var Info = entities.paObtenerUsuario(Identificacion);
+                var Info = entities.paObtenerUsuario(CorreroElectronico);
 
                 foreach (var item in Info)
                 {
@@ -185,8 +185,7 @@ namespace AccesoDatos
                     usuario.PrimerApellido = item.PrimerApellido;
                     usuario.SegundoApellido = item.SegundoApellido;
                     usuario.Identificacion = item.Identificacion;
-                    usuario.Empresa = item.Empresa;
-                    usuario.CorreoElectronico = item.CorreroElectronico;
+                    usuario.CorreoElectronico = item.CorreoElectronico;
                     usuario.Telefono = item.Telefono;
                     usuario.Genero = item.Genero;
                     usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;

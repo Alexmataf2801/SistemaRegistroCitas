@@ -55,7 +55,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" required class="form-control" placeholder="Identificación" id="txtIdentificacionLogueo" name="Identificacion">
+                                    <input type="text" required class="form-control" placeholder="Correo Electronico" id="txtCorreoElectronicoLogin" name="CorreoElectronico">
                                 </div>
 
                                 <div class="form-group">
@@ -78,9 +78,7 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            <div class="form-group">
-                                                <input type="text" required class="form-control" id="txtIdEmpresaRegistro" placeholder="Empresa" name="Empresa">
-                                            </div>
+                                           
                                             <div class="form-group">
                                                 <input type="text" required class="form-control" id="txtIdentificacion" placeholder="Identificación" name="Identificación">
                                             </div>
@@ -167,7 +165,7 @@
                     <p>Su Información fue registrada correctamente, una contraseña temporal fue enviada al correo registrado.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -186,7 +184,7 @@
                     <p id="msjModal"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -206,7 +204,7 @@
 
             var login = {
                 'Empresa': $("#txtIdEmpresaLogin").val(),
-                'Identificacion': $("#txtIdentificacionLogueo").val(),
+                'CorreoElectronico': $("#txtCorreoElectronicoLogin").val(),
                 'Contrasena': $("#txtPassword").val()
 
             }
@@ -221,7 +219,7 @@
                     if (Info.Id > 0) {
                         window.location = "/Calendario/Calendario"
                     } else {
-                        $("#msjModal").html("<label>¡Empresa,Usuario o Contraseña Invalido!</label>");
+                        $("#msjModal").html("<label>¡Usuario o Contraseña Invalido!</label>");
                         $('#MsjIncorrecto').modal('show');
                     }
 
