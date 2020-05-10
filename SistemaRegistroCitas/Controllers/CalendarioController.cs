@@ -16,15 +16,23 @@ namespace SistemaRegistroCitas.Controllers
         {
             usuario  = (Usuario)Session["Usuario"];
 
-            if (usuario.Id > 0)
-            {
-                ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido; 
-                return View();
+            if (usuario != null) {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
             }
             else
             {
                 return RedirectToAction("Login", "Home");
             }
+
+
         }
 
     }

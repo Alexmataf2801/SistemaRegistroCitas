@@ -4,9 +4,6 @@ using Entidades.ClasesEntidades;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AccesoDatos
 {
@@ -30,6 +27,7 @@ namespace AccesoDatos
                                                       usuario.CorreoElectronico,
                                                       usuario.Telefono,
                                                       usuario.Genero,
+                                                      usuario.IdRol,
                                                       IdUsuario,
                                                       Respuesta);
 
@@ -40,8 +38,9 @@ namespace AccesoDatos
                         case "1":
                             Login login = new Login();
                             login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
-                            login.Identificacion = usuario.Identificacion;
+                            login.CorreoElectronico = usuario.CorreoElectronico;
                             login.Contrasena = utilidades.ObtenerClaveTemporal();
+                           
 
                             if (InsertarLogin(login))
                             {
@@ -78,7 +77,7 @@ namespace AccesoDatos
             bool Correcto = false;
             try
             {
-                entities.paInsertarLogin(login.IdUsuario, login.Identificacion, login.Contrasena);
+                entities.paInsertarLogin(login.IdUsuario, login.CorreoElectronico, login.Contrasena);
                 Correcto = true;
             }
             catch (Exception ex)
@@ -151,13 +150,13 @@ namespace AccesoDatos
             try
             {
                 EsCorrecto = new ObjectParameter("EsCorrecto", typeof(bool));
-                entities.paValidarLogin(login.Identificacion, login.Contrasena, EsCorrecto);
+                entities.paValidarLogin(login.CorreoElectronico, login.Contrasena, EsCorrecto);
                 respuesta = Convert.ToBoolean(EsCorrecto.Value.ToString());
 
                 if (respuesta)
                 {
 
-                    usuario = ObtenerUsuario(login.Identificacion);
+                    usuario = ObtenerUsuario(login.CorreoElectronico);
                 }
 
             }
@@ -169,14 +168,14 @@ namespace AccesoDatos
             return usuario;
         }
 
-        public Usuario ObtenerUsuario(string Identificacion)
+        public Usuario ObtenerUsuario(string CorreroElectronico)
         {
 
             Usuario usuario = new Usuario();
             try
             {
 
-                var Info = entities.paObtenerUsuario(Identificacion);
+                var Info = entities.paObtenerUsuario(CorreroElectronico);
 
                 foreach (var item in Info)
                 {
@@ -186,10 +185,10 @@ namespace AccesoDatos
                     usuario.PrimerApellido = item.PrimerApellido;
                     usuario.SegundoApellido = item.SegundoApellido;
                     usuario.Identificacion = item.Identificacion;
-                    usuario.IdPerfil = item.IdPerfil;
-                    usuario.CorreoElectronico = item.CorreroElectronico;
+                    usuario.CorreoElectronico = item.CorreoElectronico;
                     usuario.Telefono = item.Telefono;
                     usuario.Genero = item.Genero;
+                    usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;
 
                 }
 
@@ -202,5 +201,81 @@ namespace AccesoDatos
             return usuario;
         }
 
+        public Servicio ServicioXId(int IdServicio)
+
+        {
+            Servicio servicio = new Servicio();
+            try
+            {
+                var info = entities.paObtenerServicioXId(IdServicio);
+
+
+                foreach (var item in info)
+                {
+                    servicio.Id = item.Id;
+                    servicio.Nombre = item.Nombre;
+                    servicio.Descripcion = item.Descripcion;
+                    servicio.TiempoEstimado = item.TiempoEstimado;
+                    servicio.TipoUnidad = item.TipoUnidad;
+                    servicio.UnidadMedida = item.UnidadMedida;
+                    servicio.Estado = item.Estado;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return servicio;
+
+        }              
+              
+        public bool InsertarRoles(Roles roles)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaInsertarRoles(roles.Nombre, roles.Descripcion, roles.Estado, roles.UsuarioCreacion);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
+
+            return Respuesta;
+        }
+
+        public bool InsertarServicios(Servicio servicio)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaInsertarServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.Estado, servicio.UsuarioCreacion);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
+
+            return Respuesta;
+        }
+
+        public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaInsertarUnidadMedida(unidadMedida.Nombre, unidadMedida.Descripcion, unidadMedida.Estado, unidadMedida.UsuarioCreacion);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
+
+            return Respuesta;
+        }
     }
 }

@@ -26,5 +26,20 @@ namespace SistemaRegistroCitas.Controllers
 
             return Json(servicios, JsonRequestBehavior.AllowGet);
         }
+
+
+      public JsonResult ServicioXId(int Id)
+        {            
+            Servicio InfoServicio = LN.ServicioXId(Id);
+
+            return Json(InfoServicio, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult InsertarServicios()
+        {
+            return View();
+        }
+
+
     }
 }

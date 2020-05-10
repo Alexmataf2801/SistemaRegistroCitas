@@ -36,5 +36,26 @@ namespace LogicaNegocio
             return AD.Validarlogin(login);
         }
 
+        public Servicio ServicioXId( int IdServicio)
+        {
+            return AD.ServicioXId(IdServicio);
+        }
+
+
+        public bool InsertarRoles(Roles roles)
+        {
+            return AD.InsertarRoles(roles);
+        }
+
+        public bool InsertarServicios(Servicio servicio)
+        {
+            return AD.InsertarServicios(servicio);
+        }
+
+        public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
+        {
+            return AD.InsertarUnidadMedida(unidadMedida);
+        }
+
     }
 }
