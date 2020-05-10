@@ -10,7 +10,7 @@ namespace Entidades.ClasesEntidades
     {
         public int Id { get; set; }
         public int IdUsuario { get; set; }
-        public string Identificacion { get; set; }
+        public string CorreoElectronico { get; set; }
         public string Contrasena { get; set; }
         public bool Temporal { get; set; }
         public bool Estado { get; set; }

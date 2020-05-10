@@ -60,5 +60,39 @@ namespace Entidades.ClasesEntidades
 
         }
 
+
+        public void EnviarCorreoColaboradores(string Contraseña, string Correo)
+        {
+            try
+            {
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = ConfigurationManager.AppSettings["Host"].ToString();
+                smtp.Port = Convert.ToInt32(ConfigurationManager.AppSettings["Port"].ToString());
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Colaboradores"].ToString(), ConfigurationManager.AppSettings["Clave"].ToString());
+
+
+
+                MailMessage mail = new MailMessage();
+                mail.Subject = "Contrasena Sistema Registro Citas";
+                mail.Body = "Su Contraseña de Acceso es: " + Contraseña;
+                mail.From = new MailAddress(ConfigurationManager.AppSettings["Colaboradores"].ToString());
+                mail.To.Add(Correo);
+
+
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+
+
+
     }
 }
