@@ -214,6 +214,15 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
         }
     
+        public virtual ObjectResult<paObtenerMenuXUsuario_Result> paObtenerMenuXUsuario(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerMenuXUsuario_Result>("paObtenerMenuXUsuario", idUsuarioParameter);
+        }
+    
         public virtual int paInsertarUsuario(string nombre, string primerApellido, string segundoApellido, string identificacion, string correoElectronico, Nullable<int> telefono, Nullable<bool> genero, Nullable<int> idRol, ObjectParameter idUsuario, ObjectParameter respuesta)
         {
             var nombreParameter = nombre != null ?
