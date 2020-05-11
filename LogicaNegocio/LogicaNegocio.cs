@@ -57,5 +57,10 @@ namespace LogicaNegocio
             return AD.InsertarUnidadMedida(unidadMedida);
         }
 
+        public List<Menu> ObtenerMenuUsuario(int IdUsuario)
+        {
+            return AD.ObtenerMenuUsuario(IdUsuario);
+        }
+
     }
 }

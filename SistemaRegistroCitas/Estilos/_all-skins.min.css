@@ -63,7 +63,7 @@
 .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
     background-color: #222d32;
     /*ALEX: Para que la barra negra del menu no se haga pequeño cuando se recargan cosas*/
-    height:900px
+    /*height:900px*/
 
 }
 

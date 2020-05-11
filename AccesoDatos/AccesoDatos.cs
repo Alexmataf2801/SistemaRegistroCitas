@@ -40,7 +40,7 @@ namespace AccesoDatos
                             login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
                             login.CorreoElectronico = usuario.CorreoElectronico;
                             login.Contrasena = utilidades.ObtenerClaveTemporal();
-                           
+
 
                             if (InsertarLogin(login))
                             {
@@ -56,7 +56,7 @@ namespace AccesoDatos
 
                             break;
                     }
-                    
+
                 }
                 else
                 {
@@ -228,8 +228,8 @@ namespace AccesoDatos
             }
             return servicio;
 
-        }              
-              
+        }
+
         public bool InsertarRoles(Roles roles)
         {
             bool Respuesta = true;
@@ -277,5 +277,43 @@ namespace AccesoDatos
 
             return Respuesta;
         }
+
+        public List<Menu> ObtenerMenuUsuario(int IdUsuario)
+        {
+            List<Menu> ListaMenu = new List<Menu>();
+
+            try
+            {
+                var info = entities.paObtenerMenuXUsuario(IdUsuario);
+
+                foreach (var item in info)
+                {
+                    Menu menu = new Menu();
+                    menu.IdMenu = item.IdMenu.ToString();
+                    menu.Nombre = item.Nombre;
+                    menu.Icono = item.Icono;
+                    menu.IdPadre = item.IdPadre;
+                    menu.IdHijo = item.IdHijo;
+                    menu.Nivel = item.Nivel;
+                    menu.Orden = item.Orden;
+                    menu.IsPadre = item.IsPadre.ToString();
+                    menu.Url = item.Url;
+
+
+                    ListaMenu.Add(menu);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+            return ListaMenu;
+        }
+
     }
 }
