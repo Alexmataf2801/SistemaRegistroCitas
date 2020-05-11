@@ -4,10 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Estilos/bootstrap.css" />
-<link href="~/Estilos/font-awesome.min.css" />
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-
 
 <div class="container" style="margin: 0 auto; width: 95%">
     <div class="panel panel-default" style="margin-top: 20px">
@@ -22,9 +18,9 @@
                 <div style="text-align: center; margin-bottom: auto">
 
                     <div class="body">
-                        @*<div class="form-group">
-                                <input type="text" required class="form-control" id="txtIdEmpresaColaborador" placeholder="Empresa" name="Empresa">
-                            </div>*@
+                        <div class="form-group">
+                            <input type="text" required class="form-control" id="txtIdEmpresa" placeholder="Empresa" name="Empresa">
+                        </div>
                         <div class="form-group">
                             <input type="text" required class="form-control" id="txtIdentificacion" placeholder="Identificación" name="Identificación">
                         </div>
@@ -44,13 +40,7 @@
                             <input type="tel" required class="form-control" id="txtTelefono" placeholder="Telefono" name="Telefono">
                         </div>
                         <div class="form-group">
-                            <select class="form-control" id="ddlGenero">
-                                <option value="0">Masculino</option>
-                                <option value="1">Femenino</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" id="IdRol">
+                            <select class="form-control" id="IdPerfil">
                                 <option value="2">Secretaria</option>
                                 <option value="3">Colaborador</option>
                             </select>
@@ -59,7 +49,7 @@
                     </div>
 
                     <div class="footer">
-                        <button class="btn btn-primary" onclick="InsertarDatosColaborador()">Guardar</button>
+                        <button class="btn btn-primary" onclick="InsertarColaboradores();">Guardar</button>
 
                     </div>
 
@@ -69,48 +59,6 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="MsjCorreo" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header" style="background: #28a745 ">
-                <h5 class="modal-title">Registro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Su Información fue registrada correctamente, una contraseña temporal fue enviada al correo registrado.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="MsjIncorrecto" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header" style="background: #dc3545">
-                <h5 class="modal-title">Incorrecto</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p id="msjModal"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 <script src="~/Js/jquery.min.js"></script>
-<script src="~/Js/bootstrap.min.js"></script>
 <script src="~/Scripts/Propios/Colaboradores.js"></script>
 

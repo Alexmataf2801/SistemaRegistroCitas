@@ -41,6 +41,7 @@ namespace LogicaNegocio
             return AD.ServicioXId(IdServicio);
         }
 
+
         public bool InsertarRoles(Roles roles)
         {
             return AD.InsertarRoles(roles);
@@ -54,18 +55,6 @@ namespace LogicaNegocio
         public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
         {
             return AD.InsertarUnidadMedida(unidadMedida);
-        }
-
-        public void InsertarDatosColaborador(Usuario usuario, ref int Resp)
-        {
-
-            AD.InsertarDatosColaborador(usuario, ref Resp);
-
-        }
-
-        public List<Usuario> ObtenerColaboradoresActivos()
-        {
-            return AD.ObtenerColaboradoresActivos();
         }
 
     }
