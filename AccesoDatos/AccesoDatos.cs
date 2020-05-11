@@ -277,5 +277,97 @@ namespace AccesoDatos
 
             return Respuesta;
         }
+
+        public void InsertarDatosColaborador(Usuario usuario, ref int Resp)
+        {
+            Utilidades utilidades = new Utilidades();
+            ObjectParameter IdUsuario;
+            ObjectParameter Respuesta;
+            try
+            {
+                IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
+                Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                var info = entities.PaInsertarDatosColaborador(usuario.Nombre,
+                                                      usuario.PrimerApellido,
+                                                      usuario.SegundoApellido,
+                                                      usuario.Identificacion,
+                                                      usuario.CorreoElectronico,
+                                                      usuario.Telefono,
+                                                      usuario.Genero,
+                                                      usuario.IdRol,
+                                                      IdUsuario,
+                                                      Respuesta);
+
+                if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
+                {
+                    switch (Respuesta.Value.ToString())
+                    {
+                        case "1":
+                            Login login = new Login();
+                            login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
+                            login.CorreoElectronico = usuario.CorreoElectronico;
+                            login.Contrasena = utilidades.ObtenerClaveTemporal();
+
+
+                            if (InsertarLogin(login))
+                            {
+                                Resp = Convert.ToInt32(Respuesta.Value.ToString());
+                                utilidades.EnviarCorreo(login.Contrasena, usuario.CorreoElectronico);
+                            }
+
+                            break;
+
+                        default:
+
+                            Resp = Convert.ToInt32(Respuesta.Value.ToString());
+
+                            break;
+                    }
+
+                }
+                else
+                {
+                    Resp = 0;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Resp = 0;
+            }
+
+        }
+
+        public List<Usuario> ObtenerColaboradoresActivos()
+        {
+            List<Usuario> ListaColaboradores = new List<Usuario>();
+
+            try
+            {
+                var info = entities.PaObtenerColaboradoresActivos();
+
+                foreach(var item in info)
+                {
+                    Usuario Colaborador = new Usuario();
+
+                    Colaborador.Id = item.Id;
+                    Colaborador.Nombre = item.Nombre;
+
+                    ListaColaboradores.Add(Colaborador);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            return ListaColaboradores;
+
+        }
+
     }
 }
