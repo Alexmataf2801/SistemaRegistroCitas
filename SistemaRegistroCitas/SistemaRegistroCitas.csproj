@@ -161,6 +161,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\Iconos\Icono.png" />
     <Content Include="Imagenes\Login\bg.jpg" />
     <Content Include="Imagenes\Login\fondo.jpg" />
     <Content Include="Imagenes\Login\fondo3.jpg" />
@@ -291,6 +292,7 @@
     <Folder Include="Views\Evento\" />
     <Folder Include="Views\ServicioTiempo\" />
     <Folder Include="Views\UnidadMedida\" />
+    <Folder Include="Views\Utilerias\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />
