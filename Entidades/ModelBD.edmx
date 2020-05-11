@@ -72,6 +72,9 @@
           <Parameter Name="IdUsuario" Type="int" Mode="InOut" />
           <Parameter Name="Respuesta" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="paObtenerMenuXUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerServiciosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerServicioXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
@@ -146,6 +149,9 @@
           <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
           <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerMenuXUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerMenuXUsuario_Result)">
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="paInsertarUsuario">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="PrimerApellido" Mode="In" Type="String" />
@@ -185,6 +191,18 @@
           <Property Type="Int32" Name="Telefono" Nullable="false" />
           <Property Type="Boolean" Name="Genero" Nullable="false" />
           <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerMenuXUsuario_Result">
+          <Property Type="Int32" Name="IdMenu" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Icono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="IdPadre" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="IdHijo" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Nivel" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Orden" Nullable="true" MaxLength="10" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="Int32" Name="IsPadre" Nullable="true" />
+          <Property Type="String" Name="Url" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -235,6 +253,22 @@
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Genero" ColumnName="Genero" />
                 <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerMenuXUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerMenuXUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerMenuXUsuario_Result">
+                <ScalarProperty Name="IdMenu" ColumnName="IdMenu" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Icono" ColumnName="Icono" />
+                <ScalarProperty Name="IdPadre" ColumnName="IdPadre" />
+                <ScalarProperty Name="IdHijo" ColumnName="IdHijo" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IsPadre" ColumnName="IsPadre" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
