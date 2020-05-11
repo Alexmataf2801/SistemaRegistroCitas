@@ -62,5 +62,17 @@ namespace LogicaNegocio
             return AD.ObtenerMenuUsuario(IdUsuario);
         }
 
+        public void InsertarDatosColaborador(Usuario usuario, ref int Resp)
+        {
+
+            AD.InsertarDatosColaborador(usuario, ref Resp);
+
+        }
+
+        public List<Usuario> ObtenerColaboradoresActivos()
+        {
+            return AD.ObtenerColaboradoresActivos();
+        }
+
     }
 }

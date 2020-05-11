@@ -18,6 +18,18 @@
           <Property Name="UsuarioUltimaMoficacion" Type="varchar" MaxLength="50" />
           <Property Name="FechaUltimaModificacion" Type="datetime" />
         </EntityType>
+        <Function Name="PaInsertarDatosColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="Identificacion" Type="varchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="int" Mode="In" />
+          <Parameter Name="Genero" Type="bit" Mode="In" />
+          <Parameter Name="IdRol" Type="int" Mode="In" />
+          <Parameter Name="IdUsuario" Type="int" Mode="InOut" />
+          <Parameter Name="Respuesta" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="paInsertarEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Telefono" Type="int" Mode="In" />
@@ -72,6 +84,7 @@
           <Parameter Name="IdUsuario" Type="int" Mode="InOut" />
           <Parameter Name="Respuesta" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="PaObtenerColaboradoresActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerMenuXUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
@@ -164,6 +177,19 @@
             <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="PaInsertarDatosColaborador">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Genero" Mode="In" Type="Boolean" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PaObtenerColaboradoresActivos" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerColaboradoresActivos_Result)" />
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -203,6 +229,10 @@
           <Property Type="Boolean" Name="Estado" Nullable="false" />
           <Property Type="Int32" Name="IsPadre" Nullable="true" />
           <Property Type="String" Name="Url" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="PaObtenerColaboradoresActivos_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -273,6 +303,15 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
+          <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
+          <FunctionImportMapping FunctionImportName="PaObtenerColaboradoresActivos" FunctionName="BDSistemaRegistroCitasModel.Store.PaObtenerColaboradoresActivos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.PaObtenerColaboradoresActivos_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
