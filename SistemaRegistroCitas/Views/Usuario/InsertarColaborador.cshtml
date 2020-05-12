@@ -35,7 +35,13 @@
                             <input type="tel" required class="form-control" id="txtTelefono" placeholder="Telefono" name="Telefono">
                         </div>
                         <div class="form-group">
-                            <select class="form-control" id="IdPerfil">
+                            <select class="form-control" id="ddlGenero">
+                                <option value="0">Masculino</option>
+                                <option value="1">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="IdRol">
                                 <option value="2">Secretaria</option>
                                 <option value="3">Colaborador</option>
                             </select>
@@ -44,7 +50,12 @@
 
                     </div>
 
-                  
+                    <div class="footer">
+                        <button class="btn btn-primary" onclick="InsertarDatosColaborador()">Guardar</button>
+
+                    </div>
+
+
 
                 </div>
 
