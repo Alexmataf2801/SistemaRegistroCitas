@@ -92,6 +92,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelBD.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PaObtenerColaboradoresActivos_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerMenuXUsuario_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
