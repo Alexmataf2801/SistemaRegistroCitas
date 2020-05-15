@@ -12,13 +12,16 @@ namespace SistemaRegistroCitas.Controllers
     {
         Usuario usuario = new Usuario();
         string Menu = string.Empty;
-
         LogicaNegocio.LogicaNegocio LN = new LogicaNegocio.LogicaNegocio();
+        UsuarioController usuarioControllador = new UsuarioController();
+
+
+        
         // GET: Calendario
         public ActionResult Calendario()
         {
             usuario  = (Usuario)Session["Usuario"];
-            Menu = (String)Session["Menu"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
             if (usuario != null) {
                 if (usuario.Id > 0)

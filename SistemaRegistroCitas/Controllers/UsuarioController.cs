@@ -34,7 +34,7 @@ namespace SistemaRegistroCitas.Controllers
         {
             Usuario usuario = LN.Validarlogin(login);
             Session["Usuario"] = usuario;
-            Session["Menu"] = ArmarMenu(usuario.Id);
+            ArmarMenu(usuario.Id);
             return Json(usuario,JsonRequestBehavior.AllowGet);
         }
 
@@ -212,6 +212,15 @@ namespace SistemaRegistroCitas.Controllers
             return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ObtenerTodosUsuarios()
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            usuarios = LN.ObtenerTodosUsuarios();
+
+            return Json(usuarios, JsonRequestBehavior.AllowGet);
+        }
+
+      
 
     }
 }
