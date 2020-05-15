@@ -62,6 +62,11 @@ namespace LogicaNegocio
             return AD.ObtenerMenuUsuario(IdUsuario);
         }
 
+        public List<Menu> ObtenerMenuGeneral()
+        {
+            return AD.ObtenerMenuGeneral();
+        }
+
         public void InsertarDatosColaborador(Usuario usuario, ref int Resp)
         {
 
@@ -72,6 +77,16 @@ namespace LogicaNegocio
         public List<Usuario> ObtenerColaboradoresActivos()
         {
             return AD.ObtenerColaboradoresActivos();
+        }
+
+        public List<Usuario> ObtenerTodosUsuarios()
+        {
+            return AD.ObtenerTodosUsuarios();
+        }
+
+        public bool InsertarPermisosXUsuario(int IdUsuario, List<int> ListaPermisos)
+        {
+            return AD.InsertarPermisosXUsuario(IdUsuario, ListaPermisos);
         }
 
     }

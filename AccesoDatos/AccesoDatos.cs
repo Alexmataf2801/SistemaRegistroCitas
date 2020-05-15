@@ -406,5 +406,121 @@ namespace AccesoDatos
 
         }
 
+        public List<Menu> ObtenerMenuGeneral()
+        {
+            List<Menu> ListaMenu = new List<Menu>();
+
+            try
+            {
+                var info = entities.paObtenerMenuGeneral();
+
+                foreach (var item in info)
+                {
+                    Menu menu = new Menu();
+                    menu.IdMenu = item.IdMenu.ToString();
+                    menu.Nombre = item.Nombre;
+                    menu.Icono = item.Icono;
+                    menu.IdPadre = item.IdPadre;
+                    menu.IdHijo = item.IdHijo;
+                    menu.Nivel = item.Nivel;
+                    menu.Orden = item.Orden;
+                    menu.IsPadre = item.IsPadre.ToString();
+                    menu.Url = item.Url;
+
+
+                    ListaMenu.Add(menu);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+            return ListaMenu;
+        }
+
+        public List<Usuario> ObtenerTodosUsuarios()
+        {
+            List<Usuario> ListaUsuarios = new List<Usuario>();
+
+            try
+            {
+                var info = entities.paObtenerUsuariosActivos();
+
+                foreach (var item in info)
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.Id = item.Id;
+                    usuario.Nombre = item.Nombre;
+                    usuario.PrimerApellido = item.PrimerApellido;
+                    usuario.SegundoApellido = item.SegundoApellido;
+                    usuario.Identificacion = item.Identificacion;
+                    usuario.CorreoElectronico = item.CorreoElectronico;
+                    usuario.Telefono = item.Telefono;
+                    usuario.Genero = item.Genero;
+                    usuario.FotoPerfil = item.FotoPerfil;
+                    usuario.IdRol = item.IdRol;
+                    usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;
+
+
+
+                    ListaUsuarios.Add(usuario);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            return ListaUsuarios;
+
+        }
+
+        public bool InsertarPermisosXUsuario(int IdUsuario, List<int> ListaPermisos)
+        {
+            bool Correcto = false;
+            try
+            {
+                //Primero se borran todos los permisos
+                EliminarPermisosXUsuario(IdUsuario);
+
+                // Luego se vuelve a insertar todos los permisos, es mas facil hacerlo de esta forma
+                // para no tener que comparar luego permiso por permiso para ver si se habilitan o no
+                for (int i = 0; i < ListaPermisos.Count; i++)
+                {
+                    entities.paInsertarPermisosXUsuario(IdUsuario, ListaPermisos[i]);
+
+                }
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+
+            }
+
+            return Correcto;
+        }
+
+        public void EliminarPermisosXUsuario(int IdUsuario)
+        {
+            try
+            {
+                entities.paEliminarPermisosUsuario(IdUsuario);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
     }
 }

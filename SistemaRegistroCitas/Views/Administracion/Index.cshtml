@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Estilos/bootstrap")
+
+<div class="container" style="margin: 0 auto; width: 95%">
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <h3 style="text-align:center">Permisos Usuario</h3>
+                    <hr />
+                </div>
+            </div>
+            <div style="margin: 0 auto; width: 95%">
+                <div class="col-md-3"></div>
+                <div class="col-md-5" style="margin-bottom:50px">
+                    <select class="form-control" id="ddlUsuarios">
+                        <option value="0">Seleccione...</option>
+                    </select>
+
+                    <br />
+                    <div id="DivArbol"></div>
+                    <br />
+                    <div style="text-align:center">
+                        <button style="" class="btn btn-success" onclick="GuardarCombosMarcados();return false">Guardar Permisos</button>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="~/Js/jquery.min.js"></script>
+<script src="~/Scripts/Propios/Administracion.js"></script>
+@*<script src="~/Js/Arbol.js"></script>*@
+@*<script src="~/Js/PruebaArbol.js"></script>*@
+
+
+<script>
+
+</script>

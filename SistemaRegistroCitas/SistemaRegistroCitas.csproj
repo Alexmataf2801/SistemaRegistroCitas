@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -169,6 +170,7 @@
     <Content Include="Imagenes\Login\precios-bg.jpg" />
     <Content Include="Imagenes\Login\textura3.png" />
     <Content Include="Js\adminlte.min.js" />
+    <Content Include="Js\Arbol.js" />
     <Content Include="Js\bootstrap.min.js" />
     <Content Include="Js\fullcalendar-bootstrap\main.min.js" />
     <Content Include="Js\fullcalendar-daygrid\main.min.js" />
@@ -244,6 +246,7 @@
     <Content Include="Js\Login\jquery-3.4.1.min.js" />
     <Content Include="Js\Login\popper.min.js" />
     <Content Include="Js\moment\moment.min.js" />
+    <Content Include="Js\PruebaArbol.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -262,6 +265,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Propios\Administracion.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
     <Content Include="Scripts\Propios\Servicio.js" />
@@ -285,10 +289,10 @@
     <Content Include="Views\Roles\InsertarRoles.cshtml" />
     <Content Include="Views\Servicio\InsertarServicios.cshtml" />
     <Content Include="Views\Usuario\InsertarColaborador.cshtml" />
+    <Content Include="Views\Administracion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Evento\" />
     <Folder Include="Views\ServicioTiempo\" />
     <Folder Include="Views\UnidadMedida\" />
