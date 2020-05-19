@@ -58,7 +58,7 @@ function InsertarDatosColaborador() {
                 case 1:
                     LimpiarValores();
                     $('#fm-modal').modal('hide');
-                    $('#MsjCorreo').modal('show');
+                    $('#MsjCorrecto').modal('show');
                     break;
                 case 2:
                     $("#msjModal").html("<label>¡La Correo ingresado ya existe!</label>");

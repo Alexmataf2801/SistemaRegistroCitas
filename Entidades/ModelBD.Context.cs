@@ -125,35 +125,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarRoles", nombreParameter, descripcionParameter, estadoParameter, usuarioCreacionParameter);
         }
     
-        public virtual int PaInsertarServicios(string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, Nullable<bool> estado, string usuarioCreacion)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var tiempoEstimadoParameter = tiempoEstimado.HasValue ?
-                new ObjectParameter("TiempoEstimado", tiempoEstimado) :
-                new ObjectParameter("TiempoEstimado", typeof(int));
-    
-            var tipoUnidadParameter = tipoUnidad.HasValue ?
-                new ObjectParameter("TipoUnidad", tipoUnidad) :
-                new ObjectParameter("TipoUnidad", typeof(int));
-    
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("Estado", estado) :
-                new ObjectParameter("Estado", typeof(bool));
-    
-            var usuarioCreacionParameter = usuarioCreacion != null ?
-                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
-                new ObjectParameter("UsuarioCreacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarServicios", nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, estadoParameter, usuarioCreacionParameter);
-        }
-    
         public virtual int PaInsertarUnidadMedida(string nombre, string descripcion, Nullable<bool> estado, string usuarioCreacion)
         {
             var nombreParameter = nombre != null ?
@@ -332,6 +303,35 @@ namespace Entidades
                 new ObjectParameter("IdRol", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarUsuario", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
+        }
+    
+        public virtual int PaInsertarDatosServicios(string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, Nullable<bool> estado, string usuarioCreacion)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var tiempoEstimadoParameter = tiempoEstimado.HasValue ?
+                new ObjectParameter("TiempoEstimado", tiempoEstimado) :
+                new ObjectParameter("TiempoEstimado", typeof(int));
+    
+            var tipoUnidadParameter = tipoUnidad.HasValue ?
+                new ObjectParameter("TipoUnidad", tipoUnidad) :
+                new ObjectParameter("TipoUnidad", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarDatosServicios", nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, estadoParameter, usuarioCreacionParameter);
         }
     }
 }
