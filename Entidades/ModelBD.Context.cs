@@ -205,15 +205,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarLogin", idUsuarioParameter, correoElectronicoParameter, contrasenaParameter);
         }
     
-        public virtual ObjectResult<paObtenerUsuario_Result> paObtenerUsuario(string correoElectronico)
-        {
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
-        }
-    
         public virtual ObjectResult<paObtenerMenuXUsuario_Result> paObtenerMenuXUsuario(Nullable<int> idUsuario)
         {
             var idUsuarioParameter = idUsuario.HasValue ?
@@ -332,6 +323,15 @@ namespace Entidades
                 new ObjectParameter("IdRol", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarUsuario", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
+        }
+    
+        public virtual ObjectResult<paObtenerUsuario_Result> paObtenerUsuario(string correoElectronico)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
         }
     }
 }

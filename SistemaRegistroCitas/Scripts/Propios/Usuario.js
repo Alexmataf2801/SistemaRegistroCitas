@@ -50,10 +50,10 @@
 
 
 function LimpiarValores() {
-    $("#txtNombre").val('')
-    $("#txtPrimerApellido").val('')
-    $("#txtSegundoApellido").val('')
-    $("#txtIdentificacion").val('')
-    $("#txtCorreoElectronico").val('')
-    $("#txtTelefono").val('')
+    $("#txtNombre").val('');
+    $("#txtPrimerApellido").val('');
+    $("#txtSegundoApellido").val('');
+    $("#txtIdentificacion").val('');
+    $("#txtCorreoElectronico").val('');
+    $("#txtTelefono").val('');
 }

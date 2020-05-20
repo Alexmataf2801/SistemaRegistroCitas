@@ -168,9 +168,6 @@
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
             <Parameter Name="Contrasena" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
-          <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="paObtenerMenuXUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerMenuXUsuario_Result)">
           <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -208,6 +205,9 @@
             <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -224,17 +224,6 @@
           <Property Type="Int32" Name="TipoUnidad" Nullable="false" />
           <Property Type="String" Name="UnidadMedida" Nullable="false" MaxLength="50" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="paObtenerUsuario_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="150" />
-          <Property Type="Int32" Name="Telefono" Nullable="false" />
-          <Property Type="Boolean" Name="Genero" Nullable="false" />
-          <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
         </ComplexType>
         <ComplexType Name="paObtenerMenuXUsuario_Result">
           <Property Type="Int32" Name="IdMenu" Nullable="false" />
@@ -275,6 +264,17 @@
           <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
           <Property Type="Int32" Name="IdRol" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="paObtenerUsuario_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Telefono" Nullable="false" />
+          <Property Type="Boolean" Name="Genero" Nullable="false" />
+          <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -312,21 +312,6 @@
           <FunctionImportMapping FunctionImportName="PaInsertarUnidadMedida" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarUnidadMedida" />
           <FunctionImportMapping FunctionImportName="paValidarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarLogin" />
           <FunctionImportMapping FunctionImportName="paInsertarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarLogin" />
-          <FunctionImportMapping FunctionImportName="paObtenerUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerUsuario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerUsuario_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
-                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
-                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Genero" ColumnName="Genero" />
-                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paObtenerMenuXUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerMenuXUsuario">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerMenuXUsuario_Result">
@@ -386,6 +371,21 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paEliminarPermisosUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarPermisosUsuario" />
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
+          <FunctionImportMapping FunctionImportName="paObtenerUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerUsuario_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

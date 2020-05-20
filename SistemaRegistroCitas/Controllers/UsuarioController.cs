@@ -194,13 +194,13 @@ namespace SistemaRegistroCitas.Controllers
             }
         }
 
-        [HttpPost]
+  
         public JsonResult InsertarDatosColaborador(Usuario usuario)
         {
             int Resp = 0;
             LN.InsertarDatosColaborador(usuario, ref Resp);
 
-            return Json(usuario, JsonRequestBehavior.AllowGet);
+            return Json(Resp, JsonRequestBehavior.AllowGet);
         }
 
 
