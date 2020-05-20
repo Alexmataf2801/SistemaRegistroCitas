@@ -51,21 +51,22 @@ function InsertarDatosColaborador() {
         success: function (Info) {
             
             switch (Info) {
-                //case 0:
-                //    $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-                //    $('#MsjIncorrecto').modal('show');
-                //    break;
+                case 0:
+                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                    break;
                 case 1:
-                    LimpiarValores();
-                    $('#fm-modal').modal('hide');
-                    $('#MsjCorreo').modal('show');
+                    LimpiarDatosColaborador();
+                    $("#lblMensajeCorrecto").html("<label>¡Información Almacenada Correctamenta!</label>");
+                    $("#lblTituloCorrecto").html("<label>Información</label>");
+                    $('#MsjCorrecto').modal('show');
                     break;
                 case 2:
-                    $("#msjModal").html("<label>¡La Correo ingresado ya existe!</label>");
+                    $("#msjModalIncorrecto").html("<label>¡El Correo ingresado ya existe!</label>");
                     $('#MsjIncorrecto').modal('show');
                     break;
                 default:
-                    $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
                     $('#MsjIncorrecto').modal('show');
             }
 
@@ -77,4 +78,14 @@ function InsertarDatosColaborador() {
     });
 
 
+}
+
+
+function LimpiarDatosColaborador() {
+    $("#txtIdentificacion").val('');
+    $("#txtNombre").val('');
+    $("#txtPrimerApellido").val('');
+    $("#txtSegundoApellido").val('');
+    $("#txtCorreoElectronico").val('');
+    $("#txtTelefono").val('');
 }
