@@ -246,12 +246,12 @@ namespace AccesoDatos
             return Respuesta;
         }
 
-        public bool InsertarServicios(Servicio servicio)
+        public bool InsertarDatosServicios(Servicio servicio)
         {
             bool Respuesta = true;
             try
             {
-                entities.PaInsertarServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.Estado, servicio.UsuarioCreacion);
+                entities.PaInsertarDatosServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.Estado, servicio.UsuarioCreacion);
                 Respuesta = true;
             }
             catch (Exception ex)
