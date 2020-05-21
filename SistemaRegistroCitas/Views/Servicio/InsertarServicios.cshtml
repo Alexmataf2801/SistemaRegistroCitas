@@ -17,18 +17,20 @@
                             <input type="text" required class="form-control " id="txtTiempoEstimado" placeholder="Duracion del Servicio" name="TiempoEstimado">
                         </div>
                         <div class="form-group">
-                            <input type="text" required class="form-control " id="txtDescripcion" placeholder="Descripcion" name="Descripcion">
+                            <textarea class="form-control " id="txtDescripcion" placeholder="Descripcion" name="Descripcion" style="max-height: 300px; max-width: 100%;min-width: 100%;"></textarea>
+                            @*   <input type="text" required class="form-control " id="txtDescripcion" placeholder="Descripcion" name="Descripcion">*@
                         </div>
                         <div class="form-group">
-                            <select class="form-control" id="TipoUnidad">
+                            <select required class="form-control" id="TipoUnidad">
+                                <option value="">Seleccione uno...</option>
                                 <option value="1">Minutos</option>
                                 <option value="2">Horas</option>
                             </select>
                         </div>
                     </div>
                     <div class="footer">
-                        <button class="btn btn-primary">Guardar</button>
-                        
+                        <button class="btn btn-primary" onclick="InsertarDatosServicios()">Guardar</button>
+
                     </div>
 
                 </div>
@@ -37,3 +39,5 @@
         </div>
     </div>
 </div>
+<script src="~/Js/jquery.min.js"></script>
+<script src="~/Scripts/Propios/Servicio.js"></script>

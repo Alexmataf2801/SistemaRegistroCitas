@@ -47,9 +47,9 @@ namespace LogicaNegocio
             return AD.InsertarRoles(roles);
         }
 
-        public bool InsertarServicios(Servicio servicio)
+        public bool InsertarDatosServicios(Servicio servicio)
         {
-            return AD.InsertarServicios(servicio);
+            return AD.InsertarDatosServicios(servicio);
         }
 
         public bool InsertarUnidadMedida(UnidadMedida unidadMedida)

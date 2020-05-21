@@ -70,43 +70,41 @@ function ServicioXId() {
    
 }
 
-function InsertarServicios() {
-    var servicios = {
+function InsertarDatosServicios() {
+    var servicio = {
         Nombre: $("#txtServicio").val(),
         TiempoEstimado: $("#txtTiempoEstimado").val(),
         Descripcion: $("#txtDescripcion").val(),
-        Identificacion: $("#txtDescripcion").val(),
         TipoUnidad: $("#TipoUnidad").val(),
-        Telefono: $("#txtTelefono").val(),
-        Genero: $("#IdPerfil").val()
+
     };
 
     $.ajax({
         type: "POST",
         dataType: "JSON",
-        url: "/Servicio/InsertarServicios/",
-        data: { servicios },
-        //success: function (Info) {
-        //    switch (Info) {
-        //        case 0:
-        //            $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-        //            $('#MsjIncorrecto').modal('show');
-        //            break;
-        //        case 1:
-        //            LimpiarValores();
-        //            $('#fm-modal').modal('hide');
-        //            $('#MsjCorreo').modal('show');
-        //            break;
-        //        case 2:
-        //            $("#msjModal").html("<label>¡La Identificación ingresada ya existe!</label>");
-        //            $('#MsjIncorrecto').modal('show');
-        //            break;
-        //        default:
-        //            $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-        //            $('#MsjIncorrecto').modal('show');
-        //    }
+        url: "/Servicio/InsertarDatosServicios/",
+        data: { servicio },
+        success: function (Info) {
+            //switch (Info) {
+            //    case 0:
+            //        $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+            //        $('#MsjIncorrecto').modal('show');
+            //        break;
+            //    case 1:
+            //        LimpiarValores();
+            //        $('#fm-modal').modal('hide');
+            //        $('#MsjCorreo').modal('show');
+            //        break;
+            //    case 2:
+            //        $("#msjModal").html("<label>¡La Identificación ingresada ya existe!</label>");
+            //        $('#MsjIncorrecto').modal('show');
+            //        break;
+            //    default:
+            //        $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+            //        $('#MsjIncorrecto').modal('show');
+            //}
 
-        //},
+        },
         error: function (Error) {
             alert("Se Cayo");
         }
@@ -117,7 +115,14 @@ function InsertarServicios() {
 }
 
 
+$("#Servicios").change(function () {
+    ServicioXId();
+});
 
+
+$(document).ready(function () {
+    ObtenerServicios();
+});
 
 
 
