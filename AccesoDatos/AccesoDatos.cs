@@ -522,5 +522,38 @@ namespace AccesoDatos
             }
         }
 
+        public List<Roles> ObtenerRoles()
+        {
+            List<Roles> ListaRoles = new List<Roles>();
+            try
+            {
+
+                var info = entities.PaObtenerRoles();
+
+                foreach (var item in info)
+                {
+                    Roles roles = new Roles();
+
+                    roles.Id = item.Id;
+                    roles.Nombre = item.Nombre;
+                  
+
+                    ListaRoles.Add(roles);
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaRoles;
+
+        }
+
+
+
+
+
     }
 }

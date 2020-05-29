@@ -89,5 +89,10 @@ namespace LogicaNegocio
             return AD.InsertarPermisosXUsuario(IdUsuario, ListaPermisos);
         }
 
+        public List<Roles> ObtenerRoles()
+        {
+            return AD.ObtenerRoles();
+        }
+
     }
 }

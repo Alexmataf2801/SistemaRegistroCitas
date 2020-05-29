@@ -268,6 +268,7 @@
     <Content Include="Scripts\Propios\Administracion.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
+    <Content Include="Scripts\Propios\Roles.js" />
     <Content Include="Scripts\Propios\Servicio.js" />
     <Content Include="Scripts\Propios\Usuario.js" />
     <Content Include="Web.config">
