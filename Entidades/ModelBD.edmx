@@ -180,18 +180,6 @@
           <FunctionImport Name="paObtenerMenuXUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerMenuXUsuario_Result)">
           <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="PaInsertarDatosColaborador">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
-            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
-            <Parameter Name="Identificacion" Mode="In" Type="String" />
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="Int32" />
-            <Parameter Name="Genero" Mode="In" Type="Boolean" />
-            <Parameter Name="IdRol" Mode="In" Type="Int32" />
-            <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
-            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="PaObtenerColaboradoresActivos" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerColaboradoresActivos_Result)" />
           <FunctionImport Name="paObtenerMenuGeneral" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerMenuGeneral_Result)" />
           <FunctionImport Name="paInsertarPermisosXUsuario">
@@ -226,6 +214,18 @@
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PaObtenerRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerRoles_Result)" />
+          <FunctionImport Name="PaInsertarDatosColaborador">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Genero" Mode="In" Type="Boolean" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -350,7 +350,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
           <FunctionImportMapping FunctionImportName="PaObtenerColaboradoresActivos" FunctionName="BDSistemaRegistroCitasModel.Store.PaObtenerColaboradoresActivos">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.PaObtenerColaboradoresActivos_Result">
@@ -417,6 +416,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
