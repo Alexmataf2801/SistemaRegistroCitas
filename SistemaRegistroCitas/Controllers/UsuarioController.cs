@@ -16,6 +16,7 @@ namespace SistemaRegistroCitas.Controllers
         string Menu = string.Empty;
         LogicaNegocio.LogicaNegocio LN = new LogicaNegocio.LogicaNegocio();
 
+
         // GET: Usuario
         public ActionResult Index()
         {
@@ -172,7 +173,7 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult InsertarColaborador()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = (string)Session["Menu"];
+            Menu = ArmarMenu(usuario.Id);
 
             if (usuario != null)
             {

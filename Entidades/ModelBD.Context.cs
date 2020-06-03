@@ -367,5 +367,62 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarDatosColaborador", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
         }
+    
+        public virtual ObjectResult<paObtenerTodosLosRoles_Result> paObtenerTodosLosRoles()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosRoles_Result>("paObtenerTodosLosRoles");
+        }
+    
+        public virtual int paDesactivarActivarRol(Nullable<int> idRol, Nullable<bool> estado)
+        {
+            var idRolParameter = idRol.HasValue ?
+                new ObjectParameter("IdRol", idRol) :
+                new ObjectParameter("IdRol", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarRol", idRolParameter, estadoParameter);
+        }
+    
+        public virtual int paElimminarRol(Nullable<int> idRol)
+        {
+            var idRolParameter = idRol.HasValue ?
+                new ObjectParameter("IdRol", idRol) :
+                new ObjectParameter("IdRol", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paElimminarRol", idRolParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerRolXId_Result> paObtenerRolXId(Nullable<int> idRol)
+        {
+            var idRolParameter = idRol.HasValue ?
+                new ObjectParameter("IdRol", idRol) :
+                new ObjectParameter("IdRol", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerRolXId_Result>("paObtenerRolXId", idRolParameter);
+        }
+    
+        public virtual int paActualizarRol(Nullable<int> idRol, string nombre, string descripcion, string usuarioUltimaModificacion)
+        {
+            var idRolParameter = idRol.HasValue ?
+                new ObjectParameter("IdRol", idRol) :
+                new ObjectParameter("IdRol", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
+                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
+                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarRol", idRolParameter, nombreParameter, descripcionParameter, usuarioUltimaModificacionParameter);
+        }
     }
 }

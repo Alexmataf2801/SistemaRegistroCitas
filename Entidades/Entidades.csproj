@@ -105,10 +105,16 @@
     <Compile Include="PaObtenerRoles_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerRolXId_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerServiciosActivos_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerServicioXId_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerTodosLosRoles_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerUsuariosActivos_Result.cs">
