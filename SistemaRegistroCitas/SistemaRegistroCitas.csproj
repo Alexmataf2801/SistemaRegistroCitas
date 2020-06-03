@@ -157,6 +157,7 @@
     <Content Include="Estilos\fullcalendar-daygrid\main.min.css" />
     <Content Include="Estilos\fullcalendar-timegrid\main.min.css" />
     <Content Include="Estilos\fullcalendar\main.min.css" />
+    <Content Include="Estilos\TablasMantenimientos.css" />
     <Content Include="Estilos\_all-skins.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -172,6 +173,7 @@
     <Content Include="Js\adminlte.min.js" />
     <Content Include="Js\Arbol.js" />
     <Content Include="Js\bootstrap.min.js" />
+    <Content Include="Js\datatables.min.js" />
     <Content Include="Js\fullcalendar-bootstrap\main.min.js" />
     <Content Include="Js\fullcalendar-daygrid\main.min.js" />
     <Content Include="Js\fullcalendar-interaction\main.min.js" />
@@ -254,6 +256,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Content\Spanish.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -268,7 +271,9 @@
     <Content Include="Scripts\Propios\Administracion.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
-    <Content Include="Scripts\Propios\Roles.js" />
+    <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
+    <Content Include="Scripts\Propios\Roles\Roles.js" />
+    <Content Include="Scripts\Propios\Roles\ListaRoles.js" />
     <Content Include="Scripts\Propios\Servicio.js" />
     <Content Include="Scripts\Propios\Usuario.js" />
     <Content Include="Web.config">
@@ -291,6 +296,8 @@
     <Content Include="Views\Servicio\InsertarServicios.cshtml" />
     <Content Include="Views\Usuario\InsertarColaborador.cshtml" />
     <Content Include="Views\Administracion\Index.cshtml" />
+    <Content Include="Views\Roles\ListaRoles.cshtml" />
+    <Content Include="Views\Roles\ActualizarRol.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
