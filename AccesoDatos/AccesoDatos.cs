@@ -11,6 +11,9 @@ namespace AccesoDatos
     {
         BDSistemaRegistroCitasEntities entities = new BDSistemaRegistroCitasEntities();
 
+
+        #region INSERTS
+
         public void InsertarUsuario(Usuario usuario, ref int Resp)
         {
             Utilidades utilidades = new Utilidades();
@@ -107,6 +110,334 @@ namespace AccesoDatos
             return Respuesta;
 
         }
+
+        public bool InsertarRoles(Roles roles)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaInsertarRoles(roles.Nombre, roles.Descripcion, roles.Estado, roles.UsuarioCreacion);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
+
+            return Respuesta;
+        }
+
+        public bool InsertarDatosServicios(Servicio servicio)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaInsertarDatosServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.Estado, servicio.UsuarioCreacion);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
+
+            return Respuesta;
+        }
+
+        public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaInsertarUnidadMedida(unidadMedida.Nombre, unidadMedida.Descripcion, unidadMedida.Estado, unidadMedida.UsuarioCreacion);
+                Respuesta = true;
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
+
+            return Respuesta;
+        }
+
+        public List<Usuario> ObtenerColaboradoresActivos()
+        {
+            List<Usuario> ListaColaboradores = new List<Usuario>();
+
+            try
+            {
+                var info = entities.PaObtenerColaboradoresActivos();
+
+                foreach (var item in info)
+                {
+                    Usuario Colaborador = new Usuario();
+
+                    Colaborador.Id = item.Id;
+                    Colaborador.Nombre = item.Nombre;
+
+                    ListaColaboradores.Add(Colaborador);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            return ListaColaboradores;
+
+        }
+
+        public List<Menu> ObtenerMenuGeneral()
+        {
+            List<Menu> ListaMenu = new List<Menu>();
+
+            try
+            {
+                var info = entities.paObtenerMenuGeneral();
+
+                foreach (var item in info)
+                {
+                    Menu menu = new Menu();
+                    menu.IdMenu = item.IdMenu.ToString();
+                    menu.Nombre = item.Nombre;
+                    menu.Icono = item.Icono;
+                    menu.IdPadre = item.IdPadre;
+                    menu.IdHijo = item.IdHijo;
+                    menu.Nivel = item.Nivel;
+                    menu.Orden = item.Orden;
+                    menu.IsPadre = item.IsPadre.ToString();
+                    menu.Url = item.Url;
+
+
+                    ListaMenu.Add(menu);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+            return ListaMenu;
+        }
+
+        public List<Usuario> ObtenerTodosUsuarios()
+        {
+            List<Usuario> ListaUsuarios = new List<Usuario>();
+
+            try
+            {
+                var info = entities.paObtenerUsuariosActivos();
+
+                foreach (var item in info)
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.Id = item.Id;
+                    usuario.Nombre = item.Nombre;
+                    usuario.PrimerApellido = item.PrimerApellido;
+                    usuario.SegundoApellido = item.SegundoApellido;
+                    usuario.Identificacion = item.Identificacion;
+                    usuario.CorreoElectronico = item.CorreoElectronico;
+                    usuario.Telefono = item.Telefono;
+                    usuario.Genero = item.Genero;
+                    usuario.FotoPerfil = item.FotoPerfil;
+                    usuario.IdRol = item.IdRol;
+                    usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;
+
+
+
+                    ListaUsuarios.Add(usuario);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+            return ListaUsuarios;
+
+        }
+
+        public void InsertarDatosColaborador(Usuario usuario, ref int Resp)
+        {
+            Utilidades utilidades = new Utilidades();
+            ObjectParameter IdUsuario;
+            ObjectParameter Respuesta;
+            try
+            {
+                IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
+                Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                var info = entities.PaInsertarDatosColaborador(usuario.Nombre,
+                                                      usuario.PrimerApellido,
+                                                      usuario.SegundoApellido,
+                                                      usuario.Identificacion,
+                                                      usuario.CorreoElectronico,
+                                                      usuario.Telefono,
+                                                      usuario.Genero,
+                                                      usuario.IdRol,
+                                                      IdUsuario,
+                                                      Respuesta);
+
+                if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
+                {
+                    switch (Respuesta.Value.ToString())
+                    {
+                        case "1":
+                            Login login = new Login();
+                            login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
+                            login.CorreoElectronico = usuario.CorreoElectronico;
+                            login.Contrasena = utilidades.ObtenerClaveTemporal();
+
+
+                            if (InsertarLogin(login))
+                            {
+                                Resp = Convert.ToInt32(Respuesta.Value.ToString());
+                                utilidades.EnviarCorreo(login.Contrasena, usuario.CorreoElectronico);
+                            }
+
+                            break;
+
+                        default:
+
+                            Resp = Convert.ToInt32(Respuesta.Value.ToString());
+
+                            break;
+                    }
+
+                }
+                else
+                {
+                    Resp = 0;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Resp = 0;
+            }
+
+        }
+
+        public bool InsertarPermisosXUsuario(int IdUsuario, List<int> ListaPermisos)
+        {
+            bool Correcto = false;
+            try
+            {
+                //Primero se borran todos los permisos
+                EliminarPermisosXUsuario(IdUsuario);
+
+                // Luego se vuelve a insertar todos los permisos, es mas facil hacerlo de esta forma
+                // para no tener que comparar luego permiso por permiso para ver si se habilitan o no
+                for (int i = 0; i < ListaPermisos.Count; i++)
+                {
+                    entities.paInsertarPermisosXUsuario(IdUsuario, ListaPermisos[i]);
+
+                }
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+
+            }
+
+            return Correcto;
+        }
+
+        #endregion
+
+
+        #region UPDATES
+
+        public bool ActualizarRol(Roles rol)
+        {
+            bool Correcto = false;
+
+            try
+            {
+                entities.paActualizarRol(rol.Id, rol.Nombre, rol.Descripcion, rol.UsuarioUltimaModificacion);
+                Correcto = true;
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+
+            return Correcto;
+        }
+        public bool DesactivarActivarRol(int IdRol, bool Estado)
+        {
+
+            bool SeActualizo = false;
+
+            try
+            {
+                entities.paDesactivarActivarRol(IdRol, Estado);
+                SeActualizo = true;
+            }
+            catch (Exception ex)
+            {
+                SeActualizo = false;
+            }
+
+
+            return SeActualizo;
+
+        }
+
+        #endregion
+
+
+        #region DELETES
+
+        public void EliminarPermisosXUsuario(int IdUsuario)
+        {
+            try
+            {
+                entities.paEliminarPermisosUsuario(IdUsuario);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public bool EliminarRol(int IdRol)
+        {
+
+            bool SeElimino = false;
+
+            try
+            {
+                entities.paElimminarRol(IdRol);
+                SeElimino = true;
+            }
+            catch (Exception)
+            {
+                SeElimino = false;
+            }
+
+
+            return SeElimino;
+
+        }
+
+
+        #endregion
+
+
+        #region SELECTS
 
         public List<Servicio> ObtenerServicios()
 
@@ -229,55 +560,6 @@ namespace AccesoDatos
             return servicio;
 
         }
-
-        public bool InsertarRoles(Roles roles)
-        {
-            bool Respuesta = true;
-            try
-            {
-                entities.PaInsertarRoles(roles.Nombre, roles.Descripcion, roles.Estado, roles.UsuarioCreacion);
-                Respuesta = true;
-            }
-            catch (Exception ex)
-            {
-                Respuesta = false;
-            }
-
-            return Respuesta;
-        }
-
-        public bool InsertarDatosServicios(Servicio servicio)
-        {
-            bool Respuesta = true;
-            try
-            {
-                entities.PaInsertarDatosServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.Estado, servicio.UsuarioCreacion);
-                Respuesta = true;
-            }
-            catch (Exception ex)
-            {
-                Respuesta = false;
-            }
-
-            return Respuesta;
-        }
-
-        public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
-        {
-            bool Respuesta = true;
-            try
-            {
-                entities.PaInsertarUnidadMedida(unidadMedida.Nombre, unidadMedida.Descripcion, unidadMedida.Estado, unidadMedida.UsuarioCreacion);
-                Respuesta = true;
-            }
-            catch (Exception ex)
-            {
-                Respuesta = false;
-            }
-
-            return Respuesta;
-        }
-
         public List<Menu> ObtenerMenuUsuario(int IdUsuario)
         {
             List<Menu> ListaMenu = new List<Menu>();
@@ -315,213 +597,6 @@ namespace AccesoDatos
             return ListaMenu;
         }
 
-        public void InsertarDatosColaborador(Usuario usuario, ref int Resp)
-        {
-            Utilidades utilidades = new Utilidades();
-            ObjectParameter IdUsuario;
-            ObjectParameter Respuesta;
-            try
-            {
-                IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
-                Respuesta = new ObjectParameter("Respuesta", typeof(int));
-                var info = entities.PaInsertarDatosColaborador(usuario.Nombre,
-                                                      usuario.PrimerApellido,
-                                                      usuario.SegundoApellido,
-                                                      usuario.Identificacion,
-                                                      usuario.CorreoElectronico,
-                                                      usuario.Telefono,
-                                                      usuario.Genero,
-                                                      usuario.IdRol,
-                                                      IdUsuario,
-                                                      Respuesta);
-
-                if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
-                {
-                    switch (Respuesta.Value.ToString())
-                    {
-                        case "1":
-                            Login login = new Login();
-                            login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
-                            login.CorreoElectronico = usuario.CorreoElectronico;
-                            login.Contrasena = utilidades.ObtenerClaveTemporal();
-
-
-                            if (InsertarLogin(login))
-                            {
-                                Resp = Convert.ToInt32(Respuesta.Value.ToString());
-                                utilidades.EnviarCorreo(login.Contrasena, usuario.CorreoElectronico);
-                            }
-
-                            break;
-
-                        default:
-
-                            Resp = Convert.ToInt32(Respuesta.Value.ToString());
-
-                            break;
-                    }
-
-                }
-                else
-                {
-                    Resp = 0;
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                Resp = 0;
-            }
-
-        }
-
-        public List<Usuario> ObtenerColaboradoresActivos()
-        {
-            List<Usuario> ListaColaboradores = new List<Usuario>();
-
-            try
-            {
-                var info = entities.PaObtenerColaboradoresActivos();
-
-                foreach (var item in info)
-                {
-                    Usuario Colaborador = new Usuario();
-
-                    Colaborador.Id = item.Id;
-                    Colaborador.Nombre = item.Nombre;
-
-                    ListaColaboradores.Add(Colaborador);
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-
-            return ListaColaboradores;
-
-        }
-
-        public List<Menu> ObtenerMenuGeneral()
-        {
-            List<Menu> ListaMenu = new List<Menu>();
-
-            try
-            {
-                var info = entities.paObtenerMenuGeneral();
-
-                foreach (var item in info)
-                {
-                    Menu menu = new Menu();
-                    menu.IdMenu = item.IdMenu.ToString();
-                    menu.Nombre = item.Nombre;
-                    menu.Icono = item.Icono;
-                    menu.IdPadre = item.IdPadre;
-                    menu.IdHijo = item.IdHijo;
-                    menu.Nivel = item.Nivel;
-                    menu.Orden = item.Orden;
-                    menu.IsPadre = item.IsPadre.ToString();
-                    menu.Url = item.Url;
-
-
-                    ListaMenu.Add(menu);
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-
-            return ListaMenu;
-        }
-
-        public List<Usuario> ObtenerTodosUsuarios()
-        {
-            List<Usuario> ListaUsuarios = new List<Usuario>();
-
-            try
-            {
-                var info = entities.paObtenerUsuariosActivos();
-
-                foreach (var item in info)
-                {
-                    Usuario usuario = new Usuario();
-                    usuario.Id = item.Id;
-                    usuario.Nombre = item.Nombre;
-                    usuario.PrimerApellido = item.PrimerApellido;
-                    usuario.SegundoApellido = item.SegundoApellido;
-                    usuario.Identificacion = item.Identificacion;
-                    usuario.CorreoElectronico = item.CorreoElectronico;
-                    usuario.Telefono = item.Telefono;
-                    usuario.Genero = item.Genero;
-                    usuario.FotoPerfil = item.FotoPerfil;
-                    usuario.IdRol = item.IdRol;
-                    usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;
-
-
-
-                    ListaUsuarios.Add(usuario);
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-
-            return ListaUsuarios;
-
-        }
-
-        public bool InsertarPermisosXUsuario(int IdUsuario, List<int> ListaPermisos)
-        {
-            bool Correcto = false;
-            try
-            {
-                //Primero se borran todos los permisos
-                EliminarPermisosXUsuario(IdUsuario);
-
-                // Luego se vuelve a insertar todos los permisos, es mas facil hacerlo de esta forma
-                // para no tener que comparar luego permiso por permiso para ver si se habilitan o no
-                for (int i = 0; i < ListaPermisos.Count; i++)
-                {
-                    entities.paInsertarPermisosXUsuario(IdUsuario, ListaPermisos[i]);
-
-                }
-                Correcto = true;
-
-            }
-            catch (Exception ex)
-            {
-                Correcto = false;
-
-            }
-
-            return Correcto;
-        }
-
-        public void EliminarPermisosXUsuario(int IdUsuario)
-        {
-            try
-            {
-                entities.paEliminarPermisosUsuario(IdUsuario);
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
         public List<Roles> ObtenerRoles()
         {
             List<Roles> ListaRoles = new List<Roles>();
@@ -536,7 +611,7 @@ namespace AccesoDatos
 
                     roles.Id = item.Id;
                     roles.Nombre = item.Nombre;
-                  
+
 
                     ListaRoles.Add(roles);
                 }
@@ -550,6 +625,77 @@ namespace AccesoDatos
             return ListaRoles;
 
         }
+
+        public List<Roles> ObtenerTodoLosRoles()
+        {
+            List<Roles> ListaRoles = new List<Roles>();
+            try
+            {
+
+                var info = entities.paObtenerTodosLosRoles();
+
+                foreach (var item in info)
+                {
+                    Roles roles = new Roles();
+
+                    roles.Id = item.Id;
+                    roles.Nombre = item.Nombre;
+                    roles.Descripcion = item.Descripcion;
+                    roles.Estado = item.Estado;
+                    roles.UsuarioCreacion = item.UsuarioCreacion;
+                    roles.FechaCreacion = item.FechaCreacion;
+                    roles.UsuarioUltimaModificacion = item.UsuarioUltimaMoficacion;
+                    roles.FechaUltimaModificacion = item.FechaUltimaModificacion;
+
+
+                    ListaRoles.Add(roles);
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaRoles;
+
+        }
+
+        public Roles ObtenerRolXId(int IdRol) {
+
+            Roles roles = new Roles();
+
+            try
+            {
+                var Info = entities.paObtenerRolXId(IdRol);
+
+                foreach (var item in Info)
+                {
+                    roles.Id = item.Id;
+                    roles.Nombre = item.Nombre;
+                    roles.Descripcion = item.Descripcion;
+                    roles.Estado = item.Estado;
+                    roles.UsuarioCreacion = item.UsuarioCreacion;
+                    roles.FechaCreacion = item.FechaCreacion;
+                    roles.UsuarioUltimaModificacion = item.UsuarioUltimaMoficacion;
+                    roles.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return roles;
+        }
+
+        #endregion
+
+
+
+
+
 
 
 
