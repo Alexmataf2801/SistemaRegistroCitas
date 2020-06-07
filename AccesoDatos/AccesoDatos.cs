@@ -396,6 +396,39 @@ namespace AccesoDatos
 
         }
 
+        public bool ActualizarServicios(Servicio servicio)
+        {
+            bool Correcto = false;
+
+            try
+            {
+                entities.paActualizarServicios(servicio.Id, servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.UsuarioUltimaModificacion);
+                Correcto = true;
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+            return Correcto;
+        }
+        public bool DesactivarActivarServicios(int Id, bool Estado)
+        {
+            bool SeActualizo = false;
+
+            try
+            {
+                entities.paDesactivarActivarServicios(Id, Estado);
+                SeActualizo = true;
+            }
+            catch (Exception ex)
+            {
+                SeActualizo = false;
+            }
+
+            return SeActualizo;
+        }
+
         #endregion
 
 
@@ -431,6 +464,23 @@ namespace AccesoDatos
 
             return SeElimino;
 
+        }
+
+        public bool EliminarServicios(int Id)
+        {
+            bool SeElimino = false;
+
+            try
+            {
+                entities.paElimminarServicios(Id);
+                SeElimino = true;
+            }
+            catch (Exception)
+            {
+                SeElimino = false;
+            }
+
+            return SeElimino;
         }
 
 
@@ -628,6 +678,7 @@ namespace AccesoDatos
 
         public List<Roles> ObtenerTodoLosRoles()
         {
+
             List<Roles> ListaRoles = new List<Roles>();
             try
             {
@@ -637,6 +688,7 @@ namespace AccesoDatos
                 foreach (var item in info)
                 {
                     Roles roles = new Roles();
+
 
                     roles.Id = item.Id;
                     roles.Nombre = item.Nombre;
@@ -649,6 +701,7 @@ namespace AccesoDatos
 
 
                     ListaRoles.Add(roles);
+
                 }
             }
 
@@ -661,7 +714,8 @@ namespace AccesoDatos
 
         }
 
-        public Roles ObtenerRolXId(int IdRol) {
+        public Roles ObtenerRolXId(int IdRol)
+        {
 
             Roles roles = new Roles();
 
@@ -688,6 +742,39 @@ namespace AccesoDatos
                 throw;
             }
             return roles;
+        }
+
+        public List<Servicio> ObtenerTodosLosServicios()
+        {
+            List<Servicio> ListaServicios = new List<Servicio>();
+            try
+            {
+                var info = entities.paObtenerTodosLosServicios();
+
+                foreach(var item in info)
+                {
+                    Servicio servicio = new Servicio();
+
+                    servicio.Id = item.Id;
+                    servicio.Nombre = item.Nombre;
+                    servicio.Descripcion = item.Descripcion;
+                    servicio.TiempoEstimado = item.TiempoEstimado;
+                    servicio.TipoUnidad = item.TipoUnidad;
+                    servicio.Estado = item.Estado;
+                    servicio.UsuarioCreacion = item.UsuarioCreacion;
+                    servicio.FechaCreacion = item.FechaCreacion;
+                    servicio.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    servicio.FechaUltimaModificacion = item.FechaUltimaModificacion;
+
+                    ListaServicios.Add(servicio);
+                }
+            }
+            catch(Exception ex)
+            {
+                
+            }
+
+            return ListaServicios;
         }
 
         #endregion

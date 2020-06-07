@@ -71,6 +71,16 @@ namespace LogicaNegocio
             return AD.DesactivarActivarRol(IdRol, Estado);
         }
 
+        public bool ActualizarServicios(Servicio servicio)
+        {
+            return AD.ActualizarServicios(servicio);
+        }
+
+        public bool DesactivarActivarServicios(int Id, bool Estado)
+        {
+            return AD.DesactivarActivarServicios(Id, Estado);
+        }
+
         #endregion
 
 
@@ -79,6 +89,11 @@ namespace LogicaNegocio
         public bool EliminarRol(int IdRol)
         {
             return AD.EliminarRol(IdRol);
+        }
+
+        public bool EliminarServicios(int Id)
+        {
+            return AD.EliminarServicios(Id);
         }
 
         #endregion
@@ -133,6 +148,11 @@ namespace LogicaNegocio
         public Roles ObtenerRolXId(int IdRol)
         {
             return AD.ObtenerRolXId(IdRol);
+        }
+
+        public List<Servicio> ObtenerTodosLosServicios()
+        {
+            return AD.ObtenerTodosLosServicios();
         }
 
         #endregion
