@@ -4,13 +4,14 @@
         Id: Id,
         Nombre: $("#txtNombre").val(),
         Descripcion: $("#txtDescripcionServicio").val(),
-        TiempoEstimado: $("#txtTiempoEstimadoServicio").val()
+        TiempoEstimado: $("#txtTiempoEstimadoServicio").val(),
+        TipoUnidad: $("#txtTipoUnidadServicio").val()
     };
     $.ajax({
         type: "POST",
         datatype: "JSON",
         url: "/Servicio/ActualizarServicios/",
-        data: { InfoServicio: Servicio },
+        data: { servicio: Servicio },
         success: function (Info) {
             if (Info) {
                 $("#msjCorrectoActServicio").html("<label>¡Servicio Actualizado Correctamente!</label>");
@@ -39,6 +40,7 @@ function ObtenerDatosServicio() {
                 $("#txtNombre").val(Info.Nombre);
                 $("#txtDescripcionServicio").val(Info.Descripcion);
                 $("#txtTiempoEstimadoServicio").val(Info.TiempoEstimado);
+                $("#txtTipoUnidadServicio").val(Info.TipoUnidad);
 
             }
         },
@@ -60,6 +62,7 @@ function LimpiarCampos() {
     $("#txtNombre").val("");
     $("#txtDescripcionServicio").val("");
     $("#txtTiempoEstimadoServicio").val("");
+    $("#txtTipoUnidadServicio").val("");
 }
 
 $(document).ready(function () {

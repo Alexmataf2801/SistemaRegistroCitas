@@ -32,6 +32,7 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ServicioXId(int Id)
         {
+
             Servicio InfoServicio = LN.ServicioXId(Id);
 
             return Json(InfoServicio, JsonRequestBehavior.AllowGet);
@@ -49,10 +50,30 @@ namespace SistemaRegistroCitas.Controllers
 
         public ActionResult InsertarServicios()
         {
-            return View();
+            usuario = (Usuario)Session["Usuario"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
+
+            if (usuario != null)
+            {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
-        [HttpPost]
+        //[HttpPost]
 
         public JsonResult InsertarDatosServicios(Servicio servicio)
         {
