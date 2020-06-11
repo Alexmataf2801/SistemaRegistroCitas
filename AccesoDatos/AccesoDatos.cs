@@ -610,6 +610,7 @@ namespace AccesoDatos
             return servicio;
 
         }
+
         public List<Menu> ObtenerMenuUsuario(int IdUsuario)
         {
             List<Menu> ListaMenu = new List<Menu>();
@@ -751,7 +752,7 @@ namespace AccesoDatos
             {
                 var info = entities.paObtenerTodosLosServicios();
 
-                foreach(var item in info)
+                foreach (var item in info)
                 {
                     Servicio servicio = new Servicio();
 
@@ -769,9 +770,9 @@ namespace AccesoDatos
                     ListaServicios.Add(servicio);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
+
             }
 
             return ListaServicios;
@@ -789,4 +790,4 @@ namespace AccesoDatos
 
 
     }
-}
+    }

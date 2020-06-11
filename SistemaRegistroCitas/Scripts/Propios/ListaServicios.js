@@ -117,32 +117,6 @@ function DesactivarActivarServicios(Id, Estado) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $(document).ready(function () {
     ObtenerTodosLosServicios();
 });
