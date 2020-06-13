@@ -429,6 +429,40 @@ namespace AccesoDatos
             return SeActualizo;
         }
 
+        public bool ActualizarColaboradores(Usuario usuario)
+        {
+            bool Correcto = false;
+
+            try
+            {
+                entities.paActualizarColaboradores(usuario.Id, usuario.Identificacion, usuario.Nombre, usuario.PrimerApellido, usuario.SegundoApellido, usuario.CorreoElectronico, usuario.Telefono,
+                    usuario.Genero, usuario.IdRol, usuario.UsuarioUltimaModificacion);
+                Correcto = true;
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+            return Correcto;
+        }
+        public bool DesactivarActivarColaboradores(int Id, bool Estado)
+        {
+            bool SeActualizo = false;
+
+            try
+            {
+                entities.paDesactivarActivarColaboradores(Id, Estado);
+                SeActualizo = true;
+            }
+            catch (Exception ex)
+            {
+                SeActualizo = false;
+            }
+
+            return SeActualizo;
+        }
+
         #endregion
 
 
@@ -476,6 +510,23 @@ namespace AccesoDatos
                 SeElimino = true;
             }
             catch (Exception)
+            {
+                SeElimino = false;
+            }
+
+            return SeElimino;
+        }
+
+        public bool EliminarColaboradores(int Id)
+        {
+            bool SeElimino = false;
+
+            try
+            {
+                entities.paEliminarColaboradores(Id);
+                SeElimino = true;
+            }
+            catch (Exception ex)
             {
                 SeElimino = false;
             }
@@ -778,6 +829,81 @@ namespace AccesoDatos
             return ListaServicios;
         }
 
+        public List<Usuario> ObtenerTodosLosColaboradores()
+        {
+               List<Usuario> ListaColaboradores = new List<Usuario>();
+            try
+            {
+                var info = entities.paObtenerTodosLosColaboradores();
+
+                foreach(var item in info)
+                {
+                    Usuario usuario = new Usuario();
+
+                    usuario.Id = item.Id;
+                    usuario.Nombre = item.Nombre;
+                    usuario.PrimerApellido = item.PrimerApellido;
+                    usuario.SegundoApellido = item.SegundoApellido;
+                    usuario.Identificacion = item.Identificacion;
+                    usuario.CorreoElectronico = item.CorreoElectronico;
+                    usuario.Telefono = item.Telefono;
+                    usuario.Genero = item.Genero;
+                    usuario.FotoPerfil = item.FotoPerfil;
+                    usuario.IdRol = item.IdRol;
+                    usuario.Estado = item.Estado;
+                    usuario.UsuarioCreacion = item.UsuarioCreacion;
+                    usuario.FechaCreacion = item.FechaCreacion;
+                    usuario.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    usuario.FechaUltimaModificacion = item.FechaUltimaModificacion;
+
+                    ListaColaboradores.Add(usuario);
+
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+            return ListaColaboradores;
+        }
+
+        public Usuario ObtenerColaboradoresXId( int Id)
+        {
+            Usuario usuario = new Usuario();
+
+            try
+            {
+                var info = entities.paObtenerColaboradoresXId(Id);
+
+                foreach (var item in info)
+                {
+                    usuario.Id = item.Id;
+                    usuario.Nombre = item.Nombre;
+                    usuario.PrimerApellido = item.PrimerApellido;
+                    usuario.SegundoApellido = item.SegundoApellido;
+                    usuario.Identificacion = item.Identificacion;
+                    usuario.CorreoElectronico = item.CorreoElectronico;
+                    usuario.Telefono = item.Telefono;
+                    usuario.Genero = item.Genero;
+                    usuario.IdRol = item.IdRol;
+                    usuario.Estado = item.Estado;
+                    usuario.UsuarioCreacion = item.UsuarioCreacion;
+                    usuario.FechaCreacion = item.FechaCreacion;
+                    usuario.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    usuario.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+
+            return usuario;
+        }
+
+
+
         #endregion
 
 
@@ -787,7 +913,7 @@ namespace AccesoDatos
 
 
 
-
-
     }
-    }
+}
+    
+    

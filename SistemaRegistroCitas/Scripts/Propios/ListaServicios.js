@@ -46,8 +46,8 @@ function ServicioXId(Id) {
 }
 
 
-function ConfirmarEliminarServicio(IdRol) {
-    $("#IdServiciosSeleccionado").val(IdRol);
+function ConfirmarEliminarServicio(Id) {
+    $("#IdServiciosSeleccionado").val(Id);
     $("#msjConfServicios").html("¿Desea eliminar este registro?");
     $('#ModalConfirmacionServicios').modal('show');
 }

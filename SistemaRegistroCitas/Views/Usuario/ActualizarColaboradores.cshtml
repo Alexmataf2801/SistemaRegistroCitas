@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "ActualizarColaboradores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Estilos/bootstrap")
+
+<div class="container" style="margin: 0 auto; width: 90%">
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+            <div style="margin: 0 auto; width: 95%">
+                <div style="text-align: center; margin-bottom: 50px">
+                    <h3 id="lblTitulo" style="text-align:center" class="box-header">Actualizacion de Colaboradores</h3>
+                    <hr />
+                </div>
+                <div class="form-group row">
+                    <label>Identificacion</label>
+                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtIdentificacionColaborador" maxlength="150" />
+                </div>
+
+                <div class="form-group row">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtNombreColaborador" maxlength="150" />
+                </div>
+
+                <div class="form-group row">
+                    <label>Primer Apellido</label>
+                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtPrimerApellidoColaborador" maxlength="150">
+                </div>
+
+                <div class="form-group row">
+                    <label>Segundo Apellido</label>
+                    <input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtSegundoApellidoColaborador" maxlength="150">
+                </div>
+
+                <div class="form-group row">
+                    <label>Correo Electronico</label>
+                    <input type="email" class="form-control" style="border-radius:4px" autocomplete="off" id="txtCorreoElectronicoColaborador" maxlength="150">
+                </div>
+
+                <div class="form-group row">
+                    <label>Telefono</label>
+                    <input type="tel" class="form-control" style="border-radius:4px" autocomplete="off" id="txtTelefonoColaborador" maxlength="150">
+                </div>
+
+                <div class="form-group row">
+                    <label>Genero</label>
+                    <select class="form-control" style="border-radius:4px" autocomplete="off" id="ddlGenero" maxlength="150">
+                        <option value="0">Masculino</option>
+                        <option value="1">Femenino</option>
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <label>Rol</label>
+                    <select class="form-control" style="border-radius:4px" autocomplete="off" id="IdRol" maxlength="150"></select>
+                   
+
+                </div>
+
+                <div style="text-align: center; margin-bottom: 20px">
+                    <div class="col-md-12">
+                        <div class="row" style="margin: 15px">
+                            <a class="btn btn-success" style="margin:0 auto" onclick="ActualizarDatosColaborador()">Guardar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--INICIO MODAL CORRECTO-->
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalCorrectoActColaborador">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#5CB85C;">
+                <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
+            </div>
+            <div class="modal-body">
+                <p id="msjCorrectoActColaborador" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <a type="button" style="margin:0 auto" onclick="RedireccionarColaboradores()" class="btn btn-success" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL CORRECTO-->
+
+<script src="~/Js/jquery.min.js"></script>
+<script src="~/Scripts/Propios/ActualizarDatosColaborador.js"></script>
