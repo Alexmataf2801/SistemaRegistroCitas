@@ -125,29 +125,3 @@ $(document).ready(function () {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$("#Servicios").change(function () {
-    ServicioXId();
-})
-
-
-$(document).ready(function () {
-    ObtenerServicios();
-});
-

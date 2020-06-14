@@ -268,9 +268,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Propios\ActualizarDatosColaborador.js" />
+    <Content Include="Scripts\Propios\ActualizarDatosServicios.js" />
     <Content Include="Scripts\Propios\Administracion.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
+    <Content Include="Scripts\Propios\ListaColaboradores.js" />
+    <Content Include="Scripts\Propios\ListaServicios.js" />
     <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
     <Content Include="Scripts\Propios\Roles\Roles.js" />
     <Content Include="Scripts\Propios\Roles\ListaRoles.js" />
@@ -296,8 +300,12 @@
     <Content Include="Views\Servicio\InsertarServicios.cshtml" />
     <Content Include="Views\Usuario\InsertarColaborador.cshtml" />
     <Content Include="Views\Administracion\Index.cshtml" />
-    <Content Include="Views\Roles\ListaRoles.cshtml" />
     <Content Include="Views\Roles\ActualizarRol.cshtml" />
+    <Content Include="Views\Roles\ListaRoles.cshtml" />
+    <Content Include="Views\Servicio\ListaServicios.cshtml" />
+    <Content Include="Views\Servicio\ActualizarServicios.cshtml" />
+    <Content Include="Views\Usuario\ListaColaboradores.cshtml" />
+    <Content Include="Views\Usuario\ActualizarColaboradores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

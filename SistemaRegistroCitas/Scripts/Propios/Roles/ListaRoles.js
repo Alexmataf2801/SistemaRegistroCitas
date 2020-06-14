@@ -61,11 +61,17 @@ function EliminarRol() {
             dataType: "JSON",
             url: "/Roles/ElimnarRol/",
             data: { IdRol: Id },
-            success: function () {
-                $("#lblMensajeCorrecto").html("<label>¡Rol Eliminado Correctamente!</label>");
-                $("#lblTituloCorrecto").html("<label>Información</label>");
-                $('#MsjCorrecto').modal('show');
-                ObtenerTodosLosRoles();
+            success: function (Info) {
+                if (Info) {
+                    $("#lblMensajeCorrecto").html("<label>¡Rol Eliminado Correctamente!</label>");
+                    $("#lblTituloCorrecto").html("<label>Información</label>");
+                    $('#MsjCorrecto').modal('show');
+                    ObtenerTodosLosRoles();
+                } else {
+                    $("#msjModalIncorrecto").html("<label>¡El rol no pudo ser eliminado!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                }
+                
             },
             error: function () {
                 $("#msjModalIncorrecto").html("<label>¡Algo Fallo!</label>");
@@ -92,12 +98,15 @@ function DesactivarActivarRol(IdRol, Estado) {
         success: function (Info) {
             if (Info) {
                 ObtenerTodosLosRoles();
+            } else {
+                $("#msjModalIncorrecto").html("<label>¡No se pudo actualizar el estado del rol!</label>");
+                $('#MsjIncorrecto').modal('show');
             }
 
         },
         error: function (Error) {
-            $("#msjError").html("Error al cambiar el estado");
-            $('#ModalError').modal('show');
+            $("#msjModalIncorrecto").html("<label>¡No se pudo actualizar el estado del rol!</label>");
+            $('#MsjIncorrecto').modal('show');
         }
     });
 
