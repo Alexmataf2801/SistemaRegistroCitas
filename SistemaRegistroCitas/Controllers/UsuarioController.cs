@@ -15,6 +15,7 @@ namespace SistemaRegistroCitas.Controllers
         Usuario usuario = new Usuario();
         string Menu = string.Empty;
         LogicaNegocio.LogicaNegocio LN = new LogicaNegocio.LogicaNegocio();
+       
 
 
         // GET: Usuario
@@ -221,7 +222,108 @@ namespace SistemaRegistroCitas.Controllers
             return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
 
-      
+        [HttpGet]
+        public ActionResult ListaColaboradores()
+        {
+            usuario = (Usuario)Session["Usuario"];
+            Menu = ArmarMenu(usuario.Id);
+
+            if (usuario != null)
+            {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+
+        public JsonResult ObtenerTodosLosColaboradores()
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            usuarios = LN.ObtenerTodosLosColaboradores();
+
+            return Json(usuarios, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DesactivarActivarColaboradores(int Id, bool Estado)
+        {
+
+            bool SeActualizoEstado = false;
+
+            SeActualizoEstado = LN.DesactivarActivarColaboradores(Id, Estado);
+
+            return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EliminarColaboradores(int Id)
+        {
+            bool SeElimino = false;
+
+            SeElimino = LN.EliminarColaboradores(Id);
+
+            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+
+
+        }
+
+        [HttpGet]
+        public ActionResult ActualizarColaboradores()
+        {
+            usuario = (Usuario)Session["Usuario"];
+            Menu = ArmarMenu(usuario.Id);
+
+            if (usuario != null)
+            {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+        public JsonResult ActualizarColaboradores(Usuario usuario)
+        {
+            
+            bool SeActualizo = false;
+            usuario.UsuarioUltimaModificacion = usuario.NombreCompleto;
+            SeActualizo = LN.ActualizarColaboradores(usuario);
+
+            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        public JsonResult ObtenerColaboradoresXId(int Id)
+        {
+            Usuario usuario = new Usuario();
+
+            usuario = LN.ObtenerColaboradoresXId(Id);
+
+            return Json(usuario, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

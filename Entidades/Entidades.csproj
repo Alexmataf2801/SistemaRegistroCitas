@@ -96,6 +96,9 @@
     <Compile Include="PaObtenerColaboradoresActivos_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerColaboradoresXId_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerMenuGeneral_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -114,7 +117,13 @@
     <Compile Include="paObtenerServicioXId_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerTodosLosColaboradores_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerTodosLosRoles_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerTodosLosServicios_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerUsuariosActivos_Result.cs">

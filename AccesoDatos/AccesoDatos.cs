@@ -396,6 +396,73 @@ namespace AccesoDatos
 
         }
 
+        public bool ActualizarServicios(Servicio servicio)
+        {
+            bool Correcto = false;
+
+            try
+            {
+                entities.paActualizarServicios(servicio.Id, servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.UsuarioUltimaModificacion);
+                Correcto = true;
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+            return Correcto;
+        }
+        public bool DesactivarActivarServicios(int Id, bool Estado)
+        {
+            bool SeActualizo = false;
+
+            try
+            {
+                entities.paDesactivarActivarServicios(Id, Estado);
+                SeActualizo = true;
+            }
+            catch (Exception ex)
+            {
+                SeActualizo = false;
+            }
+
+            return SeActualizo;
+        }
+
+        public bool ActualizarColaboradores(Usuario usuario)
+        {
+            bool Correcto = false;
+
+            try
+            {
+                entities.paActualizarColaboradores(usuario.Id, usuario.Identificacion, usuario.Nombre, usuario.PrimerApellido, usuario.SegundoApellido, usuario.CorreoElectronico, usuario.Telefono,
+                    usuario.Genero, usuario.IdRol, usuario.UsuarioUltimaModificacion);
+                Correcto = true;
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+            return Correcto;
+        }
+        public bool DesactivarActivarColaboradores(int Id, bool Estado)
+        {
+            bool SeActualizo = false;
+
+            try
+            {
+                entities.paDesactivarActivarColaboradores(Id, Estado);
+                SeActualizo = true;
+            }
+            catch (Exception ex)
+            {
+                SeActualizo = false;
+            }
+
+            return SeActualizo;
+        }
+
         #endregion
 
 
@@ -431,6 +498,40 @@ namespace AccesoDatos
 
             return SeElimino;
 
+        }
+
+        public bool EliminarServicios(int Id)
+        {
+            bool SeElimino = false;
+
+            try
+            {
+                entities.paElimminarServicios(Id);
+                SeElimino = true;
+            }
+            catch (Exception)
+            {
+                SeElimino = false;
+            }
+
+            return SeElimino;
+        }
+
+        public bool EliminarColaboradores(int Id)
+        {
+            bool SeElimino = false;
+
+            try
+            {
+                entities.paEliminarColaboradores(Id);
+                SeElimino = true;
+            }
+            catch (Exception ex)
+            {
+                SeElimino = false;
+            }
+
+            return SeElimino;
         }
 
 
@@ -560,6 +661,7 @@ namespace AccesoDatos
             return servicio;
 
         }
+
         public List<Menu> ObtenerMenuUsuario(int IdUsuario)
         {
             List<Menu> ListaMenu = new List<Menu>();
@@ -628,6 +730,7 @@ namespace AccesoDatos
 
         public List<Roles> ObtenerTodoLosRoles()
         {
+
             List<Roles> ListaRoles = new List<Roles>();
             try
             {
@@ -637,6 +740,7 @@ namespace AccesoDatos
                 foreach (var item in info)
                 {
                     Roles roles = new Roles();
+
 
                     roles.Id = item.Id;
                     roles.Nombre = item.Nombre;
@@ -649,6 +753,7 @@ namespace AccesoDatos
 
 
                     ListaRoles.Add(roles);
+
                 }
             }
 
@@ -661,7 +766,8 @@ namespace AccesoDatos
 
         }
 
-        public Roles ObtenerRolXId(int IdRol) {
+        public Roles ObtenerRolXId(int IdRol)
+        {
 
             Roles roles = new Roles();
 
@@ -690,9 +796,115 @@ namespace AccesoDatos
             return roles;
         }
 
+        public List<Servicio> ObtenerTodosLosServicios()
+        {
+            List<Servicio> ListaServicios = new List<Servicio>();
+            try
+            {
+                var info = entities.paObtenerTodosLosServicios();
+
+                foreach (var item in info)
+                {
+                    Servicio servicio = new Servicio();
+
+                    servicio.Id = item.Id;
+                    servicio.Nombre = item.Nombre;
+                    servicio.Descripcion = item.Descripcion;
+                    servicio.TiempoEstimado = item.TiempoEstimado;
+                    servicio.TipoUnidad = item.TipoUnidad;
+                    servicio.Estado = item.Estado;
+                    servicio.UsuarioCreacion = item.UsuarioCreacion;
+                    servicio.FechaCreacion = item.FechaCreacion;
+                    servicio.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    servicio.FechaUltimaModificacion = item.FechaUltimaModificacion;
+
+                    ListaServicios.Add(servicio);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaServicios;
+        }
+
+        public List<Usuario> ObtenerTodosLosColaboradores()
+        {
+               List<Usuario> ListaColaboradores = new List<Usuario>();
+            try
+            {
+                var info = entities.paObtenerTodosLosColaboradores();
+
+                foreach(var item in info)
+                {
+                    Usuario usuario = new Usuario();
+
+                    usuario.Id = item.Id;
+                    usuario.Nombre = item.Nombre;
+                    usuario.PrimerApellido = item.PrimerApellido;
+                    usuario.SegundoApellido = item.SegundoApellido;
+                    usuario.Identificacion = item.Identificacion;
+                    usuario.CorreoElectronico = item.CorreoElectronico;
+                    usuario.Telefono = item.Telefono;
+                    usuario.Genero = item.Genero;
+                    usuario.FotoPerfil = item.FotoPerfil;
+                    usuario.IdRol = item.IdRol;
+                    usuario.Estado = item.Estado;
+                    usuario.UsuarioCreacion = item.UsuarioCreacion;
+                    usuario.FechaCreacion = item.FechaCreacion;
+                    usuario.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    usuario.FechaUltimaModificacion = item.FechaUltimaModificacion;
+
+                    ListaColaboradores.Add(usuario);
+
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+            return ListaColaboradores;
+        }
+
+        public Usuario ObtenerColaboradoresXId( int Id)
+        {
+            Usuario usuario = new Usuario();
+
+            try
+            {
+                var info = entities.paObtenerColaboradoresXId(Id);
+
+                foreach (var item in info)
+                {
+                    usuario.Id = item.Id;
+                    usuario.Nombre = item.Nombre;
+                    usuario.PrimerApellido = item.PrimerApellido;
+                    usuario.SegundoApellido = item.SegundoApellido;
+                    usuario.Identificacion = item.Identificacion;
+                    usuario.CorreoElectronico = item.CorreoElectronico;
+                    usuario.Telefono = item.Telefono;
+                    usuario.Genero = item.Genero;
+                    usuario.IdRol = item.IdRol;
+                    usuario.Estado = item.Estado;
+                    usuario.UsuarioCreacion = item.UsuarioCreacion;
+                    usuario.FechaCreacion = item.FechaCreacion;
+                    usuario.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    usuario.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+
+            return usuario;
+        }
+
+
+
         #endregion
-
-
 
 
 
@@ -703,3 +915,5 @@ namespace AccesoDatos
 
     }
 }
+    
+    

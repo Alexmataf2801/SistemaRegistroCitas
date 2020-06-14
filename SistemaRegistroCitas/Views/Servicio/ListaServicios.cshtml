@@ -1,0 +1,53 @@
+﻿@model List<Entidades.ClasesEntidades.Servicio>
+@{
+    ViewBag.Title = "ListaServicios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container" style="margin: 0 auto; width: 90%">
+<div class="panel panel-default" style="margin-top: 20px">
+    <div class="panel-body">
+        <div style="margin: 0 auto; width: 95%">
+            <div style="text-align: center; margin-bottom: 50px">
+                <h3 id="lblTitulo" class="box-header">Listado de Servicios</h3>
+                <hr />
+            </div>
+            <table id="tbServicios" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="TablasMantenimientos">Editar</th>
+                        <th class="TablasMantenimientos">Nombre</th>
+                        <th class="TablasMantenimientos">Descripción</th>
+                        <th class="TablasMantenimientos">Tiempo Estimado</th>
+                        <th class="TablasMantenimientos">Estado</th>
+                        <th class="TablasMantenimientos">Desactivar</th>
+                        <th class="TablasMantenimientos">Eliminar</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+<!--INICIO MODAL INFORMACION-->
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalConfirmacionServicios">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#0074D9;">
+                <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="IdServiciosSeleccionado" />
+                <p id="msjConfServicios" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnConfirmarEliminacion" onclick="EliminarServicios();" class="btn btn-primary">Si</button>
+                <button type="button" class="btn btn-primary" id="CerrarEliminarServicio" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL INFORMACION-->
+<script src="~/Js/jquery.min.js"></script>
+<script src="~/Scripts/Propios/ListaServicios.js"></script>
