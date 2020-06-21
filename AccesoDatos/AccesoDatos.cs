@@ -902,6 +902,43 @@ namespace AccesoDatos
             return usuario;
         }
 
+        public List<UnidadMedida> ObtenerMinutosYHoras()
+        {
+
+            List<UnidadMedida> ListaUnidadMedida = new List<UnidadMedida>();
+            try
+            {
+
+                var info = entities.paObtenerMinutosYHoras();
+
+                foreach (var item in info)
+                {
+                    UnidadMedida unidadMedida  = new UnidadMedida();
+
+
+                    unidadMedida.Id = item.Id;
+                    unidadMedida.Nombre = item.Nombre;
+                    unidadMedida.Descripcion = item.Descripcion;
+                    unidadMedida.UsuarioCreacion = item.UsuarioCreacion;
+                    unidadMedida.FechaCreacion = item.FechaCreacion;
+                    unidadMedida.UsuarioCreacion = item.UsuarioCreacion;
+                    unidadMedida.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    unidadMedida.Estado = item.Estado;
+
+
+                    ListaUnidadMedida.Add(unidadMedida);
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaUnidadMedida;
+
+        }
 
 
         #endregion

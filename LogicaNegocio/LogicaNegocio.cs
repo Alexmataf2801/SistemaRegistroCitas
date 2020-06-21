@@ -180,6 +180,11 @@ namespace LogicaNegocio
             return AD.ObtenerColaboradoresXId(Id);
         }
 
+        public List<UnidadMedida> ObtenerMinutosYHoras()
+        {
+            return AD.ObtenerMinutosYHoras();
+        }
+
         #endregion
 
 

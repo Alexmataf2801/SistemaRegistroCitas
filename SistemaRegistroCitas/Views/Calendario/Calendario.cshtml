@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <div class="container" style="margin: 0 auto; width: 95%">
     <div class="panel panel-default" style="margin-top: 20px">
         <div class="panel-body">
@@ -42,11 +44,11 @@
                         <select class="form-control" id="Servicios">
                             <option value="0">Seleccione uno...</option>
                             @*<option value="01">Servicio 1</option>
-                    <option value="02">Servicio 2</option>
-                    <option value="03">Servicio 3</option>
-                    <option value="04">Servicio 4</option>
-                    <option value="05">Servicio 5</option>
-                    <option value="06">Servicio 6</option>*@
+                                <option value="02">Servicio 2</option>
+                                <option value="03">Servicio 3</option>
+                                <option value="04">Servicio 4</option>
+                                <option value="05">Servicio 5</option>
+                                <option value="06">Servicio 6</option>*@
                         </select>
                     </div>
                 </div>
@@ -105,12 +107,12 @@
 
 
         var calendar = new Calendar(calendarEl, {
-            plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid'],
+            plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
             defaultView: 'timeGridWeek',
             header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
             },
             minTime: "08:00:00",
             maxTime: "19:00:00",
@@ -162,32 +164,7 @@
 
         }
 
-        //$("#Servicios").change(function () {
-        //    switch ($("#Servicios").val()) {
-        //        case "01":
-        //            $("#txtTiempoAprox").val("1 Hora");
-        //            break;
-        //        case "02":
-        //            $("#txtTiempoAprox").val("2 Hora");
-        //            break;
-        //        case "03":
-        //            $("#txtTiempoAprox").val("3 Hora");
-        //            break;
-        //        case "04":
-        //            $("#txtTiempoAprox").val("4 Hora");
-        //            break;
-        //        case "05":
-        //            $("#txtTiempoAprox").val("5 Hora");
-        //            break;
-        //        case "06":
-        //            $("#txtTiempoAprox").val("6 Hora");
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-            
-        //} );
+    
 
     })
 

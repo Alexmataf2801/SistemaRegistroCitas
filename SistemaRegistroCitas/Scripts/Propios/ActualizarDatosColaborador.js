@@ -9,7 +9,7 @@
         CorreoElectronico: $("#txtCorreoElectronicoColaborador").val(),
         Telefono: $("#txtTelefonoColaborador").val(),
         Genero: $("#ddlGenero").val(),
-        IdRol: $("#IdRol").val()
+        IdRol: $("#ddlRol").val()
 
     };
     $.ajax({

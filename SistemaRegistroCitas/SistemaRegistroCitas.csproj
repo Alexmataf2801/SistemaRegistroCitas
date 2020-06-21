@@ -154,6 +154,7 @@
     <Content Include="Estilos\EstilosLogin\font-awesome.min.css" />
     <Content Include="Estilos\EstilosLogin\Login.css" />
     <Content Include="Estilos\font-awesome.min.css" />
+    <Content Include="Estilos\fullcalendar-Agenda\Fullcalendar-Agenda.min.css" />
     <Content Include="Estilos\fullcalendar-bootstrap\main.min.css" />
     <Content Include="Estilos\fullcalendar-daygrid\main.min.css" />
     <Content Include="Estilos\fullcalendar-timegrid\main.min.css" />
@@ -176,6 +177,7 @@
     <Content Include="Js\Arbol.js" />
     <Content Include="Js\bootstrap.min.js" />
     <Content Include="Js\datatables.min.js" />
+    <Content Include="Js\fullcalendar-Agenda\FullCalendar-Agenda.min.js" />
     <Content Include="Js\fullcalendar-bootstrap\main.min.js" />
     <Content Include="Js\fullcalendar-daygrid\main.min.js" />
     <Content Include="Js\fullcalendar-interaction\main.min.js" />

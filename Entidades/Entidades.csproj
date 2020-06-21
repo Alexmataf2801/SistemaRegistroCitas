@@ -105,6 +105,9 @@
     <Compile Include="paObtenerMenuXUsuario_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerMinutosYHoras_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="PaObtenerRoles_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>

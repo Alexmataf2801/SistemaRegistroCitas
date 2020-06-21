@@ -285,10 +285,12 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult ActualizarColaboradores()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = ArmarMenu(usuario.Id);
+            
 
             if (usuario != null)
             {
+                Menu = ArmarMenu(usuario.Id);
+
                 if (usuario.Id > 0)
                 {
                     ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;

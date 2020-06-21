@@ -154,6 +154,7 @@
         <Function Name="paObtenerMenuXUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
+        <Function Name="paObtenerMinutosYHoras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="PaObtenerRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerRolXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdRol" Type="int" Mode="In" />
@@ -270,18 +271,6 @@
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PaObtenerRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerRoles_Result)" />
-          <FunctionImport Name="PaInsertarDatosColaborador">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
-            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
-            <Parameter Name="Identificacion" Mode="In" Type="String" />
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="Int32" />
-            <Parameter Name="Genero" Mode="In" Type="Boolean" />
-            <Parameter Name="IdRol" Mode="In" Type="Int32" />
-            <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
-            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paObtenerTodosLosRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result)" />
           <FunctionImport Name="paDesactivarActivarRol">
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
@@ -323,6 +312,22 @@
           <FunctionImport Name="paObtenerColaboradoresXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerColaboradoresXId_Result)">
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paEliminarColaboradores">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerMinutosYHoras" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerMinutosYHoras_Result)" />
+          <FunctionImport Name="PaInsertarDatosColaborador">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Genero" Mode="In" Type="Boolean" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="paActualizarColaboradores">
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="Identificacion" Mode="In" Type="String" />
@@ -334,9 +339,6 @@
             <Parameter Name="Genero" Mode="In" Type="Boolean" />
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
             <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="paEliminarColaboradores">
-          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
@@ -474,6 +476,16 @@
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
         </ComplexType>
+        <ComplexType Name="paObtenerMinutosYHoras_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaCreacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -593,7 +605,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
           <FunctionImportMapping FunctionImportName="paObtenerTodosLosRoles" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosRoles">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result">
@@ -686,8 +697,23 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paActualizarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarColaboradores" />
           <FunctionImportMapping FunctionImportName="paEliminarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarColaboradores" />
+          <FunctionImportMapping FunctionImportName="paObtenerMinutosYHoras" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerMinutosYHoras">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerMinutosYHoras_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaCreacion" ColumnName="UsuarioUltimaCreacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
+          <FunctionImportMapping FunctionImportName="paActualizarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarColaboradores" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

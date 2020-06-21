@@ -30,6 +30,7 @@
 
 function ObtenerDatosServicio() {
     var Id = sessionStorage.getItem("IdServicioEditar");
+    ObtenerMinutosYHoras();
     $.ajax({
         type: "POST",
         datatype: "JSON",
@@ -40,6 +41,12 @@ function ObtenerDatosServicio() {
                 $("#txtNombre").val(Info.Nombre);
                 $("#txtDescripcionServicio").val(Info.Descripcion);
                 $("#txtTiempoEstimadoServicio").val(Info.TiempoEstimado);
+
+                //if (Info.TipoUnidad) {
+                //    $("#txtTipoUnidadServicio").val(1);
+                //} else {
+                //    $("#txtTipoUnidadServicio").val(2);
+                //}
                 $("#txtTipoUnidadServicio").val(Info.TipoUnidad);
 
             }
@@ -67,4 +74,41 @@ function LimpiarCampos() {
 
 $(document).ready(function () {
     ObtenerDatosServicio();
+});
+
+
+
+
+
+
+function ObtenerMinutosYHoras() {
+
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        url: "/UnidadMedida/ObtenerMinutosYHoras/",
+
+        success: function (InfoServicios) {
+
+
+            var clasificacion = $("#txtTipoUnidadServicio");
+
+            $(InfoServicios).each(function (i, v) {
+                clasificacion.append('<option value="' + v.Id + '">' + v.Nombre + '</option>');
+
+
+            });
+
+
+        },
+
+        error: function () {
+            console.log('error')
+        },
+
+    });
+}
+
+$(document).ready(function () {
+     //ObtenerMinutosYHoras();
 });
