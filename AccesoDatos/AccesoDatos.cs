@@ -817,6 +817,7 @@ namespace AccesoDatos
                     servicio.FechaCreacion = item.FechaCreacion;
                     servicio.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
                     servicio.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    servicio.NombreUnidadMedida = item.NombreUnidadMedida;
 
                     ListaServicios.Add(servicio);
                 }
@@ -855,6 +856,7 @@ namespace AccesoDatos
                     usuario.FechaCreacion = item.FechaCreacion;
                     usuario.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
                     usuario.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    usuario.NombreRol = item.NombreRol;
 
                     ListaColaboradores.Add(usuario);
 

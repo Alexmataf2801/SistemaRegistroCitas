@@ -87,7 +87,7 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult ListaRoles()
         {
             usuario = (Usuario)Session["Usuario"];
-            //Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
             if (usuario != null)
             {

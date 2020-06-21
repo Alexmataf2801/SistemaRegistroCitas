@@ -30,7 +30,7 @@
                 var CambiarEstado = "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarServicios(" + value.Id + "," + value.Estado + " )'></a>";
                 var Eliminar = "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarServicio(" + value.Id + ")'></a>";
 
-                TablaRoles.row.add([Editar, value.Nombre, value.Descripcion, value.TiempoEstimado, estado, CambiarEstado, Eliminar]).draw();
+                TablaRoles.row.add([Editar, value.Nombre, value.Descripcion, value.TiempoEstimado, value.NombreUnidadMedida, estado, CambiarEstado, Eliminar]).draw();
             });
 
 

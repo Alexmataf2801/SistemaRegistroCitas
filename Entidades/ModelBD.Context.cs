@@ -439,11 +439,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paElimminarServicios", idParameter);
         }
     
-        public virtual ObjectResult<paObtenerTodosLosServicios_Result> paObtenerTodosLosServicios()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosServicios_Result>("paObtenerTodosLosServicios");
-        }
-    
         public virtual int paDesactivarActivarColaboradores(Nullable<int> id, Nullable<bool> estado)
         {
             var idParameter = id.HasValue ?
@@ -455,11 +450,6 @@ namespace Entidades
                 new ObjectParameter("Estado", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarColaboradores", idParameter, estadoParameter);
-        }
-    
-        public virtual ObjectResult<paObtenerTodosLosColaboradores_Result> paObtenerTodosLosColaboradores()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosColaboradores_Result>("paObtenerTodosLosColaboradores");
         }
     
         public virtual ObjectResult<paObtenerColaboradoresXId_Result> paObtenerColaboradoresXId(Nullable<int> id)
@@ -565,6 +555,16 @@ namespace Entidades
                 new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarColaboradores", idParameter, identificacionParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, usuarioUltimaModificacionParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosServicios_Result> paObtenerTodosLosServicios()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosServicios_Result>("paObtenerTodosLosServicios");
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosColaboradores_Result> paObtenerTodosLosColaboradores()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosColaboradores_Result>("paObtenerTodosLosColaboradores");
         }
     }
 }
