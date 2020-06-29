@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClasesEntidades\DiasLibresColaboradores.cs" />
     <Compile Include="ClasesEntidades\Evento.cs" />
     <Compile Include="ClasesEntidades\Login.cs" />
     <Compile Include="ClasesEntidades\Menu.cs" />

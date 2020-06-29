@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\CalendarioController.cs" />
+    <Compile Include="Controllers\DiasLibresColaboradoresController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -147,6 +148,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Estilos\AdminLTE.min.css" />
     <Content Include="Estilos\bootstrap.css" />
+    <Content Include="Estilos\checkbox\EstilosCheckbox.css" />
     <Content Include="Estilos\datatables.min.css" />
     <Content Include="Estilos\EstilosLogin\estilos.css" />
     <Content Include="Estilos\EstilosLogin\EstilosLoginPropio.css" />
@@ -282,6 +284,7 @@
     <Content Include="Scripts\Propios\Colaboradores.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
     <Content Include="Scripts\Propios\ListaColaboradores.js" />
+    <Content Include="Scripts\Propios\ListaDiaLibreColaboradores.js" />
     <Content Include="Scripts\Propios\ListaServicios.js" />
     <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
     <Content Include="Scripts\Propios\Roles\Roles.js" />
@@ -314,6 +317,7 @@
     <Content Include="Views\Servicio\ActualizarServicios.cshtml" />
     <Content Include="Views\Usuario\ListaColaboradores.cshtml" />
     <Content Include="Views\Usuario\ActualizarColaboradores.cshtml" />
+    <Content Include="Views\Usuario\DiasLibresColaboradores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

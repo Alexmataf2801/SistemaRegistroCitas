@@ -330,5 +330,34 @@ namespace SistemaRegistroCitas.Controllers
             return Json(usuario, JsonRequestBehavior.AllowGet);
         }
 
+
+        [HttpGet]
+        public ActionResult DiasLibresColaboradores()
+        {
+            usuario = (Usuario)Session["Usuario"];
+
+
+            if (usuario != null)
+            {
+                Menu = ArmarMenu(usuario.Id);
+
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
     }
 }

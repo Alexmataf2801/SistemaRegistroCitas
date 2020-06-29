@@ -566,5 +566,42 @@ namespace Entidades
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosColaboradores_Result>("paObtenerTodosLosColaboradores");
         }
+    
+        public virtual int paDesactivarActivarDiasLibres(Nullable<bool> lunes, Nullable<bool> martes, Nullable<bool> miercoles, Nullable<bool> jueves, Nullable<bool> viernes, Nullable<bool> sabado, Nullable<bool> domingo, Nullable<int> idColaborador)
+        {
+            var lunesParameter = lunes.HasValue ?
+                new ObjectParameter("Lunes", lunes) :
+                new ObjectParameter("Lunes", typeof(bool));
+    
+            var martesParameter = martes.HasValue ?
+                new ObjectParameter("Martes", martes) :
+                new ObjectParameter("Martes", typeof(bool));
+    
+            var miercolesParameter = miercoles.HasValue ?
+                new ObjectParameter("Miercoles", miercoles) :
+                new ObjectParameter("Miercoles", typeof(bool));
+    
+            var juevesParameter = jueves.HasValue ?
+                new ObjectParameter("Jueves", jueves) :
+                new ObjectParameter("Jueves", typeof(bool));
+    
+            var viernesParameter = viernes.HasValue ?
+                new ObjectParameter("Viernes", viernes) :
+                new ObjectParameter("Viernes", typeof(bool));
+    
+            var sabadoParameter = sabado.HasValue ?
+                new ObjectParameter("Sabado", sabado) :
+                new ObjectParameter("Sabado", typeof(bool));
+    
+            var domingoParameter = domingo.HasValue ?
+                new ObjectParameter("Domingo", domingo) :
+                new ObjectParameter("Domingo", typeof(bool));
+    
+            var idColaboradorParameter = idColaborador.HasValue ?
+                new ObjectParameter("IdColaborador", idColaborador) :
+                new ObjectParameter("IdColaborador", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarDiasLibres", lunesParameter, martesParameter, miercolesParameter, juevesParameter, viernesParameter, sabadoParameter, domingoParameter, idColaboradorParameter);
+        }
     }
 }

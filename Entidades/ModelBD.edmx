@@ -48,6 +48,16 @@
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
+        <Function Name="paDesactivarActivarDiasLibres" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lunes" Type="bit" Mode="In" />
+          <Parameter Name="Martes" Type="bit" Mode="In" />
+          <Parameter Name="Miercoles" Type="bit" Mode="In" />
+          <Parameter Name="Jueves" Type="bit" Mode="In" />
+          <Parameter Name="Viernes" Type="bit" Mode="In" />
+          <Parameter Name="Sabado" Type="bit" Mode="In" />
+          <Parameter Name="Domingo" Type="bit" Mode="In" />
+          <Parameter Name="IdColaborador" Type="int" Mode="In" />
+        </Function>
         <Function Name="paDesactivarActivarRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdRol" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
@@ -340,6 +350,16 @@
           </FunctionImport>
           <FunctionImport Name="paObtenerTodosLosServicios" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosServicios_Result)" />
           <FunctionImport Name="paObtenerTodosLosColaboradores" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosColaboradores_Result)" />
+          <FunctionImport Name="paDesactivarActivarDiasLibres">
+            <Parameter Name="Lunes" Mode="In" Type="Boolean" />
+            <Parameter Name="Martes" Mode="In" Type="Boolean" />
+            <Parameter Name="Miercoles" Mode="In" Type="Boolean" />
+            <Parameter Name="Jueves" Mode="In" Type="Boolean" />
+            <Parameter Name="Viernes" Mode="In" Type="Boolean" />
+            <Parameter Name="Sabado" Mode="In" Type="Boolean" />
+            <Parameter Name="Domingo" Mode="In" Type="Boolean" />
+            <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -718,6 +738,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paDesactivarActivarDiasLibres" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarDiasLibres" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

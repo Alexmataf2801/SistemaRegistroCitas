@@ -463,6 +463,23 @@ namespace AccesoDatos
             return SeActualizo;
         }
 
+        public bool DesactivarActivarDiasLibres(bool Lunes, bool Martes, bool Miercoles, bool Jueves, bool Viernes, bool Sabado, bool Domingo, int IdColaborador)
+        {
+            bool SeActualizo = false;
+
+            try
+            {
+                entities.paDesactivarActivarDiasLibres(Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo, IdColaborador);
+                SeActualizo = true;
+            }
+            catch (Exception ex)
+            {
+                SeActualizo = false;
+            }
+
+            return SeActualizo;
+        }
+
         #endregion
 
 
@@ -942,6 +959,7 @@ namespace AccesoDatos
 
         }
 
+       
 
         #endregion
 
