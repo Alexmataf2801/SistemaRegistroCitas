@@ -174,6 +174,9 @@
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="paObtenerTodosLosColaboradores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerTodosLosDias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdColaboarador" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerTodosLosRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTodosLosServicios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -360,6 +363,9 @@
             <Parameter Name="Domingo" Mode="In" Type="Boolean" />
             <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosDias" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosDias_Result)">
+            <Parameter Name="IdColaboarador" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -507,6 +513,16 @@
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
           <Property Type="String" Name="NombreRol" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosLosDias_Result">
+          <Property Type="Int32" Name="IdColaborador" Nullable="false" />
+          <Property Type="Boolean" Name="Lunes" Nullable="false" />
+          <Property Type="Boolean" Name="Martes" Nullable="false" />
+          <Property Type="Boolean" Name="Miercoles" Nullable="false" />
+          <Property Type="Boolean" Name="Jueves" Nullable="false" />
+          <Property Type="Boolean" Name="Viernes" Nullable="false" />
+          <Property Type="Boolean" Name="Sabado" Nullable="false" />
+          <Property Type="Boolean" Name="Domingo" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -739,6 +755,20 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paDesactivarActivarDiasLibres" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarDiasLibres" />
+          <FunctionImportMapping FunctionImportName="paObtenerTodosLosDias" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosDias">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosDias_Result">
+                <ScalarProperty Name="IdColaborador" ColumnName="IdColaborador" />
+                <ScalarProperty Name="Lunes" ColumnName="Lunes" />
+                <ScalarProperty Name="Martes" ColumnName="Martes" />
+                <ScalarProperty Name="Miercoles" ColumnName="Miercoles" />
+                <ScalarProperty Name="Jueves" ColumnName="Jueves" />
+                <ScalarProperty Name="Viernes" ColumnName="Viernes" />
+                <ScalarProperty Name="Sabado" ColumnName="Sabado" />
+                <ScalarProperty Name="Domingo" ColumnName="Domingo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

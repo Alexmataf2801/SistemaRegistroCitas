@@ -124,6 +124,9 @@
     <Compile Include="paObtenerTodosLosColaboradores_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerTodosLosDias_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerTodosLosRoles_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>

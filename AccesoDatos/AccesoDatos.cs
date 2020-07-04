@@ -959,7 +959,38 @@ namespace AccesoDatos
 
         }
 
-       
+        public List<DiasLibresColaboradores> ObtenerTodosLosDias(int IdColaborador)
+        {
+            List<DiasLibresColaboradores> ListadiasLibresColaboradores  = new List<DiasLibresColaboradores>();
+
+            try
+            {
+                var info = entities.paObtenerTodosLosDias(IdColaborador);
+
+                foreach (var item in info)
+                {
+                    DiasLibresColaboradores diasLibresColaboradores = new DiasLibresColaboradores();
+
+                    diasLibresColaboradores.IdColaborador = item.IdColaborador;
+                    diasLibresColaboradores.Lunes = item.Lunes;
+                    diasLibresColaboradores.Martes = item.Martes;
+                    diasLibresColaboradores.Miercoles = item.Miercoles;
+                    diasLibresColaboradores.Jueves = item.Jueves;
+                    diasLibresColaboradores.Viernes = item.Viernes;
+                    diasLibresColaboradores.Sabado = item.Sabado;
+                    diasLibresColaboradores.Domingo = item.Domingo;
+
+                    ListadiasLibresColaboradores.Add(diasLibresColaboradores);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return ListadiasLibresColaboradores;
+        }
 
         #endregion
 

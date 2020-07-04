@@ -603,5 +603,14 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarDiasLibres", lunesParameter, martesParameter, miercolesParameter, juevesParameter, viernesParameter, sabadoParameter, domingoParameter, idColaboradorParameter);
         }
+    
+        public virtual ObjectResult<paObtenerTodosLosDias_Result> paObtenerTodosLosDias(Nullable<int> idColaboarador)
+        {
+            var idColaboaradorParameter = idColaboarador.HasValue ?
+                new ObjectParameter("IdColaboarador", idColaboarador) :
+                new ObjectParameter("IdColaboarador", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosDias_Result>("paObtenerTodosLosDias", idColaboaradorParameter);
+        }
     }
 }

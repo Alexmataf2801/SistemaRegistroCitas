@@ -62,17 +62,49 @@ function ObtenerColaboradoresActivos() {
 
     });
 }
-$(document).ready(function () {
-    ObtenerColaboradoresActivos();
+
+
+function ObtenerTodosLosDias() {
+  
+    
+    var IdColaborador = $("#ddlColaboradores").val();
+   
+    $.ajax({
+        type: "POST",
+        datatype: "JSON",
+        url: "/DiasLibresColaboradores/ObtenerTodosLosDias/",
+        data: { "IdColaborador": IdColaborador },
+        success: function (Info) {
+            if (Info) {
+              
+
+                $("#CheckLunes").prop("checked", Info[0].Lunes);
+                $("#CheckMartes").prop("checked", Info[0].Martes);
+                $("#CheckMiercoles").prop("checked", Info[0].Miercoles);
+                $("#CheckJueves").prop("checked", Info[0].Jueves);
+                $("#CheckViernes").prop("checked", Info[0].Viernes);
+                $("#CheckSabado").prop("checked", Info[0].Sabado);
+                $("#CheckDomingo").prop("checked", Info[0].Domingo);
+               
+
+
+            }
+        },
+        error: function (Error) {
+            $("#msjModalIncorrecto").html("<label>¡Error al obtener datos del Colaborador!</label>");
+            $('#MsjIncorrecto').modal('show');
+        }
+
+    });
+
+
+}
+
+$("#ddlColaboradores").change(function () {
+    ObtenerTodosLosDias();
 });
 
 
-
-
-
-
-
-
-//$(document).ready(function () {
-//    ObtenerColaboradoresActivos();
-//});
+$(document).ready(function () {
+    ObtenerColaboradoresActivos();
+   });

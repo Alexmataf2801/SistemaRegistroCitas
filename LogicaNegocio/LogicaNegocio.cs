@@ -190,7 +190,12 @@ namespace LogicaNegocio
             return AD.ObtenerMinutosYHoras();
         }
 
-     
+        public List<DiasLibresColaboradores> ObtenerTodosLosDias(int IdColaborador)
+        {
+            return AD.ObtenerTodosLosDias(IdColaborador);
+        }
+
+
 
         #endregion
 

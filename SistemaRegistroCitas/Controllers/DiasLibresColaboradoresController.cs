@@ -30,5 +30,14 @@ namespace SistemaRegistroCitas.Controllers
             return Json(SeActualizoDiasLibres, JsonRequestBehavior.AllowGet);
         }
 
+
+        public JsonResult ObtenerTodosLosDias(int IdColaborador)
+        {
+           List<DiasLibresColaboradores> diasLibresColaboradores = new List<DiasLibresColaboradores>();
+
+            diasLibresColaboradores = LN.ObtenerTodosLosDias(IdColaborador);
+
+            return Json(diasLibresColaboradores, JsonRequestBehavior.AllowGet);
+        }
     }
 }
