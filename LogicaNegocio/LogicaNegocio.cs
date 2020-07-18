@@ -195,6 +195,10 @@ namespace LogicaNegocio
             return AD.ObtenerTodosLosDias(IdColaborador);
         }
 
+        public List<Empresa> ObtenerNombresEmpresasActivas()
+        {
+            return AD.ObtenerNombresEmpresasActivas();
+        }
 
 
         #endregion

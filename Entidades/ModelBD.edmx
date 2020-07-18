@@ -165,6 +165,7 @@
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="paObtenerMinutosYHoras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerNombresEmpresasActivas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="PaObtenerRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerRolXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdRol" Type="int" Mode="In" />
@@ -364,8 +365,9 @@
             <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerTodosLosDias" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosDias_Result)">
-            <Parameter Name="IdColaboarador" Mode="In" Type="Int32" />
+          <Parameter Name="IdColaboarador" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerNombresEmpresasActivas" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerNombresEmpresasActivas_Result)" />
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -523,6 +525,10 @@
           <Property Type="Boolean" Name="Viernes" Nullable="false" />
           <Property Type="Boolean" Name="Sabado" Nullable="false" />
           <Property Type="Boolean" Name="Domingo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="paObtenerNombresEmpresasActivas_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -766,6 +772,14 @@
                 <ScalarProperty Name="Viernes" ColumnName="Viernes" />
                 <ScalarProperty Name="Sabado" ColumnName="Sabado" />
                 <ScalarProperty Name="Domingo" ColumnName="Domingo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerNombresEmpresasActivas" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerNombresEmpresasActivas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerNombresEmpresasActivas_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -612,5 +612,10 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosDias_Result>("paObtenerTodosLosDias", idColaboaradorParameter);
         }
+    
+        public virtual ObjectResult<paObtenerNombresEmpresasActivas_Result> paObtenerNombresEmpresasActivas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerNombresEmpresasActivas_Result>("paObtenerNombresEmpresasActivas");
+        }
     }
 }

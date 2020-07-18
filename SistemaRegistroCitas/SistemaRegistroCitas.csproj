@@ -130,6 +130,7 @@
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\DiasLibresColaboradoresController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -255,6 +256,8 @@
     <Content Include="Js\Login\popper.min.js" />
     <Content Include="Js\moment\moment.min.js" />
     <Content Include="Js\PruebaArbol.js" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -282,6 +285,7 @@
     <Content Include="Scripts\Propios\ActualizarDatosServicios.js" />
     <Content Include="Scripts\Propios\Administracion.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
+    <Content Include="Scripts\Propios\Empresa.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
     <Content Include="Scripts\Propios\ListaColaboradores.js" />
     <Content Include="Scripts\Propios\ListaDiaLibreColaboradores.js" />
@@ -291,6 +295,10 @@
     <Content Include="Scripts\Propios\Roles\ListaRoles.js" />
     <Content Include="Scripts\Propios\Servicio.js" />
     <Content Include="Scripts\Propios\Usuario.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -321,6 +329,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Empresa\" />
     <Folder Include="Views\Evento\" />
     <Folder Include="Views\ServicioTiempo\" />
     <Folder Include="Views\UnidadMedida\" />

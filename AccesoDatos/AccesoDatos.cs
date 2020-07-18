@@ -992,6 +992,36 @@ namespace AccesoDatos
             return ListadiasLibresColaboradores;
         }
 
+        public List<Empresa> ObtenerNombresEmpresasActivas()
+
+        {
+            List<Empresa> ListaEmpresa = new List<Empresa>();
+            try
+            {
+
+                var info = entities.paObtenerNombresEmpresasActivas();
+
+                foreach (var item in info)
+                {
+                    Empresa empresa = new Empresa();
+
+                    empresa.Id = item.Id;
+                    empresa.Nombre = item.Nombre;
+                   
+
+                    ListaEmpresa.Add(empresa);
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaEmpresa;
+
+        }
+
         #endregion
 
 

@@ -79,6 +79,7 @@
                     </div>
                     <div class="form-group col-md-5">
                         <input class="form-control" readonly type="text" id="TiempoFinal" />
+                        <input class="form-control" readonly type="hidden" id="txtFinalHorarioOculto" />
                     </div>
                 </div>
 
@@ -100,73 +101,73 @@
 <script src="~/Js/jquery.min.js"></script>
 <script>
 
-    $(function () {
+    //$(function () {
 
-        var calendarEl = document.getElementById('calendar');
-        var Calendar = FullCalendar.Calendar;
-
-
-        var calendar = new Calendar(calendarEl, {
-            plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
-            defaultView: 'timeGridWeek',
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-            },
-            minTime: "08:00:00",
-            maxTime: "19:00:00",
-            locale: 'es',
-            editable: false,
-            dateClick: function (info) {
-                $('#TiempoFinal').val("");
-                var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm:ss');
-                $('#TiempoCita').val(FechaSeleccionada);
-                $('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
-                $('#txtHorarioOculta').val(info.dateStr);
-
-                $('#NuevoEvento').modal();
-
-            },
-            eventClick: function (info) {
-                $('#NuevoEvento').modal();
-            }
-            //events: [
-            //    {
-            //        title: 'Prueba',
-            //        start: $("#TiempoCita").val(),//'2020-02-17T14:30:00',//new Date(y, m, 1),
-            //        backgroundColor: '#f56954', //red
-            //        borderColor: '#f56954', //red
-            //        allDay: false
-            //    }
-
-            //]
-        });
-
-        calendar.render();
+    //    var calendarEl = document.getElementById('calendar');
+    //    var Calendar = FullCalendar.Calendar;
 
 
+    //    var calendar = new Calendar(calendarEl, {
+    //        plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
+    //        defaultView: 'timeGridWeek',
+    //        header: {
+    //            left: 'prev,next today',
+    //            center: 'title',
+    //            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+    //        },
+    //        minTime: "08:00:00",
+    //        maxTime: "19:00:00",
+    //        locale: 'es',
+    //        editable: false,
+    //        dateClick: function (info) {
+    //            $('#TiempoFinal').val("");
+    //            var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm:ss');
+    //            $('#TiempoCita').val(FechaSeleccionada);
+    //            $('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
+    //            $('#txtHorarioOculta').val(info.dateStr);
 
-        $('#btnReservar').on('click', function (e) {
-            e.preventDefault();
+    //            $('#NuevoEvento').modal();
 
-            doSubmit();
-        });
+    //        },
+    //        eventClick: function (info) {
+    //            $('#NuevoEvento').modal();
+    //        }
+    //        //events: [
+    //        //    {
+    //        //        title: 'Prueba',
+    //        //        start: $("#TiempoCita").val(),//'2020-02-17T14:30:00',//new Date(y, m, 1),
+    //        //        backgroundColor: '#f56954', //red
+    //        //        borderColor: '#f56954', //red
+    //        //        allDay: false
+    //        //    }
 
-        function doSubmit() {
-            $("#NuevoEvento").modal('hide');
+    //        //]
+    //    });
 
-            calendar.addEvent({
-                title: $("#Servicios option:selected").text(),
-                start: $("#TiempoCita").val(),
-                allDay: false
-            });
+    //    calendar.render();
 
-        }
+
+
+    //    $('#btnReservar').on('click', function (e) {
+    //        e.preventDefault();
+
+    //        doSubmit();
+    //    });
+
+    //    function doSubmit() {
+    //        $("#NuevoEvento").modal('hide');
+
+    //        calendar.addEvent({
+    //            title: $("#Servicios option:selected").text(),
+    //            start: $("#TiempoCita").val(),
+    //            allDay: false
+    //        });
+
+    //    }
 
     
 
-    })
+    //})
 
 </script>
 
@@ -174,4 +175,4 @@
 <script src="~/Scripts/Propios/Servicio.js"></script>
 <script src="~/Scripts/Propios/Colaboradores.js"></script>
 
-@*<script src="~/Scripts/Propios/Eventos.js"></script>*@
+<script src="~/Scripts/Propios/Eventos.js"></script>
