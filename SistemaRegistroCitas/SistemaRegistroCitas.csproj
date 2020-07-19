@@ -163,6 +163,7 @@
     <Content Include="Estilos\fullcalendar-timegrid\main.min.css" />
     <Content Include="Estilos\fullcalendar\main.min.css" />
     <Content Include="Estilos\TablasMantenimientos.css" />
+    <Content Include="Estilos\typeahead.css" />
     <Content Include="Estilos\_all-skins.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
