@@ -331,43 +331,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PaObtenerRoles_Result>("PaObtenerRoles");
         }
     
-        public virtual int PaInsertarDatosColaborador(string nombre, string primerApellido, string segundoApellido, string identificacion, string correoElectronico, Nullable<int> telefono, Nullable<bool> genero, Nullable<int> idRol, ObjectParameter idUsuario, ObjectParameter respuesta)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var primerApellidoParameter = primerApellido != null ?
-                new ObjectParameter("PrimerApellido", primerApellido) :
-                new ObjectParameter("PrimerApellido", typeof(string));
-    
-            var segundoApellidoParameter = segundoApellido != null ?
-                new ObjectParameter("SegundoApellido", segundoApellido) :
-                new ObjectParameter("SegundoApellido", typeof(string));
-    
-            var identificacionParameter = identificacion != null ?
-                new ObjectParameter("Identificacion", identificacion) :
-                new ObjectParameter("Identificacion", typeof(string));
-    
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            var telefonoParameter = telefono.HasValue ?
-                new ObjectParameter("Telefono", telefono) :
-                new ObjectParameter("Telefono", typeof(int));
-    
-            var generoParameter = genero.HasValue ?
-                new ObjectParameter("Genero", genero) :
-                new ObjectParameter("Genero", typeof(bool));
-    
-            var idRolParameter = idRol.HasValue ?
-                new ObjectParameter("IdRol", idRol) :
-                new ObjectParameter("IdRol", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarDatosColaborador", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
-        }
-    
         public virtual ObjectResult<paObtenerTodosLosRoles_Result> paObtenerTodosLosRoles()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosRoles_Result>("paObtenerTodosLosRoles");
@@ -476,11 +439,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paElimminarServicios", idParameter);
         }
     
-        public virtual ObjectResult<paObtenerTodosLosServicios_Result> paObtenerTodosLosServicios()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosServicios_Result>("paObtenerTodosLosServicios");
-        }
-    
         public virtual int paDesactivarActivarColaboradores(Nullable<int> id, Nullable<bool> estado)
         {
             var idParameter = id.HasValue ?
@@ -494,11 +452,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarColaboradores", idParameter, estadoParameter);
         }
     
-        public virtual ObjectResult<paObtenerTodosLosColaboradores_Result> paObtenerTodosLosColaboradores()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosColaboradores_Result>("paObtenerTodosLosColaboradores");
-        }
-    
         public virtual ObjectResult<paObtenerColaboradoresXId_Result> paObtenerColaboradoresXId(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -506,6 +459,57 @@ namespace Entidades
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerColaboradoresXId_Result>("paObtenerColaboradoresXId", idParameter);
+        }
+    
+        public virtual int paEliminarColaboradores(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarColaboradores", idParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerMinutosYHoras_Result> paObtenerMinutosYHoras()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerMinutosYHoras_Result>("paObtenerMinutosYHoras");
+        }
+    
+        public virtual int PaInsertarDatosColaborador(string nombre, string primerApellido, string segundoApellido, string identificacion, string correoElectronico, Nullable<int> telefono, Nullable<bool> genero, Nullable<int> idRol, ObjectParameter idUsuario, ObjectParameter respuesta)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var primerApellidoParameter = primerApellido != null ?
+                new ObjectParameter("PrimerApellido", primerApellido) :
+                new ObjectParameter("PrimerApellido", typeof(string));
+    
+            var segundoApellidoParameter = segundoApellido != null ?
+                new ObjectParameter("SegundoApellido", segundoApellido) :
+                new ObjectParameter("SegundoApellido", typeof(string));
+    
+            var identificacionParameter = identificacion != null ?
+                new ObjectParameter("Identificacion", identificacion) :
+                new ObjectParameter("Identificacion", typeof(string));
+    
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var telefonoParameter = telefono.HasValue ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(int));
+    
+            var generoParameter = genero.HasValue ?
+                new ObjectParameter("Genero", genero) :
+                new ObjectParameter("Genero", typeof(bool));
+    
+            var idRolParameter = idRol.HasValue ?
+                new ObjectParameter("IdRol", idRol) :
+                new ObjectParameter("IdRol", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarDatosColaborador", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
         }
     
         public virtual int paActualizarColaboradores(Nullable<int> id, string identificacion, string nombre, string primerApellido, string segundoApellido, string correoElectronico, Nullable<int> telefono, Nullable<bool> genero, Nullable<int> idRol, string usuarioUltimaModificacion)
@@ -553,13 +557,65 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarColaboradores", idParameter, identificacionParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, usuarioUltimaModificacionParameter);
         }
     
-        public virtual int paEliminarColaboradores(Nullable<int> id)
+        public virtual ObjectResult<paObtenerTodosLosServicios_Result> paObtenerTodosLosServicios()
         {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosServicios_Result>("paObtenerTodosLosServicios");
+        }
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarColaboradores", idParameter);
+        public virtual ObjectResult<paObtenerTodosLosColaboradores_Result> paObtenerTodosLosColaboradores()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosColaboradores_Result>("paObtenerTodosLosColaboradores");
+        }
+    
+        public virtual int paDesactivarActivarDiasLibres(Nullable<bool> lunes, Nullable<bool> martes, Nullable<bool> miercoles, Nullable<bool> jueves, Nullable<bool> viernes, Nullable<bool> sabado, Nullable<bool> domingo, Nullable<int> idColaborador)
+        {
+            var lunesParameter = lunes.HasValue ?
+                new ObjectParameter("Lunes", lunes) :
+                new ObjectParameter("Lunes", typeof(bool));
+    
+            var martesParameter = martes.HasValue ?
+                new ObjectParameter("Martes", martes) :
+                new ObjectParameter("Martes", typeof(bool));
+    
+            var miercolesParameter = miercoles.HasValue ?
+                new ObjectParameter("Miercoles", miercoles) :
+                new ObjectParameter("Miercoles", typeof(bool));
+    
+            var juevesParameter = jueves.HasValue ?
+                new ObjectParameter("Jueves", jueves) :
+                new ObjectParameter("Jueves", typeof(bool));
+    
+            var viernesParameter = viernes.HasValue ?
+                new ObjectParameter("Viernes", viernes) :
+                new ObjectParameter("Viernes", typeof(bool));
+    
+            var sabadoParameter = sabado.HasValue ?
+                new ObjectParameter("Sabado", sabado) :
+                new ObjectParameter("Sabado", typeof(bool));
+    
+            var domingoParameter = domingo.HasValue ?
+                new ObjectParameter("Domingo", domingo) :
+                new ObjectParameter("Domingo", typeof(bool));
+    
+            var idColaboradorParameter = idColaborador.HasValue ?
+                new ObjectParameter("IdColaborador", idColaborador) :
+                new ObjectParameter("IdColaborador", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarDiasLibres", lunesParameter, martesParameter, miercolesParameter, juevesParameter, viernesParameter, sabadoParameter, domingoParameter, idColaboradorParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosDias_Result> paObtenerTodosLosDias(Nullable<int> idColaboarador)
+        {
+            var idColaboaradorParameter = idColaboarador.HasValue ?
+                new ObjectParameter("IdColaboarador", idColaboarador) :
+                new ObjectParameter("IdColaboarador", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosDias_Result>("paObtenerTodosLosDias", idColaboaradorParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerNombresEmpresasActivas_Result> paObtenerNombresEmpresasActivas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerNombresEmpresasActivas_Result>("paObtenerNombresEmpresasActivas");
         }
     }
 }

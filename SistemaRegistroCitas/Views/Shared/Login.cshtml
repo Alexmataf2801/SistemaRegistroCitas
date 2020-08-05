@@ -15,10 +15,12 @@
     @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
     @*<link href="~/Estilos/EstilosLogin/EstilosLoginPropio.css" rel="stylesheet" />*@
     <link href="~/Estilos/EstilosLogin/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Estilos/Typeahead.css" rel="stylesheet" />*@
     <link href="~/Estilos/EstilosLogin/font-awesome.min.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <link href="~/Estilos/EstilosLogin/Login.css" rel="stylesheet" />
     <link href="~/Estilos/EstilosLogin/estilos.css" rel="stylesheet" />
+    <link href="~/Estilos/typeahead.css" rel="stylesheet" />
 
 
 </head>
@@ -50,8 +52,8 @@
                         <div class="col">
                             <form class="formulario" action="">
 
-                                <div class="form-group">
-                                    <input type="text" required class="form-control" id="txtIdEmpresaLogin" placeholder="Empresa" name="Empresa">
+                                <div id="txtIdEmpresaLogin" class="form-group">
+                                    <input type="text" required class="typeahead form-control" @*id="txtIdEmpresaLogin"*@ placeholder="Empresa" name="Empresa">
                                 </div>
 
                                 <div class="form-group">
@@ -78,7 +80,7 @@
                                         </div>
 
                                         <div class="modal-body">
-                                           
+
                                             <div class="form-group">
                                                 <input type="text" required class="form-control" id="txtIdentificacion" placeholder="Identificación" name="Identificación">
                                             </div>
@@ -155,7 +157,7 @@
     <div class="modal fade" id="MsjCorreo" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header"style="background: #28a745 ">
+                <div class="modal-header" style="background: #28a745 ">
                     <h5 class="modal-title">Registro</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                         <span aria-hidden="true">&times;</span>
@@ -193,11 +195,14 @@
 
     @*<script src="~/Js/jquery.min.js"></script>
         <script src="~/Js/bootstrap.min.js"></script>*@
+
     <script src="~/Js/Login/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/typeahead.bundle.min.js"></script>
+    @*<script src="~/Js/typeahead.bundle.js"></script>*@
     <script src="~/Js/Login/popper.min.js"></script>
     <script src="~/Js/Login/bootstrap.min.js"></script>
     <script src="~/Scripts/Propios/Usuario.js"></script>
-
+    <script src="~/Scripts/Propios/Empresa.js"></script>
     <script type="text/javascript">
 
         function Loguear() {

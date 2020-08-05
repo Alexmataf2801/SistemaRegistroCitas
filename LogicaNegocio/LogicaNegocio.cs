@@ -91,6 +91,11 @@ namespace LogicaNegocio
             return AD.DesactivarActivarColaboradores(Id, Estado);
         }
 
+        public bool DesactivarActivarDiasLibres(bool Lunes, bool Martes, bool Miercoles, bool Jueves, bool Viernes, bool Sabado, bool Domingo, int IdColaborador)
+        {
+            return AD.DesactivarActivarDiasLibres(Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo, IdColaborador);
+        }
+
         #endregion
 
 
@@ -179,6 +184,22 @@ namespace LogicaNegocio
         {
             return AD.ObtenerColaboradoresXId(Id);
         }
+
+        public List<UnidadMedida> ObtenerMinutosYHoras()
+        {
+            return AD.ObtenerMinutosYHoras();
+        }
+
+        public List<DiasLibresColaboradores> ObtenerTodosLosDias(int IdColaborador)
+        {
+            return AD.ObtenerTodosLosDias(IdColaborador);
+        }
+
+        public List<Empresa> ObtenerNombresEmpresasActivas()
+        {
+            return AD.ObtenerNombresEmpresasActivas();
+        }
+
 
         #endregion
 

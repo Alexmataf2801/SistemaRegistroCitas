@@ -9,7 +9,7 @@
         CorreoElectronico: $("#txtCorreoElectronicoColaborador").val(),
         Telefono: $("#txtTelefonoColaborador").val(),
         Genero: $("#ddlGenero").val(),
-        IdRol: $("#IdRol").val()
+        IdRol: $("#ddlRol").val()
 
     };
     $.ajax({
@@ -36,6 +36,7 @@
 
 function ObtenerDatosColaborador() {
     var Id = sessionStorage.getItem("IdColaboradorEditar");
+    ObtenerTodoLosRoles();
     $.ajax({
         type: "POST",
         datatype: "JSON",
@@ -49,8 +50,14 @@ function ObtenerDatosColaborador() {
                 $("#txtSegundoApellidoColaborador").val(Info.SegundoApellido);
                 $("#txtCorreoElectronicoColaborador").val(Info.CorreoElectronico);
                 $("#txtTelefonoColaborador").val(Info.Telefono);
-                $("#ddlGenero").val(Info.Genero);
-                $("#IdRol").val(Info.IdRol);
+                if (Info.Genero) {
+                    $("#ddlGenero").val(1);
+                } else {
+                    $("#ddlGenero").val(0);
+                }
+                
+                $("#ddlRol").val(Info.IdRol);
+
 
             }
         },
@@ -76,7 +83,7 @@ function RedireccionarColaboradores() {
         $("#txtCorreoElectronicoColaborador").val("");
         $("#txtTelefonoColaborador").val("");
         $("#ddlGenero").val("");
-        $("#IdRol").val("");
+        $("#ddlRol").val("");
     }
 
 
@@ -96,7 +103,7 @@ function ObtenerTodoLosRoles() {
         success: function (InfoServicios) {
 
 
-            var clasificacion = $("#IdRol");
+            var clasificacion = $("#ddlRol");
 
             $(InfoServicios).each(function (i, v) {
                 clasificacion.append('<option value="' + v.Id + '">' + v.Nombre + '</option>');
@@ -115,5 +122,5 @@ function ObtenerTodoLosRoles() {
 }
 
 $(document).ready(function () {
-    ObtenerTodoLosRoles();
+   // ObtenerTodoLosRoles();
 });
