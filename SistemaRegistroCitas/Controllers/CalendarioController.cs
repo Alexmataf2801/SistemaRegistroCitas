@@ -21,9 +21,10 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult Calendario()
         {
             usuario  = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
+           
 
             if (usuario != null) {
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
                 if (usuario.Id > 0)
                 {
                     ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;

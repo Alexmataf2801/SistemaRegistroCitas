@@ -11,6 +11,7 @@ namespace Entidades.ClasesEntidades
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public string NombreUnidadMedida { get; set; }
         public int TiempoEstimado { get; set; }
         public int TipoUnidad { get; set; }
         public string UnidadMedida { get; set; }

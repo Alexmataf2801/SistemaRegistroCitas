@@ -69,6 +69,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClasesEntidades\DiasLibresColaboradores.cs" />
+    <Compile Include="ClasesEntidades\Empresa.cs" />
     <Compile Include="ClasesEntidades\Evento.cs" />
     <Compile Include="ClasesEntidades\Login.cs" />
     <Compile Include="ClasesEntidades\Menu.cs" />
@@ -105,6 +107,12 @@
     <Compile Include="paObtenerMenuXUsuario_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerMinutosYHoras_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerNombresEmpresasActivas_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="PaObtenerRoles_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -118,6 +126,9 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerTodosLosColaboradores_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerTodosLosDias_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerTodosLosRoles_Result.cs">

@@ -129,6 +129,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministracionController.cs" />
     <Compile Include="Controllers\CalendarioController.cs" />
+    <Compile Include="Controllers\DiasLibresColaboradoresController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -147,20 +149,25 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Estilos\AdminLTE.min.css" />
     <Content Include="Estilos\bootstrap.css" />
+    <Content Include="Estilos\checkbox\EstilosCheckbox.css" />
+    <Content Include="Estilos\datatables.min.css" />
     <Content Include="Estilos\EstilosLogin\estilos.css" />
     <Content Include="Estilos\EstilosLogin\EstilosLoginPropio.css" />
     <Content Include="Estilos\EstilosLogin\bootstrap.min.css" />
     <Content Include="Estilos\EstilosLogin\font-awesome.min.css" />
     <Content Include="Estilos\EstilosLogin\Login.css" />
     <Content Include="Estilos\font-awesome.min.css" />
+    <Content Include="Estilos\fullcalendar-Agenda\Fullcalendar-Agenda.min.css" />
     <Content Include="Estilos\fullcalendar-bootstrap\main.min.css" />
     <Content Include="Estilos\fullcalendar-daygrid\main.min.css" />
     <Content Include="Estilos\fullcalendar-timegrid\main.min.css" />
     <Content Include="Estilos\fullcalendar\main.min.css" />
     <Content Include="Estilos\TablasMantenimientos.css" />
+    <Content Include="Estilos\typeahead.css" />
     <Content Include="Estilos\_all-skins.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Imagenes\Iconos\Icono.png" />
@@ -174,6 +181,7 @@
     <Content Include="Js\Arbol.js" />
     <Content Include="Js\bootstrap.min.js" />
     <Content Include="Js\datatables.min.js" />
+    <Content Include="Js\fullcalendar-Agenda\FullCalendar-Agenda.min.js" />
     <Content Include="Js\fullcalendar-bootstrap\main.min.js" />
     <Content Include="Js\fullcalendar-daygrid\main.min.js" />
     <Content Include="Js\fullcalendar-interaction\main.min.js" />
@@ -249,6 +257,8 @@
     <Content Include="Js\Login\popper.min.js" />
     <Content Include="Js\moment\moment.min.js" />
     <Content Include="Js\PruebaArbol.js" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -257,6 +267,10 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Content\Spanish.json" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -272,14 +286,20 @@
     <Content Include="Scripts\Propios\ActualizarDatosServicios.js" />
     <Content Include="Scripts\Propios\Administracion.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
+    <Content Include="Scripts\Propios\Empresa.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
     <Content Include="Scripts\Propios\ListaColaboradores.js" />
+    <Content Include="Scripts\Propios\ListaDiaLibreColaboradores.js" />
     <Content Include="Scripts\Propios\ListaServicios.js" />
     <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
     <Content Include="Scripts\Propios\Roles\Roles.js" />
     <Content Include="Scripts\Propios\Roles\ListaRoles.js" />
     <Content Include="Scripts\Propios\Servicio.js" />
     <Content Include="Scripts\Propios\Usuario.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -306,9 +326,11 @@
     <Content Include="Views\Servicio\ActualizarServicios.cshtml" />
     <Content Include="Views\Usuario\ListaColaboradores.cshtml" />
     <Content Include="Views\Usuario\ActualizarColaboradores.cshtml" />
+    <Content Include="Views\Usuario\DiasLibresColaboradores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Empresa\" />
     <Folder Include="Views\Evento\" />
     <Folder Include="Views\ServicioTiempo\" />
     <Folder Include="Views\UnidadMedida\" />

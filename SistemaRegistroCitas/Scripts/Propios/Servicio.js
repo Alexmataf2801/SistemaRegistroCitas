@@ -55,6 +55,7 @@ function ServicioXId() {
                 }
 
                 $('#TiempoFinal').val(moment(tiempofinal).format('DD-MM-YYYY hh:mm A'));
+                $('#txtFinalHorarioOculto').val(moment(tiempofinal).format('YYYY-MM-DD[T]HH:mm:ss'));
             },
 
             error: function () {

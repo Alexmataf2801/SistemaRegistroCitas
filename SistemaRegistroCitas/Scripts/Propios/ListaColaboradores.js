@@ -30,7 +30,7 @@
                 var CambiarEstado = "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarColaboradores(" + value.Id + "," + value.Estado + " )'></a>";
                 var Eliminar = "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarColaborador(" + value.Id + ")'></a>";
 
-                TablaRoles.row.add([Editar, value.Nombre, value.PrimerApellido, value.IdRol, estado, CambiarEstado, Eliminar]).draw();
+                TablaRoles.row.add([Editar, value.Nombre, value.PrimerApellido, value.NombreRol, estado, CambiarEstado, Eliminar]).draw();
             });
 
 

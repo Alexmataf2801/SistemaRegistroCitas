@@ -463,6 +463,23 @@ namespace AccesoDatos
             return SeActualizo;
         }
 
+        public bool DesactivarActivarDiasLibres(bool Lunes, bool Martes, bool Miercoles, bool Jueves, bool Viernes, bool Sabado, bool Domingo, int IdColaborador)
+        {
+            bool SeActualizo = false;
+
+            try
+            {
+                entities.paDesactivarActivarDiasLibres(Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo, IdColaborador);
+                SeActualizo = true;
+            }
+            catch (Exception ex)
+            {
+                SeActualizo = false;
+            }
+
+            return SeActualizo;
+        }
+
         #endregion
 
 
@@ -817,6 +834,7 @@ namespace AccesoDatos
                     servicio.FechaCreacion = item.FechaCreacion;
                     servicio.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
                     servicio.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    servicio.NombreUnidadMedida = item.NombreUnidadMedida;
 
                     ListaServicios.Add(servicio);
                 }
@@ -855,6 +873,7 @@ namespace AccesoDatos
                     usuario.FechaCreacion = item.FechaCreacion;
                     usuario.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
                     usuario.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    usuario.NombreRol = item.NombreRol;
 
                     ListaColaboradores.Add(usuario);
 
@@ -902,7 +921,106 @@ namespace AccesoDatos
             return usuario;
         }
 
+        public List<UnidadMedida> ObtenerMinutosYHoras()
+        {
 
+            List<UnidadMedida> ListaUnidadMedida = new List<UnidadMedida>();
+            try
+            {
+
+                var info = entities.paObtenerMinutosYHoras();
+
+                foreach (var item in info)
+                {
+                    UnidadMedida unidadMedida  = new UnidadMedida();
+
+
+                    unidadMedida.Id = item.Id;
+                    unidadMedida.Nombre = item.Nombre;
+                    unidadMedida.Descripcion = item.Descripcion;
+                    unidadMedida.UsuarioCreacion = item.UsuarioCreacion;
+                    unidadMedida.FechaCreacion = item.FechaCreacion;
+                    unidadMedida.UsuarioCreacion = item.UsuarioCreacion;
+                    unidadMedida.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    unidadMedida.Estado = item.Estado;
+
+
+                    ListaUnidadMedida.Add(unidadMedida);
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaUnidadMedida;
+
+        }
+
+        public List<DiasLibresColaboradores> ObtenerTodosLosDias(int IdColaborador)
+        {
+            List<DiasLibresColaboradores> ListadiasLibresColaboradores  = new List<DiasLibresColaboradores>();
+
+            try
+            {
+                var info = entities.paObtenerTodosLosDias(IdColaborador);
+
+                foreach (var item in info)
+                {
+                    DiasLibresColaboradores diasLibresColaboradores = new DiasLibresColaboradores();
+
+                    diasLibresColaboradores.IdColaborador = item.IdColaborador;
+                    diasLibresColaboradores.Lunes = item.Lunes;
+                    diasLibresColaboradores.Martes = item.Martes;
+                    diasLibresColaboradores.Miercoles = item.Miercoles;
+                    diasLibresColaboradores.Jueves = item.Jueves;
+                    diasLibresColaboradores.Viernes = item.Viernes;
+                    diasLibresColaboradores.Sabado = item.Sabado;
+                    diasLibresColaboradores.Domingo = item.Domingo;
+
+                    ListadiasLibresColaboradores.Add(diasLibresColaboradores);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return ListadiasLibresColaboradores;
+        }
+
+        public List<Empresa> ObtenerNombresEmpresasActivas()
+
+        {
+            List<Empresa> ListaEmpresa = new List<Empresa>();
+            try
+            {
+
+                var info = entities.paObtenerNombresEmpresasActivas();
+
+                foreach (var item in info)
+                {
+                    Empresa empresa = new Empresa();
+
+                    empresa.Id = item.Id;
+                    empresa.Nombre = item.Nombre;
+                   
+
+                    ListaEmpresa.Add(empresa);
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaEmpresa;
+
+        }
 
         #endregion
 

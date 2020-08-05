@@ -226,10 +226,12 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult ListaColaboradores()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = ArmarMenu(usuario.Id);
+            
 
             if (usuario != null)
             {
+                Menu = ArmarMenu(usuario.Id);
+
                 if (usuario.Id > 0)
                 {
                     ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
@@ -246,6 +248,7 @@ namespace SistemaRegistroCitas.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
+
         }
 
 
@@ -282,10 +285,12 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult ActualizarColaboradores()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = ArmarMenu(usuario.Id);
+            
 
             if (usuario != null)
             {
+                Menu = ArmarMenu(usuario.Id);
+
                 if (usuario.Id > 0)
                 {
                     ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
@@ -323,6 +328,35 @@ namespace SistemaRegistroCitas.Controllers
             usuario = LN.ObtenerColaboradoresXId(Id);
 
             return Json(usuario, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpGet]
+        public ActionResult DiasLibresColaboradores()
+        {
+            usuario = (Usuario)Session["Usuario"];
+
+
+            if (usuario != null)
+            {
+                Menu = ArmarMenu(usuario.Id);
+
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
     }
