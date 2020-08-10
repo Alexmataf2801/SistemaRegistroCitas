@@ -19,10 +19,12 @@ namespace AccesoDatos
             Utilidades utilidades = new Utilidades();
             ObjectParameter IdUsuario;
             ObjectParameter Respuesta;
+            
             try
             {
                 IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
                 Respuesta = new ObjectParameter("Respuesta", typeof(int));
+             
                 var info = entities.paInsertarUsuario(usuario.Nombre,
                                                       usuario.PrimerApellido,
                                                       usuario.SegundoApellido,
@@ -33,6 +35,8 @@ namespace AccesoDatos
                                                       usuario.IdRol,
                                                       IdUsuario,
                                                       Respuesta);
+
+                
 
                 if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
                 {
@@ -271,10 +275,12 @@ namespace AccesoDatos
             Utilidades utilidades = new Utilidades();
             ObjectParameter IdUsuario;
             ObjectParameter Respuesta;
+            ObjectParameter RespuestaUsuarioXEmpresa;
             try
             {
                 IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
                 Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                RespuestaUsuarioXEmpresa = new ObjectParameter("RespuestaUsuarioXEmpresa", typeof(int));
                 var info = entities.PaInsertarDatosColaborador(usuario.Nombre,
                                                       usuario.PrimerApellido,
                                                       usuario.SegundoApellido,
@@ -285,6 +291,12 @@ namespace AccesoDatos
                                                       usuario.IdRol,
                                                       IdUsuario,
                                                       Respuesta);
+
+                var infoUsuarioXEmpresa = entities.PaInsertarUsuarioXEmpresa(
+                                                      Convert.ToInt32(IdUsuario.Value.ToString()),
+                                                       usuario.IdRol,
+                                                       usuario.IdEmpresa,
+                                                       RespuestaUsuarioXEmpresa);
 
                 if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
                 {
@@ -589,7 +601,7 @@ namespace AccesoDatos
 
         }
 
-        public Usuario Validarlogin(Login login)
+        public Usuario Validarlogin(Login login, int IdEmpresa)
         {
 
             bool respuesta = false;
@@ -599,7 +611,7 @@ namespace AccesoDatos
             try
             {
                 EsCorrecto = new ObjectParameter("EsCorrecto", typeof(bool));
-                entities.paValidarLogin(login.CorreoElectronico, login.Contrasena, EsCorrecto);
+                entities.paValidarLogin(login.CorreoElectronico, login.Contrasena, IdEmpresa, EsCorrecto);
                 respuesta = Convert.ToBoolean(EsCorrecto.Value.ToString());
 
                 if (respuesta)
@@ -628,7 +640,7 @@ namespace AccesoDatos
 
                 foreach (var item in Info)
                 {
-
+                    
                     usuario.Id = item.Id;
                     usuario.Nombre = item.Nombre;
                     usuario.PrimerApellido = item.PrimerApellido;
@@ -638,6 +650,14 @@ namespace AccesoDatos
                     usuario.Telefono = item.Telefono;
                     usuario.Genero = item.Genero;
                     usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;
+                    usuario.IdRol = item.IdRol;
+
+                    if (item.IdRol != 4) {
+
+                        usuario.IdEmpresa = item.IdEmpresa;
+                    }
+
+                    
 
                 }
 
@@ -1020,6 +1040,36 @@ namespace AccesoDatos
 
             return ListaEmpresa;
 
+        }
+
+        public Empresa paObtenerEmpresasXId(int Id)
+        {
+            Empresa empresa = new Empresa();
+
+            try
+            {
+                var info = entities.paObtenerEmpresasXId(Id);
+
+                foreach (var item in info)
+                {
+                    empresa.Id = item.Id;
+                    empresa.Nombre = item.Nombre;
+                    empresa.Telefono = item.Telefono;
+                    empresa.Logo = item.Logo;
+                    empresa.CorreElectronico = item.CorreoElectronico;
+                    empresa.Direccion = item.Direccion;
+                    empresa.UsuarioCreacion = item.UsuarioCreacion;
+                    empresa.FechaCreacion = item.FechaCreacion;
+                    empresa.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    empresa.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return empresa;
         }
 
         #endregion

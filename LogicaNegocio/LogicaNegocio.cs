@@ -125,9 +125,9 @@ namespace LogicaNegocio
             return AD.ObtenerServicios();
         }
 
-        public Usuario Validarlogin(Login login)
+        public Usuario Validarlogin(Login login, int IdEmpresa)
         {
-            return AD.Validarlogin(login);
+            return AD.Validarlogin(login, IdEmpresa);
         }
 
         public Servicio ServicioXId(int IdServicio)
@@ -200,6 +200,11 @@ namespace LogicaNegocio
             return AD.ObtenerNombresEmpresasActivas();
         }
 
+        public Empresa paObtenerEmpresasXId(int Id)
+        {
+            return AD.paObtenerEmpresasXId(Id);
+        }
+           
 
         #endregion
 

@@ -175,19 +175,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarUnidadMedida", nombreParameter, descripcionParameter, estadoParameter, usuarioCreacionParameter);
         }
     
-        public virtual int paValidarLogin(string correoElectronico, string contrasena, ObjectParameter esCorrecto)
-        {
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            var contrasenaParameter = contrasena != null ?
-                new ObjectParameter("Contrasena", contrasena) :
-                new ObjectParameter("Contrasena", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paValidarLogin", correoElectronicoParameter, contrasenaParameter, esCorrecto);
-        }
-    
         public virtual int paInsertarLogin(Nullable<int> idUsuario, string correoElectronico, string contrasena)
         {
             var idUsuarioParameter = idUsuario.HasValue ?
@@ -286,15 +273,6 @@ namespace Entidades
                 new ObjectParameter("IdRol", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarUsuario", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
-        }
-    
-        public virtual ObjectResult<paObtenerUsuario_Result> paObtenerUsuario(string correoElectronico)
-        {
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
         }
     
         public virtual int PaInsertarDatosServicios(string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, Nullable<bool> estado, string usuarioCreacion)
@@ -616,6 +594,58 @@ namespace Entidades
         public virtual ObjectResult<paObtenerNombresEmpresasActivas_Result> paObtenerNombresEmpresasActivas()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerNombresEmpresasActivas_Result>("paObtenerNombresEmpresasActivas");
+        }
+    
+        public virtual int PaInsertarUsuarioXEmpresa(Nullable<int> idUsuario, Nullable<int> idRol, Nullable<int> idEmpresa, ObjectParameter respuestaUsuarioXEmpresa)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            var idRolParameter = idRol.HasValue ?
+                new ObjectParameter("IdRol", idRol) :
+                new ObjectParameter("IdRol", typeof(int));
+    
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarUsuarioXEmpresa", idUsuarioParameter, idRolParameter, idEmpresaParameter, respuestaUsuarioXEmpresa);
+        }
+    
+        public virtual ObjectResult<paObtenerEmpresasXId_Result> paObtenerEmpresasXId(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerEmpresasXId_Result>("paObtenerEmpresasXId", idParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerUsuario_Result> paObtenerUsuario(string correoElectronico)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
+        }
+    
+        public virtual int paValidarLogin(string correoElectronico, string contrasena, Nullable<int> idEmpresa, ObjectParameter esCorrecto)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var contrasenaParameter = contrasena != null ?
+                new ObjectParameter("Contrasena", contrasena) :
+                new ObjectParameter("Contrasena", typeof(string));
+    
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paValidarLogin", correoElectronicoParameter, contrasenaParameter, idEmpresaParameter, esCorrecto);
         }
     }
 }

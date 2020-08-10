@@ -101,6 +101,9 @@
     <Compile Include="paObtenerColaboradoresXId_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerEmpresasXId_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerMenuGeneral_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>

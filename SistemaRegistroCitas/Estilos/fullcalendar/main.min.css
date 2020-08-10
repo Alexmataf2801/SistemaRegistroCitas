@@ -738,7 +738,13 @@ a.fc-more {
 @media screen and (max-width: 500px) {
     .fc-toolbar {
         display: block;
-         justify-content: space-between;
-    align-items: center
+        justify-content: space-between;
+        align-items: center;
+        /*ajusta el tamaño de las fechas y lista de mes,semana,dia y agenda*/
+        font-size: 12px;
+    }
+
+    body .fc{
+        font-size: 13px;
     }
 }

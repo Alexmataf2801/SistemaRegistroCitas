@@ -40,6 +40,7 @@ function ServicioXId() {
 
             success: function (InfoServicio) {
                 $("#TiempoAprox").val(InfoServicio.TiempoEstimado + " " + InfoServicio.UnidadMedida);
+                $("#txtDescripcionServicio").val(InfoServicio.Descripcion);
 
                 var tiempofinal;
 

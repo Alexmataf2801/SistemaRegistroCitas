@@ -15,7 +15,7 @@ namespace SistemaRegistroCitas.Controllers
         Usuario usuario = new Usuario();
         string Menu = string.Empty;
         LogicaNegocio.LogicaNegocio LN = new LogicaNegocio.LogicaNegocio();
-       
+
 
 
         // GET: Usuario
@@ -32,12 +32,20 @@ namespace SistemaRegistroCitas.Controllers
             return Json(Resp, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Loguear(Login login)
+        public JsonResult Loguear(Login login, int IdEmpresa)
         {
-            Usuario usuario = LN.Validarlogin(login);
+            Usuario usuario = LN.Validarlogin(login, IdEmpresa);
             Session["Usuario"] = usuario;
             ArmarMenu(usuario.Id);
-            return Json(usuario,JsonRequestBehavior.AllowGet);
+            //Session["EmpresaSeleccionada"] = IdEmpresa;
+            //CargarConfiguracionesEmpresa(IdEmpresa);
+            return Json(usuario, JsonRequestBehavior.AllowGet);
+        }
+
+        public void CargarConfiguracionesEmpresa(int IdEmpresa) {
+            //ColaboradoresEmpresa(IdEmpresa); // Carga Colaboradores empresa en el combo
+            //ObtenerCalendarioEmpresa(IdEmpresa); // Nos carga todos los eventos de la empresa en el calendario
+
         }
 
         public List<Menu> ObtenerMenuUsuario(int IdUsuario)
@@ -200,6 +208,8 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult InsertarDatosColaborador(Usuario usuario)
         {
             int Resp = 0;
+            Usuario usu = (Usuario)Session["Usuario"];
+            usuario.IdEmpresa = usu.IdEmpresa;
             LN.InsertarDatosColaborador(usuario, ref Resp);
 
             return Json(Resp, JsonRequestBehavior.AllowGet);
