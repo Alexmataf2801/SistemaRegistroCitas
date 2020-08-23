@@ -286,8 +286,6 @@
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="PaObtenerRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerRoles_Result)" />
-          <FunctionImport Name="paObtenerTodosLosRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result)" />
           <FunctionImport Name="paDesactivarActivarRol">
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
@@ -379,14 +377,16 @@
           <FunctionImport Name="paObtenerEmpresasXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result)">
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="paValidarLogin">
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
             <Parameter Name="Contrasena" Mode="In" Type="String" />
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="EsCorrecto" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result)" />
+          <FunctionImport Name="PaObtenerRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerRoles_Result)" />
+          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
@@ -443,20 +443,6 @@
           <Property Type="Boolean" Name="Genero" Nullable="false" />
           <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
           <Property Type="Int32" Name="IdRol" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="PaObtenerRoles_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="paObtenerTodosLosRoles_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="150" />
-          <Property Type="Boolean" Name="Estado" Nullable="false" />
-          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
-          <Property Type="String" Name="UsuarioUltimaMoficacion" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="paObtenerRolXId_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -550,6 +536,20 @@
           <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosLosRoles_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="150" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaMoficacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="PaObtenerRoles_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="paObtenerUsuario_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -659,28 +659,6 @@
           <FunctionImportMapping FunctionImportName="paEliminarPermisosUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarPermisosUsuario" />
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
           <FunctionImportMapping FunctionImportName="PaInsertarDatosServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosServicios" />
-          <FunctionImportMapping FunctionImportName="PaObtenerRoles" FunctionName="BDSistemaRegistroCitasModel.Store.PaObtenerRoles">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.PaObtenerRoles_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paObtenerTodosLosRoles" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosRoles">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioUltimaMoficacion" ColumnName="UsuarioUltimaMoficacion" />
-                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paDesactivarActivarRol" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarRol" />
           <FunctionImportMapping FunctionImportName="paElimminarRol" FunctionName="BDSistemaRegistroCitasModel.Store.paElimminarRol" />
           <FunctionImportMapping FunctionImportName="paObtenerRolXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerRolXId">
@@ -818,6 +796,29 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paValidarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarLogin" />
+          <FunctionImportMapping FunctionImportName="paObtenerTodosLosRoles" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaMoficacion" ColumnName="UsuarioUltimaMoficacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaObtenerRoles" FunctionName="BDSistemaRegistroCitasModel.Store.PaObtenerRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.PaObtenerRoles_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paObtenerUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerUsuario">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerUsuario_Result">
@@ -835,7 +836,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paValidarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarLogin" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

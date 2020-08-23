@@ -3,12 +3,17 @@
     $.ajax({
         type: "GET",
         dataType: "JSON",
-        url: "/Empresa/ObtenerEmpresasXId/",
+        url: "/InicioEmpresas/ObtenerEmpresasXId/",
 
         success: function (InfoEmpresas) {
 
+            console.log(InfoEmpresas);
 
-           
+            $("#txtNombreEmpresa").val(InfoEmpresas.Nombre);
+            $("#Descripcion").val(InfoEmpresas.Descripcion);
+
+            
+            //alert("Funciona traer empresas");
 
 
         },
@@ -19,3 +24,7 @@
 
     });
 }
+
+$(document).ready(function () {
+    ObtenerEmpresasXId();
+});

@@ -304,16 +304,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarDatosServicios", nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, estadoParameter, usuarioCreacionParameter);
         }
     
-        public virtual ObjectResult<PaObtenerRoles_Result> PaObtenerRoles()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PaObtenerRoles_Result>("PaObtenerRoles");
-        }
-    
-        public virtual ObjectResult<paObtenerTodosLosRoles_Result> paObtenerTodosLosRoles()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosRoles_Result>("paObtenerTodosLosRoles");
-        }
-    
         public virtual int paDesactivarActivarRol(Nullable<int> idRol, Nullable<bool> estado)
         {
             var idRolParameter = idRol.HasValue ?
@@ -622,15 +612,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerEmpresasXId_Result>("paObtenerEmpresasXId", idParameter);
         }
     
-        public virtual ObjectResult<paObtenerUsuario_Result> paObtenerUsuario(string correoElectronico)
-        {
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
-        }
-    
         public virtual int paValidarLogin(string correoElectronico, string contrasena, Nullable<int> idEmpresa, ObjectParameter esCorrecto)
         {
             var correoElectronicoParameter = correoElectronico != null ?
@@ -646,6 +627,25 @@ namespace Entidades
                 new ObjectParameter("IdEmpresa", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paValidarLogin", correoElectronicoParameter, contrasenaParameter, idEmpresaParameter, esCorrecto);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosRoles_Result> paObtenerTodosLosRoles()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosRoles_Result>("paObtenerTodosLosRoles");
+        }
+    
+        public virtual ObjectResult<PaObtenerRoles_Result> PaObtenerRoles()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PaObtenerRoles_Result>("PaObtenerRoles");
+        }
+    
+        public virtual ObjectResult<paObtenerUsuario_Result> paObtenerUsuario(string correoElectronico)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
         }
     }
 }

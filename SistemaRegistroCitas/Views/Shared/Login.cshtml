@@ -226,7 +226,7 @@
                 data: { login, IdEmpresa },
                 success: function (Info) {
                     if (Info.Id > 0) {
-                        window.location = "/InicioEmpresas/InicioEmpresas"
+                        window.location.href = "/InicioEmpresas/InicioEmpresas?IdEmpresa=" + IdEmpresa
                     } else {
                         $("#msjModal").html("<label>¡Usuario o Contraseña Invalido!</label>");
                         $('#MsjIncorrecto').modal('show');

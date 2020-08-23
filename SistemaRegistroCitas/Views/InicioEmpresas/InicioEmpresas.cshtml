@@ -20,11 +20,12 @@
                         <div class="form-group row">
 
                             <div class="col-12 col-md-6 mb-3">
-                                <label type="text" class="form-control" name="nombre" id="txtNombreEmpresa"></label>
-                                <!--<input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre">-->
+                                @*<label type="text" class="form-control" name="nombre" id="lblNombreEmpresa"></label>*@
+                                <input readonly type="text" class="form-control" placeholder="Nombre" name="nombre" id="txtNombreEmpresa">
+                                
                                 <br />
-                                <!--<textarea name="Descripcion" id="descripcion" placeholder="Descripcion" class="form-control"></textarea>-->
-                                <label style="height:200px;" class="form-control" id="txtDescripcionEmpresa" type="mensaje">Descripcion</label>
+                                <textarea readonly name="Descripcion" id="Dscripcion" placeholder="Descripcion" class="form-control"></textarea>
+                                @*<label style="height:200px;" class="form-control" id="txtDescripcionEmpresa" type="mensaje">Descripcion</label>*@
                             </div>
 
                             <div class="col-12 col-md-6 mb-3">
@@ -77,4 +78,5 @@
         </div>
     </div>
 </div>
+<script src="~/Js/jquery.min.js"></script>
 <script src="~/Scripts/Propios/InicioEmpresas.js"></script>

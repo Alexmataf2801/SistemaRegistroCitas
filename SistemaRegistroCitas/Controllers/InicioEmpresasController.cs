@@ -18,7 +18,8 @@ namespace SistemaRegistroCitas.Controllers
         UsuarioController usuarioControllador = new UsuarioController();
 
         // GET: InicioEmpresas
-        public ActionResult InicioEmpresas()
+        
+        public ActionResult InicioEmpresas(int IdEmpresa)
         {
             usuario = (Usuario)Session["Usuario"];
             Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
@@ -42,14 +43,40 @@ namespace SistemaRegistroCitas.Controllers
                 return RedirectToAction("Login", "Home");
             }
         }
-
-        public JsonResult ObtenerEmpresasXId(int Id)
+        
+        public JsonResult ObtenerEmpresasXId()
         {
             Empresa empresa = new Empresa();
+            int EmpresaUsuario = 0;
+            usuario = (Usuario)Session["Usuario"];
 
-            empresa = LN.paObtenerEmpresasXId(Id);
+            if (usuario != null)
+            {
+                if (usuario.IdRol == 4)
+                {
+                    var IdEmpresa = Request.UrlReferrer.ToString().Split('=')[1];
+                    EmpresaUsuario = Convert.ToInt32(IdEmpresa);
 
-            return Json(empresa, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    EmpresaUsuario = usuario.IdEmpresa;
+
+                }
+
+                empresa = LN.paObtenerEmpresasXId(EmpresaUsuario);
+
+                return Json(empresa, JsonRequestBehavior.AllowGet);
+
+            }
+            else {
+
+                return Json(null, JsonRequestBehavior.AllowGet);
+
+
+            }
+
+              
         }
 
 
