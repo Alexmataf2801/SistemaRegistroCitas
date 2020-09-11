@@ -125,35 +125,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarRoles", nombreParameter, descripcionParameter, estadoParameter, usuarioCreacionParameter);
         }
     
-        public virtual int PaInsertarServicios(string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, Nullable<bool> estado, string usuarioCreacion)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var tiempoEstimadoParameter = tiempoEstimado.HasValue ?
-                new ObjectParameter("TiempoEstimado", tiempoEstimado) :
-                new ObjectParameter("TiempoEstimado", typeof(int));
-    
-            var tipoUnidadParameter = tipoUnidad.HasValue ?
-                new ObjectParameter("TipoUnidad", tipoUnidad) :
-                new ObjectParameter("TipoUnidad", typeof(int));
-    
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("Estado", estado) :
-                new ObjectParameter("Estado", typeof(bool));
-    
-            var usuarioCreacionParameter = usuarioCreacion != null ?
-                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
-                new ObjectParameter("UsuarioCreacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarServicios", nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, estadoParameter, usuarioCreacionParameter);
-        }
-    
         public virtual int PaInsertarUnidadMedida(string nombre, string descripcion, Nullable<bool> estado, string usuarioCreacion)
         {
             var nombreParameter = nombre != null ?
@@ -273,35 +244,6 @@ namespace Entidades
                 new ObjectParameter("IdRol", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarUsuario", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
-        }
-    
-        public virtual int PaInsertarDatosServicios(string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, Nullable<bool> estado, string usuarioCreacion)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var tiempoEstimadoParameter = tiempoEstimado.HasValue ?
-                new ObjectParameter("TiempoEstimado", tiempoEstimado) :
-                new ObjectParameter("TiempoEstimado", typeof(int));
-    
-            var tipoUnidadParameter = tipoUnidad.HasValue ?
-                new ObjectParameter("TipoUnidad", tipoUnidad) :
-                new ObjectParameter("TipoUnidad", typeof(int));
-    
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("Estado", estado) :
-                new ObjectParameter("Estado", typeof(bool));
-    
-            var usuarioCreacionParameter = usuarioCreacion != null ?
-                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
-                new ObjectParameter("UsuarioCreacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarDatosServicios", nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, estadoParameter, usuarioCreacionParameter);
         }
     
         public virtual int paDesactivarActivarRol(Nullable<int> idRol, Nullable<bool> estado)
@@ -441,43 +383,6 @@ namespace Entidades
         public virtual ObjectResult<paObtenerMinutosYHoras_Result> paObtenerMinutosYHoras()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerMinutosYHoras_Result>("paObtenerMinutosYHoras");
-        }
-    
-        public virtual int PaInsertarDatosColaborador(string nombre, string primerApellido, string segundoApellido, string identificacion, string correoElectronico, Nullable<int> telefono, Nullable<bool> genero, Nullable<int> idRol, ObjectParameter idUsuario, ObjectParameter respuesta)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var primerApellidoParameter = primerApellido != null ?
-                new ObjectParameter("PrimerApellido", primerApellido) :
-                new ObjectParameter("PrimerApellido", typeof(string));
-    
-            var segundoApellidoParameter = segundoApellido != null ?
-                new ObjectParameter("SegundoApellido", segundoApellido) :
-                new ObjectParameter("SegundoApellido", typeof(string));
-    
-            var identificacionParameter = identificacion != null ?
-                new ObjectParameter("Identificacion", identificacion) :
-                new ObjectParameter("Identificacion", typeof(string));
-    
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            var telefonoParameter = telefono.HasValue ?
-                new ObjectParameter("Telefono", telefono) :
-                new ObjectParameter("Telefono", typeof(int));
-    
-            var generoParameter = genero.HasValue ?
-                new ObjectParameter("Genero", genero) :
-                new ObjectParameter("Genero", typeof(bool));
-    
-            var idRolParameter = idRol.HasValue ?
-                new ObjectParameter("IdRol", idRol) :
-                new ObjectParameter("IdRol", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarDatosColaborador", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
         }
     
         public virtual int paActualizarColaboradores(Nullable<int> id, string identificacion, string nombre, string primerApellido, string segundoApellido, string correoElectronico, Nullable<int> telefono, Nullable<bool> genero, Nullable<int> idRol, string usuarioUltimaModificacion)
@@ -646,6 +551,105 @@ namespace Entidades
                 new ObjectParameter("CorreoElectronico", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
+        }
+    
+        public virtual int PaInsertarDatosServicios(string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, Nullable<bool> estado, string usuarioCreacion)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var tiempoEstimadoParameter = tiempoEstimado.HasValue ?
+                new ObjectParameter("TiempoEstimado", tiempoEstimado) :
+                new ObjectParameter("TiempoEstimado", typeof(int));
+    
+            var tipoUnidadParameter = tipoUnidad.HasValue ?
+                new ObjectParameter("TipoUnidad", tipoUnidad) :
+                new ObjectParameter("TipoUnidad", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarDatosServicios", nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, estadoParameter, usuarioCreacionParameter);
+        }
+    
+        public virtual int PaInsertarServicios(string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, Nullable<bool> estado, string usuarioCreacion, Nullable<int> idEmpresa)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var tiempoEstimadoParameter = tiempoEstimado.HasValue ?
+                new ObjectParameter("TiempoEstimado", tiempoEstimado) :
+                new ObjectParameter("TiempoEstimado", typeof(int));
+    
+            var tipoUnidadParameter = tipoUnidad.HasValue ?
+                new ObjectParameter("TipoUnidad", tipoUnidad) :
+                new ObjectParameter("TipoUnidad", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarServicios", nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, estadoParameter, usuarioCreacionParameter, idEmpresaParameter);
+        }
+    
+        public virtual int PaInsertarDatosColaborador(string nombre, string primerApellido, string segundoApellido, string identificacion, string correoElectronico, Nullable<int> telefono, Nullable<bool> genero, Nullable<int> idRol, ObjectParameter idUsuario, ObjectParameter respuesta)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var primerApellidoParameter = primerApellido != null ?
+                new ObjectParameter("PrimerApellido", primerApellido) :
+                new ObjectParameter("PrimerApellido", typeof(string));
+    
+            var segundoApellidoParameter = segundoApellido != null ?
+                new ObjectParameter("SegundoApellido", segundoApellido) :
+                new ObjectParameter("SegundoApellido", typeof(string));
+    
+            var identificacionParameter = identificacion != null ?
+                new ObjectParameter("Identificacion", identificacion) :
+                new ObjectParameter("Identificacion", typeof(string));
+    
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var telefonoParameter = telefono.HasValue ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(int));
+    
+            var generoParameter = genero.HasValue ?
+                new ObjectParameter("Genero", genero) :
+                new ObjectParameter("Genero", typeof(bool));
+    
+            var idRolParameter = idRol.HasValue ?
+                new ObjectParameter("IdRol", idRol) :
+                new ObjectParameter("IdRol", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarDatosColaborador", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
         }
     }
 }

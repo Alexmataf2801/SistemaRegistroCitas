@@ -131,12 +131,12 @@ namespace AccesoDatos
             return Respuesta;
         }
 
-        public bool InsertarDatosServicios(Servicio servicio)
+        public bool InsertarDatosServicios(Servicio servicio, int IdEmpresa)
         {
             bool Respuesta = true;
             try
             {
-                entities.PaInsertarDatosServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.Estado, servicio.UsuarioCreacion);
+                entities.PaInsertarServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.Estado, servicio.UsuarioCreacion,IdEmpresa);
                 Respuesta = true;
             }
             catch (Exception ex)
@@ -292,17 +292,20 @@ namespace AccesoDatos
                                                       IdUsuario,
                                                       Respuesta);
 
-                var infoUsuarioXEmpresa = entities.PaInsertarUsuarioXEmpresa(
-                                                      Convert.ToInt32(IdUsuario.Value.ToString()),
-                                                       usuario.IdRol,
-                                                       usuario.IdEmpresa,
-                                                       RespuestaUsuarioXEmpresa);
+              
 
                 if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
                 {
                     switch (Respuesta.Value.ToString())
                     {
                         case "1":
+
+                        var infoUsuarioXEmpresa = entities.PaInsertarUsuarioXEmpresa(
+                                                    Convert.ToInt32(IdUsuario.Value.ToString()),
+                                                     usuario.IdRol,
+                                                     usuario.IdEmpresa,
+                                                     RespuestaUsuarioXEmpresa);
+
                             Login login = new Login();
                             login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
                             login.CorreoElectronico = usuario.CorreoElectronico;

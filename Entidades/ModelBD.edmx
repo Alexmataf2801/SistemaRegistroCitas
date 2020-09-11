@@ -137,6 +137,7 @@
           <Parameter Name="TipoUnidad" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
           <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
         </Function>
         <Function Name="PaInsertarUnidadMedida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -234,14 +235,6 @@
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="PaInsertarServicios">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="TiempoEstimado" Mode="In" Type="Int32" />
-            <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
-            <Parameter Name="Estado" Mode="In" Type="Boolean" />
-            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="PaInsertarUnidadMedida">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -277,14 +270,6 @@
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
             <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="PaInsertarDatosServicios">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="TiempoEstimado" Mode="In" Type="Int32" />
-            <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
-            <Parameter Name="Estado" Mode="In" Type="Boolean" />
-            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="paDesactivarActivarRol">
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
@@ -328,18 +313,6 @@
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerMinutosYHoras" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerMinutosYHoras_Result)" />
-          <FunctionImport Name="PaInsertarDatosColaborador">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
-            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
-            <Parameter Name="Identificacion" Mode="In" Type="String" />
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="Int32" />
-            <Parameter Name="Genero" Mode="In" Type="Boolean" />
-            <Parameter Name="IdRol" Mode="In" Type="Int32" />
-            <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
-            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paActualizarColaboradores">
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="Identificacion" Mode="In" Type="String" />
@@ -386,7 +359,36 @@
           <FunctionImport Name="paObtenerTodosLosRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result)" />
           <FunctionImport Name="PaObtenerRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerRoles_Result)" />
           <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
+          <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PaInsertarDatosServicios">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="TiempoEstimado" Mode="In" Type="Int32" />
+            <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PaInsertarServicios">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="TiempoEstimado" Mode="In" Type="Int32" />
+            <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PaInsertarDatosColaborador">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Genero" Mode="In" Type="Boolean" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
@@ -597,7 +599,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paInsertarEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarEmpresa" />
           <FunctionImportMapping FunctionImportName="PaInsertarRoles" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarRoles" />
-          <FunctionImportMapping FunctionImportName="PaInsertarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarServicios" />
           <FunctionImportMapping FunctionImportName="PaInsertarUnidadMedida" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarUnidadMedida" />
           <FunctionImportMapping FunctionImportName="paInsertarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarLogin" />
           <FunctionImportMapping FunctionImportName="paObtenerMenuXUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerMenuXUsuario">
@@ -658,7 +659,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paEliminarPermisosUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarPermisosUsuario" />
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
-          <FunctionImportMapping FunctionImportName="PaInsertarDatosServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosServicios" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarRol" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarRol" />
           <FunctionImportMapping FunctionImportName="paElimminarRol" FunctionName="BDSistemaRegistroCitasModel.Store.paElimminarRol" />
           <FunctionImportMapping FunctionImportName="paObtenerRolXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerRolXId">
@@ -715,7 +715,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
           <FunctionImportMapping FunctionImportName="paActualizarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarColaboradores" />
           <FunctionImportMapping FunctionImportName="paObtenerTodosLosServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosServicios">
             <ResultMapping>
@@ -836,6 +835,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaInsertarDatosServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosServicios" />
+          <FunctionImportMapping FunctionImportName="PaInsertarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarServicios" />
+          <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -87,24 +87,16 @@ function InsertarDatosServicios() {
         url: "/Servicio/InsertarDatosServicios/",
         data: { servicio },
         success: function (Info) {
-            //switch (Info) {
-            //    case 0:
-            //        $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-            //        $('#MsjIncorrecto').modal('show');
-            //        break;
-            //    case 1:
-            //        LimpiarValores();
-            //        $('#fm-modal').modal('hide');
-            //        $('#MsjCorreo').modal('show');
-            //        break;
-            //    case 2:
-            //        $("#msjModal").html("<label>¡La Identificación ingresada ya existe!</label>");
-            //        $('#MsjIncorrecto').modal('show');
-            //        break;
-            //    default:
-            //        $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-            //        $('#MsjIncorrecto').modal('show');
-            //}
+            if (Info) {
+                LimpiarValores();
+                $("#lblMensajeCorrecto").html("<label>¡Información Almacenada Correctamenta!</label>");
+                $("#lblTituloCorrecto").html("<label>Información</label>");
+                $('#MsjCorrecto').modal('show');
+            } else {
+                $("#msjModal").html("<label>¡Fallo en la creación del servicio!</label>");
+                $('#MsjIncorrecto').modal('show');
+            }
+           
 
         },
         error: function (Error) {
@@ -113,6 +105,15 @@ function InsertarDatosServicios() {
 
     });
 
+
+}
+
+
+function LimpiarValores() {
+    $("#txtServicio").val("")
+    $("#txtTiempoEstimado").val("")
+    $("#txtDescripcion").val("")
+    $("#TipoUnidad").val("")
 
 }
 

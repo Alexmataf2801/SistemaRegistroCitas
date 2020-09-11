@@ -369,5 +369,13 @@ namespace SistemaRegistroCitas.Controllers
             }
         }
 
+
+
+        public ActionResult CerrarSession()
+        {
+            Session["Usuario"] = null;
+            return RedirectToAction("Home", "Login");
+        }
+
     }
 }
