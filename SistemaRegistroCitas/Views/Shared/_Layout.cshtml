@@ -56,7 +56,7 @@
                         </div>
                         <ul class="nav navbar-nav">
                             <li>
-                                <a>@Html.ActionLink("Cerrar Session", "CerrarSession", "Usuario")</a>
+                                @*<a>@Html.ActionLink("Cerrar Session", "CerrarSession", "Usuario")</a>*@
                                 @*<%--NO BORRAR--%>*@
                                 @*<button Class="fa fa-sign-out "></button>*@
                                 @*<asp:LinkButton runat="server" ID="BtnCerrarSesion" OnClick="BtnCerrarSesion_Click" ></asp:LinkButton>*@
@@ -86,10 +86,9 @@
                         @*<ul class="sidebar-menu tree" data-widget="tree">
                         <li class="treeview"><a href="#"><i class="fa fa-user"></i><span>Cerrar Sesion</span></a></li>
                         </ul>*@
-                        @*<a>@Html.Action("Cerrar Session", "CerrarSession", "Usuario")</a>*@
+                       <a class="treeview"><i style="margin:10px;" class="fa fa-user"><span></span></i>@Html.ActionLink("Cerrar Session", "CerrarSession", "Usuario")</a>
                     </div>
-
-
+                    
                 </section>
                 <!-- /.sidebar -->
             </aside>

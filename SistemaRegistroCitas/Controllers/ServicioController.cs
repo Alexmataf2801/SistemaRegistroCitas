@@ -41,7 +41,14 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult ObtenerTodosLosServicios()
         {
             List<Servicio> servicios = new List<Servicio>();
-            servicios = LN.ObtenerTodosLosServicios();
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+                
+                servicios = LN.ObtenerTodosLosServicios(usuario.IdEmpresa);
+            }
+                       
 
             return Json(servicios, JsonRequestBehavior.AllowGet);
         }

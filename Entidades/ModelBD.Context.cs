@@ -172,11 +172,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerMenuXUsuario_Result>("paObtenerMenuXUsuario", idUsuarioParameter);
         }
     
-        public virtual ObjectResult<PaObtenerColaboradoresActivos_Result> PaObtenerColaboradoresActivos()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PaObtenerColaboradoresActivos_Result>("PaObtenerColaboradoresActivos");
-        }
-    
         public virtual ObjectResult<paObtenerMenuGeneral_Result> paObtenerMenuGeneral()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerMenuGeneral_Result>("paObtenerMenuGeneral");
@@ -430,11 +425,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarColaboradores", idParameter, identificacionParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, usuarioUltimaModificacionParameter);
         }
     
-        public virtual ObjectResult<paObtenerTodosLosServicios_Result> paObtenerTodosLosServicios()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosServicios_Result>("paObtenerTodosLosServicios");
-        }
-    
         public virtual int paDesactivarActivarDiasLibres(Nullable<bool> lunes, Nullable<bool> martes, Nullable<bool> miercoles, Nullable<bool> jueves, Nullable<bool> viernes, Nullable<bool> sabado, Nullable<bool> domingo, Nullable<int> idColaborador)
         {
             var lunesParameter = lunes.HasValue ?
@@ -654,6 +644,24 @@ namespace Entidades
                 new ObjectParameter("IdEmpresa", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosColaboradores_Result>("paObtenerTodosLosColaboradores", idEmpresaParameter);
+        }
+    
+        public virtual ObjectResult<PaObtenerColaboradoresActivos_Result> PaObtenerColaboradoresActivos(Nullable<int> idEmpresa)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PaObtenerColaboradoresActivos_Result>("PaObtenerColaboradoresActivos", idEmpresaParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosServicios_Result> paObtenerTodosLosServicios(Nullable<int> idEmpresa)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosServicios_Result>("paObtenerTodosLosServicios", idEmpresaParameter);
         }
     }
 }

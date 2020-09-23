@@ -219,7 +219,15 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult ObtenerColaboradoresActivos()
         {
             List<Usuario> usuarios = new List<Usuario>();
-            usuarios = LN.ObtenerColaboradoresActivos();
+
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+               
+                usuarios = LN.ObtenerColaboradoresActivos(usuario.IdEmpresa);
+
+            }            
 
             return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
@@ -376,8 +384,6 @@ namespace SistemaRegistroCitas.Controllers
                 return RedirectToAction("Login", "Home");
             }
         }
-
-
 
         public ActionResult CerrarSession()
         {

@@ -163,13 +163,13 @@ namespace AccesoDatos
             return Respuesta;
         }
 
-        public List<Usuario> ObtenerColaboradoresActivos()
+        public List<Usuario> ObtenerColaboradoresActivos(int IdEmpresa)
         {
             List<Usuario> ListaColaboradores = new List<Usuario>();
 
             try
             {
-                var info = entities.PaObtenerColaboradoresActivos();
+                var info = entities.PaObtenerColaboradoresActivos(IdEmpresa);
 
                 foreach (var item in info)
                 {
@@ -836,12 +836,12 @@ namespace AccesoDatos
             return roles;
         }
 
-        public List<Servicio> ObtenerTodosLosServicios()
+        public List<Servicio> ObtenerTodosLosServicios(int IdEmpresa)
         {
             List<Servicio> ListaServicios = new List<Servicio>();
             try
             {
-                var info = entities.paObtenerTodosLosServicios();
+                var info = entities.paObtenerTodosLosServicios(IdEmpresa);
 
                 foreach (var item in info)
                 {
