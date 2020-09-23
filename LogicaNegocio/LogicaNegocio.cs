@@ -175,9 +175,9 @@ namespace LogicaNegocio
             return AD.ObtenerTodosLosServicios();
         }
 
-        public List<Usuario> ObtenerTodosLosColaboradores()
+        public List<Usuario> ObtenerTodosLosColaboradores(int IdEmpresa)
         {
-            return AD.ObtenerTodosLosColaboradores();
+            return AD.ObtenerTodosLosColaboradores(IdEmpresa);
         }
 
         public Usuario ObtenerColaboradoresXId (int Id)

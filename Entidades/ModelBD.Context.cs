@@ -435,11 +435,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosServicios_Result>("paObtenerTodosLosServicios");
         }
     
-        public virtual ObjectResult<paObtenerTodosLosColaboradores_Result> paObtenerTodosLosColaboradores()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosColaboradores_Result>("paObtenerTodosLosColaboradores");
-        }
-    
         public virtual int paDesactivarActivarDiasLibres(Nullable<bool> lunes, Nullable<bool> martes, Nullable<bool> miercoles, Nullable<bool> jueves, Nullable<bool> viernes, Nullable<bool> sabado, Nullable<bool> domingo, Nullable<int> idColaborador)
         {
             var lunesParameter = lunes.HasValue ?
@@ -650,6 +645,15 @@ namespace Entidades
                 new ObjectParameter("IdRol", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarDatosColaborador", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosColaboradores_Result> paObtenerTodosLosColaboradores(Nullable<int> idEmpresa)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosColaboradores_Result>("paObtenerTodosLosColaboradores", idEmpresaParameter);
         }
     }
 }

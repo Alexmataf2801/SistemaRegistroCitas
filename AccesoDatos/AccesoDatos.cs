@@ -870,12 +870,12 @@ namespace AccesoDatos
             return ListaServicios;
         }
 
-        public List<Usuario> ObtenerTodosLosColaboradores()
+        public List<Usuario> ObtenerTodosLosColaboradores(int IdEmpresa)
         {
                List<Usuario> ListaColaboradores = new List<Usuario>();
             try
             {
-                var info = entities.paObtenerTodosLosColaboradores();
+                var info = entities.paObtenerTodosLosColaboradores(IdEmpresa);
 
                 foreach(var item in info)
                 {
