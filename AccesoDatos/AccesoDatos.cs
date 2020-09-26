@@ -147,6 +147,21 @@ namespace AccesoDatos
             return Respuesta;
         }
 
+        public bool AsignarServiciosXColaborador(Usuario UsuarioXServicio)
+        {
+            bool Respuesta = true;
+            try
+            {
+                entities.PaAsignarServiciosXColaborador(UsuarioXServicio.Id,UsuarioXServicio.IdServicio);
+            }
+            catch (Exception ex)
+            {
+                Respuesta = false;
+            }
+            return Respuesta;
+        }
+
+
         public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
         {
             bool Respuesta = true;
@@ -559,6 +574,23 @@ namespace AccesoDatos
                 SeElimino = true;
             }
             catch (Exception ex)
+            {
+                SeElimino = false;
+            }
+
+            return SeElimino;
+        }
+
+        public bool EliminarServiciosXColaborador(int Id)
+        {
+            bool SeElimino = false;
+
+            try
+            {
+                entities.paEliminarServiciosXColaborador(Id);
+                SeElimino = true;
+            }
+            catch (Exception)
             {
                 SeElimino = false;
             }
@@ -1074,6 +1106,41 @@ namespace AccesoDatos
 
             return empresa;
         }
+
+
+        public List<Usuario> ObtenerServiciosXColaborador()
+        {
+            List<Usuario> ListaServiciosXColaborador = new List<Usuario>();
+
+            try
+            {
+                var info = entities.paObtenerServiciosXColaborador();
+
+                foreach (var item in info)
+                {
+                    Usuario usuario = new Usuario();
+
+                    usuario.IdServicioXColaborador = item.Id;
+                    usuario.Id = item.IdColaborador;
+                    usuario.IdServicio = item.IdServicio;
+
+                    ListaServiciosXColaborador.Add(usuario);
+
+                }
+            }
+
+            catch(Exception ex)
+            {
+
+            }
+            return ListaServiciosXColaborador;
+
+        }
+
+          
+
+        
+
 
         #endregion
 

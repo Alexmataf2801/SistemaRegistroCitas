@@ -38,6 +38,11 @@ namespace LogicaNegocio
             return AD.InsertarDatosServicios(servicio, IdEmpresa);
         }
 
+        public bool AsignarServiciosXColaborador(Usuario UsuarioXServicio)
+        {
+            return AD.AsignarServiciosXColaborador(UsuarioXServicio);
+        }
+
         public void InsertarDatosColaborador(Usuario usuario, ref int Resp)
         {
 
@@ -114,6 +119,11 @@ namespace LogicaNegocio
         public bool EliminarColaboradores(int Id)
         {
             return AD.EliminarColaboradores(Id);
+        }
+
+        public bool EliminarServiciosXColaborador(int Id)
+        {
+            return AD.EliminarServiciosXColaborador(Id);
         }
 
         #endregion
@@ -204,7 +214,12 @@ namespace LogicaNegocio
         {
             return AD.paObtenerEmpresasXId(Id);
         }
-           
+
+        public List<Usuario> ObtenerServiciosXColaborador()
+        {
+            return AD.ObtenerServiciosXColaborador();
+        }
+
 
         #endregion
 

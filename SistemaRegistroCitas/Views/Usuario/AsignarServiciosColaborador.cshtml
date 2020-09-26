@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "AsignarServiciosColaborador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Estilos/bootstrap")
+
+    <div class="container" style="margin: 0 auto; width: 90%">
+        <div class="panel panel-default" style="margin-top: 20px">
+            <div class="panel-body">
+                <div style="margin: 0 auto; width: 95%">
+                    <div style="text-align: center; margin-bottom: 50px">
+                        <h3 id="lblTitulo" style="text-align:center" class="box-header">Asignar Servicios al Colaborador</h3>
+                        <hr />
+                    </div>
+                    <div style="text-align:center;" class="form-group row col-12">
+                        <label>Colaboradores</label>
+                        <select class="form-control" id="ColaboradoresXEmpresa">
+                            <option value="0">Seleccione un Colaborador</option>
+                        </select>
+                        
+                        @*<input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtIdentificacionColaborador" maxlength="150" />*@
+                    </div>
+
+                    <div style="text-align:center;" class="form-group row col-12">
+                        <label>Servicios</label>
+                        <select class="form-control" id="ServiciosXEmpresa">
+                            <option value="0">Seleccione un Servicio</option>
+                        </select>
+
+                        @*<input type="text" class="form-control" style="border-radius:4px" autocomplete="off" id="txtNombreColaborador" maxlength="150" />*@
+                    </div>        
+
+                    <div style="text-align: center; margin-bottom: 20px">
+                        <div class="col-md-12">
+                            <div class="row" style="margin: 15px">
+                                <a class="btn btn-success" style="margin:0 auto" onclick="AsignarServiciosXColaborador();">Asignar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Js/jquery.min.js"></script>
+    <script src="~/Scripts/Propios/AsignarServiciosColaborador.js"></script>

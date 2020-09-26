@@ -20,6 +20,8 @@ namespace Entidades.ClasesEntidades
         public bool Genero { get; set; }
         public int IdRol { get; set; }
         public int IdEmpresa { get; set; }
+        public int IdServicio { get; set; }
+        public int IdServicioXColaborador { get; set; }
         public string FotoPerfil { get; set; }
         public bool Estado { get; set; }
         public string UsuarioCreacion { get; set; }

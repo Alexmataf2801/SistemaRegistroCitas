@@ -289,6 +289,7 @@
     <Content Include="Scripts\Propios\ActualizarDatosColaborador.js" />
     <Content Include="Scripts\Propios\ActualizarDatosServicios.js" />
     <Content Include="Scripts\Propios\Administracion.js" />
+    <Content Include="Scripts\Propios\AsignarServiciosColaborador.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
     <Content Include="Scripts\Propios\Empresa.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
@@ -296,6 +297,7 @@
     <Content Include="Scripts\Propios\ListaColaboradores.js" />
     <Content Include="Scripts\Propios\ListaDiaLibreColaboradores.js" />
     <Content Include="Scripts\Propios\ListaServicios.js" />
+    <Content Include="Scripts\Propios\ListaServiciosXColaborador.js" />
     <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
     <Content Include="Scripts\Propios\Roles\Roles.js" />
     <Content Include="Scripts\Propios\Roles\ListaRoles.js" />
@@ -333,6 +335,8 @@
     <Content Include="Views\Usuario\ActualizarColaboradores.cshtml" />
     <Content Include="Views\Usuario\DiasLibresColaboradores.cshtml" />
     <Content Include="Views\InicioEmpresas\InicioEmpresas.cshtml" />
+    <Content Include="Views\Usuario\AsignarServiciosColaborador.cshtml" />
+    <Content Include="Views\Usuario\ListaServiciosXColaborador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

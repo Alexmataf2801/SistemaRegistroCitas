@@ -391,5 +391,88 @@ namespace SistemaRegistroCitas.Controllers
             return RedirectToAction("Login", "Home");
         }
 
+        [HttpGet]
+        public ActionResult AsignarServiciosColaborador()
+        {
+            usuario = (Usuario)Session["Usuario"];
+
+
+            if (usuario != null)
+            {
+                Menu = ArmarMenu(usuario.Id);
+
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+        public JsonResult AsignarServiciosXColaborador(Usuario UsuarioXServicio)
+        {
+            bool Respuesta = LN.AsignarServiciosXColaborador(UsuarioXServicio);
+
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ListaServiciosXColaborador()
+        {
+            usuario = (Usuario)Session["Usuario"];
+
+
+            if (usuario != null)
+            {
+                Menu = ArmarMenu(usuario.Id);
+
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+        public JsonResult ObtenerServiciosXColaborador()
+        {
+            List<Usuario> ServiciosXColaborador = new List<Usuario>();
+
+            ServiciosXColaborador = LN.ObtenerServiciosXColaborador();
+
+            return Json(ServiciosXColaborador, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EliminarServiciosXColaborador(int Id)
+        {
+            bool SeElimino = false;
+
+            SeElimino = LN.EliminarServiciosXColaborador(Id);
+
+            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+
+
+        }
+
     }
 }
