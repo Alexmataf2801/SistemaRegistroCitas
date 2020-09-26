@@ -16,5 +16,7 @@ namespace Entidades
         public int Id { get; set; }
         public int IdColaborador { get; set; }
         public int IdServicio { get; set; }
+        public string Nombre { get; set; }
+        public string NombreServicio { get; set; }
     }
 }

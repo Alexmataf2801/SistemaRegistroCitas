@@ -677,11 +677,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaAsignarServiciosXColaborador", idColaboradorParameter, idServicioParameter);
         }
     
-        public virtual ObjectResult<paObtenerServiciosXColaborador_Result> paObtenerServiciosXColaborador()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerServiciosXColaborador_Result>("paObtenerServiciosXColaborador");
-        }
-    
         public virtual int paEliminarServiciosXColaborador(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -689,6 +684,15 @@ namespace Entidades
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarServiciosXColaborador", idParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerServiciosXColaborador_Result> paObtenerServiciosXColaborador(Nullable<int> idEmpresa)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerServiciosXColaborador_Result>("paObtenerServiciosXColaborador", idEmpresaParameter);
         }
     }
 }

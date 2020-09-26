@@ -1108,13 +1108,13 @@ namespace AccesoDatos
         }
 
 
-        public List<Usuario> ObtenerServiciosXColaborador()
+        public List<Usuario> ObtenerServiciosXColaborador(int IdEmpresa)
         {
             List<Usuario> ListaServiciosXColaborador = new List<Usuario>();
 
             try
             {
-                var info = entities.paObtenerServiciosXColaborador();
+                var info = entities.paObtenerServiciosXColaborador(IdEmpresa);
 
                 foreach (var item in info)
                 {
@@ -1123,6 +1123,8 @@ namespace AccesoDatos
                     usuario.IdServicioXColaborador = item.Id;
                     usuario.Id = item.IdColaborador;
                     usuario.IdServicio = item.IdServicio;
+                    usuario.Nombre = item.Nombre;
+                    usuario.NombreServicio = item.NombreServicio;
 
                     ListaServiciosXColaborador.Add(usuario);
 

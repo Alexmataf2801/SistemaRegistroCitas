@@ -458,7 +458,13 @@ namespace SistemaRegistroCitas.Controllers
         {
             List<Usuario> ServiciosXColaborador = new List<Usuario>();
 
-            ServiciosXColaborador = LN.ObtenerServiciosXColaborador();
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {                
+                ServiciosXColaborador = LN.ObtenerServiciosXColaborador(usuario.IdEmpresa);
+            }
+            
 
             return Json(ServiciosXColaborador, JsonRequestBehavior.AllowGet);
         }

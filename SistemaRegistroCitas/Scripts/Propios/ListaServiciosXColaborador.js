@@ -31,7 +31,7 @@
 
                 var Eliminar = "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarServicioXColaborador(" + value.IdServicioXColaborador + ")'></a>";
 
-                TablaRoles.row.add([value.Id, value.IdServicio, Eliminar]).draw();
+                TablaRoles.row.add([value.Nombre, value.NombreServicio, Eliminar]).draw();
             });
 
 

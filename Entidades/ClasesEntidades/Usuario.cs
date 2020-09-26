@@ -10,6 +10,7 @@ namespace Entidades.ClasesEntidades
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public string NombreServicio { get; set; }
         public string NombreRol { get; set; }
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }

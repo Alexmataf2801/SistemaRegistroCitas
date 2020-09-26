@@ -215,9 +215,9 @@ namespace LogicaNegocio
             return AD.paObtenerEmpresasXId(Id);
         }
 
-        public List<Usuario> ObtenerServiciosXColaborador()
+        public List<Usuario> ObtenerServiciosXColaborador(int IdEmpresa)
         {
-            return AD.ObtenerServiciosXColaborador();
+            return AD.ObtenerServiciosXColaborador(IdEmpresa);
         }
 
 
