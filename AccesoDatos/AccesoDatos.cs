@@ -1138,10 +1138,38 @@ namespace AccesoDatos
             return ListaServiciosXColaborador;
 
         }
+      
+        public List<Usuario> ObtenerServiciosXColaboradorXId(int IdColaborador)
+        {
+            
+            List<Usuario> ListaServiciosXColaboradorXId = new List<Usuario>();
 
-          
+            try
+            {
+                var info = entities.paObtenerServiciosXColaboradorXId(IdColaborador);
 
-        
+                foreach (var item in info)
+                {
+                    Usuario usuario = new Usuario();
+
+                    usuario.Id = item.IdColaborador;
+                    usuario.IdServicio = item.IdServicio;
+                    usuario.NombreServicio = item.NombreServicio;
+
+                    ListaServiciosXColaboradorXId.Add(usuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return ListaServiciosXColaboradorXId;
+        }
+
+
+
+
 
 
         #endregion

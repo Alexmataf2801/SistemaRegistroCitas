@@ -480,5 +480,14 @@ namespace SistemaRegistroCitas.Controllers
 
         }
 
+        public JsonResult ObtenerServiciosXColaboradorXId(int IdColaborador)
+        {
+            List<Usuario> usuario = new List<Usuario>();
+
+            usuario = LN.ObtenerServiciosXColaboradorXId(IdColaborador);
+
+            return Json(usuario, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

@@ -193,6 +193,9 @@
         <Function Name="paObtenerServiciosXColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
         </Function>
+        <Function Name="paObtenerServiciosXColaboradorXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdColaborador" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerServicioXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
@@ -420,7 +423,10 @@
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerServiciosXColaborador" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServiciosXColaborador_Result)">
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerServiciosXColaboradorXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServiciosXColaboradorXId_Result)">
+            <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
@@ -603,6 +609,11 @@
           <Property Type="Int32" Name="IdColaborador" Nullable="false" />
           <Property Type="Int32" Name="IdServicio" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerServiciosXColaboradorXId_Result">
+          <Property Type="Int32" Name="IdColaborador" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
           <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
         </ComplexType>
       </Schema>
@@ -886,6 +897,15 @@
                 <ScalarProperty Name="IdColaborador" ColumnName="IdColaborador" />
                 <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerServiciosXColaboradorXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerServiciosXColaboradorXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerServiciosXColaboradorXId_Result">
+                <ScalarProperty Name="IdColaborador" ColumnName="IdColaborador" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
                 <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
               </ComplexTypeMapping>
             </ResultMapping>

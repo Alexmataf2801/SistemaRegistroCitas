@@ -220,6 +220,11 @@ namespace LogicaNegocio
             return AD.ObtenerServiciosXColaborador(IdEmpresa);
         }
 
+        public List<Usuario> ObtenerServiciosXColaboradorXId(int IdColaborador)
+        {
+            return AD.ObtenerServiciosXColaboradorXId(IdColaborador);
+        }
+
 
         #endregion
 

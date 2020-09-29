@@ -3,15 +3,18 @@
     $.ajax({
         type: "GET",
         dataType: "JSON",
-        url: "/Servicio/ObtenerServicios/",
-
+        url: "/Usuario/ObtenerServiciosXColaboradorXId/",
+        data: { "IdColaborador": $("#Colaboradores").val()},
         success: function (InfoServicios) {
 
                                    
             var clasificacion = $("#Servicios");
 
+            clasificacion.empty();
+            clasificacion.append('<option value="0">Seleccione uno...</option>');
+
             $(InfoServicios).each(function (i, v) {
-                clasificacion.append('<option value="' + v.Id + '">' + v.Nombre + '</option>');
+                clasificacion.append('<option value="' + v.IdServicio + '">' + v.NombreServicio + '</option>');
                                           
             
             });
@@ -122,9 +125,5 @@ $("#Servicios").change(function () {
     ServicioXId();
 });
 
-
-$(document).ready(function () {
-    ObtenerServicios();
-});
 
 

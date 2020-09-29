@@ -30,6 +30,19 @@ $(document).ready(function () {
 });
 
 
+$("#Colaboradores").change(function () {
+    ObtenerServicios();
+});
+
+
+
+//function ColaboradorSeleccionado(){
+
+//}
+
+
+
+
 
 function InsertarDatosColaborador() {
     var usuario = {

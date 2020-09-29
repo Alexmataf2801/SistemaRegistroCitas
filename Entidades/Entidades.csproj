@@ -125,6 +125,9 @@
     <Compile Include="paObtenerServiciosActivos_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerServiciosXColaboradorXId_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerServiciosXColaborador_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
