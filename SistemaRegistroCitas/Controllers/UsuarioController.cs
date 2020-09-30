@@ -420,7 +420,9 @@ namespace SistemaRegistroCitas.Controllers
         }
 
         public JsonResult AsignarServiciosXColaborador(Usuario UsuarioXServicio)
+
         {
+            
             bool Respuesta = LN.AsignarServiciosXColaborador(UsuarioXServicio);
 
             return Json(Respuesta, JsonRequestBehavior.AllowGet);
@@ -479,6 +481,17 @@ namespace SistemaRegistroCitas.Controllers
 
 
         }
+
+        public JsonResult DesactivarActivarServicioXColaborador(int Id, bool Estado)
+        {
+
+            bool SeActualizoEstado = false;
+
+            SeActualizoEstado = LN.DesactivarActivarServicioXColaborador(Id, Estado);
+
+            return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+        }
+
 
         public JsonResult ObtenerServiciosXColaboradorXId(int IdColaborador)
         {

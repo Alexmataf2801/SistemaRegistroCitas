@@ -20,18 +20,18 @@
             );
             TablaRoles.clear().draw();
             $(Info).each(function (key, value) {
-                //var estado = '';
-                //if (value.Estado) {
-                //    estado = "<span class='EstadoActivo' >Activo</span>";
-                //} else {
-                //    estado = "<span class='EstadoInactivo' >Inactivo</span>";
-                //}
-            
-                //var CambiarEstado = "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarServicios(" + value.Id + "," + value.Estado + " )'></a>";
+                var estado = '';
+                if (value.Estado) {
+                    estado = "<span class='EstadoActivo' >Activo</span>";
+                } else {
+                    estado = "<span class='EstadoInactivo' >Inactivo</span>";
+                }
+
+                var CambiarEstado = "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarServicioXColaborador(" + value.IdServicioXColaborador + "," + value.Estado + " )'></a>";
 
                 var Eliminar = "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarServicioXColaborador(" + value.IdServicioXColaborador + ")'></a>";
 
-                TablaRoles.row.add([value.Nombre, value.NombreServicio, Eliminar]).draw();
+                TablaRoles.row.add([value.Nombre, value.NombreServicio, estado, CambiarEstado, Eliminar]).draw();
             });
 
 
@@ -41,9 +41,9 @@
     });
 }
 
-$(document).ready(function () {
-    ObtenerServiciosXColaborador();
-});
+//$(document).ready(function () {
+//    ObtenerServiciosXColaborador();
+//});
 
 
 
@@ -83,3 +83,38 @@ function EliminarServiciosXColaborador() {
 
     }
 }
+
+function DesactivarActivarServicioXColaborador(Id, Estado) {
+
+    if (Estado) {
+        Estado = false;
+    } else {
+        Estado = true;
+    }
+
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        data: { Id, Estado },
+        url: "/Usuario/DesactivarActivarServicioXColaborador/",
+        success: function (Info) {
+            if (Info) {
+                ObtenerServiciosXColaborador();
+            } else {
+                $("#msjModalIncorrecto").html("<label>¡No se pudo actualizar el estado del Servicio del colaborador!</label>");
+                $('#MsjIncorrecto').modal('show');
+            }
+
+        },
+        error: function (Error) {
+            $("#msjModalIncorrecto").html("<label>¡No se pudo actualizar el estado del Servicio del colaborador!</label>");
+            $('#MsjIncorrecto').modal('show');
+        }
+    });
+
+
+}
+
+$(document).ready(function () {
+    ObtenerServiciosXColaborador();
+});

@@ -152,7 +152,7 @@ namespace AccesoDatos
             bool Respuesta = true;
             try
             {
-                entities.PaAsignarServiciosXColaborador(UsuarioXServicio.Id,UsuarioXServicio.IdServicio);
+                entities.PaAsignarServiciosXColaborador(UsuarioXServicio.Id,UsuarioXServicio.IdServicio,UsuarioXServicio.Estado);
             }
             catch (Exception ex)
             {
@@ -509,6 +509,24 @@ namespace AccesoDatos
 
             return SeActualizo;
         }
+
+        public bool DesactivarActivarServicioXColaborador(int Id, bool Estado)
+        {
+            bool SeActualizo = false;
+
+            try
+            {
+                entities.paDesactivarActivarServicioXColaborador(Id, Estado);
+                SeActualizo = true;
+            }
+            catch (Exception ex)
+            {
+                SeActualizo = false;
+            }
+
+            return SeActualizo;
+        }
+
 
         #endregion
 
@@ -1123,6 +1141,7 @@ namespace AccesoDatos
                     usuario.IdServicioXColaborador = item.Id;
                     usuario.Id = item.IdColaborador;
                     usuario.IdServicio = item.IdServicio;
+                    usuario.Estado = item.Estado;
                     usuario.Nombre = item.Nombre;
                     usuario.NombreServicio = item.NombreServicio;
 

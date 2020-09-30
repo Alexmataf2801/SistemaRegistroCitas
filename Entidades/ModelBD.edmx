@@ -47,6 +47,7 @@
         <Function Name="PaAsignarServiciosXColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdColaborador" Type="int" Mode="In" />
           <Parameter Name="IdServicio" Type="int" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
         <Function Name="paDesactivarActivarColaboradores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
@@ -67,6 +68,10 @@
           <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
         <Function Name="paDesactivarActivarServicios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="paDesactivarActivarServicioXColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
@@ -415,15 +420,20 @@
           <FunctionImport Name="paObtenerTodosLosServicios" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosServicios_Result)">
           <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="PaAsignarServiciosXColaborador">
-            <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
-            <Parameter Name="IdServicio" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paEliminarServiciosXColaborador">
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerServiciosXColaborador" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServiciosXColaborador_Result)">
           <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paDesactivarActivarServicioXColaborador">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="PaAsignarServiciosXColaborador">
+            <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
+            <Parameter Name="IdServicio" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="paObtenerServiciosXColaboradorXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServiciosXColaboradorXId_Result)">
             <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
@@ -608,6 +618,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="IdColaborador" Nullable="false" />
           <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
         </ComplexType>
@@ -888,7 +899,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="PaAsignarServiciosXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaAsignarServiciosXColaborador" />
           <FunctionImportMapping FunctionImportName="paEliminarServiciosXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarServiciosXColaborador" />
           <FunctionImportMapping FunctionImportName="paObtenerServiciosXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerServiciosXColaborador">
             <ResultMapping>
@@ -896,11 +906,14 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdColaborador" ColumnName="IdColaborador" />
                 <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paDesactivarActivarServicioXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarServicioXColaborador" />
+          <FunctionImportMapping FunctionImportName="PaAsignarServiciosXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaAsignarServiciosXColaborador" />
           <FunctionImportMapping FunctionImportName="paObtenerServiciosXColaboradorXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerServiciosXColaboradorXId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerServiciosXColaboradorXId_Result">

@@ -664,19 +664,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosServicios_Result>("paObtenerTodosLosServicios", idEmpresaParameter);
         }
     
-        public virtual int PaAsignarServiciosXColaborador(Nullable<int> idColaborador, Nullable<int> idServicio)
-        {
-            var idColaboradorParameter = idColaborador.HasValue ?
-                new ObjectParameter("IdColaborador", idColaborador) :
-                new ObjectParameter("IdColaborador", typeof(int));
-    
-            var idServicioParameter = idServicio.HasValue ?
-                new ObjectParameter("IdServicio", idServicio) :
-                new ObjectParameter("IdServicio", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaAsignarServiciosXColaborador", idColaboradorParameter, idServicioParameter);
-        }
-    
         public virtual int paEliminarServiciosXColaborador(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -693,6 +680,36 @@ namespace Entidades
                 new ObjectParameter("IdEmpresa", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerServiciosXColaborador_Result>("paObtenerServiciosXColaborador", idEmpresaParameter);
+        }
+    
+        public virtual int paDesactivarActivarServicioXColaborador(Nullable<int> id, Nullable<bool> estado)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarServicioXColaborador", idParameter, estadoParameter);
+        }
+    
+        public virtual int PaAsignarServiciosXColaborador(Nullable<int> idColaborador, Nullable<int> idServicio, Nullable<bool> estado)
+        {
+            var idColaboradorParameter = idColaborador.HasValue ?
+                new ObjectParameter("IdColaborador", idColaborador) :
+                new ObjectParameter("IdColaborador", typeof(int));
+    
+            var idServicioParameter = idServicio.HasValue ?
+                new ObjectParameter("IdServicio", idServicio) :
+                new ObjectParameter("IdServicio", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaAsignarServiciosXColaborador", idColaboradorParameter, idServicioParameter, estadoParameter);
         }
     
         public virtual ObjectResult<paObtenerServiciosXColaboradorXId_Result> paObtenerServiciosXColaboradorXId(Nullable<int> idColaborador)

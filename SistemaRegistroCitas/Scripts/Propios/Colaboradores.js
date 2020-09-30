@@ -35,15 +35,6 @@ $("#Colaboradores").change(function () {
 });
 
 
-
-//function ColaboradorSeleccionado(){
-
-//}
-
-
-
-
-
 function InsertarDatosColaborador() {
     var usuario = {
         Identificacion: $("#txtIdentificacion").val(),

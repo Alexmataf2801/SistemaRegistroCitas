@@ -101,6 +101,11 @@ namespace LogicaNegocio
             return AD.DesactivarActivarDiasLibres(Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo, IdColaborador);
         }
 
+        public bool DesactivarActivarServicioXColaborador(int Id, bool Estado)
+        {
+            return AD.DesactivarActivarServicioXColaborador(Id, Estado);
+        }
+
         #endregion
 
 
