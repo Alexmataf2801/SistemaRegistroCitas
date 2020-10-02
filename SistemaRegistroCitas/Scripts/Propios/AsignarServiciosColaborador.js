@@ -83,7 +83,7 @@ function AsignarServiciosXColaborador() {
                 $("#lblTituloCorrecto").html("<label>Información</label>");
                 $('#MsjCorrecto').modal('show');
             } else {
-                $("#msjModal").html("<label>¡Fallo en la asignacion del servicio al colaborador!</label>");
+                $("#msjModalIncorrecto").html("<label>¡Fallo en la asignacion del servicio al colaborador!</label>");
                 $('#MsjIncorrecto').modal('show');
             }
 

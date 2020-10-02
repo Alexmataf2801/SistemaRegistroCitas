@@ -136,7 +136,7 @@ namespace AccesoDatos
             bool Respuesta = true;
             try
             {
-                entities.PaInsertarServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.Estado, servicio.UsuarioCreacion,IdEmpresa);
+                entities.PaInsertarServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad,servicio.UsuarioCreacion,IdEmpresa);
                 Respuesta = true;
             }
             catch (Exception ex)
@@ -152,7 +152,8 @@ namespace AccesoDatos
             bool Respuesta = true;
             try
             {
-                entities.PaAsignarServiciosXColaborador(UsuarioXServicio.Id,UsuarioXServicio.IdServicio,UsuarioXServicio.Estado);
+                entities.PaAsignarServiciosXColaborador(UsuarioXServicio.Id,UsuarioXServicio.IdServicio);
+                Respuesta = true;
             }
             catch (Exception ex)
             {

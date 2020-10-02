@@ -96,7 +96,7 @@ function InsertarDatosServicios() {
                 $("#lblTituloCorrecto").html("<label>Información</label>");
                 $('#MsjCorrecto').modal('show');
             } else {
-                $("#msjModal").html("<label>¡Fallo en la creación del servicio!</label>");
+                $("#msjModalIncorrecto").html("<label>¡Fallo en la creación del servicio!</label>");
                 $('#MsjIncorrecto').modal('show');
             }
            
