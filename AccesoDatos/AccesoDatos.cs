@@ -147,17 +147,20 @@ namespace AccesoDatos
             return Respuesta;
         }
 
-        public bool AsignarServiciosXColaborador(Usuario UsuarioXServicio)
+        public int AsignarServiciosXColaborador(Usuario UsuarioXServicio)
         {
-            bool Respuesta = true;
+            ObjectParameter RespuestaCorrecta;
+           
+            int Respuesta = 0;
             try
             {
-                entities.PaAsignarServiciosXColaborador(UsuarioXServicio.Id,UsuarioXServicio.IdServicio);
-                Respuesta = true;
+                RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
+                entities.PaAsignarServiciosXColaborador(UsuarioXServicio.Id,UsuarioXServicio.IdServicio,RespuestaCorrecta);
+                Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
             }
             catch (Exception ex)
             {
-                Respuesta = false;
+                Respuesta = 3;
             }
             return Respuesta;
         }

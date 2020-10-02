@@ -423,7 +423,7 @@ namespace SistemaRegistroCitas.Controllers
 
         {
             
-            bool Respuesta = LN.AsignarServiciosXColaborador(UsuarioXServicio);
+            int Respuesta = LN.AsignarServiciosXColaborador(UsuarioXServicio);
 
             return Json(Respuesta, JsonRequestBehavior.AllowGet);
         }

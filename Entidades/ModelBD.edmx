@@ -47,6 +47,7 @@
         <Function Name="PaAsignarServiciosXColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdColaborador" Type="int" Mode="In" />
           <Parameter Name="IdServicio" Type="int" Mode="In" />
+          <Parameter Name="RespuestaCorrecta" Type="int" Mode="InOut" />
         </Function>
         <Function Name="paDesactivarActivarColaboradores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
@@ -422,10 +423,6 @@
           <FunctionImport Name="paObtenerServiciosXColaboradorXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServiciosXColaboradorXId_Result)">
           <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="PaAsignarServiciosXColaborador">
-            <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
-            <Parameter Name="IdServicio" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="PaInsertarServicios">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -433,6 +430,11 @@
             <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PaAsignarServiciosXColaborador">
+            <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
+            <Parameter Name="IdServicio" Mode="In" Type="Int32" />
+            <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
@@ -917,8 +919,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="PaAsignarServiciosXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaAsignarServiciosXColaborador" />
           <FunctionImportMapping FunctionImportName="PaInsertarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarServicios" />
+          <FunctionImportMapping FunctionImportName="PaAsignarServiciosXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaAsignarServiciosXColaborador" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

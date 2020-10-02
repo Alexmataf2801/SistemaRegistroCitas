@@ -19,7 +19,7 @@ namespace SistemaRegistroCitas.Controllers
 
         // GET: InicioEmpresas
         
-        public ActionResult InicioEmpresas(int IdEmpresa)
+        public ActionResult InicioEmpresas()
         {
             usuario = (Usuario)Session["Usuario"];
             Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];

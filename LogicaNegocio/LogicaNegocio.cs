@@ -38,7 +38,7 @@ namespace LogicaNegocio
             return AD.InsertarDatosServicios(servicio, IdEmpresa);
         }
 
-        public bool AsignarServiciosXColaborador(Usuario UsuarioXServicio)
+        public int AsignarServiciosXColaborador(Usuario UsuarioXServicio)
         {
             return AD.AsignarServiciosXColaborador(UsuarioXServicio);
         }

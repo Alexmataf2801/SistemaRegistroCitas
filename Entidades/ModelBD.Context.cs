@@ -671,19 +671,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerServiciosXColaboradorXId_Result>("paObtenerServiciosXColaboradorXId", idColaboradorParameter);
         }
     
-        public virtual int PaAsignarServiciosXColaborador(Nullable<int> idColaborador, Nullable<int> idServicio)
-        {
-            var idColaboradorParameter = idColaborador.HasValue ?
-                new ObjectParameter("IdColaborador", idColaborador) :
-                new ObjectParameter("IdColaborador", typeof(int));
-    
-            var idServicioParameter = idServicio.HasValue ?
-                new ObjectParameter("IdServicio", idServicio) :
-                new ObjectParameter("IdServicio", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaAsignarServiciosXColaborador", idColaboradorParameter, idServicioParameter);
-        }
-    
         public virtual int PaInsertarServicios(string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, string usuarioCreacion, Nullable<int> idEmpresa)
         {
             var nombreParameter = nombre != null ?
@@ -711,6 +698,19 @@ namespace Entidades
                 new ObjectParameter("IdEmpresa", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarServicios", nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, usuarioCreacionParameter, idEmpresaParameter);
+        }
+    
+        public virtual int PaAsignarServiciosXColaborador(Nullable<int> idColaborador, Nullable<int> idServicio, ObjectParameter respuestaCorrecta)
+        {
+            var idColaboradorParameter = idColaborador.HasValue ?
+                new ObjectParameter("IdColaborador", idColaborador) :
+                new ObjectParameter("IdColaborador", typeof(int));
+    
+            var idServicioParameter = idServicio.HasValue ?
+                new ObjectParameter("IdServicio", idServicio) :
+                new ObjectParameter("IdServicio", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaAsignarServiciosXColaborador", idColaboradorParameter, idServicioParameter, respuestaCorrecta);
         }
     }
 }
