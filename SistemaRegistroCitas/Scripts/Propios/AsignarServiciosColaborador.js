@@ -80,7 +80,6 @@ function AsignarServiciosXColaborador() {
 
     }
     else {
-
     
     $.ajax({
         type: "POST",
