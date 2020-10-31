@@ -502,5 +502,12 @@ namespace SistemaRegistroCitas.Controllers
             return Json(usuario, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ValidarCorreoElectronico(int Id, string CorreoElectronico)
+        {
+            int Respuesta = 0;
+          Respuesta = LN.ValidarCorreoElectronico(Id, CorreoElectronico);
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

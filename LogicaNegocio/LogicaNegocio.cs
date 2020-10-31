@@ -230,6 +230,11 @@ namespace LogicaNegocio
             return AD.ObtenerServiciosXColaboradorXId(IdColaborador);
         }
 
+        public int ValidarCorreoElectronico(int Id, string CorreoElectronico)
+        {
+            return AD.ValidarCorreoElectronico(Id, CorreoElectronico);
+        }
+
 
         #endregion
 

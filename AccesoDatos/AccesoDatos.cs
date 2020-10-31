@@ -466,9 +466,10 @@ namespace AccesoDatos
         public bool ActualizarColaboradores(Usuario usuario)
         {
             bool Correcto = false;
-
+           
             try
             {
+                
                 entities.paActualizarColaboradores(usuario.Id, usuario.Identificacion, usuario.Nombre, usuario.PrimerApellido, usuario.SegundoApellido, usuario.CorreoElectronico, usuario.Telefono,
                     usuario.Genero, usuario.IdRol, usuario.UsuarioUltimaModificacion);
                 Correcto = true;
@@ -1190,7 +1191,28 @@ namespace AccesoDatos
             return ListaServiciosXColaboradorXId;
         }
 
+        public int ValidarCorreoElectronico(int Id, string CorreoElectronico)
+        {
+            int valor = 0;
+            ObjectParameter Respuesta;
+            
+           
+            try
+            {
+                Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                entities.PaValidarCorreoElectronico(Id, CorreoElectronico, Respuesta);
+                         
 
+                valor = Convert.ToInt32(Respuesta.Value.ToString());
+              
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return valor;
+        }
 
 
 

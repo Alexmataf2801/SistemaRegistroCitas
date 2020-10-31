@@ -303,6 +303,7 @@
     <Content Include="Scripts\Propios\Roles\ListaRoles.js" />
     <Content Include="Scripts\Propios\Servicio.js" />
     <Content Include="Scripts\Propios\Usuario.js" />
+    <Content Include="Scripts\Propios\ValidarCorreoElectronico.js" />
     <Content Include="Scripts\typeahead.bundle.js" />
     <Content Include="Scripts\typeahead.bundle.min.js" />
     <Content Include="Scripts\typeahead.jquery.js" />
