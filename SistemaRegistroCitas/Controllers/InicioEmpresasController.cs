@@ -23,6 +23,7 @@ namespace SistemaRegistroCitas.Controllers
         {
             usuario = (Usuario)Session["Usuario"];
             Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
+            HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
 
             if (usuario != null)
             {
@@ -30,8 +31,11 @@ namespace SistemaRegistroCitas.Controllers
                 {
                     ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
                     ViewBag.Menu = Menu;
+                 
+                    horarioEmpresa = LN.ObtenerHorarioEmpresa(usuario.IdEmpresa);
 
-                    return View();
+                    return View("InicioEmpresas", horarioEmpresa);
+
                 }
                 else
                 {
@@ -79,6 +83,83 @@ namespace SistemaRegistroCitas.Controllers
               
         }
 
+        [HttpGet]
+        public ActionResult InsertarHorarioEmpresa()
+        {
+            usuario = (Usuario)Session["Usuario"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
+            if (usuario != null)
+            {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+        public JsonResult InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa)
+
+        {
+
+            usuario = (Usuario)Session["Usuario"];
+
+            int Respuesta = LN.InsertarHorarioEmpresa(horarioEmpresa, usuario.IdEmpresa);
+
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ActualizarHorarioEmpresa()
+        {
+            usuario = (Usuario)Session["Usuario"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);
+            HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
+
+            if (usuario != null)
+            {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    horarioEmpresa = LN.ObtenerHorarioEmpresa(usuario.IdEmpresa);
+
+                    return View("ActualizarHorarioEmpresa", horarioEmpresa);
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+
+        public JsonResult ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa)
+        {
+            usuario = (Usuario)Session["Usuario"];
+            bool SeActualizo = false;
+            SeActualizo = LN.ActualizarHorarioEmpresa(horarioEmpresa,usuario.IdEmpresa);
+
+            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+
+        }
+
+        
     }
 }

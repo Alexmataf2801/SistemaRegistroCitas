@@ -388,6 +388,30 @@ namespace AccesoDatos
             return Correcto;
         }
 
+        public int InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa)
+        {
+            ObjectParameter RespuestaCorrecta;
+            int Respuesta = 0;
+            try
+            {
+                RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
+                entities.PaInsertarHorarioEmpresa(IdEmpresa, horarioEmpresa.InicioLunes,horarioEmpresa.FinalLunes,horarioEmpresa.InicioMartes,horarioEmpresa.FinalMartes,
+                   horarioEmpresa.InicioMiercoles,horarioEmpresa.FinalMiercoles,horarioEmpresa.InicioJueves,horarioEmpresa.FinalJueves,horarioEmpresa.InicioViernes,horarioEmpresa.FinalViernes,
+                   horarioEmpresa.InicioSabado,horarioEmpresa.FinalSabado,horarioEmpresa.InicioDomingo,horarioEmpresa.FinalDomingo,RespuestaCorrecta);
+                Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                Respuesta = 2;
+
+            }
+
+            return Respuesta;
+                        
+
+        }
+
+
         #endregion
 
 
@@ -530,6 +554,27 @@ namespace AccesoDatos
             }
 
             return SeActualizo;
+        }
+
+       public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa)
+        {
+            bool Correcto = false;
+            try
+            {
+                entities.paActualizarHorarioEmpresa(horarioEmpresa.InicioLunes, horarioEmpresa.FinalLunes, horarioEmpresa.EstadoLunes, horarioEmpresa.InicioMartes, horarioEmpresa.FinalMartes, horarioEmpresa.EstadoMartes,
+                    horarioEmpresa.InicioMiercoles, horarioEmpresa.FinalMiercoles, horarioEmpresa.EstadoMiercoles, horarioEmpresa.InicioJueves, horarioEmpresa.FinalJueves, horarioEmpresa.EstadoJueves,
+                    horarioEmpresa.InicioViernes, horarioEmpresa.FinalViernes, horarioEmpresa.EstadoViernes, horarioEmpresa.InicioSabado, horarioEmpresa.FinalSabado, horarioEmpresa.EstadoSabado,
+                    horarioEmpresa.InicioDomingo, horarioEmpresa.FinalDomingo, horarioEmpresa.EstadoDomingo, IdEmpresa);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+            return Correcto;
+
         }
 
 
@@ -1213,6 +1258,66 @@ namespace AccesoDatos
             }
             return valor;
         }
+
+        public HorarioEmpresa ObtenerHorarioEmpresa(int IdEmpresa)
+           
+        {
+            HorarioEmpresa HorarioEmpresa = new HorarioEmpresa();
+
+            try
+            {
+
+                var info = entities.paObtenerHorarioEmpresa(IdEmpresa);
+
+                foreach (var item in info)
+                {
+                    
+                    HorarioEmpresa.InicioLunes = item.InicioLunes;
+                    HorarioEmpresa.FinalLunes = item.FinalLunes;
+                    HorarioEmpresa.EstadoLunes = item.EstadoLunes;
+
+                    HorarioEmpresa.InicioMartes = item.InicioMartes;
+                    HorarioEmpresa.FinalMartes = item.FinalMartes;
+                    HorarioEmpresa.EstadoMartes = item.EstadoMartes;
+
+                    HorarioEmpresa.InicioMiercoles = item.InicioMiercoles;
+                    HorarioEmpresa.FinalMiercoles = item.FinalMiercoles;
+                    HorarioEmpresa.EstadoMiercoles = item.EstadoMiercoles;
+
+                    HorarioEmpresa.InicioJueves = item.InicioJueves;
+                    HorarioEmpresa.FinalJueves = item.FinalJueves;
+                    HorarioEmpresa.EstadoJueves = item.EstadoJueves;
+
+                    HorarioEmpresa.InicioViernes = item.InicioViernes;
+                    HorarioEmpresa.FinalViernes = item.FinalViernes;
+                    HorarioEmpresa.EstadoViernes = item.EstadoViernes;
+
+                    HorarioEmpresa.InicioSabado = item.InicioSabado;
+                    HorarioEmpresa.FinalSabado = item.FinalSabado;
+                    HorarioEmpresa.EstadoSabado = item.EstadoSabado;
+
+                    HorarioEmpresa.InicioDomingo = item.InicioDomingo;
+                    HorarioEmpresa.FinalDomingo= item.FinalDomingo;
+                    HorarioEmpresa.EstadoDomingo = item.EstadoDomingo;
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return HorarioEmpresa;
+
+        }
+
+
+      
+
+
 
 
 

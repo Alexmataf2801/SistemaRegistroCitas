@@ -725,5 +725,181 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaValidarCorreoElectronico", idParameter, correoElectronicoParameter, respuesta);
         }
+    
+        public virtual ObjectResult<paObtenerHorarioEmpresa_Result> paObtenerHorarioEmpresa(Nullable<int> idEmpresa)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerHorarioEmpresa_Result>("paObtenerHorarioEmpresa", idEmpresaParameter);
+        }
+    
+        public virtual int PaInsertarHorarioEmpresa(Nullable<int> idEmpresa, Nullable<System.TimeSpan> inicioLunes, Nullable<System.TimeSpan> finalLunes, Nullable<System.TimeSpan> inicioMartes, Nullable<System.TimeSpan> finalMartes, Nullable<System.TimeSpan> inicioMiercoles, Nullable<System.TimeSpan> finalMiercoles, Nullable<System.TimeSpan> inicioJueves, Nullable<System.TimeSpan> finalJueves, Nullable<System.TimeSpan> inicioViernes, Nullable<System.TimeSpan> finalViernes, Nullable<System.TimeSpan> inicioSabado, Nullable<System.TimeSpan> finalSabado, Nullable<System.TimeSpan> inicioDomingo, Nullable<System.TimeSpan> finalDomingo, ObjectParameter respuestaCorrecta)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var inicioLunesParameter = inicioLunes.HasValue ?
+                new ObjectParameter("InicioLunes", inicioLunes) :
+                new ObjectParameter("InicioLunes", typeof(System.TimeSpan));
+    
+            var finalLunesParameter = finalLunes.HasValue ?
+                new ObjectParameter("FinalLunes", finalLunes) :
+                new ObjectParameter("FinalLunes", typeof(System.TimeSpan));
+    
+            var inicioMartesParameter = inicioMartes.HasValue ?
+                new ObjectParameter("InicioMartes", inicioMartes) :
+                new ObjectParameter("InicioMartes", typeof(System.TimeSpan));
+    
+            var finalMartesParameter = finalMartes.HasValue ?
+                new ObjectParameter("FinalMartes", finalMartes) :
+                new ObjectParameter("FinalMartes", typeof(System.TimeSpan));
+    
+            var inicioMiercolesParameter = inicioMiercoles.HasValue ?
+                new ObjectParameter("InicioMiercoles", inicioMiercoles) :
+                new ObjectParameter("InicioMiercoles", typeof(System.TimeSpan));
+    
+            var finalMiercolesParameter = finalMiercoles.HasValue ?
+                new ObjectParameter("FinalMiercoles", finalMiercoles) :
+                new ObjectParameter("FinalMiercoles", typeof(System.TimeSpan));
+    
+            var inicioJuevesParameter = inicioJueves.HasValue ?
+                new ObjectParameter("InicioJueves", inicioJueves) :
+                new ObjectParameter("InicioJueves", typeof(System.TimeSpan));
+    
+            var finalJuevesParameter = finalJueves.HasValue ?
+                new ObjectParameter("FinalJueves", finalJueves) :
+                new ObjectParameter("FinalJueves", typeof(System.TimeSpan));
+    
+            var inicioViernesParameter = inicioViernes.HasValue ?
+                new ObjectParameter("InicioViernes", inicioViernes) :
+                new ObjectParameter("InicioViernes", typeof(System.TimeSpan));
+    
+            var finalViernesParameter = finalViernes.HasValue ?
+                new ObjectParameter("FinalViernes", finalViernes) :
+                new ObjectParameter("FinalViernes", typeof(System.TimeSpan));
+    
+            var inicioSabadoParameter = inicioSabado.HasValue ?
+                new ObjectParameter("InicioSabado", inicioSabado) :
+                new ObjectParameter("InicioSabado", typeof(System.TimeSpan));
+    
+            var finalSabadoParameter = finalSabado.HasValue ?
+                new ObjectParameter("FinalSabado", finalSabado) :
+                new ObjectParameter("FinalSabado", typeof(System.TimeSpan));
+    
+            var inicioDomingoParameter = inicioDomingo.HasValue ?
+                new ObjectParameter("InicioDomingo", inicioDomingo) :
+                new ObjectParameter("InicioDomingo", typeof(System.TimeSpan));
+    
+            var finalDomingoParameter = finalDomingo.HasValue ?
+                new ObjectParameter("FinalDomingo", finalDomingo) :
+                new ObjectParameter("FinalDomingo", typeof(System.TimeSpan));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarHorarioEmpresa", idEmpresaParameter, inicioLunesParameter, finalLunesParameter, inicioMartesParameter, finalMartesParameter, inicioMiercolesParameter, finalMiercolesParameter, inicioJuevesParameter, finalJuevesParameter, inicioViernesParameter, finalViernesParameter, inicioSabadoParameter, finalSabadoParameter, inicioDomingoParameter, finalDomingoParameter, respuestaCorrecta);
+        }
+    
+        public virtual int paActualizarHorarioEmpresa(Nullable<System.TimeSpan> inicioLunes, Nullable<System.TimeSpan> finalLunes, Nullable<bool> estadoLunes, Nullable<System.TimeSpan> inicioMartes, Nullable<System.TimeSpan> finalMartes, Nullable<bool> estadoMartes, Nullable<System.TimeSpan> inicioMiercoles, Nullable<System.TimeSpan> finalMiercoles, Nullable<bool> estadoMiercoles, Nullable<System.TimeSpan> inicioJueves, Nullable<System.TimeSpan> finalJueves, Nullable<bool> estadoJueves, Nullable<System.TimeSpan> inicioViernes, Nullable<System.TimeSpan> finalViernes, Nullable<bool> estadoViernes, Nullable<System.TimeSpan> inicioSabado, Nullable<System.TimeSpan> finalSabado, Nullable<bool> estadoSabado, Nullable<System.TimeSpan> inicioDomingo, Nullable<System.TimeSpan> finalDomingo, Nullable<bool> estadoDomingo, Nullable<int> idEmpresa)
+        {
+            var inicioLunesParameter = inicioLunes.HasValue ?
+                new ObjectParameter("InicioLunes", inicioLunes) :
+                new ObjectParameter("InicioLunes", typeof(System.TimeSpan));
+    
+            var finalLunesParameter = finalLunes.HasValue ?
+                new ObjectParameter("FinalLunes", finalLunes) :
+                new ObjectParameter("FinalLunes", typeof(System.TimeSpan));
+    
+            var estadoLunesParameter = estadoLunes.HasValue ?
+                new ObjectParameter("EstadoLunes", estadoLunes) :
+                new ObjectParameter("EstadoLunes", typeof(bool));
+    
+            var inicioMartesParameter = inicioMartes.HasValue ?
+                new ObjectParameter("InicioMartes", inicioMartes) :
+                new ObjectParameter("InicioMartes", typeof(System.TimeSpan));
+    
+            var finalMartesParameter = finalMartes.HasValue ?
+                new ObjectParameter("FinalMartes", finalMartes) :
+                new ObjectParameter("FinalMartes", typeof(System.TimeSpan));
+    
+            var estadoMartesParameter = estadoMartes.HasValue ?
+                new ObjectParameter("EstadoMartes", estadoMartes) :
+                new ObjectParameter("EstadoMartes", typeof(bool));
+    
+            var inicioMiercolesParameter = inicioMiercoles.HasValue ?
+                new ObjectParameter("InicioMiercoles", inicioMiercoles) :
+                new ObjectParameter("InicioMiercoles", typeof(System.TimeSpan));
+    
+            var finalMiercolesParameter = finalMiercoles.HasValue ?
+                new ObjectParameter("FinalMiercoles", finalMiercoles) :
+                new ObjectParameter("FinalMiercoles", typeof(System.TimeSpan));
+    
+            var estadoMiercolesParameter = estadoMiercoles.HasValue ?
+                new ObjectParameter("EstadoMiercoles", estadoMiercoles) :
+                new ObjectParameter("EstadoMiercoles", typeof(bool));
+    
+            var inicioJuevesParameter = inicioJueves.HasValue ?
+                new ObjectParameter("InicioJueves", inicioJueves) :
+                new ObjectParameter("InicioJueves", typeof(System.TimeSpan));
+    
+            var finalJuevesParameter = finalJueves.HasValue ?
+                new ObjectParameter("FinalJueves", finalJueves) :
+                new ObjectParameter("FinalJueves", typeof(System.TimeSpan));
+    
+            var estadoJuevesParameter = estadoJueves.HasValue ?
+                new ObjectParameter("EstadoJueves", estadoJueves) :
+                new ObjectParameter("EstadoJueves", typeof(bool));
+    
+            var inicioViernesParameter = inicioViernes.HasValue ?
+                new ObjectParameter("InicioViernes", inicioViernes) :
+                new ObjectParameter("InicioViernes", typeof(System.TimeSpan));
+    
+            var finalViernesParameter = finalViernes.HasValue ?
+                new ObjectParameter("FinalViernes", finalViernes) :
+                new ObjectParameter("FinalViernes", typeof(System.TimeSpan));
+    
+            var estadoViernesParameter = estadoViernes.HasValue ?
+                new ObjectParameter("EstadoViernes", estadoViernes) :
+                new ObjectParameter("EstadoViernes", typeof(bool));
+    
+            var inicioSabadoParameter = inicioSabado.HasValue ?
+                new ObjectParameter("InicioSabado", inicioSabado) :
+                new ObjectParameter("InicioSabado", typeof(System.TimeSpan));
+    
+            var finalSabadoParameter = finalSabado.HasValue ?
+                new ObjectParameter("FinalSabado", finalSabado) :
+                new ObjectParameter("FinalSabado", typeof(System.TimeSpan));
+    
+            var estadoSabadoParameter = estadoSabado.HasValue ?
+                new ObjectParameter("EstadoSabado", estadoSabado) :
+                new ObjectParameter("EstadoSabado", typeof(bool));
+    
+            var inicioDomingoParameter = inicioDomingo.HasValue ?
+                new ObjectParameter("InicioDomingo", inicioDomingo) :
+                new ObjectParameter("InicioDomingo", typeof(System.TimeSpan));
+    
+            var finalDomingoParameter = finalDomingo.HasValue ?
+                new ObjectParameter("FinalDomingo", finalDomingo) :
+                new ObjectParameter("FinalDomingo", typeof(System.TimeSpan));
+    
+            var estadoDomingoParameter = estadoDomingo.HasValue ?
+                new ObjectParameter("EstadoDomingo", estadoDomingo) :
+                new ObjectParameter("EstadoDomingo", typeof(bool));
+    
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarHorarioEmpresa", inicioLunesParameter, finalLunesParameter, estadoLunesParameter, inicioMartesParameter, finalMartesParameter, estadoMartesParameter, inicioMiercolesParameter, finalMiercolesParameter, estadoMiercolesParameter, inicioJuevesParameter, finalJuevesParameter, estadoJuevesParameter, inicioViernesParameter, finalViernesParameter, estadoViernesParameter, inicioSabadoParameter, finalSabadoParameter, estadoSabadoParameter, inicioDomingoParameter, finalDomingoParameter, estadoDomingoParameter, idEmpresaParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerHorarioEmpresaXId_Result> paObtenerHorarioEmpresaXId(Nullable<int> idEmpresa)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerHorarioEmpresaXId_Result>("paObtenerHorarioEmpresaXId", idEmpresaParameter);
+        }
     }
 }

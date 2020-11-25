@@ -60,6 +60,11 @@ namespace LogicaNegocio
             return AD.InsertarUnidadMedida(unidadMedida);
         }
 
+        public int InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa)
+        {
+            return AD.InsertarHorarioEmpresa(horarioEmpresa, IdEmpresa);
+        }
+
         #endregion
 
 
@@ -104,6 +109,11 @@ namespace LogicaNegocio
         public bool DesactivarActivarServicioXColaborador(int Id, bool Estado)
         {
             return AD.DesactivarActivarServicioXColaborador(Id, Estado);
+        }
+
+        public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa)
+        {
+            return AD.ActualizarHorarioEmpresa(horarioEmpresa, IdEmpresa);
         }
 
         #endregion
@@ -234,6 +244,12 @@ namespace LogicaNegocio
         {
             return AD.ValidarCorreoElectronico(Id, CorreoElectronico);
         }
+        public HorarioEmpresa ObtenerHorarioEmpresa(int IdEmpresa)
+        {
+            return AD.ObtenerHorarioEmpresa(IdEmpresa);
+        }
+
+       
 
 
         #endregion

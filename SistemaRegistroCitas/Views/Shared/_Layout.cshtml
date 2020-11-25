@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <link href="~/Estilos/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Estilos/bootstrap.css" rel="stylesheet" />
     <link href="~/Estilos/_all-skins.min.css" rel="stylesheet" />
     <link href="~/Estilos/AdminLTE.min.css" rel="stylesheet" />
-    <link href="~/Estilos/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Estilos/datatables.min.css" rel="stylesheet" />
     <link href="~/Estilos/fullcalendar/main.min.css" rel="stylesheet" />
     <link href="~/Estilos/fullcalendar-daygrid/main.min.css" rel="stylesheet" />
@@ -17,6 +17,7 @@
     <link href="~/Estilos/TablasMantenimientos.css" rel="stylesheet" />
     <link href="~/Estilos/fullcalendar-Agenda/Fullcalendar-Agenda.min.css" rel="stylesheet" />
     <link href="~/Estilos/checkbox/EstilosCheckbox.css" rel="stylesheet" />
+    <link href="~/Estilos/tpicker.css" rel="stylesheet" />
 
 </head>
 
@@ -84,11 +85,11 @@
                         @Html.Raw(@ViewBag.Menu);
 
                         @*<ul class="sidebar-menu tree" data-widget="tree">
-                        <li class="treeview"><a href="#"><i class="fa fa-user"></i><span>Cerrar Sesion</span></a></li>
-                        </ul>*@
-                       <a class="treeview "><i style="margin:10px;" class="fa fa-user"><span></span></i>@Html.ActionLink("Cerrar Session", "CerrarSession", "Usuario")</a>
+                            <li class="treeview"><a href="#"><i class="fa fa-user"></i><span>Cerrar Sesion</span></a></li>
+                            </ul>*@
+                        <a class="treeview "><i style="margin:10px;" class="fa fa-user"><span></span></i>@Html.ActionLink("Cerrar Session", "CerrarSession", "Usuario")</a>
                     </div>
-                    
+
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -148,6 +149,7 @@
     </div>
 
     <script src="~/Js/jquery.min.js"></script>
+    <script src="~/Js/tpicker.js"></script>
     <script src="~/Js/bootstrap.min.js"></script>
     <script src="~/Js/adminlte.min.js"></script>
     <script src="~/Js/moment/moment.min.js"></script>
@@ -159,6 +161,7 @@
     <script src="~/Js/fullcalendar/locales/es.js"></script>
     <script src="~/Js/datatables.min.js"></script>
     <script src="~/Js/fullcalendar-Agenda/FullCalendar-Agenda.min.js"></script>
+
 
 </body>
 

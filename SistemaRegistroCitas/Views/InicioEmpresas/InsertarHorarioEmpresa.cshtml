@@ -1,0 +1,225 @@
+﻿
+@{
+    ViewBag.Title = "InsertarHorarioEmpresa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  
+
+    <div class="container" style="margin: 0 auto; width: 95%">
+        <div class="panel panel-default" style="margin-top: 20px">
+            <div class="panel-body">
+                <div class="row">
+                    <div style="text-align:center" class="form-group col-md-12">
+                        <label>Insertar Horario</label>
+                    </div>
+
+                </div>
+                <div style="margin: 0 auto; width: 95%">
+                    <div style="text-align: center; margin-bottom: auto">
+                        <div class="body">
+
+                            <div class="col-12" id="EstadoLunes">
+                                <div>
+                                    <label>Lunes</label>
+                                    <input type="checkbox" >
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Abre </span> <input id="InicioLunes" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('InicioLunes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Cierra </span><input id="FinalLunes" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('FinalLunes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                            </div>
+
+
+                            <br />
+
+                            <div class="col-12" id="EstadoMartes">
+                                <div>
+                                    <label>Martes</label>
+                                    <input type="checkbox" >
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Abre </span> <input id="InicioMartes" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('InicioMartes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Cierra </span><input id="FinalMartes" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('FinalMartes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <div class="col-12" id="EstadoMiercoles">
+                                <div>
+                                    <label>Miercoles</label>
+                                    <input type="checkbox" >
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Abre </span> <input id="InicioMiercoles" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('InicioMiercoles', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Cierra </span><input id="FinalMiercoles" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('FinalMiercoles', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                            </div>
+
+
+                            <br />
+
+                            <div class="col-12" id="EstadoJueves">
+                                <div>
+                                    <label>Jueves</label>
+                                    <input type="checkbox" >
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Abre </span> <input id="InicioJueves" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('InicioJueves', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Cierra </span><input id="FinalJueves" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('FinalJueves', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <div class="col-12" id="EstadoViernes">
+                                <div>
+                                    <label>Viernes</label>
+                                    <input type="checkbox" >
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Abre </span> <input id="InicioViernes" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('InicioViernes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Cierra </span><input id="FinalViernes" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('FinalViernes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                            </div>
+
+
+                            <br />
+
+                            <div class="col-12" id="EstadoSabado">
+                                <div>
+                                    <label>Sabado</label>
+                                    <input type="checkbox" >
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Abre </span> <input id="InicioSabado" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('InicioSabado', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Cierra </span><input id="FinalSabado" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('FinalSabado', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <div class="col-12" id="EstadoDomingo">
+                                <div>
+                                    <label>Domingo</label>
+                                    <input type="checkbox" >
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Abre </span> <input id="InicioDomingo" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('InicioDomingo', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                                <br />
+                                <div>
+
+                                    <span>Cierra </span><input id="FinalDomingo" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+
+                                    <a class="btn btn-primary" onclick="showpickers('FinalDomingo', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                                </div>
+                            </div>
+
+
+                            <div class="timepicker"></div>
+                            <br />
+                            <br />
+                            <br />
+                            <div class="footer">
+                                <button class="btn btn-primary" onclick="InsertarHorarioEmpresa();return false">Guardar</button>
+
+
+                            </div>
+
+                        </div>                        
+                                                
+                     </div>
+                        @*<div class="footer">
+                            <button class="btn btn-primary" onclick=";return false">Guardar</button>
+
+
+                        </div>*@
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <script src="~/Scripts/Propios/InicioEmpresas.js"></script>
