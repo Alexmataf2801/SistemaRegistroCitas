@@ -19,14 +19,13 @@
 
                             <div class="col-12">
                                 <div>
-                                    <label>Lunes</label>
-                                  @*  <input id="EstadoLunes" type="checkbox" >*@
-                                    <input type="checkbox" checked=@Model.EstadoLunes />
+                                    <label>Lunes</label>                                 
+                                    <input id="EstadoLunes" type="checkbox" checked=@Model.EstadoLunes />
                                 </div>
                                 <br />
                                 <div>
-
-                                    <span>Abre </span> <input id="InicioLunes" style="width:100px; display: inline-block;" class="form-control" placeholder=@Model.InicioLunes>
+                                   
+                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioLunes id="InicioLunes" style="width:100px; display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('InicioLunes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -34,7 +33,7 @@
                                 <br />
                                 <div>
 
-                                    <span>Cierra </span><input id="FinalLunes" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalLunes id="FinalLunes" style="width:100px;display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('FinalLunes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -44,15 +43,15 @@
 
                             <br />
 
-                            <div class="col-12" id="EstadoMartes">
+                            <div class="col-12">
                                 <div>
                                     <label>Martes</label>
-                                    <input type="checkbox" >
+                                    <input id="EstadoMartes" type="checkbox" checked=@Model.EstadoMartes />
                                 </div>
                                 <br />
                                 <div>
 
-                                    <span>Abre </span> <input id="InicioMartes" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioMartes id="InicioMartes" style="width:100px; display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('InicioMartes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -60,7 +59,7 @@
                                 <br />
                                 <div>
 
-                                    <span>Cierra </span><input id="FinalMartes" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalMartes id="FinalMartes" style="width:100px;display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('FinalMartes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -69,15 +68,15 @@
 
                             <br />
 
-                            <div class="col-12" id="EstadoMiercoles">
+                            <div class="col-12">
                                 <div>
                                     <label>Miercoles</label>
-                                    <input type="checkbox" >
+                                    <input id="EstadoMiercoles" type="checkbox" checked=@Model.EstadoMiercoles />
                                 </div>
                                 <br />
                                 <div>
 
-                                    <span>Abre </span> <input id="InicioMiercoles" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioMiercoles id="InicioMiercoles" style="width:100px; display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('InicioMiercoles', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -85,7 +84,7 @@
                                 <br />
                                 <div>
 
-                                    <span>Cierra </span><input id="FinalMiercoles" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalMiercoles id="FinalMiercoles" style="width:100px;display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('FinalMiercoles', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -95,15 +94,15 @@
 
                             <br />
 
-                            <div class="col-12" id="EstadoJueves">
+                            <div class="col-12">
                                 <div>
                                     <label>Jueves</label>
-                                    <input type="checkbox" >
+                                    <input id="EstadoJueves" type="checkbox" checked=@Model.EstadoJueves />
                                 </div>
                                 <br />
                                 <div>
 
-                                    <span>Abre </span> <input id="InicioJueves" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioJueves id="InicioJueves" style="width:100px; display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('InicioJueves', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -111,7 +110,7 @@
                                 <br />
                                 <div>
 
-                                    <span>Cierra </span><input id="FinalJueves" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalJueves id="FinalJueves" style="width:100px;display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('FinalJueves', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -120,15 +119,15 @@
 
                             <br />
 
-                            <div class="col-12" id="EstadoViernes">
+                            <div class="col-12" >
                                 <div>
                                     <label>Viernes</label>
-                                    <input type="checkbox" >
+                                    <input id="EstadoViernes" type="checkbox" checked=@Model.EstadoViernes />
                                 </div>
                                 <br />
                                 <div>
 
-                                    <span>Abre </span> <input id="InicioViernes" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioViernes id="InicioViernes" style="width:100px; display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('InicioViernes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -136,7 +135,7 @@
                                 <br />
                                 <div>
 
-                                    <span>Cierra </span><input id="FinalViernes" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalViernes id="FinalViernes" style="width:100px;display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('FinalViernes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -146,15 +145,15 @@
 
                             <br />
 
-                            <div class="col-12" id="EstadoSabado">
+                            <div class="col-12" >
                                 <div>
                                     <label>Sabado</label>
-                                    <input type="checkbox" >
+                                    <input id="EstadoSabado" type="checkbox" checked=@Model.EstadoSabado />
                                 </div>
                                 <br />
                                 <div>
 
-                                    <span>Abre </span> <input id="InicioSabado" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioSabado id="InicioSabado" style="width:100px; display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('InicioSabado', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -162,7 +161,7 @@
                                 <br />
                                 <div>
 
-                                    <span>Cierra </span><input id="FinalSabado" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalSabado id="FinalSabado" style="width:100px;display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('FinalSabado', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -171,15 +170,15 @@
 
                             <br />
 
-                            <div class="col-12" id="EstadoDomingo">
+                            <div class="col-12" >
                                 <div>
                                     <label>Domingo</label>
-                                    <input type="checkbox" >
+                                    <input id="EstadoDomingo" type="checkbox" checked=@Model.EstadoDomingo />
                                 </div>
                                 <br />
                                 <div>
 
-                                    <span>Abre </span> <input id="InicioDomingo" style="width:100px; display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioDomingo id="InicioDomingo" style="width:100px; display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('InicioDomingo', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -187,7 +186,7 @@
                                 <br />
                                 <div>
 
-                                    <span>Cierra </span><input id="FinalDomingo" style="width:100px;display: inline-block;" class="form-control" placeholder="HH:MM">
+                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalDomingo id="FinalDomingo" style="width:100px;display: inline-block;" class="form-control" placeholder="">
 
                                     <a class="btn btn-primary" onclick="showpickers('FinalDomingo', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
 
@@ -200,7 +199,7 @@
                             <br />
                             <br />
                             <div class="footer">
-                                <button class="btn btn-primary" onclick="InsertarHorarioEmpresa();return false">Guardar</button>
+                                <button class="btn btn-primary" onclick="ActualizarHorarioEmpresa(); return false">Guardar</button>
 
 
                             </div>
@@ -220,5 +219,5 @@
             </div>
         </div>
     </div>
-@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/Propios/ActualizarHorarioEmpresa.js"></script>*@
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/Propios/ActualizarHorarioEmpresa.js"></script>

@@ -556,15 +556,15 @@ namespace AccesoDatos
             return SeActualizo;
         }
 
-       public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa)
+       public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
             bool Correcto = false;
             try
             {
-                entities.paActualizarHorarioEmpresa(horarioEmpresa.InicioLunes, horarioEmpresa.FinalLunes, horarioEmpresa.EstadoLunes, horarioEmpresa.InicioMartes, horarioEmpresa.FinalMartes, horarioEmpresa.EstadoMartes,
-                    horarioEmpresa.InicioMiercoles, horarioEmpresa.FinalMiercoles, horarioEmpresa.EstadoMiercoles, horarioEmpresa.InicioJueves, horarioEmpresa.FinalJueves, horarioEmpresa.EstadoJueves,
-                    horarioEmpresa.InicioViernes, horarioEmpresa.FinalViernes, horarioEmpresa.EstadoViernes, horarioEmpresa.InicioSabado, horarioEmpresa.FinalSabado, horarioEmpresa.EstadoSabado,
-                    horarioEmpresa.InicioDomingo, horarioEmpresa.FinalDomingo, horarioEmpresa.EstadoDomingo, IdEmpresa);
+                entities.paActualizarHorarioEmpresa(horarioEmpresa.InicioLunes, horarioEmpresa.FinalLunes, EstadoLunes, horarioEmpresa.InicioMartes, horarioEmpresa.FinalMartes,EstadoMartes,
+                    horarioEmpresa.InicioMiercoles, horarioEmpresa.FinalMiercoles,EstadoMiercoles, horarioEmpresa.InicioJueves, horarioEmpresa.FinalJueves,EstadoJueves,
+                    horarioEmpresa.InicioViernes, horarioEmpresa.FinalViernes, EstadoViernes, horarioEmpresa.InicioSabado, horarioEmpresa.FinalSabado,EstadoSabado,
+                    horarioEmpresa.InicioDomingo, horarioEmpresa.FinalDomingo, EstadoDomingo, IdEmpresa);
                 Correcto = true;
 
             }

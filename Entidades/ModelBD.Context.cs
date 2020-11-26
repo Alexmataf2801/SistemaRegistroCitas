@@ -892,14 +892,5 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarHorarioEmpresa", inicioLunesParameter, finalLunesParameter, estadoLunesParameter, inicioMartesParameter, finalMartesParameter, estadoMartesParameter, inicioMiercolesParameter, finalMiercolesParameter, estadoMiercolesParameter, inicioJuevesParameter, finalJuevesParameter, estadoJuevesParameter, inicioViernesParameter, finalViernesParameter, estadoViernesParameter, inicioSabadoParameter, finalSabadoParameter, estadoSabadoParameter, inicioDomingoParameter, finalDomingoParameter, estadoDomingoParameter, idEmpresaParameter);
         }
-    
-        public virtual ObjectResult<paObtenerHorarioEmpresaXId_Result> paObtenerHorarioEmpresaXId(Nullable<int> idEmpresa)
-        {
-            var idEmpresaParameter = idEmpresa.HasValue ?
-                new ObjectParameter("IdEmpresa", idEmpresa) :
-                new ObjectParameter("IdEmpresa", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerHorarioEmpresaXId_Result>("paObtenerHorarioEmpresaXId", idEmpresaParameter);
-        }
     }
 }

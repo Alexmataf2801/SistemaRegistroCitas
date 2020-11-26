@@ -228,9 +228,6 @@
         <Function Name="paObtenerHorarioEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
         </Function>
-        <Function Name="paObtenerHorarioEmpresaXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
-        </Function>
         <Function Name="paObtenerMenuGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerMenuXUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
@@ -539,9 +536,6 @@
             <Parameter Name="EstadoDomingo" Mode="In" Type="Boolean" />
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerHorarioEmpresaXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerHorarioEmpresaXId_Result)">
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
-          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -732,29 +726,6 @@
           <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
         </ComplexType>
         <ComplexType Name="paObtenerHorarioEmpresa_Result">
-          <Property Type="Time" Name="InicioLunes" Nullable="false" />
-          <Property Type="Time" Name="FinalLunes" Nullable="false" />
-          <Property Type="Boolean" Name="EstadoLunes" Nullable="false" />
-          <Property Type="Time" Name="InicioMartes" Nullable="false" />
-          <Property Type="Time" Name="FinalMartes" Nullable="false" />
-          <Property Type="Boolean" Name="EstadoMartes" Nullable="false" />
-          <Property Type="Time" Name="InicioMiercoles" Nullable="false" />
-          <Property Type="Time" Name="FinalMiercoles" Nullable="false" />
-          <Property Type="Boolean" Name="EstadoMiercoles" Nullable="false" />
-          <Property Type="Time" Name="InicioJueves" Nullable="false" />
-          <Property Type="Time" Name="FinalJueves" Nullable="false" />
-          <Property Type="Boolean" Name="EstadoJueves" Nullable="false" />
-          <Property Type="Time" Name="InicioViernes" Nullable="false" />
-          <Property Type="Time" Name="FinalViernes" Nullable="false" />
-          <Property Type="Boolean" Name="EstadoViernes" Nullable="false" />
-          <Property Type="Time" Name="InicioSabado" Nullable="false" />
-          <Property Type="Time" Name="FinalSabado" Nullable="false" />
-          <Property Type="Boolean" Name="EstadoSabado" Nullable="false" />
-          <Property Type="Time" Name="InicioDomingo" Nullable="false" />
-          <Property Type="Time" Name="FinalDomingo" Nullable="false" />
-          <Property Type="Boolean" Name="EstadoDomingo" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="paObtenerHorarioEmpresaXId_Result">
           <Property Type="Time" Name="InicioLunes" Nullable="false" />
           <Property Type="Time" Name="FinalLunes" Nullable="false" />
           <Property Type="Boolean" Name="EstadoLunes" Nullable="false" />
@@ -1103,33 +1074,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PaInsertarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarHorarioEmpresa" />
           <FunctionImportMapping FunctionImportName="paActualizarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarHorarioEmpresa" />
-          <FunctionImportMapping FunctionImportName="paObtenerHorarioEmpresaXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerHorarioEmpresaXId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerHorarioEmpresaXId_Result">
-                <ScalarProperty Name="InicioLunes" ColumnName="InicioLunes" />
-                <ScalarProperty Name="FinalLunes" ColumnName="FinalLunes" />
-                <ScalarProperty Name="EstadoLunes" ColumnName="EstadoLunes" />
-                <ScalarProperty Name="InicioMartes" ColumnName="InicioMartes" />
-                <ScalarProperty Name="FinalMartes" ColumnName="FinalMartes" />
-                <ScalarProperty Name="EstadoMartes" ColumnName="EstadoMartes" />
-                <ScalarProperty Name="InicioMiercoles" ColumnName="InicioMiercoles" />
-                <ScalarProperty Name="FinalMiercoles" ColumnName="FinalMiercoles" />
-                <ScalarProperty Name="EstadoMiercoles" ColumnName="EstadoMiercoles" />
-                <ScalarProperty Name="InicioJueves" ColumnName="InicioJueves" />
-                <ScalarProperty Name="FinalJueves" ColumnName="FinalJueves" />
-                <ScalarProperty Name="EstadoJueves" ColumnName="EstadoJueves" />
-                <ScalarProperty Name="InicioViernes" ColumnName="InicioViernes" />
-                <ScalarProperty Name="FinalViernes" ColumnName="FinalViernes" />
-                <ScalarProperty Name="EstadoViernes" ColumnName="EstadoViernes" />
-                <ScalarProperty Name="InicioSabado" ColumnName="InicioSabado" />
-                <ScalarProperty Name="FinalSabado" ColumnName="FinalSabado" />
-                <ScalarProperty Name="EstadoSabado" ColumnName="EstadoSabado" />
-                <ScalarProperty Name="InicioDomingo" ColumnName="InicioDomingo" />
-                <ScalarProperty Name="FinalDomingo" ColumnName="FinalDomingo" />
-                <ScalarProperty Name="EstadoDomingo" ColumnName="EstadoDomingo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

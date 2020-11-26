@@ -150,11 +150,11 @@ namespace SistemaRegistroCitas.Controllers
         }
 
 
-        public JsonResult ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa)
+        public JsonResult ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
             usuario = (Usuario)Session["Usuario"];
             bool SeActualizo = false;
-            SeActualizo = LN.ActualizarHorarioEmpresa(horarioEmpresa,usuario.IdEmpresa);
+            SeActualizo = LN.ActualizarHorarioEmpresa(horarioEmpresa,usuario.IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
 
             return Json(SeActualizo, JsonRequestBehavior.AllowGet);
 

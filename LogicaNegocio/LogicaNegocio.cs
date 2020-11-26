@@ -111,9 +111,9 @@ namespace LogicaNegocio
             return AD.DesactivarActivarServicioXColaborador(Id, Estado);
         }
 
-        public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa)
+        public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
-            return AD.ActualizarHorarioEmpresa(horarioEmpresa, IdEmpresa);
+            return AD.ActualizarHorarioEmpresa(horarioEmpresa, IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
         }
 
         #endregion

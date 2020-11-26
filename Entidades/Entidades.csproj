@@ -105,9 +105,6 @@
     <Compile Include="paObtenerEmpresasXId_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="paObtenerHorarioEmpresaXId_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
     <Compile Include="paObtenerHorarioEmpresa_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
