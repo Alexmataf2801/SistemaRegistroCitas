@@ -155,18 +155,25 @@
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
           <Parameter Name="InicioLunes" Type="time" Mode="In" />
           <Parameter Name="FinalLunes" Type="time" Mode="In" />
+          <Parameter Name="EstadoLunes" Type="bit" Mode="In" />
           <Parameter Name="InicioMartes" Type="time" Mode="In" />
           <Parameter Name="FinalMartes" Type="time" Mode="In" />
+          <Parameter Name="EstadoMartes" Type="bit" Mode="In" />
           <Parameter Name="InicioMiercoles" Type="time" Mode="In" />
           <Parameter Name="FinalMiercoles" Type="time" Mode="In" />
+          <Parameter Name="EstadoMiercoles" Type="bit" Mode="In" />
           <Parameter Name="InicioJueves" Type="time" Mode="In" />
           <Parameter Name="FinalJueves" Type="time" Mode="In" />
+          <Parameter Name="EstadoJueves" Type="bit" Mode="In" />
           <Parameter Name="InicioViernes" Type="time" Mode="In" />
           <Parameter Name="FinalViernes" Type="time" Mode="In" />
+          <Parameter Name="EstadoViernes" Type="bit" Mode="In" />
           <Parameter Name="InicioSabado" Type="time" Mode="In" />
           <Parameter Name="FinalSabado" Type="time" Mode="In" />
+          <Parameter Name="EstadoSabado" Type="bit" Mode="In" />
           <Parameter Name="InicioDomingo" Type="time" Mode="In" />
           <Parameter Name="FinalDomingo" Type="time" Mode="In" />
+          <Parameter Name="EstadoDomingo" Type="bit" Mode="In" />
           <Parameter Name="RespuestaCorrecta" Type="int" Mode="InOut" />
         </Function>
         <Function Name="paInsertarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -494,24 +501,6 @@
           <FunctionImport Name="paObtenerHorarioEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerHorarioEmpresa_Result)">
           <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="PaInsertarHorarioEmpresa">
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
-            <Parameter Name="InicioLunes" Mode="In" Type="Time" />
-            <Parameter Name="FinalLunes" Mode="In" Type="Time" />
-            <Parameter Name="InicioMartes" Mode="In" Type="Time" />
-            <Parameter Name="FinalMartes" Mode="In" Type="Time" />
-            <Parameter Name="InicioMiercoles" Mode="In" Type="Time" />
-            <Parameter Name="FinalMiercoles" Mode="In" Type="Time" />
-            <Parameter Name="InicioJueves" Mode="In" Type="Time" />
-            <Parameter Name="FinalJueves" Mode="In" Type="Time" />
-            <Parameter Name="InicioViernes" Mode="In" Type="Time" />
-            <Parameter Name="FinalViernes" Mode="In" Type="Time" />
-            <Parameter Name="InicioSabado" Mode="In" Type="Time" />
-            <Parameter Name="FinalSabado" Mode="In" Type="Time" />
-            <Parameter Name="InicioDomingo" Mode="In" Type="Time" />
-            <Parameter Name="FinalDomingo" Mode="In" Type="Time" />
-            <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paActualizarHorarioEmpresa">
             <Parameter Name="InicioLunes" Mode="In" Type="Time" />
             <Parameter Name="FinalLunes" Mode="In" Type="Time" />
@@ -535,6 +524,31 @@
             <Parameter Name="FinalDomingo" Mode="In" Type="Time" />
             <Parameter Name="EstadoDomingo" Mode="In" Type="Boolean" />
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PaInsertarHorarioEmpresa">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="InicioLunes" Mode="In" Type="Time" />
+            <Parameter Name="FinalLunes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoLunes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioMartes" Mode="In" Type="Time" />
+            <Parameter Name="FinalMartes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoMartes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioMiercoles" Mode="In" Type="Time" />
+            <Parameter Name="FinalMiercoles" Mode="In" Type="Time" />
+            <Parameter Name="EstadoMiercoles" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioJueves" Mode="In" Type="Time" />
+            <Parameter Name="FinalJueves" Mode="In" Type="Time" />
+            <Parameter Name="EstadoJueves" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioViernes" Mode="In" Type="Time" />
+            <Parameter Name="FinalViernes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoViernes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioSabado" Mode="In" Type="Time" />
+            <Parameter Name="FinalSabado" Mode="In" Type="Time" />
+            <Parameter Name="EstadoSabado" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioDomingo" Mode="In" Type="Time" />
+            <Parameter Name="FinalDomingo" Mode="In" Type="Time" />
+            <Parameter Name="EstadoDomingo" Mode="In" Type="Boolean" />
+            <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
@@ -1072,8 +1086,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="PaInsertarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarHorarioEmpresa" />
           <FunctionImportMapping FunctionImportName="paActualizarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarHorarioEmpresa" />
+          <FunctionImportMapping FunctionImportName="PaInsertarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarHorarioEmpresa" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -109,13 +109,13 @@ namespace SistemaRegistroCitas.Controllers
             }
         }
 
-        public JsonResult InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa)
+        public JsonResult InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
 
         {
 
             usuario = (Usuario)Session["Usuario"];
 
-            int Respuesta = LN.InsertarHorarioEmpresa(horarioEmpresa, usuario.IdEmpresa);
+            int Respuesta = LN.InsertarHorarioEmpresa(horarioEmpresa, usuario.IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
 
             return Json(Respuesta, JsonRequestBehavior.AllowGet);
         }

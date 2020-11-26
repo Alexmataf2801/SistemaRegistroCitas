@@ -57,9 +57,16 @@
 
 
 function InsertarHorarioEmpresa() {
+    var EstadoLunes = $("#EstadoLunes").is(':checked')
+    var EstadoMartes = $("#EstadoMartes").is(':checked')
+    var EstadoMiercoles = $("#EstadoMiercoles").is(':checked')
+    var EstadoJueves = $("#EstadoJueves").is(':checked')
+    var EstadoViernes = $("#EstadoViernes").is(':checked')
+    var EstadoSabado = $("#EstadoSabado").is(':checked')
+    var EstadoDomingo = $("#EstadoDomingo").is(':checked')
     var horarioEmpresa = {
         InicioLunes: $("#InicioLunes").val(),
-        FinalLunes: $("#FinalLunes").val(),
+        FinalLunes: $("#FinalLunes").val(),     
         InicioMartes: $("#InicioMartes").val(),
         FinalMartes: $("#FinalMartes").val(),
         InicioMiercoles: $("#InicioMiercoles").val(),
@@ -79,7 +86,7 @@ function InsertarHorarioEmpresa() {
         type: "POST",
         dataType: "JSON",
         url: "/InicioEmpresas/InsertarHorarioEmpresa/",
-        data: { horarioEmpresa },
+        data: { horarioEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo },
         success: function (Info) {
 
             switch (Info) {

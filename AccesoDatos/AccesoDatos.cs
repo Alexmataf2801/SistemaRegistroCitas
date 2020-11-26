@@ -388,16 +388,17 @@ namespace AccesoDatos
             return Correcto;
         }
 
-        public int InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa)
+        public int InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
             ObjectParameter RespuestaCorrecta;
             int Respuesta = 0;
             try
             {
                 RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
-                entities.PaInsertarHorarioEmpresa(IdEmpresa, horarioEmpresa.InicioLunes,horarioEmpresa.FinalLunes,horarioEmpresa.InicioMartes,horarioEmpresa.FinalMartes,
-                   horarioEmpresa.InicioMiercoles,horarioEmpresa.FinalMiercoles,horarioEmpresa.InicioJueves,horarioEmpresa.FinalJueves,horarioEmpresa.InicioViernes,horarioEmpresa.FinalViernes,
-                   horarioEmpresa.InicioSabado,horarioEmpresa.FinalSabado,horarioEmpresa.InicioDomingo,horarioEmpresa.FinalDomingo,RespuestaCorrecta);
+                entities.PaInsertarHorarioEmpresa(IdEmpresa, horarioEmpresa.InicioLunes,horarioEmpresa.FinalLunes,EstadoLunes,horarioEmpresa.InicioMartes,horarioEmpresa.FinalMartes,EstadoMartes,
+                   horarioEmpresa.InicioMiercoles,horarioEmpresa.FinalMiercoles,EstadoMiercoles,horarioEmpresa.InicioJueves,horarioEmpresa.FinalJueves,EstadoJueves,
+                   horarioEmpresa.InicioViernes,horarioEmpresa.FinalViernes,EstadoViernes,horarioEmpresa.InicioSabado,horarioEmpresa.FinalSabado,EstadoSabado,
+                   horarioEmpresa.InicioDomingo,horarioEmpresa.FinalDomingo,EstadoDomingo,RespuestaCorrecta);
                 Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
             }
             catch (Exception ex)

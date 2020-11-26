@@ -31,7 +31,7 @@
         data: { horarioEmpresa: HorarioEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo },
         success: function (Info) {
             if (Info) {
-                $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
+                $("#lblMensajeCorrecto").html("<label>¡Horarios Actualizados Correctamente!</label>");
                 $("#lblTituloCorrecto").html("<label>Información</label>");
                 $('#MsjCorrecto').modal('show');               
             }

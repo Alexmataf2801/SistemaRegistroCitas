@@ -60,9 +60,9 @@ namespace LogicaNegocio
             return AD.InsertarUnidadMedida(unidadMedida);
         }
 
-        public int InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa)
+        public int InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
-            return AD.InsertarHorarioEmpresa(horarioEmpresa, IdEmpresa);
+            return AD.InsertarHorarioEmpresa(horarioEmpresa, IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves,EstadoViernes,EstadoSabado,EstadoDomingo);
         }
 
         #endregion
