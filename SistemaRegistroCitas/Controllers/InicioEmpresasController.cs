@@ -58,8 +58,8 @@ namespace SistemaRegistroCitas.Controllers
             {
                 if (usuario.IdRol == 4)
                 {
-                    var IdEmpresa = Request.UrlReferrer.ToString().Split('=')[1];
-                    EmpresaUsuario = Convert.ToInt32(IdEmpresa);
+                    //var IdEmpresa = Request.UrlReferrer.ToString().Split('=')[1];
+                    EmpresaUsuario = Convert.ToInt32(usuario.IdEmpresa);
 
                 }
                 else

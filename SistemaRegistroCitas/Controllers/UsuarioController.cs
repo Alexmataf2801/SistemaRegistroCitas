@@ -35,6 +35,7 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult Loguear(Login login, int IdEmpresa)
         {
             Usuario usuario = LN.Validarlogin(login, IdEmpresa);
+            usuario.IdEmpresa = IdEmpresa;
             Session["Usuario"] = usuario;
             ArmarMenu(usuario.Id);
             //Session["EmpresaSeleccionada"] = IdEmpresa;
