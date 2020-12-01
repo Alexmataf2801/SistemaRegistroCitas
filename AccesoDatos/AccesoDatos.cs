@@ -19,10 +19,12 @@ namespace AccesoDatos
             Utilidades utilidades = new Utilidades();
             ObjectParameter IdUsuario;
             ObjectParameter Respuesta;
+            
             try
             {
                 IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
                 Respuesta = new ObjectParameter("Respuesta", typeof(int));
+             
                 var info = entities.paInsertarUsuario(usuario.Nombre,
                                                       usuario.PrimerApellido,
                                                       usuario.SegundoApellido,
@@ -33,6 +35,8 @@ namespace AccesoDatos
                                                       usuario.IdRol,
                                                       IdUsuario,
                                                       Respuesta);
+
+                
 
                 if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
                 {
@@ -127,12 +131,12 @@ namespace AccesoDatos
             return Respuesta;
         }
 
-        public bool InsertarDatosServicios(Servicio servicio)
+        public bool InsertarDatosServicios(Servicio servicio, int IdEmpresa)
         {
             bool Respuesta = true;
             try
             {
-                entities.PaInsertarDatosServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad, servicio.Estado, servicio.UsuarioCreacion);
+                entities.PaInsertarServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad,servicio.UsuarioCreacion,IdEmpresa);
                 Respuesta = true;
             }
             catch (Exception ex)
@@ -142,6 +146,25 @@ namespace AccesoDatos
 
             return Respuesta;
         }
+
+        public int AsignarServiciosXColaborador(Usuario UsuarioXServicio)
+        {
+            ObjectParameter RespuestaCorrecta;
+           
+            int Respuesta = 0;
+            try
+            {
+                RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
+                entities.PaAsignarServiciosXColaborador(UsuarioXServicio.Id,UsuarioXServicio.IdServicio,RespuestaCorrecta);
+                Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                Respuesta = 3;
+            }
+            return Respuesta;
+        }
+
 
         public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
         {
@@ -159,13 +182,13 @@ namespace AccesoDatos
             return Respuesta;
         }
 
-        public List<Usuario> ObtenerColaboradoresActivos()
+        public List<Usuario> ObtenerColaboradoresActivos(int IdEmpresa)
         {
             List<Usuario> ListaColaboradores = new List<Usuario>();
 
             try
             {
-                var info = entities.PaObtenerColaboradoresActivos();
+                var info = entities.PaObtenerColaboradoresActivos(IdEmpresa);
 
                 foreach (var item in info)
                 {
@@ -271,10 +294,12 @@ namespace AccesoDatos
             Utilidades utilidades = new Utilidades();
             ObjectParameter IdUsuario;
             ObjectParameter Respuesta;
+            ObjectParameter RespuestaUsuarioXEmpresa;
             try
             {
                 IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
                 Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                RespuestaUsuarioXEmpresa = new ObjectParameter("RespuestaUsuarioXEmpresa", typeof(int));
                 var info = entities.PaInsertarDatosColaborador(usuario.Nombre,
                                                       usuario.PrimerApellido,
                                                       usuario.SegundoApellido,
@@ -286,11 +311,20 @@ namespace AccesoDatos
                                                       IdUsuario,
                                                       Respuesta);
 
+              
+
                 if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
                 {
                     switch (Respuesta.Value.ToString())
                     {
                         case "1":
+
+                        var infoUsuarioXEmpresa = entities.PaInsertarUsuarioXEmpresa(
+                                                    Convert.ToInt32(IdUsuario.Value.ToString()),
+                                                     usuario.IdRol,
+                                                     usuario.IdEmpresa,
+                                                     RespuestaUsuarioXEmpresa);
+
                             Login login = new Login();
                             login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
                             login.CorreoElectronico = usuario.CorreoElectronico;
@@ -353,6 +387,31 @@ namespace AccesoDatos
 
             return Correcto;
         }
+
+        public int InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
+        {
+            ObjectParameter RespuestaCorrecta;
+            int Respuesta = 0;
+            try
+            {
+                RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
+                entities.PaInsertarHorarioEmpresa(IdEmpresa, horarioEmpresa.InicioLunes,horarioEmpresa.FinalLunes,EstadoLunes,horarioEmpresa.InicioMartes,horarioEmpresa.FinalMartes,EstadoMartes,
+                   horarioEmpresa.InicioMiercoles,horarioEmpresa.FinalMiercoles,EstadoMiercoles,horarioEmpresa.InicioJueves,horarioEmpresa.FinalJueves,EstadoJueves,
+                   horarioEmpresa.InicioViernes,horarioEmpresa.FinalViernes,EstadoViernes,horarioEmpresa.InicioSabado,horarioEmpresa.FinalSabado,EstadoSabado,
+                   horarioEmpresa.InicioDomingo,horarioEmpresa.FinalDomingo,EstadoDomingo,RespuestaCorrecta);
+                Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                Respuesta = 2;
+
+            }
+
+            return Respuesta;
+                        
+
+        }
+
 
         #endregion
 
@@ -432,9 +491,10 @@ namespace AccesoDatos
         public bool ActualizarColaboradores(Usuario usuario)
         {
             bool Correcto = false;
-
+           
             try
             {
+                
                 entities.paActualizarColaboradores(usuario.Id, usuario.Identificacion, usuario.Nombre, usuario.PrimerApellido, usuario.SegundoApellido, usuario.CorreoElectronico, usuario.Telefono,
                     usuario.Genero, usuario.IdRol, usuario.UsuarioUltimaModificacion);
                 Correcto = true;
@@ -479,6 +539,45 @@ namespace AccesoDatos
 
             return SeActualizo;
         }
+
+        public bool DesactivarActivarServicioXColaborador(int Id, bool Estado)
+        {
+            bool SeActualizo = false;
+
+            try
+            {
+                entities.paDesactivarActivarServicioXColaborador(Id, Estado);
+                SeActualizo = true;
+            }
+            catch (Exception ex)
+            {
+                SeActualizo = false;
+            }
+
+            return SeActualizo;
+        }
+
+       public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
+        {
+            bool Correcto = false;
+            try
+            {
+                entities.paActualizarHorarioEmpresa(horarioEmpresa.InicioLunes, horarioEmpresa.FinalLunes, EstadoLunes, horarioEmpresa.InicioMartes, horarioEmpresa.FinalMartes,EstadoMartes,
+                    horarioEmpresa.InicioMiercoles, horarioEmpresa.FinalMiercoles,EstadoMiercoles, horarioEmpresa.InicioJueves, horarioEmpresa.FinalJueves,EstadoJueves,
+                    horarioEmpresa.InicioViernes, horarioEmpresa.FinalViernes, EstadoViernes, horarioEmpresa.InicioSabado, horarioEmpresa.FinalSabado,EstadoSabado,
+                    horarioEmpresa.InicioDomingo, horarioEmpresa.FinalDomingo, EstadoDomingo, IdEmpresa);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+            return Correcto;
+
+        }
+
 
         #endregion
 
@@ -551,6 +650,23 @@ namespace AccesoDatos
             return SeElimino;
         }
 
+        public bool EliminarServiciosXColaborador(int Id)
+        {
+            bool SeElimino = false;
+
+            try
+            {
+                entities.paEliminarServiciosXColaborador(Id);
+                SeElimino = true;
+            }
+            catch (Exception)
+            {
+                SeElimino = false;
+            }
+
+            return SeElimino;
+        }
+
 
         #endregion
 
@@ -589,7 +705,7 @@ namespace AccesoDatos
 
         }
 
-        public Usuario Validarlogin(Login login)
+        public Usuario Validarlogin(Login login, int IdEmpresa)
         {
 
             bool respuesta = false;
@@ -599,7 +715,7 @@ namespace AccesoDatos
             try
             {
                 EsCorrecto = new ObjectParameter("EsCorrecto", typeof(bool));
-                entities.paValidarLogin(login.CorreoElectronico, login.Contrasena, EsCorrecto);
+                entities.paValidarLogin(login.CorreoElectronico, login.Contrasena, IdEmpresa, EsCorrecto);
                 respuesta = Convert.ToBoolean(EsCorrecto.Value.ToString());
 
                 if (respuesta)
@@ -628,7 +744,7 @@ namespace AccesoDatos
 
                 foreach (var item in Info)
                 {
-
+                    
                     usuario.Id = item.Id;
                     usuario.Nombre = item.Nombre;
                     usuario.PrimerApellido = item.PrimerApellido;
@@ -638,6 +754,14 @@ namespace AccesoDatos
                     usuario.Telefono = item.Telefono;
                     usuario.Genero = item.Genero;
                     usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;
+                    usuario.IdRol = item.IdRol;
+
+                    if (item.IdRol != 4) {
+
+                        usuario.IdEmpresa = item.IdEmpresa;
+                    }
+
+                    
 
                 }
 
@@ -813,12 +937,12 @@ namespace AccesoDatos
             return roles;
         }
 
-        public List<Servicio> ObtenerTodosLosServicios()
+        public List<Servicio> ObtenerTodosLosServicios(int IdEmpresa)
         {
             List<Servicio> ListaServicios = new List<Servicio>();
             try
             {
-                var info = entities.paObtenerTodosLosServicios();
+                var info = entities.paObtenerTodosLosServicios(IdEmpresa);
 
                 foreach (var item in info)
                 {
@@ -847,12 +971,12 @@ namespace AccesoDatos
             return ListaServicios;
         }
 
-        public List<Usuario> ObtenerTodosLosColaboradores()
+        public List<Usuario> ObtenerTodosLosColaboradores(int IdEmpresa)
         {
                List<Usuario> ListaColaboradores = new List<Usuario>();
             try
             {
-                var info = entities.paObtenerTodosLosColaboradores();
+                var info = entities.paObtenerTodosLosColaboradores(IdEmpresa);
 
                 foreach(var item in info)
                 {
@@ -1021,6 +1145,183 @@ namespace AccesoDatos
             return ListaEmpresa;
 
         }
+
+        public Empresa paObtenerEmpresasXId(int Id)
+        {
+            Empresa empresa = new Empresa();
+
+            try
+            {
+                var info = entities.paObtenerEmpresasXId(Id);
+
+                foreach (var item in info)
+                {
+                    empresa.Id = item.Id;
+                    empresa.Nombre = item.Nombre;
+                    empresa.Telefono = item.Telefono;
+                    empresa.Logo = item.Logo;
+                    empresa.CorreElectronico = item.CorreoElectronico;
+                    empresa.Direccion = item.Direccion;
+                    empresa.UsuarioCreacion = item.UsuarioCreacion;
+                    empresa.FechaCreacion = item.FechaCreacion;
+                    empresa.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    empresa.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return empresa;
+        }
+
+
+        public List<Usuario> ObtenerServiciosXColaborador(int IdEmpresa)
+        {
+            List<Usuario> ListaServiciosXColaborador = new List<Usuario>();
+
+            try
+            {
+                var info = entities.paObtenerServiciosXColaborador(IdEmpresa);
+
+                foreach (var item in info)
+                {
+                    Usuario usuario = new Usuario();
+
+                    usuario.IdServicioXColaborador = item.Id;
+                    usuario.Id = item.IdColaborador;
+                    usuario.IdServicio = item.IdServicio;
+                    usuario.Estado = item.Estado;
+                    usuario.Nombre = item.Nombre;
+                    usuario.NombreServicio = item.NombreServicio;
+
+                    ListaServiciosXColaborador.Add(usuario);
+
+                }
+            }
+
+            catch(Exception ex)
+            {
+
+            }
+            return ListaServiciosXColaborador;
+
+        }
+      
+        public List<Usuario> ObtenerServiciosXColaboradorXId(int IdColaborador)
+        {
+            
+            List<Usuario> ListaServiciosXColaboradorXId = new List<Usuario>();
+
+            try
+            {
+                var info = entities.paObtenerServiciosXColaboradorXId(IdColaborador);
+
+                foreach (var item in info)
+                {
+                    Usuario usuario = new Usuario();
+
+                    usuario.Id = item.IdColaborador;
+                    usuario.IdServicio = item.IdServicio;
+                    usuario.NombreServicio = item.NombreServicio;
+
+                    ListaServiciosXColaboradorXId.Add(usuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return ListaServiciosXColaboradorXId;
+        }
+
+        public int ValidarCorreoElectronico(int Id, string CorreoElectronico)
+        {
+            int valor = 0;
+            ObjectParameter Respuesta;
+            
+           
+            try
+            {
+                Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                entities.PaValidarCorreoElectronico(Id, CorreoElectronico, Respuesta);
+                         
+
+                valor = Convert.ToInt32(Respuesta.Value.ToString());
+              
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return valor;
+        }
+
+        public HorarioEmpresa ObtenerHorarioEmpresa(int IdEmpresa)
+           
+        {
+            HorarioEmpresa HorarioEmpresa = new HorarioEmpresa();
+
+            try
+            {
+
+                var info = entities.paObtenerHorarioEmpresa(IdEmpresa);
+
+                foreach (var item in info)
+                {
+                    
+                    HorarioEmpresa.InicioLunes = item.InicioLunes;
+                    HorarioEmpresa.FinalLunes = item.FinalLunes;
+                    HorarioEmpresa.EstadoLunes = item.EstadoLunes;
+
+                    HorarioEmpresa.InicioMartes = item.InicioMartes;
+                    HorarioEmpresa.FinalMartes = item.FinalMartes;
+                    HorarioEmpresa.EstadoMartes = item.EstadoMartes;
+
+                    HorarioEmpresa.InicioMiercoles = item.InicioMiercoles;
+                    HorarioEmpresa.FinalMiercoles = item.FinalMiercoles;
+                    HorarioEmpresa.EstadoMiercoles = item.EstadoMiercoles;
+
+                    HorarioEmpresa.InicioJueves = item.InicioJueves;
+                    HorarioEmpresa.FinalJueves = item.FinalJueves;
+                    HorarioEmpresa.EstadoJueves = item.EstadoJueves;
+
+                    HorarioEmpresa.InicioViernes = item.InicioViernes;
+                    HorarioEmpresa.FinalViernes = item.FinalViernes;
+                    HorarioEmpresa.EstadoViernes = item.EstadoViernes;
+
+                    HorarioEmpresa.InicioSabado = item.InicioSabado;
+                    HorarioEmpresa.FinalSabado = item.FinalSabado;
+                    HorarioEmpresa.EstadoSabado = item.EstadoSabado;
+
+                    HorarioEmpresa.InicioDomingo = item.InicioDomingo;
+                    HorarioEmpresa.FinalDomingo= item.FinalDomingo;
+                    HorarioEmpresa.EstadoDomingo = item.EstadoDomingo;
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return HorarioEmpresa;
+
+        }
+
+
+      
+
+
+
+
+
 
         #endregion
 

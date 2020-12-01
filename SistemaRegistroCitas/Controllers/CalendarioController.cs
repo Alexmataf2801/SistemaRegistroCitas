@@ -20,8 +20,9 @@ namespace SistemaRegistroCitas.Controllers
         // GET: Calendario
         public ActionResult Calendario()
         {
+
             usuario  = (Usuario)Session["Usuario"];
-           
+
 
             if (usuario != null) {
                 Menu = usuarioControllador.ArmarMenu(usuario.Id);

@@ -1,5 +1,10 @@
 ﻿@charset "UTF-8";
 
+
+/*Quita lo que dice todo el dia*/
+.fc-day-grid {
+    display: none
+}
 .fc-button:not(:disabled), .fc-event.fc-draggable, .fc-event[href], .fc-popover .fc-header .fc-close, a.fc-more, a[data-goto] {
     cursor: pointer
 }
@@ -738,7 +743,25 @@ a.fc-more {
 @media screen and (max-width: 500px) {
     .fc-toolbar {
         display: block;
-         justify-content: space-between;
-    align-items: center
+        justify-content: space-between;
+        align-items: center;
+        /*ajusta el tamaño de las fechas y lista de mes,semana,dia y agenda*/
+        font-size: 12px;
     }
+
+    body .fc{
+        font-size: 13px;
+    }
+  
+   
+}
+
+@media screen and (max-width: 2000px) {
+  
+    /*ajusta el tamaño de  de ver las horas*/
+    .fc-day-grid-container, .fc-scroller, .fc-time-grid-container {
+      
+        height: auto !important
+    }
+    
 }

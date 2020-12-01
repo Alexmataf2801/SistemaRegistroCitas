@@ -44,12 +44,21 @@
                         <select class="form-control" id="Servicios">
                             <option value="0">Seleccione uno...</option>
                             @*<option value="01">Servicio 1</option>
-                                <option value="02">Servicio 2</option>
-                                <option value="03">Servicio 3</option>
-                                <option value="04">Servicio 4</option>
-                                <option value="05">Servicio 5</option>
-                                <option value="06">Servicio 6</option>*@
+                    <option value="02">Servicio 2</option>
+                    <option value="03">Servicio 3</option>
+                    <option value="04">Servicio 4</option>
+                    <option value="05">Servicio 5</option>
+                    <option value="06">Servicio 6</option>*@
                         </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label>Descripcion</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <textarea readonly type="text" class="form-control" rows="6" style="border-radius:4px; max-height:300px; min-height: 80px; max-width: 100%; min-width: 100%;" id="txtDescripcionServicio"></textarea>
                     </div>
                 </div>
 
@@ -69,6 +78,7 @@
                     <div class="form-group col-md-5">
                         <input class="form-control" readonly type="text" id="txtHorario" />
                         <input class="form-control" readonly type="hidden" id="txtHorarioOculta" />
+                        <input class="form-control" readonly type="hidden" id="txtColaboradorOculto" />
                     </div>
                 </div>
 

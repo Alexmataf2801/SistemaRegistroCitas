@@ -27,5 +27,28 @@ namespace SistemaRegistroCitas.Controllers
 
             return Json(empresas, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult ObtenerHorarioEmpresa()
+        {
+            HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
+
+            Usuario usu = (Usuario)Session["Usuario"];
+
+            horarioEmpresa = LN.ObtenerHorarioEmpresa(usu.IdEmpresa);
+
+            return Json(horarioEmpresa, JsonRequestBehavior.AllowGet);
+        }
+
+        //public ActionResult ObtenerHorarioEmpresa()
+        //{
+        //    HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
+
+        //    Usuario usu = (Usuario)Session["Usuario"];
+
+        //    horarioEmpresa = LN.ObtenerHorarioEmpresa(usu.IdEmpresa);
+
+        //    return View("InicioEmpresas", horarioEmpresa);
+        //}
+
     }
 }

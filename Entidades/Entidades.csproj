@@ -72,6 +72,7 @@
     <Compile Include="ClasesEntidades\DiasLibresColaboradores.cs" />
     <Compile Include="ClasesEntidades\Empresa.cs" />
     <Compile Include="ClasesEntidades\Evento.cs" />
+    <Compile Include="ClasesEntidades\HorarioEmpresa.cs" />
     <Compile Include="ClasesEntidades\Login.cs" />
     <Compile Include="ClasesEntidades\Menu.cs" />
     <Compile Include="ClasesEntidades\MenuXUsuario.cs" />
@@ -101,6 +102,12 @@
     <Compile Include="paObtenerColaboradoresXId_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerEmpresasXId_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerHorarioEmpresa_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerMenuGeneral_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -120,6 +127,12 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerServiciosActivos_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerServiciosXColaboradorXId_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="paObtenerServiciosXColaborador_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="paObtenerServicioXId_Result.cs">

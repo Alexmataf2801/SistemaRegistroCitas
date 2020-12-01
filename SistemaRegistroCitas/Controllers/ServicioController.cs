@@ -41,7 +41,14 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult ObtenerTodosLosServicios()
         {
             List<Servicio> servicios = new List<Servicio>();
-            servicios = LN.ObtenerTodosLosServicios();
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+                
+                servicios = LN.ObtenerTodosLosServicios(usuario.IdEmpresa);
+            }
+                       
 
             return Json(servicios, JsonRequestBehavior.AllowGet);
         }
@@ -51,7 +58,7 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult InsertarServicios()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
             if (usuario != null)
             {
@@ -77,10 +84,11 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult InsertarDatosServicios(Servicio servicio)
         {
+            usuario = (Usuario)Session["Usuario"];
+            servicio.UsuarioCreacion = usuario.NombreCompleto;
+            bool Respuesta = LN.InsertarDatosServicios(servicio,usuario.IdEmpresa);
 
-            LN.InsertarDatosServicios(servicio);
-
-            return Json(servicio, JsonRequestBehavior.AllowGet);
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
