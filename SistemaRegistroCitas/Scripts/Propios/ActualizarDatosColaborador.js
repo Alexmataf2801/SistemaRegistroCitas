@@ -12,6 +12,15 @@
         IdRol: $("#ddlRol").val()
 
     };
+
+    if ($("#txtCorreoElectronicoColaborador").val() === "" ||
+        $("#txtNombreColaborador").val() === "" ||
+        $("#txtPrimerApellidoColaborador").val() === "") {
+        $("#msjModalIncorrecto").html("<label>¡Falta complementar datos importantes!</label>");
+        $('#MsjIncorrecto').modal('show');
+    }
+    else {
+   
     $.ajax({
         type: "POST",
         datatype: "JSON",
@@ -23,6 +32,10 @@
                 $('#ModalCorrectoActColaborador').modal('show');
                 LimpiarCampos();
             }
+            else {
+                $("#msjModalIncorrecto").html("<label>¡Algo fallo al actualizar el Colaborador!</label>");
+                $('#MsjIncorrecto').modal('show');
+            }
         },
         error: function (Error) {
             $("#msjModalIncorrecto").html("<label>¡Algo fallo al actualizar el Colaborador!</label>");
@@ -31,6 +44,7 @@
 
     });
 
+    }
 }
 
 

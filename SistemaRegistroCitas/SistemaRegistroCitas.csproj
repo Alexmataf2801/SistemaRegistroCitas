@@ -133,6 +133,7 @@
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InicioEmpresasController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
@@ -162,7 +163,9 @@
     <Content Include="Estilos\fullcalendar-daygrid\main.min.css" />
     <Content Include="Estilos\fullcalendar-timegrid\main.min.css" />
     <Content Include="Estilos\fullcalendar\main.min.css" />
+    <Content Include="Estilos\jquery-ui.css" />
     <Content Include="Estilos\TablasMantenimientos.css" />
+    <Content Include="Estilos\tpicker.css" />
     <Content Include="Estilos\typeahead.css" />
     <Content Include="Estilos\_all-skins.min.css" />
     <Content Include="favicon.ico" />
@@ -251,12 +254,15 @@
     <Content Include="Js\fullcalendar\locales\zh-cn.js" />
     <Content Include="Js\fullcalendar\locales\zh-tw.js" />
     <Content Include="Js\fullcalendar\main.min.js" />
+    <Content Include="Js\jquery-1.12.4.js" />
+    <Content Include="Js\jquery-ui.js" />
     <Content Include="Js\jquery.min.js" />
     <Content Include="Js\Login\bootstrap.min.js" />
     <Content Include="Js\Login\jquery-3.4.1.min.js" />
     <Content Include="Js\Login\popper.min.js" />
     <Content Include="Js\moment\moment.min.js" />
     <Content Include="Js\PruebaArbol.js" />
+    <Content Include="Js\tpicker.js" />
     <Content Include="Scripts\bloodhound.js" />
     <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -284,18 +290,23 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Propios\ActualizarDatosColaborador.js" />
     <Content Include="Scripts\Propios\ActualizarDatosServicios.js" />
+    <Content Include="Scripts\Propios\ActualizarHorarioEmpresa.js" />
     <Content Include="Scripts\Propios\Administracion.js" />
+    <Content Include="Scripts\Propios\AsignarServiciosColaborador.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
     <Content Include="Scripts\Propios\Empresa.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
+    <Content Include="Scripts\Propios\InicioEmpresas.js" />
     <Content Include="Scripts\Propios\ListaColaboradores.js" />
     <Content Include="Scripts\Propios\ListaDiaLibreColaboradores.js" />
     <Content Include="Scripts\Propios\ListaServicios.js" />
+    <Content Include="Scripts\Propios\ListaServiciosXColaborador.js" />
     <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
     <Content Include="Scripts\Propios\Roles\Roles.js" />
     <Content Include="Scripts\Propios\Roles\ListaRoles.js" />
     <Content Include="Scripts\Propios\Servicio.js" />
     <Content Include="Scripts\Propios\Usuario.js" />
+    <Content Include="Scripts\Propios\ValidarCorreoElectronico.js" />
     <Content Include="Scripts\typeahead.bundle.js" />
     <Content Include="Scripts\typeahead.bundle.min.js" />
     <Content Include="Scripts\typeahead.jquery.js" />
@@ -327,9 +338,15 @@
     <Content Include="Views\Usuario\ListaColaboradores.cshtml" />
     <Content Include="Views\Usuario\ActualizarColaboradores.cshtml" />
     <Content Include="Views\Usuario\DiasLibresColaboradores.cshtml" />
+    <Content Include="Views\InicioEmpresas\InicioEmpresas.cshtml" />
+    <Content Include="Views\Usuario\AsignarServiciosColaborador.cshtml" />
+    <Content Include="Views\Usuario\ListaServiciosXColaborador.cshtml" />
+    <Content Include="Views\InicioEmpresas\InsertarHorarioEmpresa.cshtml" />
+    <Content Include="Views\InicioEmpresas\ActualizarHorarioEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cerrar\" />
     <Folder Include="Views\Empresa\" />
     <Folder Include="Views\Evento\" />
     <Folder Include="Views\ServicioTiempo\" />

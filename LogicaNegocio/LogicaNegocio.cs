@@ -33,9 +33,14 @@ namespace LogicaNegocio
             return AD.InsertarRoles(roles);
         }
 
-        public bool InsertarDatosServicios(Servicio servicio)
+        public bool InsertarDatosServicios(Servicio servicio, int IdEmpresa)
         {
-            return AD.InsertarDatosServicios(servicio);
+            return AD.InsertarDatosServicios(servicio, IdEmpresa);
+        }
+
+        public int AsignarServiciosXColaborador(Usuario UsuarioXServicio)
+        {
+            return AD.AsignarServiciosXColaborador(UsuarioXServicio);
         }
 
         public void InsertarDatosColaborador(Usuario usuario, ref int Resp)
@@ -53,6 +58,11 @@ namespace LogicaNegocio
         public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
         {
             return AD.InsertarUnidadMedida(unidadMedida);
+        }
+
+        public int InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
+        {
+            return AD.InsertarHorarioEmpresa(horarioEmpresa, IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves,EstadoViernes,EstadoSabado,EstadoDomingo);
         }
 
         #endregion
@@ -96,6 +106,16 @@ namespace LogicaNegocio
             return AD.DesactivarActivarDiasLibres(Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo, IdColaborador);
         }
 
+        public bool DesactivarActivarServicioXColaborador(int Id, bool Estado)
+        {
+            return AD.DesactivarActivarServicioXColaborador(Id, Estado);
+        }
+
+        public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
+        {
+            return AD.ActualizarHorarioEmpresa(horarioEmpresa, IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
+        }
+
         #endregion
 
 
@@ -116,6 +136,11 @@ namespace LogicaNegocio
             return AD.EliminarColaboradores(Id);
         }
 
+        public bool EliminarServiciosXColaborador(int Id)
+        {
+            return AD.EliminarServiciosXColaborador(Id);
+        }
+
         #endregion
 
 
@@ -125,9 +150,9 @@ namespace LogicaNegocio
             return AD.ObtenerServicios();
         }
 
-        public Usuario Validarlogin(Login login)
+        public Usuario Validarlogin(Login login, int IdEmpresa)
         {
-            return AD.Validarlogin(login);
+            return AD.Validarlogin(login, IdEmpresa);
         }
 
         public Servicio ServicioXId(int IdServicio)
@@ -145,9 +170,9 @@ namespace LogicaNegocio
             return AD.ObtenerMenuGeneral();
         }
 
-        public List<Usuario> ObtenerColaboradoresActivos()
+        public List<Usuario> ObtenerColaboradoresActivos(int IdEmpresa)
         {
-            return AD.ObtenerColaboradoresActivos();
+            return AD.ObtenerColaboradoresActivos(IdEmpresa);
         }
 
         public List<Usuario> ObtenerTodosUsuarios()
@@ -170,14 +195,14 @@ namespace LogicaNegocio
             return AD.ObtenerRolXId(IdRol);
         }
 
-        public List<Servicio> ObtenerTodosLosServicios()
+        public List<Servicio> ObtenerTodosLosServicios(int IdEmpresa)
         {
-            return AD.ObtenerTodosLosServicios();
+            return AD.ObtenerTodosLosServicios(IdEmpresa);
         }
 
-        public List<Usuario> ObtenerTodosLosColaboradores()
+        public List<Usuario> ObtenerTodosLosColaboradores(int IdEmpresa)
         {
-            return AD.ObtenerTodosLosColaboradores();
+            return AD.ObtenerTodosLosColaboradores(IdEmpresa);
         }
 
         public Usuario ObtenerColaboradoresXId (int Id)
@@ -199,6 +224,32 @@ namespace LogicaNegocio
         {
             return AD.ObtenerNombresEmpresasActivas();
         }
+
+        public Empresa paObtenerEmpresasXId(int Id)
+        {
+            return AD.paObtenerEmpresasXId(Id);
+        }
+
+        public List<Usuario> ObtenerServiciosXColaborador(int IdEmpresa)
+        {
+            return AD.ObtenerServiciosXColaborador(IdEmpresa);
+        }
+
+        public List<Usuario> ObtenerServiciosXColaboradorXId(int IdColaborador)
+        {
+            return AD.ObtenerServiciosXColaboradorXId(IdColaborador);
+        }
+
+        public int ValidarCorreoElectronico(int Id, string CorreoElectronico)
+        {
+            return AD.ValidarCorreoElectronico(Id, CorreoElectronico);
+        }
+        public HorarioEmpresa ObtenerHorarioEmpresa(int IdEmpresa)
+        {
+            return AD.ObtenerHorarioEmpresa(IdEmpresa);
+        }
+
+       
 
 
         #endregion

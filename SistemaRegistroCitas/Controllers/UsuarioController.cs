@@ -15,7 +15,7 @@ namespace SistemaRegistroCitas.Controllers
         Usuario usuario = new Usuario();
         string Menu = string.Empty;
         LogicaNegocio.LogicaNegocio LN = new LogicaNegocio.LogicaNegocio();
-       
+
 
 
         // GET: Usuario
@@ -32,12 +32,21 @@ namespace SistemaRegistroCitas.Controllers
             return Json(Resp, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Loguear(Login login)
+        public JsonResult Loguear(Login login, int IdEmpresa)
         {
-            Usuario usuario = LN.Validarlogin(login);
+            Usuario usuario = LN.Validarlogin(login, IdEmpresa);
+            usuario.IdEmpresa = IdEmpresa;
             Session["Usuario"] = usuario;
             ArmarMenu(usuario.Id);
-            return Json(usuario,JsonRequestBehavior.AllowGet);
+            //Session["EmpresaSeleccionada"] = IdEmpresa;
+            //CargarConfiguracionesEmpresa(IdEmpresa);
+            return Json(usuario, JsonRequestBehavior.AllowGet);
+        }
+
+        public void CargarConfiguracionesEmpresa(int IdEmpresa) {
+            //ColaboradoresEmpresa(IdEmpresa); // Carga Colaboradores empresa en el combo
+            //ObtenerCalendarioEmpresa(IdEmpresa); // Nos carga todos los eventos de la empresa en el calendario
+
         }
 
         public List<Menu> ObtenerMenuUsuario(int IdUsuario)
@@ -200,6 +209,8 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult InsertarDatosColaborador(Usuario usuario)
         {
             int Resp = 0;
+            Usuario usu = (Usuario)Session["Usuario"];
+            usuario.IdEmpresa = usu.IdEmpresa;
             LN.InsertarDatosColaborador(usuario, ref Resp);
 
             return Json(Resp, JsonRequestBehavior.AllowGet);
@@ -209,7 +220,15 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult ObtenerColaboradoresActivos()
         {
             List<Usuario> usuarios = new List<Usuario>();
-            usuarios = LN.ObtenerColaboradoresActivos();
+
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+               
+                usuarios = LN.ObtenerColaboradoresActivos(usuario.IdEmpresa);
+
+            }            
 
             return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
@@ -255,8 +274,16 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult ObtenerTodosLosColaboradores()
         {
             List<Usuario> usuarios = new List<Usuario>();
-            usuarios = LN.ObtenerTodosLosColaboradores();
+            
+            usuario = (Usuario)Session["Usuario"];
 
+           if(usuario != null)
+            {
+                usuarios = LN.ObtenerTodosLosColaboradores(usuario.IdEmpresa);
+ 
+            }
+
+                  
             return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
 
@@ -357,6 +384,130 @@ namespace SistemaRegistroCitas.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
+        }
+
+        public ActionResult CerrarSession()
+        {
+            Session["Usuario"] = null;
+            return RedirectToAction("Login", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult AsignarServiciosColaborador()
+        {
+            usuario = (Usuario)Session["Usuario"];
+
+
+            if (usuario != null)
+            {
+                Menu = ArmarMenu(usuario.Id);
+
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+        public JsonResult AsignarServiciosXColaborador(Usuario UsuarioXServicio)
+
+        {
+            
+            int Respuesta = LN.AsignarServiciosXColaborador(UsuarioXServicio);
+
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ListaServiciosXColaborador()
+        {
+            usuario = (Usuario)Session["Usuario"];
+
+
+            if (usuario != null)
+            {
+                Menu = ArmarMenu(usuario.Id);
+
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+        public JsonResult ObtenerServiciosXColaborador()
+        {
+            List<Usuario> ServiciosXColaborador = new List<Usuario>();
+
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {                
+                ServiciosXColaborador = LN.ObtenerServiciosXColaborador(usuario.IdEmpresa);
+            }
+            
+
+            return Json(ServiciosXColaborador, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EliminarServiciosXColaborador(int Id)
+        {
+            bool SeElimino = false;
+
+            SeElimino = LN.EliminarServiciosXColaborador(Id);
+
+            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+
+
+        }
+
+        public JsonResult DesactivarActivarServicioXColaborador(int Id, bool Estado)
+        {
+
+            bool SeActualizoEstado = false;
+
+            SeActualizoEstado = LN.DesactivarActivarServicioXColaborador(Id, Estado);
+
+            return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult ObtenerServiciosXColaboradorXId(int IdColaborador)
+        {
+            List<Usuario> usuario = new List<Usuario>();
+
+            usuario = LN.ObtenerServiciosXColaboradorXId(IdColaborador);
+
+            return Json(usuario, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ValidarCorreoElectronico(int Id, string CorreoElectronico)
+        {
+            int Respuesta = 0;
+          Respuesta = LN.ValidarCorreoElectronico(Id, CorreoElectronico);
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
         }
 
     }

@@ -10,6 +10,7 @@ namespace Entidades.ClasesEntidades
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public string NombreServicio { get; set; }
         public string NombreRol { get; set; }
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
@@ -19,6 +20,9 @@ namespace Entidades.ClasesEntidades
         public int Telefono { get; set; }
         public bool Genero { get; set; }
         public int IdRol { get; set; }
+        public int IdEmpresa { get; set; }
+        public int IdServicio { get; set; }
+        public int IdServicioXColaborador { get; set; }
         public string FotoPerfil { get; set; }
         public bool Estado { get; set; }
         public string UsuarioCreacion { get; set; }

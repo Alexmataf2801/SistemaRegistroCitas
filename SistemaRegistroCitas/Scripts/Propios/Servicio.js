@@ -3,15 +3,18 @@
     $.ajax({
         type: "GET",
         dataType: "JSON",
-        url: "/Servicio/ObtenerServicios/",
-
+        url: "/Usuario/ObtenerServiciosXColaboradorXId/",
+        data: { "IdColaborador": $("#Colaboradores").val()},
         success: function (InfoServicios) {
 
                                    
             var clasificacion = $("#Servicios");
 
+            clasificacion.empty();
+            clasificacion.append('<option value="0">Seleccione uno...</option>');
+
             $(InfoServicios).each(function (i, v) {
-                clasificacion.append('<option value="' + v.Id + '">' + v.Nombre + '</option>');
+                clasificacion.append('<option value="' + v.IdServicio + '">' + v.NombreServicio + '</option>');
                                           
             
             });
@@ -40,6 +43,7 @@ function ServicioXId() {
 
             success: function (InfoServicio) {
                 $("#TiempoAprox").val(InfoServicio.TiempoEstimado + " " + InfoServicio.UnidadMedida);
+                $("#txtDescripcionServicio").val(InfoServicio.Descripcion);
 
                 var tiempofinal;
 
@@ -86,24 +90,16 @@ function InsertarDatosServicios() {
         url: "/Servicio/InsertarDatosServicios/",
         data: { servicio },
         success: function (Info) {
-            //switch (Info) {
-            //    case 0:
-            //        $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-            //        $('#MsjIncorrecto').modal('show');
-            //        break;
-            //    case 1:
-            //        LimpiarValores();
-            //        $('#fm-modal').modal('hide');
-            //        $('#MsjCorreo').modal('show');
-            //        break;
-            //    case 2:
-            //        $("#msjModal").html("<label>¡La Identificación ingresada ya existe!</label>");
-            //        $('#MsjIncorrecto').modal('show');
-            //        break;
-            //    default:
-            //        $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-            //        $('#MsjIncorrecto').modal('show');
-            //}
+            if (Info) {
+                LimpiarValores();
+                $("#lblMensajeCorrecto").html("<label>¡Información Almacenada Correctamenta!</label>");
+                $("#lblTituloCorrecto").html("<label>Información</label>");
+                $('#MsjCorrecto').modal('show');
+            } else {
+                $("#msjModalIncorrecto").html("<label>¡Fallo en la creación del servicio!</label>");
+                $('#MsjIncorrecto').modal('show');
+            }
+           
 
         },
         error: function (Error) {
@@ -116,13 +112,18 @@ function InsertarDatosServicios() {
 }
 
 
+function LimpiarValores() {
+    $("#txtServicio").val("")
+    $("#txtTiempoEstimado").val("")
+    $("#txtDescripcion").val("")
+    $("#TipoUnidad").val("")
+
+}
+
+
 $("#Servicios").change(function () {
     ServicioXId();
 });
 
-
-$(document).ready(function () {
-    ObtenerServicios();
-});
 
 

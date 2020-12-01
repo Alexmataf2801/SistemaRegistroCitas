@@ -30,6 +30,30 @@
           <Parameter Name="IdRol" Type="int" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="paActualizarHorarioEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InicioLunes" Type="time" Mode="In" />
+          <Parameter Name="FinalLunes" Type="time" Mode="In" />
+          <Parameter Name="EstadoLunes" Type="bit" Mode="In" />
+          <Parameter Name="InicioMartes" Type="time" Mode="In" />
+          <Parameter Name="FinalMartes" Type="time" Mode="In" />
+          <Parameter Name="EstadoMartes" Type="bit" Mode="In" />
+          <Parameter Name="InicioMiercoles" Type="time" Mode="In" />
+          <Parameter Name="FinalMiercoles" Type="time" Mode="In" />
+          <Parameter Name="EstadoMiercoles" Type="bit" Mode="In" />
+          <Parameter Name="InicioJueves" Type="time" Mode="In" />
+          <Parameter Name="FinalJueves" Type="time" Mode="In" />
+          <Parameter Name="EstadoJueves" Type="bit" Mode="In" />
+          <Parameter Name="InicioViernes" Type="time" Mode="In" />
+          <Parameter Name="FinalViernes" Type="time" Mode="In" />
+          <Parameter Name="EstadoViernes" Type="bit" Mode="In" />
+          <Parameter Name="InicioSabado" Type="time" Mode="In" />
+          <Parameter Name="FinalSabado" Type="time" Mode="In" />
+          <Parameter Name="EstadoSabado" Type="bit" Mode="In" />
+          <Parameter Name="InicioDomingo" Type="time" Mode="In" />
+          <Parameter Name="FinalDomingo" Type="time" Mode="In" />
+          <Parameter Name="EstadoDomingo" Type="bit" Mode="In" />
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+        </Function>
         <Function Name="paActualizarRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdRol" Type="int" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -43,6 +67,11 @@
           <Parameter Name="TiempoEstimado" Type="int" Mode="In" />
           <Parameter Name="TipoUnidad" Type="int" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PaAsignarServiciosXColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdColaborador" Type="int" Mode="In" />
+          <Parameter Name="IdServicio" Type="int" Mode="In" />
+          <Parameter Name="RespuestaCorrecta" Type="int" Mode="InOut" />
         </Function>
         <Function Name="paDesactivarActivarColaboradores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
@@ -66,11 +95,18 @@
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
+        <Function Name="paDesactivarActivarServicioXColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+        </Function>
         <Function Name="paEliminarColaboradores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="paEliminarPermisosUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paEliminarServiciosXColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="paElimminarRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdRol" Type="int" Mode="In" />
@@ -115,6 +151,31 @@
           <Parameter Name="HorarioInicial" Type="datetime" Mode="In" />
           <Parameter Name="HoraFinal" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="PaInsertarHorarioEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="InicioLunes" Type="time" Mode="In" />
+          <Parameter Name="FinalLunes" Type="time" Mode="In" />
+          <Parameter Name="EstadoLunes" Type="bit" Mode="In" />
+          <Parameter Name="InicioMartes" Type="time" Mode="In" />
+          <Parameter Name="FinalMartes" Type="time" Mode="In" />
+          <Parameter Name="EstadoMartes" Type="bit" Mode="In" />
+          <Parameter Name="InicioMiercoles" Type="time" Mode="In" />
+          <Parameter Name="FinalMiercoles" Type="time" Mode="In" />
+          <Parameter Name="EstadoMiercoles" Type="bit" Mode="In" />
+          <Parameter Name="InicioJueves" Type="time" Mode="In" />
+          <Parameter Name="FinalJueves" Type="time" Mode="In" />
+          <Parameter Name="EstadoJueves" Type="bit" Mode="In" />
+          <Parameter Name="InicioViernes" Type="time" Mode="In" />
+          <Parameter Name="FinalViernes" Type="time" Mode="In" />
+          <Parameter Name="EstadoViernes" Type="bit" Mode="In" />
+          <Parameter Name="InicioSabado" Type="time" Mode="In" />
+          <Parameter Name="FinalSabado" Type="time" Mode="In" />
+          <Parameter Name="EstadoSabado" Type="bit" Mode="In" />
+          <Parameter Name="InicioDomingo" Type="time" Mode="In" />
+          <Parameter Name="FinalDomingo" Type="time" Mode="In" />
+          <Parameter Name="EstadoDomingo" Type="bit" Mode="In" />
+          <Parameter Name="RespuestaCorrecta" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="paInsertarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
@@ -135,8 +196,8 @@
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="TiempoEstimado" Type="int" Mode="In" />
           <Parameter Name="TipoUnidad" Type="int" Mode="In" />
-          <Parameter Name="Estado" Type="bit" Mode="In" />
           <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
         </Function>
         <Function Name="PaInsertarUnidadMedida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -156,9 +217,23 @@
           <Parameter Name="IdUsuario" Type="int" Mode="InOut" />
           <Parameter Name="Respuesta" Type="int" Mode="InOut" />
         </Function>
-        <Function Name="PaObtenerColaboradoresActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PaInsertarUsuarioXEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+          <Parameter Name="IdRol" Type="int" Mode="In" />
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="RespuestaUsuarioXEmpresa" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="PaObtenerColaboradoresActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerColaboradoresXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerEmpresasXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerHorarioEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
         </Function>
         <Function Name="paObtenerMenuGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerMenuXUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -171,22 +246,38 @@
           <Parameter Name="IdRol" Type="int" Mode="In" />
         </Function>
         <Function Name="paObtenerServiciosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerServiciosXColaborador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerServiciosXColaboradorXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdColaborador" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerServicioXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
-        <Function Name="paObtenerTodosLosColaboradores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerTodosLosColaboradores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerTodosLosDias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdColaboarador" Type="int" Mode="In" />
         </Function>
         <Function Name="paObtenerTodosLosRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="paObtenerTodosLosServicios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paObtenerTodosLosServicios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+        </Function>
         <Function Name="paObtenerUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
         </Function>
         <Function Name="paObtenerUsuariosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PaValidarCorreoElectronico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="Respuesta" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="paValidarLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="Contrasena" Type="varchar" Mode="In" />
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
           <Parameter Name="EsCorrecto" Type="bit" Mode="InOut" />
         </Function>
         <EntityContainer Name="BDSistemaRegistroCitasModelStoreContainer">
@@ -224,24 +315,11 @@
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="PaInsertarServicios">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="TiempoEstimado" Mode="In" Type="Int32" />
-            <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
-            <Parameter Name="Estado" Mode="In" Type="Boolean" />
-            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="PaInsertarUnidadMedida">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="paValidarLogin">
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Contrasena" Mode="In" Type="String" />
-            <Parameter Name="EsCorrecto" Mode="InOut" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="paInsertarLogin">
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
@@ -251,7 +329,6 @@
           <FunctionImport Name="paObtenerMenuXUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerMenuXUsuario_Result)">
           <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="PaObtenerColaboradoresActivos" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerColaboradoresActivos_Result)" />
           <FunctionImport Name="paObtenerMenuGeneral" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerMenuGeneral_Result)" />
           <FunctionImport Name="paInsertarPermisosXUsuario">
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
@@ -273,19 +350,6 @@
             <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
-          <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="PaInsertarDatosServicios">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="TiempoEstimado" Mode="In" Type="Int32" />
-            <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
-            <Parameter Name="Estado" Mode="In" Type="Boolean" />
-            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="PaObtenerRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerRoles_Result)" />
-          <FunctionImport Name="paObtenerTodosLosRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result)" />
           <FunctionImport Name="paDesactivarActivarRol">
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
@@ -328,32 +392,6 @@
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerMinutosYHoras" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerMinutosYHoras_Result)" />
-          <FunctionImport Name="PaInsertarDatosColaborador">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
-            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
-            <Parameter Name="Identificacion" Mode="In" Type="String" />
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="Int32" />
-            <Parameter Name="Genero" Mode="In" Type="Boolean" />
-            <Parameter Name="IdRol" Mode="In" Type="Int32" />
-            <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
-            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paActualizarColaboradores">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
-            <Parameter Name="Identificacion" Mode="In" Type="String" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
-            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="Int32" />
-            <Parameter Name="Genero" Mode="In" Type="Boolean" />
-            <Parameter Name="IdRol" Mode="In" Type="Int32" />
-            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="paObtenerTodosLosServicios" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosServicios_Result)" />
-          <FunctionImport Name="paObtenerTodosLosColaboradores" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosColaboradores_Result)" />
           <FunctionImport Name="paDesactivarActivarDiasLibres">
             <Parameter Name="Lunes" Mode="In" Type="Boolean" />
             <Parameter Name="Martes" Mode="In" Type="Boolean" />
@@ -368,6 +406,150 @@
           <Parameter Name="IdColaboarador" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerNombresEmpresasActivas" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerNombresEmpresasActivas_Result)" />
+          <FunctionImport Name="PaInsertarUsuarioXEmpresa">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="RespuestaUsuarioXEmpresa" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerEmpresasXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paValidarLogin">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Contrasena" Mode="In" Type="String" />
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="EsCorrecto" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result)" />
+          <FunctionImport Name="PaObtenerRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerRoles_Result)" />
+          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
+          <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PaInsertarDatosServicios">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="TiempoEstimado" Mode="In" Type="Int32" />
+            <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PaInsertarDatosColaborador">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Genero" Mode="In" Type="Boolean" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosColaboradores" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosColaboradores_Result)">
+          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PaObtenerColaboradoresActivos" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerColaboradoresActivos_Result)">
+          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosServicios" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosServicios_Result)">
+          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paEliminarServiciosXColaborador">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerServiciosXColaborador" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServiciosXColaborador_Result)">
+          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paDesactivarActivarServicioXColaborador">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerServiciosXColaboradorXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServiciosXColaboradorXId_Result)">
+          <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PaInsertarServicios">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="TiempoEstimado" Mode="In" Type="Int32" />
+            <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
+            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PaAsignarServiciosXColaborador">
+            <Parameter Name="IdColaborador" Mode="In" Type="Int32" />
+            <Parameter Name="IdServicio" Mode="In" Type="Int32" />
+            <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarColaboradores">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Genero" Mode="In" Type="Boolean" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PaValidarCorreoElectronico">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerHorarioEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerHorarioEmpresa_Result)">
+          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarHorarioEmpresa">
+            <Parameter Name="InicioLunes" Mode="In" Type="Time" />
+            <Parameter Name="FinalLunes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoLunes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioMartes" Mode="In" Type="Time" />
+            <Parameter Name="FinalMartes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoMartes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioMiercoles" Mode="In" Type="Time" />
+            <Parameter Name="FinalMiercoles" Mode="In" Type="Time" />
+            <Parameter Name="EstadoMiercoles" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioJueves" Mode="In" Type="Time" />
+            <Parameter Name="FinalJueves" Mode="In" Type="Time" />
+            <Parameter Name="EstadoJueves" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioViernes" Mode="In" Type="Time" />
+            <Parameter Name="FinalViernes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoViernes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioSabado" Mode="In" Type="Time" />
+            <Parameter Name="FinalSabado" Mode="In" Type="Time" />
+            <Parameter Name="EstadoSabado" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioDomingo" Mode="In" Type="Time" />
+            <Parameter Name="FinalDomingo" Mode="In" Type="Time" />
+            <Parameter Name="EstadoDomingo" Mode="In" Type="Boolean" />
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PaInsertarHorarioEmpresa">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="InicioLunes" Mode="In" Type="Time" />
+            <Parameter Name="FinalLunes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoLunes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioMartes" Mode="In" Type="Time" />
+            <Parameter Name="FinalMartes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoMartes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioMiercoles" Mode="In" Type="Time" />
+            <Parameter Name="FinalMiercoles" Mode="In" Type="Time" />
+            <Parameter Name="EstadoMiercoles" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioJueves" Mode="In" Type="Time" />
+            <Parameter Name="FinalJueves" Mode="In" Type="Time" />
+            <Parameter Name="EstadoJueves" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioViernes" Mode="In" Type="Time" />
+            <Parameter Name="FinalViernes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoViernes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioSabado" Mode="In" Type="Time" />
+            <Parameter Name="FinalSabado" Mode="In" Type="Time" />
+            <Parameter Name="EstadoSabado" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioDomingo" Mode="In" Type="Time" />
+            <Parameter Name="FinalDomingo" Mode="In" Type="Time" />
+            <Parameter Name="EstadoDomingo" Mode="In" Type="Boolean" />
+            <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServiciosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -397,10 +579,6 @@
           <Property Type="Int32" Name="IsPadre" Nullable="true" />
           <Property Type="String" Name="Url" Nullable="true" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="PaObtenerColaboradoresActivos_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="paObtenerMenuGeneral_Result">
           <Property Type="Int32" Name="IdMenu" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
@@ -423,31 +601,6 @@
           <Property Type="Boolean" Name="Genero" Nullable="false" />
           <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
           <Property Type="Int32" Name="IdRol" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="paObtenerUsuario_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="150" />
-          <Property Type="Int32" Name="Telefono" Nullable="false" />
-          <Property Type="Boolean" Name="Genero" Nullable="false" />
-          <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
-        </ComplexType>
-        <ComplexType Name="PaObtenerRoles_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="paObtenerTodosLosRoles_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="150" />
-          <Property Type="Boolean" Name="Estado" Nullable="false" />
-          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
-          <Property Type="String" Name="UsuarioUltimaMoficacion" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="paObtenerRolXId_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -485,18 +638,58 @@
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="paObtenerTodosLosServicios_Result">
+        <ComplexType Name="paObtenerTodosLosDias_Result">
+          <Property Type="Int32" Name="IdColaborador" Nullable="false" />
+          <Property Type="Boolean" Name="Lunes" Nullable="false" />
+          <Property Type="Boolean" Name="Martes" Nullable="false" />
+          <Property Type="Boolean" Name="Miercoles" Nullable="false" />
+          <Property Type="Boolean" Name="Jueves" Nullable="false" />
+          <Property Type="Boolean" Name="Viernes" Nullable="false" />
+          <Property Type="Boolean" Name="Sabado" Nullable="false" />
+          <Property Type="Boolean" Name="Domingo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="paObtenerNombresEmpresasActivas_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
-          <Property Type="Int32" Name="TiempoEstimado" Nullable="false" />
-          <Property Type="Int32" Name="TipoUnidad" Nullable="false" />
-          <Property Type="Boolean" Name="Estado" Nullable="false" />
-          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerEmpresasXId_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Telefono" Nullable="false" />
+          <Property Type="String" Name="Logo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="100" />
           <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
-          <Property Type="String" Name="NombreUnidadMedida" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosLosRoles_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="150" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaMoficacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="PaObtenerRoles_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="paObtenerUsuario_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Telefono" Nullable="false" />
+          <Property Type="Boolean" Name="Genero" Nullable="false" />
+          <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="IdRol" Nullable="false" />
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
         </ComplexType>
         <ComplexType Name="paObtenerTodosLosColaboradores_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -516,19 +709,58 @@
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
           <Property Type="String" Name="NombreRol" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="paObtenerTodosLosDias_Result">
-          <Property Type="Int32" Name="IdColaborador" Nullable="false" />
-          <Property Type="Boolean" Name="Lunes" Nullable="false" />
-          <Property Type="Boolean" Name="Martes" Nullable="false" />
-          <Property Type="Boolean" Name="Miercoles" Nullable="false" />
-          <Property Type="Boolean" Name="Jueves" Nullable="false" />
-          <Property Type="Boolean" Name="Viernes" Nullable="false" />
-          <Property Type="Boolean" Name="Sabado" Nullable="false" />
-          <Property Type="Boolean" Name="Domingo" Nullable="false" />
+        <ComplexType Name="PaObtenerColaboradoresActivos_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="paObtenerNombresEmpresasActivas_Result">
+        <ComplexType Name="paObtenerTodosLosServicios_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="TiempoEstimado" Nullable="false" />
+          <Property Type="Int32" Name="TipoUnidad" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NombreUnidadMedida" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="paObtenerServiciosXColaborador_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="IdColaborador" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerServiciosXColaboradorXId_Result">
+          <Property Type="Int32" Name="IdColaborador" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerHorarioEmpresa_Result">
+          <Property Type="Time" Name="InicioLunes" Nullable="false" />
+          <Property Type="Time" Name="FinalLunes" Nullable="false" />
+          <Property Type="Boolean" Name="EstadoLunes" Nullable="false" />
+          <Property Type="Time" Name="InicioMartes" Nullable="false" />
+          <Property Type="Time" Name="FinalMartes" Nullable="false" />
+          <Property Type="Boolean" Name="EstadoMartes" Nullable="false" />
+          <Property Type="Time" Name="InicioMiercoles" Nullable="false" />
+          <Property Type="Time" Name="FinalMiercoles" Nullable="false" />
+          <Property Type="Boolean" Name="EstadoMiercoles" Nullable="false" />
+          <Property Type="Time" Name="InicioJueves" Nullable="false" />
+          <Property Type="Time" Name="FinalJueves" Nullable="false" />
+          <Property Type="Boolean" Name="EstadoJueves" Nullable="false" />
+          <Property Type="Time" Name="InicioViernes" Nullable="false" />
+          <Property Type="Time" Name="FinalViernes" Nullable="false" />
+          <Property Type="Boolean" Name="EstadoViernes" Nullable="false" />
+          <Property Type="Time" Name="InicioSabado" Nullable="false" />
+          <Property Type="Time" Name="FinalSabado" Nullable="false" />
+          <Property Type="Boolean" Name="EstadoSabado" Nullable="false" />
+          <Property Type="Time" Name="InicioDomingo" Nullable="false" />
+          <Property Type="Time" Name="FinalDomingo" Nullable="false" />
+          <Property Type="Boolean" Name="EstadoDomingo" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -563,9 +795,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paInsertarEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarEmpresa" />
           <FunctionImportMapping FunctionImportName="PaInsertarRoles" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarRoles" />
-          <FunctionImportMapping FunctionImportName="PaInsertarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarServicios" />
           <FunctionImportMapping FunctionImportName="PaInsertarUnidadMedida" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarUnidadMedida" />
-          <FunctionImportMapping FunctionImportName="paValidarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarLogin" />
           <FunctionImportMapping FunctionImportName="paInsertarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarLogin" />
           <FunctionImportMapping FunctionImportName="paObtenerMenuXUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerMenuXUsuario">
             <ResultMapping>
@@ -580,14 +810,6 @@
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="IsPadre" ColumnName="IsPadre" />
                 <ScalarProperty Name="Url" ColumnName="Url" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="PaObtenerColaboradoresActivos" FunctionName="BDSistemaRegistroCitasModel.Store.PaObtenerColaboradoresActivos">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.PaObtenerColaboradoresActivos_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -625,44 +847,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paEliminarPermisosUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarPermisosUsuario" />
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
-          <FunctionImportMapping FunctionImportName="paObtenerUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerUsuario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerUsuario_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
-                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
-                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Genero" ColumnName="Genero" />
-                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="PaInsertarDatosServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosServicios" />
-          <FunctionImportMapping FunctionImportName="PaObtenerRoles" FunctionName="BDSistemaRegistroCitasModel.Store.PaObtenerRoles">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.PaObtenerRoles_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paObtenerTodosLosRoles" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosRoles">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioUltimaMoficacion" ColumnName="UsuarioUltimaMoficacion" />
-                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paDesactivarActivarRol" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarRol" />
           <FunctionImportMapping FunctionImportName="paElimminarRol" FunctionName="BDSistemaRegistroCitasModel.Store.paElimminarRol" />
           <FunctionImportMapping FunctionImportName="paObtenerRolXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerRolXId">
@@ -719,47 +903,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
-          <FunctionImportMapping FunctionImportName="paActualizarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarColaboradores" />
-          <FunctionImportMapping FunctionImportName="paObtenerTodosLosServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosServicios">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosServicios_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="TiempoEstimado" ColumnName="TiempoEstimado" />
-                <ScalarProperty Name="TipoUnidad" ColumnName="TipoUnidad" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
-                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
-                <ScalarProperty Name="NombreUnidadMedida" ColumnName="NombreUnidadMedida" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paObtenerTodosLosColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosColaboradores">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosColaboradores_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
-                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
-                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Genero" ColumnName="Genero" />
-                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
-                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
-                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paDesactivarActivarDiasLibres" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarDiasLibres" />
           <FunctionImportMapping FunctionImportName="paObtenerTodosLosDias" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosDias">
             <ResultMapping>
@@ -783,6 +926,168 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaInsertarUsuarioXEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarUsuarioXEmpresa" />
+          <FunctionImportMapping FunctionImportName="paObtenerEmpresasXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerEmpresasXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paValidarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarLogin" />
+          <FunctionImportMapping FunctionImportName="paObtenerTodosLosRoles" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaMoficacion" ColumnName="UsuarioUltimaMoficacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaObtenerRoles" FunctionName="BDSistemaRegistroCitasModel.Store.PaObtenerRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.PaObtenerRoles_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerUsuario_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaInsertarDatosServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosServicios" />
+          <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
+          <FunctionImportMapping FunctionImportName="paObtenerTodosLosColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosColaboradores">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosColaboradores_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaObtenerColaboradoresActivos" FunctionName="BDSistemaRegistroCitasModel.Store.PaObtenerColaboradoresActivos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.PaObtenerColaboradoresActivos_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerTodosLosServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosServicios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosServicios_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="TiempoEstimado" ColumnName="TiempoEstimado" />
+                <ScalarProperty Name="TipoUnidad" ColumnName="TipoUnidad" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
+                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
+                <ScalarProperty Name="NombreUnidadMedida" ColumnName="NombreUnidadMedida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paEliminarServiciosXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarServiciosXColaborador" />
+          <FunctionImportMapping FunctionImportName="paObtenerServiciosXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerServiciosXColaborador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerServiciosXColaborador_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdColaborador" ColumnName="IdColaborador" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paDesactivarActivarServicioXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarServicioXColaborador" />
+          <FunctionImportMapping FunctionImportName="paObtenerServiciosXColaboradorXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerServiciosXColaboradorXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerServiciosXColaboradorXId_Result">
+                <ScalarProperty Name="IdColaborador" ColumnName="IdColaborador" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaInsertarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarServicios" />
+          <FunctionImportMapping FunctionImportName="PaAsignarServiciosXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaAsignarServiciosXColaborador" />
+          <FunctionImportMapping FunctionImportName="paActualizarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarColaboradores" />
+          <FunctionImportMapping FunctionImportName="PaValidarCorreoElectronico" FunctionName="BDSistemaRegistroCitasModel.Store.PaValidarCorreoElectronico" />
+          <FunctionImportMapping FunctionImportName="paObtenerHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerHorarioEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerHorarioEmpresa_Result">
+                <ScalarProperty Name="InicioLunes" ColumnName="InicioLunes" />
+                <ScalarProperty Name="FinalLunes" ColumnName="FinalLunes" />
+                <ScalarProperty Name="EstadoLunes" ColumnName="EstadoLunes" />
+                <ScalarProperty Name="InicioMartes" ColumnName="InicioMartes" />
+                <ScalarProperty Name="FinalMartes" ColumnName="FinalMartes" />
+                <ScalarProperty Name="EstadoMartes" ColumnName="EstadoMartes" />
+                <ScalarProperty Name="InicioMiercoles" ColumnName="InicioMiercoles" />
+                <ScalarProperty Name="FinalMiercoles" ColumnName="FinalMiercoles" />
+                <ScalarProperty Name="EstadoMiercoles" ColumnName="EstadoMiercoles" />
+                <ScalarProperty Name="InicioJueves" ColumnName="InicioJueves" />
+                <ScalarProperty Name="FinalJueves" ColumnName="FinalJueves" />
+                <ScalarProperty Name="EstadoJueves" ColumnName="EstadoJueves" />
+                <ScalarProperty Name="InicioViernes" ColumnName="InicioViernes" />
+                <ScalarProperty Name="FinalViernes" ColumnName="FinalViernes" />
+                <ScalarProperty Name="EstadoViernes" ColumnName="EstadoViernes" />
+                <ScalarProperty Name="InicioSabado" ColumnName="InicioSabado" />
+                <ScalarProperty Name="FinalSabado" ColumnName="FinalSabado" />
+                <ScalarProperty Name="EstadoSabado" ColumnName="EstadoSabado" />
+                <ScalarProperty Name="InicioDomingo" ColumnName="InicioDomingo" />
+                <ScalarProperty Name="FinalDomingo" ColumnName="FinalDomingo" />
+                <ScalarProperty Name="EstadoDomingo" ColumnName="EstadoDomingo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paActualizarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarHorarioEmpresa" />
+          <FunctionImportMapping FunctionImportName="PaInsertarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarHorarioEmpresa" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
