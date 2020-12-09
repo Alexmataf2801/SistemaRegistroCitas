@@ -115,150 +115,6 @@ function FormatoMinutos(ObjetoMinutos) {
 
 }
 
-// Lunes
-//function FormatoInicioLunes(ObjetoHoras) {
-//    var HLI = ObjetoHoras
-//    if (HLI > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraLunesInicial0
-//    }
-
-//}
-
-//function FormatoFinalLunes(ObjetoHoras) {
-//    var HLF = ObjetoHoras
-//    if (HLF > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraLunesFinal0
-//    }
-
-//}
-// Martes
-//function FormatoInicioMartes(ObjetoHoras) {
-//    var HMI = ObjetoHoras
-//    if (HMI > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraMartesInicial0
-//    }
-
-//}
-
-//function FormatoFinalMartes(ObjetoHoras) {
-//    var HMF = ObjetoHoras
-//    if (HMF > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraMartesFinal0
-//    }
-
-//}
-//Miercoles
-//function FormatoInicioMiercoles(ObjetoHoras) {
-//    var HMII = ObjetoHoras
-//    if (HMII > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraMiercolesInicial0
-//    }
-
-//}
-
-//function FormatoFinalMiercoles(ObjetoHoras) {
-//    var HMIF = ObjetoHoras
-//    if (HMIF > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraMiercolesFinal0
-//    }
-
-//}
-//Jueves
-
-//function FormatoInicioJueves(ObjetoHoras) {
-//    var HJI = ObjetoHoras
-//    if (HJI > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraJuevesInicial0
-//    }
-
-//}
-
-//function FormatoFinalJueves(ObjetoHoras) {
-//    var HJF = ObjetoHoras
-//    if (HJF > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraJuevesFinal0
-//    }
-
-//}
-//Viernes
-
-//function FormatoInicioViernes(ObjetoHoras) {
-//    var HVI = ObjetoHoras
-//    if (HVI > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraViernesInicial0
-//    }
-
-//}
-
-//function FormatoFinalViernes(ObjetoHoras) {
-//    var HVF = ObjetoHoras
-//    if (HVF > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraViernesFinal0
-//    }
-
-//}
-//   Sabado
-
-//function FormatoInicioSabado(ObjetoHoras) {
-//    var HSI = ObjetoHoras
-//    if (HSI > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraSabadoInicial0
-//    }
-
-//}
-
-//function FormatoFinalSabado(ObjetoHoras) {
-//    var HSF = ObjetoHoras
-//    if (HSF > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraSabadoFinal0
-//    }
-
-//}
-//  Domingo
-
-//function FormatoInicioDomingo(ObjetoHoras) {
-//    var HDI = ObjetoHoras
-//    if (HDI > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraDomingoInicial0
-//    }
-
-//}
-
-//function FormatoFinalDomingo(ObjetoHoras) {
-//    var HDF = ObjetoHoras
-//    if (HDF > 09) {
-//        return ObjetoHoras;
-//    } else {
-//        return HoraDomingoFinal0
-//    }
-
-//}
 
 $(function () {
 
@@ -296,68 +152,54 @@ $(function () {
         async: false,
         success: function (Info) {
 
-            InicioLunes = FormatoTiempo(Info.InicioLunes);
-                /*FormatoHorasDias(Info.InicioLunes) + ":" + FormatoMinutosDias(Info.InicioLunes)*/
-            FinalLunes = FormatoTiempo(Info.FinalLunes);
-                /*FormatoHorasDias(Info.FinalLunes) + ":" + FormatoMinutosDias(Info.FinalLunes)*/         
+            InicioLunes = FormatoTiempo(Info.InicioLunes);               
+            FinalLunes = FormatoTiempo(Info.FinalLunes);      
             EstadoLunes = Info.EstadoLunes
 
             if (EstadoLunes == false) {
                 hiddenDays.push(1);
             }
 
-            InicioMartes = FormatoTiempo(Info.InicioMartes);
-                //FormatoHorasDias(Info.InicioMartes) + ":" + FormatoMinutosDias(Info.InicioMartes);
-            FinalMartes = FormatoTiempo(Info.FinalMartes)
-                //FormatoHorasDias(Info.FinalMartes) + ":" + FormatoMinutosDias(Info.FinalMartes);            
+            InicioMartes = FormatoTiempo(Info.InicioMartes);            
+            FinalMartes = FormatoTiempo(Info.FinalMartes)                          
             EstadoMartes = Info.EstadoMartes
 
             if (EstadoMartes == false) {
                 hiddenDays.push(2);
             }
 
-            InicioMiercoles = FormatoTiempo(Info.InicioMiercoles);
-                //FormatoHorasDias(Info.InicioMiercoles) + ":" + FormatoMinutosDias(Info.InicioMiercoles);
-            FinalMiercoles = FormatoTiempo(Info.FinalMiercoles);
-                //FormatoHorasDias(Info.FinalMiercoles) + ":" + FormatoMinutosDias(Info.FinalMiercoles);           
+            InicioMiercoles = FormatoTiempo(Info.InicioMiercoles);                
+            FinalMiercoles = FormatoTiempo(Info.FinalMiercoles);                        
             EstadoMiercoles = Info.EstadoMiercoles
 
             if (EstadoMiercoles == false) {
                 hiddenDays.push(3);
             }
-            InicioJueves = FormatoTiempo(Info.InicioJueves);
-                //FormatoHorasDias(Info.InicioJueves) + ":" + FormatoMinutosDias(Info.InicioJueves);
-            FinalJueves = FormatoTiempo(Info.FinalJueves);
-                //FormatoHorasDias(Info.FinalJueves) + ":" + FormatoMinutosDias(Info.FinalJueves);           
+            InicioJueves = FormatoTiempo(Info.InicioJueves);               
+            FinalJueves = FormatoTiempo(Info.FinalJueves);                        
             EstadoJueves = Info.EstadoJueves
 
             if (EstadoJueves == false) {
                 hiddenDays.push(4);
             }
 
-            InicioViernes = FormatoTiempo(Info.InicioViernes);
-                //FormatoHorasDias(Info.InicioViernes) + ":" + FormatoMinutosDias(Info.InicioViernes);
-            FinalViernes = FormatoTiempo(Info.FinalViernes);
-                //FormatoHorasDias(Info.FinalViernes) + ":" + FormatoMinutosDias(Info.FinalViernes);            
+            InicioViernes = FormatoTiempo(Info.InicioViernes);             
+            FinalViernes = FormatoTiempo(Info.FinalViernes);                          
             EstadoViernes = Info.EstadoViernes
 
             if (EstadoViernes == false) {
                 hiddenDays.push(5);
             }
-            InicioSabado = FormatoTiempo(Info.InicioSabado);
-                //FormatoHorasDias(Info.InicioSabado) + ":" + FormatoMinutosDias(Info.InicioSabado);
-            FinalSabado = FormatoTiempo(Info.FinalSabado);
-                //FormatoHorasDias(Info.FinalSabado) + ":" + FormatoMinutosDias(Info.FinalSabado);            
+            InicioSabado = FormatoTiempo(Info.InicioSabado);                
+            FinalSabado = FormatoTiempo(Info.FinalSabado);                      
             EstadoSabado = Info.EstadoSabado
 
             if (EstadoSabado == false) {
                 hiddenDays.push(6);
             }
 
-            InicioDomingo = FormatoTiempo(Info.InicioDomingo);
-                //FormatoHorasDias(Info.InicioDomingo) + ":" + FormatoMinutosDias(Info.InicioDomingo);
-            FinalDomingo = FormatoTiempo(Info.FinalDomingo);
-                //FormatoHorasDias(Info.FinalDomingo) + ":" + FormatoMinutosDias(Info.FinalDomingo);           
+            InicioDomingo = FormatoTiempo(Info.InicioDomingo);                
+            FinalDomingo = FormatoTiempo(Info.FinalDomingo);                         
             EstadoDomingo = Info.EstadoDomingo
 
             if (EstadoDomingo == false) {
@@ -444,106 +286,12 @@ $(function () {
             Dia = FechaCompletaSeleccioada.getDay();
             HoraSeleccionada = FechaCompletaSeleccioada.getHours();
             MinutosSeleccionados = FechaCompletaSeleccioada.getMinutes();         
-            HoraTotalSeleccionada = FormatoHoras(HoraSeleccionada) + ":" + FormatoMinutos(MinutosSeleccionados)
-
-                // Lunes
-
-            //HoraLunesInicial0 = InicioLunes[0] // # 
-            //HoraLunesInicial1 = InicioLunes[1] // :
-            //MinutosLunesInicial = InicioLunes[3]
-            //HLI = HoraLunesInicial0 + HoraLunesInicial1            
-            //LunesInicio = FormatoHoras(FormatoInicioLunes(HLI)) + ":" + FormatoMinutos(MinutosLunesInicial)
-
-            //HoraLunesFinal0 = FinalLunes[0] // # 
-            //HoraLunesFinal1 = FinalLunes[1] // :
-            //MinutosLunesFinal = FinalLunes[3]
-            //HLF = HoraLunesFinal0 + HoraLunesFinal1
-            //LunesFinal = FormatoHoras(FormatoFinalLunes(HLF)) + ":" + FormatoMinutos(MinutosLunesFinal)     
-
-             // Martes
-
-            //HoraMartesInicial0 = InicioMartes[0] // # 
-            //HoraMartesInicial1 = InicioMartes[1] // :
-            //MinutosMartesInicial = InicioMartes[3]
-            //HMI = HoraMartesInicial0 + HoraMartesInicial1
-            //MartesInicio = FormatoHoras(FormatoInicioMartes(HMI)) + ":" + FormatoMinutos(MinutosMartesInicial)
-
-            //HoraMartesFinal0 = FinalMartes[0] // # 
-            //HoraMartesFinal1 = FinalMartes[1] // :
-            //MinutosMartesFinal = FinalMartes[3]
-            //HMF = HoraMartesFinal0 + HoraMartesFinal1
-            //MartesFinal = FormatoHoras(FormatoFinalMartes(HMF)) + ":" + FormatoMinutos(MinutosMartesFinal) 
-
-            //// Miercoles
-
-            //HoraMiercolesInicial0 = InicioMiercoles[0] // # 
-            //HoraMiercolesInicial1 = InicioMiercoles[1] // :
-            //MinutosMiercolesInicial = InicioMiercoles[3]
-            //HMII = HoraMiercolesInicial0 + HoraMiercolesInicial1
-            //MiercolesInicio = FormatoHoras(FormatoInicioMiercoles(HMII)) + ":" + FormatoMinutos(MinutosMiercolesInicial)
-
-            //HoraMiercolesFinal0 = FinalMiercoles[0] // # 
-            //HoraMiercolesFinal1 = FinalMiercoles[1] // :
-            //MinutosMiercolesFinal = FinalMiercoles[3]
-            //HMIF = HoraMiercolesFinal0 + HoraMiercolesFinal1
-            //MiercolesFinal = FormatoHoras(FormatoFinalMiercoles(HMIF)) + ":" + FormatoMinutos(MinutosMiercolesFinal) 
-
-            //// Jueves
-
-            //HoraJuevesInicial0 = InicioJueves[0] // # 
-            //HoraJuevesInicial1 = InicioJueves[1] // :
-            //MinutosJuevesInicial = InicioJueves[3]
-            //HJI = HoraJuevesInicial0 + HoraJuevesInicial1
-            //JuevesInicio = FormatoHoras(FormatoInicioJueves(HJI)) + ":" + FormatoMinutos(MinutosJuevesInicial)
-
-            //HoraJuevesFinal0 = FinalJueves[0] // # 
-            //HoraJuevesFinal1 = FinalJueves[1] // :
-            //MinutosJuevesFinal = FinalJueves[3]
-            //HJF = HoraJuevesFinal0 + HoraJuevesFinal1
-            //JuevesFinal = FormatoHoras(FormatoFinalJueves(HJF)) + ":" + FormatoMinutos(MinutosJuevesFinal) 
-
-            // // Viernes
-
-            //HoraViernesInicial0 = InicioViernes[0] // # 
-            //HoraViernesInicial1 = InicioViernes[1] // :
-            //MinutosViernesInicial = InicioViernes[3]
-            //HVI = HoraViernesInicial0 + HoraViernesInicial1
-            //ViernesInicio = FormatoHoras(FormatoInicioViernes(HVI)) + ":" + FormatoMinutos(MinutosViernesInicial)
-
-            //HoraViernesFinal0 = FinalViernes[0] // # 
-            //HoraViernesFinal1 = FinalViernes[1] // :
-            //MinutosViernesFinal = FinalJueves[3]
-            //HVF = HoraViernesFinal0 + HoraViernesFinal1
-            //ViernesFinal = FormatoHoras(FormatoFinalViernes(HVF)) + ":" + FormatoMinutos(MinutosViernesFinal) 
-
-            //// Sabado
-
-            //HoraSabadoInicial0 = InicioSabado[0] // # 
-            //HoraSabadoInicial1 = InicioSabado[1] // :
-            //MinutosSabadoInicial = InicioSabado[3]
-            //HSI = HoraSabadoInicial0 + HoraSabadoInicial1
-            //SabadoInicio = FormatoHoras(FormatoInicioSabado(HSI)) + ":" + FormatoMinutos(MinutosSabadoInicial)
-
-            //HoraSabadoFinal0 = FinalSabado[0] // # 
-            //HoraSabadoFinal1 = FinalSabado[1] // :
-            //MinutosSabadoFinal = FinalSabado[3]
-            //HSF = HoraSabadoFinal0 + HoraSabadoFinal1
-            //SabadoFinal = FormatoHoras(FormatoFinalSabado(HSF)) + ":" + FormatoMinutos(MinutosSabadoFinal) 
-
-            //// Domingo
-
-            //HoraDomingoInicial0 = InicioDomingo[0] // # 
-            //HoraDomingoInicial1 = InicioDomingo[1] // :
-            //MinutosDomingoInicial = InicioDomingo[3]
-            //HDI = HoraDomingoInicial0 + HoraDomingoInicial1
-            //DomingoInicio = FormatoHoras(FormatoInicioDomingo(HDI)) + ":" + FormatoMinutos(MinutosDomingoInicial)
-
-            //HoraDomingoFinal0 = FinalDomingo[0] // # 
-            //HoraDomingoFinal1 = FinalDomingo[1] // :
-            //MinutosDomingoFinal = FinalDomingo[3]
-            //HDF = HoraDomingoFinal0 + HoraDomingoFinal1
-            //DomingoFinal = FormatoHoras(FormatoFinalDomingo(HDF)) + ":" + FormatoMinutos(MinutosDomingoFinal) 
-
+            HoraTotalSeleccionada = FormatoHoras(HoraSeleccionada) + ":" + FormatoMinutos(MinutosSeleccionados)  
+            
+            if ($("#Colaboradores").val() == "0") {
+                $("#msjModalIncorrecto").html("<label>¡No se ha seleccionado un colaborador!</label>");
+                $('#MsjIncorrecto').modal('show');
+            } else {
             switch (Dia) {
 
                 case 0:
@@ -648,17 +396,10 @@ $(function () {
                 default:
                     $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                     $('#MsjIncorrecto').modal('show');
-            }                 
-           
+            }    
 
-            //$('#NuevoEvento').modal();
-
-
-
-
-           
-
-          
+        }
+                                       
 
         },
         eventClick: function (info) {

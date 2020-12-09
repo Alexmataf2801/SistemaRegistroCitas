@@ -120,8 +120,15 @@ function LimpiarValores() {
 
 }
 
+function LimpiarEvento() {
+    $("#Servicio").val("")
+    $("#txtDescripcionServicio").val("")
+    $("#TiempoAprox").val("")
+}
+
 
 $("#Servicios").change(function () {
+    LimpiarEvento();
     ServicioXId();
 });
 
