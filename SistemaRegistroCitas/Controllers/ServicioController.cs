@@ -20,11 +20,19 @@ namespace SistemaRegistroCitas.Controllers
             return View();
         }
 
-        public JsonResult ObtenerServicios()
+        public JsonResult ObtenerServiciosActivos()
         {
             List<Servicio> servicios = new List<Servicio>();
 
-            servicios = LN.ObtenerServicios();
+
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+
+                servicios = LN.ObtenerServiciosActivos(usuario.IdEmpresa);
+
+            }       
 
             return Json(servicios, JsonRequestBehavior.AllowGet);
         }

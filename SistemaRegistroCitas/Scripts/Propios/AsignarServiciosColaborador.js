@@ -36,7 +36,7 @@ function AsignaServicio() {
     $.ajax({
         type: "GET",
         dataType: "JSON",
-        url: "/Servicio/ObtenerTodosLosServicios",
+        url: "/Servicio/ObtenerServiciosActivos",
 
         success: function (InfoServicios) {
 

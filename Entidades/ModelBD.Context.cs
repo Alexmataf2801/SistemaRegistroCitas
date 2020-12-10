@@ -57,11 +57,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarEvento", idUsuarioParameter, idServicioParameter, estadoParameter, usuarioCreacionParameter, horarioInicialParameter, horaFinalParameter);
         }
     
-        public virtual ObjectResult<paObtenerServiciosActivos_Result> paObtenerServiciosActivos()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerServiciosActivos_Result>("paObtenerServiciosActivos");
-        }
-    
         public virtual ObjectResult<paObtenerServicioXId_Result> paObtenerServicioXId(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -322,28 +317,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarServicios", idParameter, nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, usuarioUltimaModificacionParameter);
         }
     
-        public virtual int paDesactivarActivarServicios(Nullable<int> id, Nullable<bool> estado)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("Estado", estado) :
-                new ObjectParameter("Estado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarServicios", idParameter, estadoParameter);
-        }
-    
-        public virtual int paElimminarServicios(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paElimminarServicios", idParameter);
-        }
-    
         public virtual int paDesactivarActivarColaboradores(Nullable<int> id, Nullable<bool> estado)
         {
             var idParameter = id.HasValue ?
@@ -364,15 +337,6 @@ namespace Entidades
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerColaboradoresXId_Result>("paObtenerColaboradoresXId", idParameter);
-        }
-    
-        public virtual int paEliminarColaboradores(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarColaboradores", idParameter);
         }
     
         public virtual ObjectResult<paObtenerMinutosYHoras_Result> paObtenerMinutosYHoras()
@@ -602,19 +566,6 @@ namespace Entidades
                 new ObjectParameter("IdEmpresa", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerServiciosXColaborador_Result>("paObtenerServiciosXColaborador", idEmpresaParameter);
-        }
-    
-        public virtual int paDesactivarActivarServicioXColaborador(Nullable<int> id, Nullable<bool> estado)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("Estado", estado) :
-                new ObjectParameter("Estado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarServicioXColaborador", idParameter, estadoParameter);
         }
     
         public virtual ObjectResult<paObtenerServiciosXColaboradorXId_Result> paObtenerServiciosXColaboradorXId(Nullable<int> idColaborador)
@@ -919,6 +870,59 @@ namespace Entidades
                 new ObjectParameter("EstadoDomingo", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarHorarioEmpresa", idEmpresaParameter, inicioLunesParameter, finalLunesParameter, estadoLunesParameter, inicioMartesParameter, finalMartesParameter, estadoMartesParameter, inicioMiercolesParameter, finalMiercolesParameter, estadoMiercolesParameter, inicioJuevesParameter, finalJuevesParameter, estadoJuevesParameter, inicioViernesParameter, finalViernesParameter, estadoViernesParameter, inicioSabadoParameter, finalSabadoParameter, estadoSabadoParameter, inicioDomingoParameter, finalDomingoParameter, estadoDomingoParameter, respuestaCorrecta);
+        }
+    
+        public virtual int paEliminarColaboradores(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarColaboradores", idParameter);
+        }
+    
+        public virtual int paElimminarServicios(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paElimminarServicios", idParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerServiciosActivos_Result> paObtenerServiciosActivos(Nullable<int> idEmpresa)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerServiciosActivos_Result>("paObtenerServiciosActivos", idEmpresaParameter);
+        }
+    
+        public virtual int paDesactivarActivarServicioXColaborador(Nullable<int> id, Nullable<bool> estado)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarServicioXColaborador", idParameter, estadoParameter);
+        }
+    
+        public virtual int paDesactivarActivarServicios(Nullable<int> id, Nullable<bool> estado)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarServicios", idParameter, estadoParameter);
         }
     }
 }

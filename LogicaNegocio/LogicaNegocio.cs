@@ -145,9 +145,9 @@ namespace LogicaNegocio
 
 
         #region SELECTS
-        public List<Servicio> ObtenerServicios()
+        public List<Servicio> ObtenerServiciosActivos(int IdEmpresa)
         {
-            return AD.ObtenerServicios();
+            return AD.ObtenerServiciosActivos(IdEmpresa);
         }
 
         public Usuario Validarlogin(Login login, int IdEmpresa)

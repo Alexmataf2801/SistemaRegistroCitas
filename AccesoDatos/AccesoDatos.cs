@@ -673,14 +673,14 @@ namespace AccesoDatos
 
         #region SELECTS
 
-        public List<Servicio> ObtenerServicios()
+        public List<Servicio> ObtenerServiciosActivos(int IdEmpresa)
 
         {
             List<Servicio> ListaServcios = new List<Servicio>();
             try
             {
 
-                var info = entities.paObtenerServiciosActivos();
+                var info = entities.paObtenerServiciosActivos(IdEmpresa);
 
                 foreach (var item in info)
                 {
@@ -688,9 +688,7 @@ namespace AccesoDatos
 
                     servicio.Id = item.Id;
                     servicio.Nombre = item.Nombre;
-                    servicio.Descripcion = item.Descripcion;
-                    servicio.TiempoEstimado = item.TiempoEstimado;
-                    servicio.TipoUnidad = item.TipoUnidad;
+                   
 
                     ListaServcios.Add(servicio);
                 }
