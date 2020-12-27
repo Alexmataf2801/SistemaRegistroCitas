@@ -133,4 +133,45 @@ $("#Servicios").change(function () {
 });
 
 
+function LlenarComboTiempos() {
+
+    var Tiempo = $("#txtTiempoEstimado");
+    Tiempo.empty();
+    Tiempo.append('<option value="0">Seleccione uno...</option>');
+
+    if ($("#TipoUnidad").val()== "1") { // Minutos
+
+     var cantidad = 30
+     var contador = 0
+     
+        
+        for (var i = 0; i < 6; i++) {
+            contador = contador + cantidad 
+            Tiempo.append('<option value="' + contador + '">' + contador + '</option>');
+        }
+
+    } else if ($("#TipoUnidad").val() == "2") { // Horas
+        var cantidad = 1
+        var contador = 0
+      
+
+        for (var i = 0; i < 10; i++) {
+            contador = contador + cantidad
+            Tiempo.append('<option value="' + contador + '">' + contador + '</option>');
+        }
+    }
+
+}
+
+
+
+
+$("#TipoUnidad").change(function () {
+    LlenarComboTiempos()
+});
+
+
+//$(document).ready(function () {
+//    LlenarComboTiempos();
+//});
 

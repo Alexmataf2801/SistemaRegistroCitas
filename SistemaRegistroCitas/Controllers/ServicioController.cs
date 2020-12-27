@@ -40,8 +40,9 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ServicioXId(int Id)
         {
+            Servicio InfoServicio = new Servicio();
 
-            Servicio InfoServicio = LN.ServicioXId(Id);
+             InfoServicio = LN.ServicioXId(Id);
 
             return Json(InfoServicio, JsonRequestBehavior.AllowGet);
         }
