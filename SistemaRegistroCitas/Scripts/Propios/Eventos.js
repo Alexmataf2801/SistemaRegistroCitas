@@ -71,6 +71,10 @@
 //}
 
 
+
+
+
+
 function FormatoTiempo(ObjetoTiempo) {
     var Hora = ""
     var Minuto = ""
@@ -144,6 +148,35 @@ $(function () {
     var InicioDomingo = '00:00'
     var FinalDomingo = '00:00'
 
+    var Usuario = null
+
+
+
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        url: "/Usuario/ObtenerUsuarioSesion/",
+        async: false,
+        success: function (InfoUsuario) {
+
+            Usuario = InfoUsuario
+           
+        },
+        error: function (Error) {
+            alert("Se Cayo");
+        }
+
+    });
+
+
+
+
+
+
+
+
+
+
 
     $.ajax({
         type: "GET",
@@ -212,7 +245,152 @@ $(function () {
 
     });
 
-  
+
+
+
+
+    function TiempoLibre() {
+
+        var TiempoFinalLibre;
+        var TiempoInicialLibre = $('#txtHorario').val();
+        //var TiempoInicial = HoraSeleccionada  /*$('#TiempoInicialLibre').val();*/
+
+        if ($("#SeleccionTiempoLibre").val() == "1") { //  Horas
+
+            var Hora = 1
+
+            TiempoFinalLibre = moment(TiempoInicialLibre).add(Hora, 'hours');
+           
+
+            //$('#TiempoInicialLibre').val(TiempoInicialLibre);
+            $('#TiempoInicialLibre').val(moment(TiempoInicialLibre).format('DD-MM-YYYY HH:mm A'));
+            $('#TiempoFinalLibre').val(moment(TiempoFinalLibre).format('DD-MM-YYYY HH:mm A'));
+            //$('#TiempoCita').val(moment(TiempoInicialLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
+            //$('#TiempoFinalLibreOculto').val(moment(TiempoFinalLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
+
+        } else if ($("#SeleccionTiempoLibre").val() == "2") { // Minutos
+
+            var Minutos = 30
+
+            TiempoFinalLibre = moment(TiempoInicialLibre).add(Minutos, 'minutes');
+          
+            //$('#TiempoInicialLibre').val(TiempoInicialLibre);
+            $('#TiempoInicialLibre').val(moment(TiempoInicialLibre).format('DD-MM-YYYY HH:mm A'));
+            $('#TiempoFinalLibre').val(moment(TiempoFinalLibre).format('DD-MM-YYYY HH:mm A'));
+            //$('#TiempoCita').val(moment(TiempoInicialLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
+            //$('#TiempoFinalLibreOculto').val(moment(TiempoFinalLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
+
+
+        } else if ($("#SeleccionTiempoLibre").val() == "3") {  // Dias
+
+            var FechaSeleccionadaCombo = moment(TiempoInicialLibre).format('MM-DD-YYYY')
+             
+           
+
+            switch (Dia) {
+                case 0:
+                    var FechaCompletaComboIni = FechaSeleccionadaCombo + " " + InicioDomingo
+                    var FechaCompletaComboFinal = FechaSeleccionadaCombo + " " + FinalDomingo
+                    $('#TiempoInicialLibre').val(moment(FechaCompletaComboIni).format('DD-MM-YYYY HH:mm A') );
+                    $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinal).format('DD-MM-YYYY HH:mm A'));
+                    $('#TiempoCita').val(moment(FechaCompletaComboIni).format('YYYY-MM-DD[T]HH:mm:ss'));
+                    $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinal).format('YYYY-MM-DD[T]HH:mm:ss'));
+                    
+
+                    //TiempoInicialCovertido = moment(TiempoInicialLibre).format('DD-MM-YYYY hh:mm A')
+                    //$('#TiempoInicialLibre').val(   /* (TiempoInicialCovertido).replace('09:00',*/ InicioDomingo);  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/
+                    //$('#TiempoFinalLibre').val(FinalDomingo   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
+                    break;                  
+                case 1:
+
+                    var FechaCompletaComboIniLunes = FechaSeleccionadaCombo + " " + InicioLunes
+                    var FechaCompletaComboFinalLunes = FechaSeleccionadaCombo + " " + FinalLunes
+                    $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniLunes).format('DD-MM-YYYY HH:mm A'));
+                    $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalLunes).format('DD-MM-YYYY HH:mm A'));
+                    $('#TiempoCita').val(moment(FechaCompletaComboIniLunes).format('YYYY-MM-DD[T]HH:mm:ss'));
+                    $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalLunes).format('YYYY-MM-DD[T]HH:mm:ss'));
+
+
+
+                    //$('#TiempoInicialLibre').val(InicioLunes  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
+                    //$('#TiempoFinalLibre').val(FinalLunes   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
+                    break;  
+                case 2:
+
+                    var FechaCompletaComboIniMartes = FechaSeleccionadaCombo + " " + InicioMartes
+                    var FechaCompletaComboFinalMartes = FechaSeleccionadaCombo + " " + FinalMartes
+                    $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniMartes).format('DD-MM-YYYY hh:mm A'));
+                    $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalMartes).format('DD-MM-YYYY HH:mm A'));
+                    $('#TiempoCita').val(moment(FechaCompletaComboIniMartes).format('YYYY-MM-DD[T]HH:mm:ss'));
+                    $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalMartes).format('YYYY-MM-DD[T]HH:mm:ss'));
+
+
+                    //$('#TiempoInicialLibre').val(InicioMartes  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
+                    //$('#TiempoFinalLibre').val(FinalMartes   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
+                    break;  
+                case 3:
+
+                    //$('#TiempoInicialLibre').val(InicioMiercoles  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
+                    //$('#TiempoFinalLibre').val(FinalMiercoles   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
+
+                    var FechaCompletaComboIniMiercoles = FechaSeleccionadaCombo + " " + InicioMiercoles
+                    var FechaCompletaComboFinalMiercoles = FechaSeleccionadaCombo + " " + FinalMiercoles
+                    $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniMiercoles).format('DD-MM-YYYY hh:mm A'));
+                    $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalMiercoles).format('DD-MM-YYYY HH:mm A'));
+                    $('#TiempoCita').val(moment(FechaCompletaComboIniMiercoles).format('YYYY-MM-DD[T]HH:mm:ss'));
+                    $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalMiercoles).format('YYYY-MM-DD[T]HH:mm:ss'));
+
+                    break;  
+                case 4:
+
+                    var FechaCompletaComboIniJueves = FechaSeleccionadaCombo + " " + InicioJueves
+                    var FechaCompletaComboFinalJueves = FechaSeleccionadaCombo + " " + FinalJueves
+                    $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniJueves).format('DD-MM-YYYY hh:mm A'));
+                    $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalJueves).format('DD-MM-YYYY HH:mm A'));
+                    $('#TiempoCita').val(moment(FechaCompletaComboIniJueves).format('YYYY-MM-DD[T]HH:mm:ss'));
+                    $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalJueves).format('YYYY-MM-DD[T]HH:mm:ss'));
+
+                    //$('#TiempoInicialLibre').val(InicioJueves  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
+                    //$('#TiempoFinalLibre').val(FinalJueves   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
+
+                    break;  
+                case 5:
+
+                    var FechaCompletaComboIniViernes = FechaSeleccionadaCombo + " " + InicioViernes
+                    var FechaCompletaComboFinalViernes = FechaSeleccionadaCombo + " " + FinalViernes
+                    $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniViernes).format('DD-MM-YYYY hh:mm A'));
+                    $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalViernes).format('DD-MM-YYYY HH:mm A'));
+                    $('#TiempoCita').val(moment(FechaCompletaComboIniViernes).format('YYYY-MM-DD[T]HH:mm:ss'));
+                    $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalViernes).format('YYYY-MM-DD[T]HH:mm:ss'));
+
+                    //$('#TiempoInicialLibre').val(InicioViernes  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
+                    //$('#TiempoFinalLibre').val(FinalViernes   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
+
+                    break;  
+                case 6:
+
+                    var FechaCompletaComboIniSabado = FechaSeleccionadaCombo + " " + InicioSabado
+                    var FechaCompletaComboFinalSabado = FechaSeleccionadaCombo + " " + FinalSabado
+                    $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniSabado).format('DD-MM-YYYY hh:mm A'));
+                    $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalSabado).format('DD-MM-YYYY HH:mm A'));
+                    $('#TiempoCita').val(moment(FechaCompletaComboIniSabado).format('YYYY-MM-DD[T]HH:mm:ss'));
+                    $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalSabado).format('YYYY-MM-DD[T]HH:mm:ss'));
+
+                    //$('#TiempoInicialLibre').val(InicioSabado  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
+                    //$('#TiempoFinalLibre').val(FinalSabado   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
+
+                    break;  
+
+            }
+
+        }
+
+    }
+
+    $("#SeleccionTiempoLibre").change(function () {
+        TiempoLibre();
+    });
+
 
     var calendar = new Calendar(calendarEl, {
         plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
@@ -268,14 +446,57 @@ $(function () {
         locale: 'es',
         editable: false,
         dateClick: function (info) {        
-
-            $('#TiempoFinal').val("");
+            var TipoModal = ""
             var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm:ss');
-            $('#TiempoCita').val(FechaSeleccionada);
-            $('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
-            $('#txtHorarioOculta').val(info.dateStr);
+            if (Usuario.IdRol == 4) {
 
-            var FechaCompletaSeleccioada = new Date(FechaSeleccionada);
+                TipoModal = "#NuevoEvento"
+                $('#TiempoFinal').val("");
+                $('#TiempoCita').val(FechaSeleccionada);               
+                $('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
+                $('#txtHorarioOculta').val(info.dateStr);
+
+
+            } else {
+                TipoModal = "#EventoTiempo"
+                //$('#TiempoInicialLibre').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
+
+                $('#TiempoFinal').val("");
+                $('#TiempoCita').val(FechaSeleccionada);
+                $('#txtHorario').val(moment(info.dateStr).format('MM-DD-YYYY hh:mm A'));
+                $('#txtHorarioOculta').val(info.dateStr);
+
+
+
+                //Este lo necesito
+
+                //$('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
+
+
+
+
+
+
+                //
+                //if ($("#SeleccionTiempoLibre").val() == "1" || $("#SeleccionTiempoLibre").val() == "2") {
+                    
+                //    $('#TiempoInicialLibre').val("");
+                //    $('#TiempoLibreDias').val(FechaSeleccionada);
+                //    $('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
+                //    $('#txtHorarioOculta').val(info.dateStr);
+                //}
+
+                //$('#TiempoLibreDias').val(FechaSeleccionada);
+                //$('#TiempoFinalLibreOculto').val(FechaSeleccionada);
+            }
+
+
+                          
+            
+           
+           
+
+            
       
             
             //Fecha = FechaCompletaSeleccioada.getDate();            
@@ -283,6 +504,7 @@ $(function () {
             //Año = FechaCompletaSeleccioada.getFullYear();
 
             // HoraSeleccionada
+            var FechaCompletaSeleccioada = new Date(FechaSeleccionada);
             Dia = FechaCompletaSeleccioada.getDay();
             HoraSeleccionada = FechaCompletaSeleccioada.getHours();
             MinutosSeleccionados = FechaCompletaSeleccioada.getMinutes();         
@@ -297,7 +519,7 @@ $(function () {
                 case 0:
                     if (InicioDomingo <= HoraTotalSeleccionada) {
                         if (FinalDomingo > HoraTotalSeleccionada) {
-                            $('#NuevoEvento').modal();
+                            $(TipoModal).modal();
                         } else {
                             $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                             $('#MsjIncorrecto').modal('show');
@@ -311,7 +533,7 @@ $(function () {
                 case 1:
                     if (InicioLunes <= HoraTotalSeleccionada) {
                         if (FinalLunes > HoraTotalSeleccionada) {
-                            $('#NuevoEvento').modal();
+                            $(TipoModal).modal();
                         } else {
                             $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                             $('#MsjIncorrecto').modal('show');
@@ -325,7 +547,7 @@ $(function () {
                 case 2:
                     if (InicioMartes <= HoraTotalSeleccionada) {
                         if (FinalMartes > HoraTotalSeleccionada) {
-                                $('#NuevoEvento').modal();
+                            $(TipoModal).modal();
                             } else {
                                 $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                                 $('#MsjIncorrecto').modal('show');
@@ -339,7 +561,7 @@ $(function () {
                 case 3:
                     if (InicioMiercoles <= HoraTotalSeleccionada) {
                         if (FinalMiercoles > HoraTotalSeleccionada) {
-                            $('#NuevoEvento').modal();
+                            $(TipoModal).modal();
                         } else {
                             $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                             $('#MsjIncorrecto').modal('show');
@@ -353,7 +575,7 @@ $(function () {
                 case 4:
                     if (InicioJueves <= HoraTotalSeleccionada) {
                         if (FinalJueves > HoraTotalSeleccionada) {
-                            $('#NuevoEvento').modal();
+                            $(TipoModal).modal();
                         } else {
                             $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                             $('#MsjIncorrecto').modal('show');
@@ -367,7 +589,7 @@ $(function () {
                 case 5:
                     if (InicioViernes <= HoraTotalSeleccionada) {
                         if (FinalViernes > HoraTotalSeleccionada) {
-                            $('#NuevoEvento').modal();
+                            $(TipoModal).modal();
                         } else {
                             $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                             $('#MsjIncorrecto').modal('show');
@@ -381,7 +603,7 @@ $(function () {
                 case 6:
                     if (InicioSabado <= HoraTotalSeleccionada) {
                         if (FinalSabado > HoraTotalSeleccionada) {
-                            $('#NuevoEvento').modal();
+                            $(TipoModal).modal();
                         } else {
                             $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                             $('#MsjIncorrecto').modal('show');
@@ -402,9 +624,19 @@ $(function () {
                                        
 
         },
-        eventClick: function (info) {
-            $('#NuevoEvento').modal();
-        }
+        //eventClick: function (info) {
+
+        //    IdRol = 4
+            
+        //    if (IdRol == 3 ) {
+        //        $('#NuevoEvento').modal();
+        //    }
+        //    else {
+        //        $('#EventoTiempo').modal();
+        //    }
+
+        //}
+       
         //events: [
         //    {
         //        title: 'Prueba',
@@ -434,6 +666,27 @@ $(function () {
             title: $("#Servicios option:selected").text(),
             start: $("#TiempoCita").val(),
             end: $("#txtFinalHorarioOculto").val(),
+            //allDay: true,
+        });
+
+    }
+
+
+
+
+    $('#btnReservarTiempo').on('click', function (e) {
+        e.preventDefault();
+
+        doSubmitTiempo();
+    });
+
+    function doSubmitTiempo() {
+        $("#EventoTiempo").modal('hide');
+
+        calendar.addEvent({
+            title: $("#SeleccionTiempoLibre option:selected").text(),
+            start: $("#TiempoCita").val(),
+            end: $("#TiempoFinalLibreOculto").val(),
             //allDay: true,
         });
 
