@@ -265,8 +265,8 @@ $(function () {
             //$('#TiempoInicialLibre').val(TiempoInicialLibre);
             $('#TiempoInicialLibre').val(moment(TiempoInicialLibre).format('DD-MM-YYYY HH:mm A'));
             $('#TiempoFinalLibre').val(moment(TiempoFinalLibre).format('DD-MM-YYYY HH:mm A'));
-            //$('#TiempoCita').val(moment(TiempoInicialLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
-            //$('#TiempoFinalLibreOculto').val(moment(TiempoFinalLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
+            $('#TiempoCita').val(moment(TiempoInicialLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
+            $('#TiempoFinalLibreOculto').val(moment(TiempoFinalLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
 
         } else if ($("#SeleccionTiempoLibre").val() == "2") { // Minutos
 
@@ -277,8 +277,8 @@ $(function () {
             //$('#TiempoInicialLibre').val(TiempoInicialLibre);
             $('#TiempoInicialLibre').val(moment(TiempoInicialLibre).format('DD-MM-YYYY HH:mm A'));
             $('#TiempoFinalLibre').val(moment(TiempoFinalLibre).format('DD-MM-YYYY HH:mm A'));
-            //$('#TiempoCita').val(moment(TiempoInicialLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
-            //$('#TiempoFinalLibreOculto').val(moment(TiempoFinalLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
+            $('#TiempoCita').val(moment(TiempoInicialLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
+            $('#TiempoFinalLibreOculto').val(moment(TiempoFinalLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
 
 
         } else if ($("#SeleccionTiempoLibre").val() == "3") {  // Dias
