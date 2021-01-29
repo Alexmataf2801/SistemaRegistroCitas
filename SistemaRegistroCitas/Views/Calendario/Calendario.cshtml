@@ -4,6 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+    <style>
+        body {
+            padding-right: 0px !important;
+        }
+    </style>
 
 
 <div class="container" style="margin: 0 auto; width: 95%">
@@ -105,7 +110,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnReservar" class="btn btn-primary" onclick="InsertarEvento()">Reservar</button>
+                <button type="button" id="btnReservar" class="btn btn-primary" onclick="InsertarEventos();">Reservar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -188,6 +193,7 @@
 
 
 <script src="~/Js/jquery.min.js"></script>
+
 <script>
 
     //$(function () {

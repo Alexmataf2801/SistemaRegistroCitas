@@ -21,12 +21,7 @@ namespace LogicaNegocio
             AD.InsertarUsuario(usuario, ref Resp);
 
         }
-
-        public bool InsertarEvento(Evento evento)
-        {
-
-            return AD.InsertarEvento(evento);
-        }
+       
 
         public bool InsertarRoles(Roles roles)
         {
@@ -63,6 +58,10 @@ namespace LogicaNegocio
         public int InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
             return AD.InsertarHorarioEmpresa(horarioEmpresa, IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves,EstadoViernes,EstadoSabado,EstadoDomingo);
+        }
+        public int InsertarEventos(Eventos eventos, int IdEmpresa, int IdRol)
+        {
+            return AD.InsertarEventos(eventos,IdEmpresa,IdRol);
         }
 
         #endregion

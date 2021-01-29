@@ -131,7 +131,7 @@
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\DiasLibresColaboradoresController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
-    <Compile Include="Controllers\EventoController.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InicioEmpresasController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -349,6 +349,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Cerrar\" />
     <Folder Include="Views\Empresa\" />
+    <Folder Include="Views\Eventos\" />
     <Folder Include="Views\Evento\" />
     <Folder Include="Views\ServicioTiempo\" />
     <Folder Include="Views\UnidadMedida\" />

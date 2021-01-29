@@ -97,23 +97,7 @@ namespace AccesoDatos
 
 
         }
-
-        public bool InsertarEvento(Evento evento)
-        {
-            bool Respuesta = true;
-            try
-            {
-                entities.paInsertarEvento(evento.IdUsuario, evento.IdServicio, evento.Estado, evento.UsuarioCreacion, evento.HorarioInicial, evento.HoraFinal);
-                Respuesta = true;
-            }
-            catch (Exception ex)
-            {
-                Respuesta = false;
-            }
-
-            return Respuesta;
-
-        }
+     
 
         public bool InsertarRoles(Roles roles)
         {
@@ -412,6 +396,27 @@ namespace AccesoDatos
 
         }
 
+        public int InsertarEventos(Eventos eventos, int IdEmpresa, int IdRol)
+        {
+            ObjectParameter RespuestaCorrecta;
+            int Respuesta = 0;
+            try
+            {
+                RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
+                entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, IdRol, eventos.IdServicio,
+                    eventos.HorarioInicial, eventos.HoraFinal, eventos.UsuarioCreacion,RespuestaCorrecta);
+                Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
+            }
+            catch (Exception ex)
+            {
+
+                Respuesta = 2;
+            }
+
+            return Respuesta;
+
+
+        }
 
         #endregion
 

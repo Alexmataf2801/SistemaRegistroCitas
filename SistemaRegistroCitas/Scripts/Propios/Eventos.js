@@ -691,7 +691,64 @@ $(function () {
         });
 
     }
-
+       
 
 
 })
+
+
+function InsertarEventos() {
+    var eventos = {
+        HorarioInicial: $("#txtHorario").val(),
+        HoraFinal: $("#TiempoFinal").val(),
+        IdUsuario: $("#Colaboradores").val(),
+        IdServicio: $("#Servicios").val(),
+        UsuarioCreacion:"beto" 
+
+    };
+
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        url: "/Eventos/InsertarEventos/",     
+        data: { eventos },
+        success: function (Info) {
+
+            switch (Info) {
+                case 1:
+
+                    $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamenta!</label>");
+                    $("#lblTituloCorrecto").html("<label>Información</label>");
+                    $('#MsjCorrecto').modal('show');
+                    break;
+                case 2:
+                    $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                    break;
+                default:
+                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                    $('#MsjIncorrecto').modal('show');
+            }
+
+
+
+            //if (Info) {
+            //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
+            //    $("#lblTituloCorrecto").html("<label>Información</label>");
+            //    $('#MsjCorrecto').modal('show');
+            //} else {
+            //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
+            //    $('#MsjIncorrecto').modal('show');
+            //}
+
+
+        },
+        error: function (Error) {
+            //alert(Error);
+            console.log(Error);
+        }
+
+    });
+
+
+}

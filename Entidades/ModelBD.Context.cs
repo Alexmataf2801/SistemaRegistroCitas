@@ -28,35 +28,6 @@ namespace Entidades
         }
     
     
-        public virtual int paInsertarEvento(Nullable<int> idUsuario, Nullable<int> idServicio, Nullable<bool> estado, string usuarioCreacion, Nullable<System.DateTime> horarioInicial, Nullable<System.DateTime> horaFinal)
-        {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(int));
-    
-            var idServicioParameter = idServicio.HasValue ?
-                new ObjectParameter("IdServicio", idServicio) :
-                new ObjectParameter("IdServicio", typeof(int));
-    
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("Estado", estado) :
-                new ObjectParameter("Estado", typeof(bool));
-    
-            var usuarioCreacionParameter = usuarioCreacion != null ?
-                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
-                new ObjectParameter("UsuarioCreacion", typeof(string));
-    
-            var horarioInicialParameter = horarioInicial.HasValue ?
-                new ObjectParameter("HorarioInicial", horarioInicial) :
-                new ObjectParameter("HorarioInicial", typeof(System.DateTime));
-    
-            var horaFinalParameter = horaFinal.HasValue ?
-                new ObjectParameter("HoraFinal", horaFinal) :
-                new ObjectParameter("HoraFinal", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarEvento", idUsuarioParameter, idServicioParameter, estadoParameter, usuarioCreacionParameter, horarioInicialParameter, horaFinalParameter);
-        }
-    
         public virtual ObjectResult<paObtenerServicioXId_Result> paObtenerServicioXId(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -923,6 +894,39 @@ namespace Entidades
                 new ObjectParameter("Estado", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarServicios", idParameter, estadoParameter);
+        }
+    
+        public virtual int PaInsertarEventos(Nullable<int> idEmpresa, Nullable<int> idUsuario, Nullable<int> idRol, Nullable<int> idServicio, Nullable<System.DateTime> horarioInicial, Nullable<System.DateTime> horaFinal, string usuarioCreacion, ObjectParameter respuestaCorrecta)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            var idRolParameter = idRol.HasValue ?
+                new ObjectParameter("IdRol", idRol) :
+                new ObjectParameter("IdRol", typeof(int));
+    
+            var idServicioParameter = idServicio.HasValue ?
+                new ObjectParameter("IdServicio", idServicio) :
+                new ObjectParameter("IdServicio", typeof(int));
+    
+            var horarioInicialParameter = horarioInicial.HasValue ?
+                new ObjectParameter("HorarioInicial", horarioInicial) :
+                new ObjectParameter("HorarioInicial", typeof(System.DateTime));
+    
+            var horaFinalParameter = horaFinal.HasValue ?
+                new ObjectParameter("HoraFinal", horaFinal) :
+                new ObjectParameter("HoraFinal", typeof(System.DateTime));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarEventos", idEmpresaParameter, idUsuarioParameter, idRolParameter, idServicioParameter, horarioInicialParameter, horaFinalParameter, usuarioCreacionParameter, respuestaCorrecta);
         }
     }
 }
