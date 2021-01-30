@@ -444,7 +444,8 @@ $(function () {
 
        
         locale: 'es',
-        editable: false,
+        // antes estaba editable, que podia mover el evento y sus horas, como esta ahora solo los puede mover 
+        eventStartEditable: true,
         dateClick: function (info) {        
             var TipoModal = ""
             var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm:ss');

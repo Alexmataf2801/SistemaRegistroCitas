@@ -146,6 +146,7 @@
         <Function Name="PaInsertarEventos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
+          <Parameter Name="IdUsuarioCreador" Type="int" Mode="In" />
           <Parameter Name="IdRol" Type="int" Mode="In" />
           <Parameter Name="IdServicio" Type="int" Mode="In" />
           <Parameter Name="TipoUnidadEvento" Type="int" Mode="In" />
@@ -552,6 +553,7 @@
           <FunctionImport Name="PaInsertarEventos">
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuarioCreador" Mode="In" Type="Int32" />
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
             <Parameter Name="IdServicio" Mode="In" Type="Int32" />
             <Parameter Name="TipoUnidadEvento" Mode="In" Type="Int32" />

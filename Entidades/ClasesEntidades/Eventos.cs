@@ -11,6 +11,7 @@ namespace Entidades.ClasesEntidades
         public int Id { get; set; }
         public int IdEmpresa { get; set; }     
         public int IdUsuario { get; set; }
+        public int IdUsuarioCrecion { get; set; }
         public int IdRol { get; set; }
         public int IdServicio { get; set; }
         public int TipoUnidadEvento { get; set; }

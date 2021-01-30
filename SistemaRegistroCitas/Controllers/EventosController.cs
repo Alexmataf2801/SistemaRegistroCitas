@@ -29,6 +29,7 @@ namespace SistemaRegistroCitas.Controllers
 
             usuario = (Usuario)Session["Usuario"];
             eventos.UsuarioCreacion = usuario.NombreCompleto;
+            eventos.IdUsuarioCrecion = usuario.Id;
             int Respuesta = LN.InsertarEventos(eventos, usuario.IdEmpresa, usuario.IdRol);
 
             return Json(Respuesta, JsonRequestBehavior.AllowGet);
