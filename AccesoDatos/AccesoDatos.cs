@@ -403,7 +403,7 @@ namespace AccesoDatos
             try
             {
                 RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
-                entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, IdRol, eventos.IdServicio,
+                entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, IdRol, eventos.IdServicio,eventos.TipoUnidadEvento,
                     eventos.HorarioInicial, eventos.HoraFinal, eventos.UsuarioCreacion,RespuestaCorrecta);
                 Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
             }

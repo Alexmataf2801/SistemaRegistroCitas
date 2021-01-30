@@ -13,6 +13,7 @@ namespace Entidades.ClasesEntidades
         public int IdUsuario { get; set; }
         public int IdRol { get; set; }
         public int IdServicio { get; set; }
+        public int TipoUnidadEvento { get; set; }
         public DateTime HorarioInicial { get; set; }
         public DateTime HoraFinal { get; set; }
         public bool Estado { get; set; }

@@ -896,7 +896,7 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarServicios", idParameter, estadoParameter);
         }
     
-        public virtual int PaInsertarEventos(Nullable<int> idEmpresa, Nullable<int> idUsuario, Nullable<int> idRol, Nullable<int> idServicio, Nullable<System.DateTime> horarioInicial, Nullable<System.DateTime> horaFinal, string usuarioCreacion, ObjectParameter respuestaCorrecta)
+        public virtual int PaInsertarEventos(Nullable<int> idEmpresa, Nullable<int> idUsuario, Nullable<int> idRol, Nullable<int> idServicio, Nullable<int> tipoUnidadEvento, Nullable<System.DateTime> horarioInicial, Nullable<System.DateTime> horaFinal, string usuarioCreacion, ObjectParameter respuestaCorrecta)
         {
             var idEmpresaParameter = idEmpresa.HasValue ?
                 new ObjectParameter("IdEmpresa", idEmpresa) :
@@ -914,6 +914,10 @@ namespace Entidades
                 new ObjectParameter("IdServicio", idServicio) :
                 new ObjectParameter("IdServicio", typeof(int));
     
+            var tipoUnidadEventoParameter = tipoUnidadEvento.HasValue ?
+                new ObjectParameter("TipoUnidadEvento", tipoUnidadEvento) :
+                new ObjectParameter("TipoUnidadEvento", typeof(int));
+    
             var horarioInicialParameter = horarioInicial.HasValue ?
                 new ObjectParameter("HorarioInicial", horarioInicial) :
                 new ObjectParameter("HorarioInicial", typeof(System.DateTime));
@@ -926,7 +930,7 @@ namespace Entidades
                 new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
                 new ObjectParameter("UsuarioCreacion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarEventos", idEmpresaParameter, idUsuarioParameter, idRolParameter, idServicioParameter, horarioInicialParameter, horaFinalParameter, usuarioCreacionParameter, respuestaCorrecta);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarEventos", idEmpresaParameter, idUsuarioParameter, idRolParameter, idServicioParameter, tipoUnidadEventoParameter, horarioInicialParameter, horaFinalParameter, usuarioCreacionParameter, respuestaCorrecta);
         }
     }
 }
