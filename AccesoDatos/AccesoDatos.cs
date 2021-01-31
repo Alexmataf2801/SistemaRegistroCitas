@@ -410,7 +410,7 @@ namespace AccesoDatos
             catch (Exception ex)
             {
 
-                Respuesta = 2;
+                Respuesta = 3;
             }
 
             return Respuesta;

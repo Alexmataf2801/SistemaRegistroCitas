@@ -449,6 +449,12 @@ $(function () {
         dateClick: function (info) {        
             var TipoModal = ""
             var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm:ss');
+
+            var FechaDelDia = new Date(FechaSeleccionada);
+            Dia = FechaDelDia.getDay();
+
+            $('#DiaSeleccionado').val(Dia);  
+            
             if (Usuario.IdRol == 4) {
 
                 TipoModal = "#NuevoEvento"
@@ -704,7 +710,8 @@ function InsertarEventos() {
         HorarioInicial: $("#txtHorario").val(),
         HoraFinal: $("#TiempoFinal").val(),
         IdUsuario: $("#Colaboradores").val(),
-        IdServicio: $("#Servicios").val()     
+        IdServicio: $("#Servicios").val(),
+        IdDia: $("#DiaSeleccionado").val()
 
     };
 
@@ -716,6 +723,10 @@ function InsertarEventos() {
         success: function (Info) {
 
             switch (Info) {
+                case 5:
+                    $("#msjModalIncorrecto").html("<label>¡El rango horario selecionado no se puede ingresar el evento!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                    break;                   
                 case 1:
 
                     $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamenta!</label>");

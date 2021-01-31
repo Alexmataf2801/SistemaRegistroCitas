@@ -9,7 +9,8 @@ namespace Entidades.ClasesEntidades
    public class Eventos
     {
         public int Id { get; set; }
-        public int IdEmpresa { get; set; }     
+        public int IdEmpresa { get; set; }
+        public int IdDia { get; set; }
         public int IdUsuario { get; set; }
         public int IdUsuarioCrecion { get; set; }
         public int IdRol { get; set; }
