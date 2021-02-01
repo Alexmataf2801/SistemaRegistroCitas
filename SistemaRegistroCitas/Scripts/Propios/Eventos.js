@@ -120,6 +120,7 @@ function FormatoMinutos(ObjetoMinutos) {
 }
 
 
+
 $(function () {
 
     var calendarEl = document.getElementById('calendar');
@@ -660,15 +661,77 @@ $(function () {
 
 
 
-    $('#btnReservar').on('click', function (e) {
-        e.preventDefault();
-
-        doSubmit();
+    $('#btnReservar').on('click', function (e) {       
+            e.preventDefault();
+             InsertarEventos(); 
     });
 
-    function doSubmit() {
-        $("#NuevoEvento").modal('hide');
+    function InsertarEventos() {
+        var eventos = {
+            TipoUnidadEvento: 1,
+            HorarioInicial: $("#txtHorario").val(),
+            HoraFinal: $("#TiempoFinal").val(),
+            IdUsuario: $("#Colaboradores").val(),
+            IdServicio: $("#Servicios").val(),
+            IdDia: $("#DiaSeleccionado").val()
 
+        };
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Eventos/InsertarEventos/",
+            data: { eventos },
+            success: function (Info) {
+                               
+                $("#NuevoEvento").modal('hide');
+
+                switch (Info) {
+                    case 5:
+                        $("#msjModalIncorrecto").html("<label>¡El rango horario selecionado no se puede ingresar el evento!</label>");
+                        $('#MsjIncorrecto').modal('show');
+                        break;
+                    case 1:
+
+                        $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamenta!</label>");
+                        $("#lblTituloCorrecto").html("<label>Información</label>");
+                        $('#MsjCorrecto').modal('show');
+                        doSubmit();
+                        break;
+                    case 2:
+                        $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
+                        $('#MsjIncorrecto').modal('show');
+                        break;
+                    default:
+                        $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                        $('#MsjIncorrecto').modal('show');
+                }
+
+
+
+                //if (Info) {
+                //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
+                //    $("#lblTituloCorrecto").html("<label>Información</label>");
+                //    $('#MsjCorrecto').modal('show');
+                //} else {
+                //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
+                //    $('#MsjIncorrecto').modal('show');
+                //}
+
+
+            },
+            error: function (Error) {
+                //alert(Error);
+                console.log(Error);
+            }
+
+        });
+
+
+    }
+
+    function doSubmit() {
+       
         calendar.addEvent({
             title: $("#Servicios option:selected").text(),
             start: $("#TiempoCita").val(),
@@ -683,12 +746,80 @@ $(function () {
 
     $('#btnReservarTiempo').on('click', function (e) {
         e.preventDefault();
-
-        doSubmitTiempo();
+        InsertarTiempoLibre();
     });
 
+    function InsertarTiempoLibre() {
+        var eventos = {
+            TipoUnidadEvento: 2,
+            HorarioInicial: $("#TiempoInicialLibre").val(),
+            HoraFinal: $("#TiempoFinalLibre").val(),
+            IdUsuario: $("#Colaboradores").val(),
+            IdServicio: $("#SeleccionTiempoLibre").val(),
+            IdDia: $("#DiaSeleccionado").val()
+
+        };
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Eventos/InsertarEventos/",
+            data: { eventos },
+            success: function (Info) {
+
+                $("#EventoTiempo").modal('hide');
+
+                switch (Info) {
+                    case 5:
+                        $("#msjModalIncorrecto").html("<label>¡El rango horario selecionado no se puede ingresar el evento!</label>");
+                        $('#MsjIncorrecto').modal('show');
+                       
+                        break;
+                    case 1:
+
+                        $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamenta!</label>");
+                        $("#lblTituloCorrecto").html("<label>Información</label>");
+                        $('#MsjCorrecto').modal('show');
+                        doSubmitTiempo();
+                        break;
+                    case 2:
+                        $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
+                        $('#MsjIncorrecto').modal('show');
+                        break;
+                    default:
+                        $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                        $('#MsjIncorrecto').modal('show');
+                }
+
+
+
+                //if (Info) {
+                //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
+                //    $("#lblTituloCorrecto").html("<label>Información</label>");
+                //    $('#MsjCorrecto').modal('show');
+                //} else {
+                //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
+                //    $('#MsjIncorrecto').modal('show');
+                //}
+
+
+            },
+            error: function (Error) {
+                //alert(Error);
+                console.log(Error);
+            }
+
+        });
+
+
+    }
+
+
+
+
+
     function doSubmitTiempo() {
-        $("#EventoTiempo").modal('hide');
+        //$("#EventoTiempo").modal('hide');
 
         calendar.addEvent({
             title: $("#SeleccionTiempoLibre option:selected").text(),
@@ -703,121 +834,141 @@ $(function () {
 
 })
 
+function doSubmit() {
+    //$("#NuevoEvento").modal('hide');
 
-function InsertarEventos() {
-    var eventos = {
-        TipoUnidadEvento: 1,
-        HorarioInicial: $("#txtHorario").val(),
-        HoraFinal: $("#TiempoFinal").val(),
-        IdUsuario: $("#Colaboradores").val(),
-        IdServicio: $("#Servicios").val(),
-        IdDia: $("#DiaSeleccionado").val()
-
-    };
-
-    $.ajax({
-        type: "POST",
-        dataType: "JSON",
-        url: "/Eventos/InsertarEventos/",     
-        data: { eventos },
-        success: function (Info) {
-
-            switch (Info) {
-                case 5:
-                    $("#msjModalIncorrecto").html("<label>¡El rango horario selecionado no se puede ingresar el evento!</label>");
-                    $('#MsjIncorrecto').modal('show');
-                    break;                   
-                case 1:
-
-                    $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamenta!</label>");
-                    $("#lblTituloCorrecto").html("<label>Información</label>");
-                    $('#MsjCorrecto').modal('show');
-                    break;
-                case 2:
-                    $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
-                    $('#MsjIncorrecto').modal('show');
-                    break;
-                default:
-                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-                    $('#MsjIncorrecto').modal('show');
-            }
-
-
-
-            //if (Info) {
-            //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
-            //    $("#lblTituloCorrecto").html("<label>Información</label>");
-            //    $('#MsjCorrecto').modal('show');
-            //} else {
-            //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
-            //    $('#MsjIncorrecto').modal('show');
-            //}
-
-
-        },
-        error: function (Error) {
-            //alert(Error);
-            console.log(Error);
-        }
-
+    calendar.addEvent({
+        title: $("#Servicios option:selected").text(),
+        start: $("#TiempoCita").val(),
+        end: $("#txtFinalHorarioOculto").val(),
+        //allDay: true,
     });
-
 
 }
 
 
-function InsertarTiempoLibre() {
-    var eventos = {
-        TipoUnidadEvento:2,
-        HorarioInicial: $("#TiempoInicialLibre").val(),
-        HoraFinal: $("#TiempoFinalLibre").val(),
-        IdUsuario: $("#Colaboradores").val(),
-        IdServicio: $("#SeleccionTiempoLibre").val()
+//function InsertarEventos() {
+//    var eventos = {
+//        TipoUnidadEvento: 1,
+//        HorarioInicial: $("#txtHorario").val(),
+//        HoraFinal: $("#TiempoFinal").val(),
+//        IdUsuario: $("#Colaboradores").val(),
+//        IdServicio: $("#Servicios").val(),
+//        IdDia: $("#DiaSeleccionado").val()
 
-    };
+//    };
 
-    $.ajax({
-        type: "POST",
-        dataType: "JSON",
-        url: "/Eventos/InsertarEventos/",
-        data: { eventos },
-        success: function (Info) {
+//    $.ajax({
+//        type: "POST",
+//        dataType: "JSON",
+//        url: "/Eventos/InsertarEventos/",     
+//        data: { eventos },
+//        success: function (Info) {
 
-            switch (Info) {
-                case 1:
+//            //$("#ValidarEvento").val(Info)
 
-                    $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamenta!</label>");
-                    $("#lblTituloCorrecto").html("<label>Información</label>");
-                    $('#MsjCorrecto').modal('show');
-                    break;
-                case 2:
-                    $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
-                    $('#MsjIncorrecto').modal('show');
-                    break;
-                default:
-                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-                    $('#MsjIncorrecto').modal('show');
-            }
+//            switch (Info) {
+//                case 5:
+//                    $("#msjModalIncorrecto").html("<label>¡El rango horario selecionado no se puede ingresar el evento!</label>");
+//                    $('#MsjIncorrecto').modal('show');
+//                    break;                   
+//                case 1:
 
-
-
-            //if (Info) {
-            //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
-            //    $("#lblTituloCorrecto").html("<label>Información</label>");
-            //    $('#MsjCorrecto').modal('show');
-            //} else {
-            //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
-            //    $('#MsjIncorrecto').modal('show');
-            //}
+//                    $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamenta!</label>");
+//                    $("#lblTituloCorrecto").html("<label>Información</label>");
+//                    $('#MsjCorrecto').modal('show');
+//                    doSubmit();
+//                    break;
+//                case 2:
+//                    $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
+//                    $('#MsjIncorrecto').modal('show');
+//                    break;
+//                default:
+//                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+//                    $('#MsjIncorrecto').modal('show');
+//            }
 
 
-        },
-        error: function (Error) {
-            //alert(Error);
-            console.log(Error);
-        }
 
-    });
+//            //if (Info) {
+//            //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
+//            //    $("#lblTituloCorrecto").html("<label>Información</label>");
+//            //    $('#MsjCorrecto').modal('show');
+//            //} else {
+//            //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
+//            //    $('#MsjIncorrecto').modal('show');
+//            //}
 
 
-}
+//        },
+//        error: function (Error) {
+//            //alert(Error);
+//            console.log(Error);
+//        }
+
+//    });
+
+
+//}
+
+
+//function InsertarTiempoLibre() {
+//    var eventos = {
+//        TipoUnidadEvento:2,
+//        HorarioInicial: $("#TiempoInicialLibre").val(),
+//        HoraFinal: $("#TiempoFinalLibre").val(),
+//        IdUsuario: $("#Colaboradores").val(),
+//        IdServicio: $("#SeleccionTiempoLibre").val(),
+//        IdDia: $("#DiaSeleccionado").val()
+
+//    };
+
+//    $.ajax({
+//        type: "POST",
+//        dataType: "JSON",
+//        url: "/Eventos/InsertarEventos/",
+//        data: { eventos },
+//        success: function (Info) {
+
+//            switch (Info) {
+//                case 5:
+//                    $("#msjModalIncorrecto").html("<label>¡El rango horario selecionado no se puede ingresar el evento!</label>");
+//                    $('#MsjIncorrecto').modal('show');
+//                    break;  
+//                case 1:
+
+//                    $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamenta!</label>");
+//                    $("#lblTituloCorrecto").html("<label>Información</label>");
+//                    $('#MsjCorrecto').modal('show');
+//                    break;
+//                case 2:
+//                    $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
+//                    $('#MsjIncorrecto').modal('show');
+//                    break;
+//                default:
+//                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+//                    $('#MsjIncorrecto').modal('show');
+//            }
+
+
+
+//            //if (Info) {
+//            //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
+//            //    $("#lblTituloCorrecto").html("<label>Información</label>");
+//            //    $('#MsjCorrecto').modal('show');
+//            //} else {
+//            //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
+//            //    $('#MsjIncorrecto').modal('show');
+//            //}
+
+
+//        },
+//        error: function (Error) {
+//            //alert(Error);
+//            console.log(Error);
+//        }
+
+//    });
+
+
+//}
