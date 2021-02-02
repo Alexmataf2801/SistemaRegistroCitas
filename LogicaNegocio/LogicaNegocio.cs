@@ -140,6 +140,12 @@ namespace LogicaNegocio
             return AD.EliminarServiciosXColaborador(Id);
         }
 
+
+        public bool EliminarEventos(int Id)
+        {
+            return AD.EliminarEventos(Id);
+        }
+
         #endregion
 
 
@@ -248,7 +254,11 @@ namespace LogicaNegocio
             return AD.ObtenerHorarioEmpresa(IdEmpresa);
         }
 
-       
+        public List<Eventos> ObtenerTodosLosEventosXIdEmpresa(int IdEmpresa)
+        {
+            return AD.ObtenerTodosLosEventosXIdEmpresa(IdEmpresa);
+        }
+
 
 
         #endregion

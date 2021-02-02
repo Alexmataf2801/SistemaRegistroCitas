@@ -1,81 +1,4 @@
-﻿//function InsertarEvento() {
-//    var evento = {
-//        IdUsuario: $(5).val(),
-//        IdServicio: $("#Servicios").val(),
-//        Estado: $(1).val(),
-//        UsuarioCreacion: $("Jose").val(),
-//        HorarioInicial: $("#txtHorario").val(),
-//        HoraFinal: $("#TiempoFinal").val()
-//    };
-
-//    $.ajax({
-//        type: "POST",
-//        dataType: "JSON",
-//        url: "/Evento/InsertarEvento/",
-//        data: { evento },
-//        success: function (Info) {
-                //var EsValido = false
-//            switch (info.str.day) {
-//                case "Monday":
-//                    var hora = "06:00"
-                    //arreglo[0] = 06
-                    //arreglo[1] = 00
- //                 if primer numero > 12
-                        //primerNUmero > FinalLunes
-                        //primerNUmero > InicioLunes
-//                  EsValido = true
-//                case 1:
-//                    LimpiarValores();
-//                    $('#fm-modal').modal('hide');
-//                    $('#MsjCorreo').modal('show');
-//                    break;
-//                case 2:
-//                    $("#msjModal").html("<label>¡La Identificación ingresada ya existe!</label>");
-//                    $('#MsjIncorrecto').modal('show');
-//                    break;
-//                default:
-//                    $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-//                    $('#MsjIncorrecto').modal('show');
-//            }
-
-//        },
-//        error: function (Error) {
-//            alert("Se Cayo");
-//        }
-
-//    });
-
-
-//}
-
-
-
-//function FormatoHorasDias(ObjetoHora) {
-//    var ArregloTiempo = ObjetoHora.Hours.toString().split('')
-    
-//    if (ArregloTiempo.length > 1) {
-//        return ArregloTiempo[0] + ArregloTiempo[1];
-//    } else {
-//        return "0" + ArregloTiempo[0]   
-//    }
-//}
-
-//function FormatoMinutosDias(ObjetoMinuto) {
-//    var ArregloTiempo = ObjetoMinuto.Minutes.toString().split('')
-
-//    if (ArregloTiempo.length > 1) {
-//        return ArregloTiempo[0] + ArregloTiempo[1];
-//    } else {
-//        return "0" + ArregloTiempo[0]
-//    }
-//}
-
-
-
-
-
-
-function FormatoTiempo(ObjetoTiempo) {
+﻿function FormatoTiempo(ObjetoTiempo) {
     var Hora = ""
     var Minuto = ""
 
@@ -169,16 +92,6 @@ $(function () {
 
     });
 
-
-
-
-
-
-
-
-
-
-
     $.ajax({
         type: "GET",
         dataType: "JSON",
@@ -253,17 +166,14 @@ $(function () {
     function TiempoLibre() {
 
         var TiempoFinalLibre;
-        var TiempoInicialLibre = $('#txtHorario').val();
-        //var TiempoInicial = HoraSeleccionada  /*$('#TiempoInicialLibre').val();*/
+        var TiempoInicialLibre = $('#txtHorario').val();     
 
         if ($("#SeleccionTiempoLibre").val() == "1") { //  Horas
 
             var Hora = 1
 
-            TiempoFinalLibre = moment(TiempoInicialLibre).add(Hora, 'hours');
-           
-
-            //$('#TiempoInicialLibre').val(TiempoInicialLibre);
+            TiempoFinalLibre = moment(TiempoInicialLibre).add(Hora, 'hours');          
+                       
             $('#TiempoInicialLibre').val(moment(TiempoInicialLibre).format('DD-MM-YYYY HH:mm A'));
             $('#TiempoFinalLibre').val(moment(TiempoFinalLibre).format('DD-MM-YYYY HH:mm A'));
             $('#TiempoCita').val(moment(TiempoInicialLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
@@ -273,9 +183,8 @@ $(function () {
 
             var Minutos = 30
 
-            TiempoFinalLibre = moment(TiempoInicialLibre).add(Minutos, 'minutes');
-          
-            //$('#TiempoInicialLibre').val(TiempoInicialLibre);
+            TiempoFinalLibre = moment(TiempoInicialLibre).add(Minutos, 'minutes');          
+
             $('#TiempoInicialLibre').val(moment(TiempoInicialLibre).format('DD-MM-YYYY HH:mm A'));
             $('#TiempoFinalLibre').val(moment(TiempoFinalLibre).format('DD-MM-YYYY HH:mm A'));
             $('#TiempoCita').val(moment(TiempoInicialLibre).format('YYYY-MM-DD[T]HH:mm:ss'));
@@ -284,10 +193,8 @@ $(function () {
 
         } else if ($("#SeleccionTiempoLibre").val() == "3") {  // Dias
 
-            var FechaSeleccionadaCombo = moment(TiempoInicialLibre).format('MM-DD-YYYY')
-             
+            var FechaSeleccionadaCombo = moment(TiempoInicialLibre).format('MM-DD-YYYY')            
            
-
             switch (Dia) {
                 case 0:
                     var FechaCompletaComboIni = FechaSeleccionadaCombo + " " + InicioDomingo
@@ -295,91 +202,55 @@ $(function () {
                     $('#TiempoInicialLibre').val(moment(FechaCompletaComboIni).format('DD-MM-YYYY HH:mm A') );
                     $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinal).format('DD-MM-YYYY HH:mm A'));
                     $('#TiempoCita').val(moment(FechaCompletaComboIni).format('YYYY-MM-DD[T]HH:mm:ss'));
-                    $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinal).format('YYYY-MM-DD[T]HH:mm:ss'));
-                    
-
-                    //TiempoInicialCovertido = moment(TiempoInicialLibre).format('DD-MM-YYYY hh:mm A')
-                    //$('#TiempoInicialLibre').val(   /* (TiempoInicialCovertido).replace('09:00',*/ InicioDomingo);  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/
-                    //$('#TiempoFinalLibre').val(FinalDomingo   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
+                    $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinal).format('YYYY-MM-DD[T]HH:mm:ss'));                  
                     break;                  
                 case 1:
-
                     var FechaCompletaComboIniLunes = FechaSeleccionadaCombo + " " + InicioLunes
                     var FechaCompletaComboFinalLunes = FechaSeleccionadaCombo + " " + FinalLunes
                     $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniLunes).format('DD-MM-YYYY HH:mm A'));
                     $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalLunes).format('DD-MM-YYYY HH:mm A'));
                     $('#TiempoCita').val(moment(FechaCompletaComboIniLunes).format('YYYY-MM-DD[T]HH:mm:ss'));
                     $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalLunes).format('YYYY-MM-DD[T]HH:mm:ss'));
-
-
-
-                    //$('#TiempoInicialLibre').val(InicioLunes  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
-                    //$('#TiempoFinalLibre').val(FinalLunes   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
                     break;  
                 case 2:
-
                     var FechaCompletaComboIniMartes = FechaSeleccionadaCombo + " " + InicioMartes
                     var FechaCompletaComboFinalMartes = FechaSeleccionadaCombo + " " + FinalMartes
                     $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniMartes).format('DD-MM-YYYY hh:mm A'));
                     $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalMartes).format('DD-MM-YYYY HH:mm A'));
                     $('#TiempoCita').val(moment(FechaCompletaComboIniMartes).format('YYYY-MM-DD[T]HH:mm:ss'));
                     $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalMartes).format('YYYY-MM-DD[T]HH:mm:ss'));
-
-
-                    //$('#TiempoInicialLibre').val(InicioMartes  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
-                    //$('#TiempoFinalLibre').val(FinalMartes   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
                     break;  
                 case 3:
-
-                    //$('#TiempoInicialLibre').val(InicioMiercoles  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
-                    //$('#TiempoFinalLibre').val(FinalMiercoles   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
-
                     var FechaCompletaComboIniMiercoles = FechaSeleccionadaCombo + " " + InicioMiercoles
                     var FechaCompletaComboFinalMiercoles = FechaSeleccionadaCombo + " " + FinalMiercoles
                     $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniMiercoles).format('DD-MM-YYYY hh:mm A'));
                     $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalMiercoles).format('DD-MM-YYYY HH:mm A'));
                     $('#TiempoCita').val(moment(FechaCompletaComboIniMiercoles).format('YYYY-MM-DD[T]HH:mm:ss'));
                     $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalMiercoles).format('YYYY-MM-DD[T]HH:mm:ss'));
-
                     break;  
                 case 4:
-
                     var FechaCompletaComboIniJueves = FechaSeleccionadaCombo + " " + InicioJueves
                     var FechaCompletaComboFinalJueves = FechaSeleccionadaCombo + " " + FinalJueves
                     $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniJueves).format('DD-MM-YYYY hh:mm A'));
                     $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalJueves).format('DD-MM-YYYY HH:mm A'));
                     $('#TiempoCita').val(moment(FechaCompletaComboIniJueves).format('YYYY-MM-DD[T]HH:mm:ss'));
                     $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalJueves).format('YYYY-MM-DD[T]HH:mm:ss'));
-
-                    //$('#TiempoInicialLibre').val(InicioJueves  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
-                    //$('#TiempoFinalLibre').val(FinalJueves   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
-
                     break;  
                 case 5:
-
                     var FechaCompletaComboIniViernes = FechaSeleccionadaCombo + " " + InicioViernes
                     var FechaCompletaComboFinalViernes = FechaSeleccionadaCombo + " " + FinalViernes
                     $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniViernes).format('DD-MM-YYYY hh:mm A'));
                     $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalViernes).format('DD-MM-YYYY HH:mm A'));
                     $('#TiempoCita').val(moment(FechaCompletaComboIniViernes).format('YYYY-MM-DD[T]HH:mm:ss'));
                     $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalViernes).format('YYYY-MM-DD[T]HH:mm:ss'));
-
-                    //$('#TiempoInicialLibre').val(InicioViernes  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
-                    //$('#TiempoFinalLibre').val(FinalViernes   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
-
                     break;  
                 case 6:
-
                     var FechaCompletaComboIniSabado = FechaSeleccionadaCombo + " " + InicioSabado
                     var FechaCompletaComboFinalSabado = FechaSeleccionadaCombo + " " + FinalSabado
                     $('#TiempoInicialLibre').val(moment(FechaCompletaComboIniSabado).format('DD-MM-YYYY hh:mm A'));
                     $('#TiempoFinalLibre').val(moment(FechaCompletaComboFinalSabado).format('DD-MM-YYYY HH:mm A'));
                     $('#TiempoCita').val(moment(FechaCompletaComboIniSabado).format('YYYY-MM-DD[T]HH:mm:ss'));
                     $('#TiempoFinalLibreOculto').val(moment(FechaCompletaComboFinalSabado).format('YYYY-MM-DD[T]HH:mm:ss'));
-
-                    //$('#TiempoInicialLibre').val(InicioSabado  /*moment(InicioLunes).format('DD-MM-YYYY hh:mm A')*/);
-                    //$('#TiempoFinalLibre').val(FinalSabado   /*moment(FinalLunes).format('DD-MM-YYYY hh:mm A') */);
-
                     break;  
 
             }
@@ -467,45 +338,13 @@ $(function () {
 
             } else {
                 TipoModal = "#EventoTiempo"
-                //$('#TiempoInicialLibre').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
-
+               
                 $('#TiempoFinal').val("");
                 $('#TiempoCita').val(FechaSeleccionada);
                 $('#txtHorario').val(moment(info.dateStr).format('MM-DD-YYYY hh:mm A'));
                 $('#txtHorarioOculta').val(info.dateStr);
 
-
-
-                //Este lo necesito
-
-                //$('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
-
-
-
-
-
-
-                //
-                //if ($("#SeleccionTiempoLibre").val() == "1" || $("#SeleccionTiempoLibre").val() == "2") {
-                    
-                //    $('#TiempoInicialLibre').val("");
-                //    $('#TiempoLibreDias').val(FechaSeleccionada);
-                //    $('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
-                //    $('#txtHorarioOculta').val(info.dateStr);
-                //}
-
-                //$('#TiempoLibreDias').val(FechaSeleccionada);
-                //$('#TiempoFinalLibreOculto').val(FechaSeleccionada);
             }
-
-
-                          
-            
-           
-           
-
-            
-      
             
             //Fecha = FechaCompletaSeleccioada.getDate();            
             //Mes = FechaCompletaSeleccioada.getMonth();
@@ -707,18 +546,6 @@ $(function () {
                         $('#MsjIncorrecto').modal('show');
                 }
 
-
-
-                //if (Info) {
-                //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
-                //    $("#lblTituloCorrecto").html("<label>Información</label>");
-                //    $('#MsjCorrecto').modal('show');
-                //} else {
-                //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
-                //    $('#MsjIncorrecto').modal('show');
-                //}
-
-
             },
             error: function (Error) {
                 //alert(Error);
@@ -791,18 +618,6 @@ $(function () {
                         $('#MsjIncorrecto').modal('show');
                 }
 
-
-
-                //if (Info) {
-                //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
-                //    $("#lblTituloCorrecto").html("<label>Información</label>");
-                //    $('#MsjCorrecto').modal('show');
-                //} else {
-                //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
-                //    $('#MsjIncorrecto').modal('show');
-                //}
-
-
             },
             error: function (Error) {
                 //alert(Error);
@@ -814,12 +629,7 @@ $(function () {
 
     }
 
-
-
-
-
-    function doSubmitTiempo() {
-        //$("#EventoTiempo").modal('hide');
+    function doSubmitTiempo() {      
 
         calendar.addEvent({
             title: $("#SeleccionTiempoLibre option:selected").text(),
@@ -828,147 +638,9 @@ $(function () {
             //allDay: true,
         });
 
-    }
-       
-
+    } 
 
 })
 
-function doSubmit() {
-    //$("#NuevoEvento").modal('hide');
-
-    calendar.addEvent({
-        title: $("#Servicios option:selected").text(),
-        start: $("#TiempoCita").val(),
-        end: $("#txtFinalHorarioOculto").val(),
-        //allDay: true,
-    });
-
-}
 
 
-//function InsertarEventos() {
-//    var eventos = {
-//        TipoUnidadEvento: 1,
-//        HorarioInicial: $("#txtHorario").val(),
-//        HoraFinal: $("#TiempoFinal").val(),
-//        IdUsuario: $("#Colaboradores").val(),
-//        IdServicio: $("#Servicios").val(),
-//        IdDia: $("#DiaSeleccionado").val()
-
-//    };
-
-//    $.ajax({
-//        type: "POST",
-//        dataType: "JSON",
-//        url: "/Eventos/InsertarEventos/",     
-//        data: { eventos },
-//        success: function (Info) {
-
-//            //$("#ValidarEvento").val(Info)
-
-//            switch (Info) {
-//                case 5:
-//                    $("#msjModalIncorrecto").html("<label>¡El rango horario selecionado no se puede ingresar el evento!</label>");
-//                    $('#MsjIncorrecto').modal('show');
-//                    break;                   
-//                case 1:
-
-//                    $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamenta!</label>");
-//                    $("#lblTituloCorrecto").html("<label>Información</label>");
-//                    $('#MsjCorrecto').modal('show');
-//                    doSubmit();
-//                    break;
-//                case 2:
-//                    $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
-//                    $('#MsjIncorrecto').modal('show');
-//                    break;
-//                default:
-//                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-//                    $('#MsjIncorrecto').modal('show');
-//            }
-
-
-
-//            //if (Info) {
-//            //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
-//            //    $("#lblTituloCorrecto").html("<label>Información</label>");
-//            //    $('#MsjCorrecto').modal('show');
-//            //} else {
-//            //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
-//            //    $('#MsjIncorrecto').modal('show');
-//            //}
-
-
-//        },
-//        error: function (Error) {
-//            //alert(Error);
-//            console.log(Error);
-//        }
-
-//    });
-
-
-//}
-
-
-//function InsertarTiempoLibre() {
-//    var eventos = {
-//        TipoUnidadEvento:2,
-//        HorarioInicial: $("#TiempoInicialLibre").val(),
-//        HoraFinal: $("#TiempoFinalLibre").val(),
-//        IdUsuario: $("#Colaboradores").val(),
-//        IdServicio: $("#SeleccionTiempoLibre").val(),
-//        IdDia: $("#DiaSeleccionado").val()
-
-//    };
-
-//    $.ajax({
-//        type: "POST",
-//        dataType: "JSON",
-//        url: "/Eventos/InsertarEventos/",
-//        data: { eventos },
-//        success: function (Info) {
-
-//            switch (Info) {
-//                case 5:
-//                    $("#msjModalIncorrecto").html("<label>¡El rango horario selecionado no se puede ingresar el evento!</label>");
-//                    $('#MsjIncorrecto').modal('show');
-//                    break;  
-//                case 1:
-
-//                    $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamenta!</label>");
-//                    $("#lblTituloCorrecto").html("<label>Información</label>");
-//                    $('#MsjCorrecto').modal('show');
-//                    break;
-//                case 2:
-//                    $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
-//                    $('#MsjIncorrecto').modal('show');
-//                    break;
-//                default:
-//                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-//                    $('#MsjIncorrecto').modal('show');
-//            }
-
-
-
-//            //if (Info) {
-//            //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
-//            //    $("#lblTituloCorrecto").html("<label>Información</label>");
-//            //    $('#MsjCorrecto').modal('show');
-//            //} else {
-//            //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
-//            //    $('#MsjIncorrecto').modal('show');
-//            //}
-
-
-//        },
-//        error: function (Error) {
-//            //alert(Error);
-//            console.log(Error);
-//        }
-
-//    });
-
-
-//}

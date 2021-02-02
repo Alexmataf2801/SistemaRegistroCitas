@@ -672,6 +672,22 @@ namespace AccesoDatos
             return SeElimino;
         }
 
+        public bool EliminarEventos(int Id)
+        {
+            bool SeElimino = false;
+
+            try
+            {
+                entities.paEliminarEventos(Id);
+                SeElimino = true;
+            }
+            catch (Exception)
+            {
+                SeElimino = false;
+            }
+
+            return SeElimino;
+        }
 
         #endregion
 
@@ -1319,7 +1335,37 @@ namespace AccesoDatos
         }
 
 
-      
+        public List<Eventos> ObtenerTodosLosEventosXIdEmpresa(int IdEmpresa)
+        {
+            List<Eventos> ListaEventos = new List<Eventos>();
+            try
+            {
+                var info = entities.paObtenerTodosLosEventosXIdEmpresa(IdEmpresa);
+
+                foreach (var item in info)
+                {
+                    Eventos Eventos = new Eventos();
+
+                    Eventos.Id = item.Id;
+                    Eventos.IdUsuario = item.Id;
+                    Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
+                    Eventos.IdServicio = item.IdServicio;
+                    Eventos.HorarioInicial = item.HorarioInicial;
+                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.UsuarioCreacion = item.UsuarioCreacion;
+                    Eventos.NombreColaborador = item.NombreColaborador;
+                    Eventos.NombreServicio = item.NombreServicio;                    
+
+                    ListaEventos.Add(Eventos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaEventos;
+        }
 
 
 

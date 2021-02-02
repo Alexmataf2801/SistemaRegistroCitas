@@ -102,6 +102,9 @@
         <Function Name="paEliminarColaboradores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="paEliminarEventos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="paEliminarPermisosUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
@@ -266,6 +269,9 @@
         </Function>
         <Function Name="paObtenerTodosLosDias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdColaboarador" Type="int" Mode="In" />
+        </Function>
+        <Function Name="paObtenerTodosLosEventosXIdEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
         </Function>
         <Function Name="paObtenerTodosLosRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="paObtenerTodosLosServicios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -562,6 +568,12 @@
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
             <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosEventosXIdEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdEmpresa_Result)">
+          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paEliminarEventos">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServicioXId_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -770,6 +782,17 @@
         <ComplexType Name="paObtenerServiciosActivos_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosLosEventosXIdEmpresa_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuarioCreador" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="DateTime" Name="HorarioInicial" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="HoraFinal" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="NombreColaborador" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1094,6 +1117,22 @@
           <FunctionImportMapping FunctionImportName="paDesactivarActivarServicioXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarServicioXColaborador" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarServicios" />
           <FunctionImportMapping FunctionImportName="PaInsertarEventos" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarEventos" />
+          <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosXIdEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosXIdEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdEmpresa_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdUsuarioCreador" ColumnName="IdUsuarioCreador" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="HorarioInicial" ColumnName="HorarioInicial" />
+                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="NombreColaborador" ColumnName="NombreColaborador" />
+                <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paEliminarEventos" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarEventos" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -141,5 +141,58 @@ namespace SistemaRegistroCitas.Controllers
 
         }
 
+
+        public JsonResult ObtenerTodosLosEventosXIdEmpresa()
+        {
+            List<Eventos> Eventos = new List<Eventos>();
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+
+                Eventos = LN.ObtenerTodosLosEventosXIdEmpresa(usuario.IdEmpresa);
+            }
+
+
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ListaEvento()
+        {
+            usuario = (Usuario)Session["Usuario"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
+
+            if (usuario != null)
+            {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+        public JsonResult EliminarEventos(int Id)
+        {
+            bool SeElimino = false;
+
+            SeElimino = LN.EliminarEventos(Id);
+
+            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+
+
+        }
+
     }
 }

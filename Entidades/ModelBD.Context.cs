@@ -936,5 +936,23 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarEventos", idEmpresaParameter, idUsuarioParameter, idUsuarioCreadorParameter, idRolParameter, idServicioParameter, tipoUnidadEventoParameter, horarioInicialParameter, horaFinalParameter, usuarioCreacionParameter, respuestaCorrecta);
         }
+    
+        public virtual ObjectResult<paObtenerTodosLosEventosXIdEmpresa_Result> paObtenerTodosLosEventosXIdEmpresa(Nullable<int> idEmpresa)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosXIdEmpresa_Result>("paObtenerTodosLosEventosXIdEmpresa", idEmpresaParameter);
+        }
+    
+        public virtual int paEliminarEventos(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarEventos", idParameter);
+        }
     }
 }

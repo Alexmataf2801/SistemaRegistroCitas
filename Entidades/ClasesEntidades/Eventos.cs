@@ -20,8 +20,12 @@ namespace Entidades.ClasesEntidades
         public DateTime HoraFinal { get; set; }
         public bool Estado { get; set; }
         public string UsuarioCreacion { get; set; }
+        public string NombreColaborador { get; set; }
+        public string NombreServicio { get; set; }
         public DateTime FechaCreacion { get; set; }
         public string UsuarioUltimaModificacion { get; set; }
         public DateTime? FechaUltimaModificacion { get; set; }
+
+        
     }
 }
