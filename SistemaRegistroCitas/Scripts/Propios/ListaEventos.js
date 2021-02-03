@@ -20,6 +20,9 @@
             );
             TablaRoles.clear().draw();
             $(Info).each(function (key, value) {
+
+                var HorarioInicial = moment(value.HorarioInicial).format('DD-MM-YYYY HH:mm A');
+                var HoraFinal = moment(value.HoraFinal).format('DD-MM-YYYY HH:mm A');
                 //var estado = '';
                 //if (value.Estado) {
                 //    estado = "<span class='EstadoActivo' >Activo</span>";
@@ -30,7 +33,7 @@
                 //var CambiarEstado = "<a type='button' class='btn btn-primary fa fa-power-off' onclick='DesactivarActivarServicios(" + value.Id + "," + value.Estado + " )'></a>";
                 var Eliminar = "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarEvento(" + value.Id + ")'></a>";
 
-                TablaRoles.row.add([value.NombreColaborador, value.UsuarioCreacion, value.NombreServicio, value.HorarioInicial, value.HoraFinal, Eliminar]).draw();
+                TablaRoles.row.add([value.NombreColaborador, value.UsuarioCreacion, value.NombreServicio, HorarioInicial, HoraFinal, Eliminar]).draw();
             });
 
 
