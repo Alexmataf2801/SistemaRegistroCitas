@@ -1347,7 +1347,7 @@ namespace AccesoDatos
                     Eventos Eventos = new Eventos();
 
                     Eventos.Id = item.Id;
-                    Eventos.IdUsuario = item.Id;
+                    Eventos.IdUsuario = item.IdUsuario;
                     Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
                     Eventos.IdServicio = item.IdServicio;
                     Eventos.HorarioInicial = item.HorarioInicial;
@@ -1368,7 +1368,69 @@ namespace AccesoDatos
         }
 
 
+        public List<Eventos> ObtenerTodosLosEventosXIdUsuarioCreador(int IdUsuarioCreador)
+        {
+            List<Eventos> ListaEventos = new List<Eventos>();
+            try
+            {
+                var info = entities.paObtenerTodosLosEventosXIdUsuarioCreador(IdUsuarioCreador);
 
+                foreach (var item in info)
+                {
+                    Eventos Eventos = new Eventos();
+
+                    Eventos.Id = item.Id;
+                    Eventos.IdUsuario = item.Id;                   
+                    Eventos.IdServicio = item.IdServicio;
+                    Eventos.HorarioInicial = item.HorarioInicial;
+                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.UsuarioCreacion = item.UsuarioCreacion;
+                    Eventos.NombreColaborador = item.NombreColaborador;
+                    Eventos.NombreServicio = item.NombreServicio;
+
+                    ListaEventos.Add(Eventos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaEventos;
+        }
+
+
+        public List<Eventos> ObtenerTodosLosEventosHorasLibresXIdEmpresa(int IdEmpresa)
+        {
+            List<Eventos> ListaEventos = new List<Eventos>();
+            try
+            {
+                var info = entities.paObtenerTodosLosEventosHorasLibresXIdEmpresa(IdEmpresa);
+
+                foreach (var item in info)
+                {
+                    Eventos Eventos = new Eventos();
+
+                    Eventos.Id = item.Id;
+                    Eventos.IdUsuario = item.IdUsuario;
+                    Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
+                    Eventos.IdServicio = item.IdServicio;
+                    Eventos.HorarioInicial = item.HorarioInicial;
+                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.UsuarioCreacion = item.UsuarioCreacion;
+                    Eventos.NombreColaborador = item.NombreColaborador;
+                   
+
+                    ListaEventos.Add(Eventos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaEventos;
+        }
 
 
 

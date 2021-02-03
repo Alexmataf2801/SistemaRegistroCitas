@@ -194,5 +194,86 @@ namespace SistemaRegistroCitas.Controllers
 
         }
 
+        public JsonResult ObtenerTodosLosEventosXIdUsuarioCreador()
+        {
+            List<Eventos> Eventos = new List<Eventos>();
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+
+                Eventos = LN.ObtenerTodosLosEventosXIdUsuarioCreador(usuario.Id);
+            }
+
+
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ListaEventoUsuarioCreador()
+        {
+            usuario = (Usuario)Session["Usuario"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
+
+            if (usuario != null)
+            {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+        public JsonResult ObtenerTodosLosEventosHorasLibresXIdEmpresa()
+        {
+            List<Eventos> Eventos = new List<Eventos>();
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+
+                Eventos = LN.ObtenerTodosLosEventosHorasLibresXIdEmpresa(usuario.IdEmpresa);
+            }
+
+
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ListaEventoHorasLibres()
+        {
+            usuario = (Usuario)Session["Usuario"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
+
+            if (usuario != null)
+            {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
     }
 }
