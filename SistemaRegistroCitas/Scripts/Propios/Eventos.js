@@ -512,6 +512,7 @@ $(function () {
             HoraFinal: $("#TiempoFinal").val(),
             IdUsuario: $("#Colaboradores").val(),
             IdServicio: $("#Servicios").val(),
+            Nombre: $("#Servicios option:selected").text(),
             IdDia: $("#DiaSeleccionado").val()
 
         };

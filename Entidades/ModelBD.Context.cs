@@ -259,35 +259,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarRol", idRolParameter, nombreParameter, descripcionParameter, usuarioUltimaModificacionParameter);
         }
     
-        public virtual int paActualizarServicios(Nullable<int> id, string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, string usuarioUltimaModificacion)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var tiempoEstimadoParameter = tiempoEstimado.HasValue ?
-                new ObjectParameter("TiempoEstimado", tiempoEstimado) :
-                new ObjectParameter("TiempoEstimado", typeof(int));
-    
-            var tipoUnidadParameter = tipoUnidad.HasValue ?
-                new ObjectParameter("TipoUnidad", tipoUnidad) :
-                new ObjectParameter("TipoUnidad", typeof(int));
-    
-            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
-                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
-                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarServicios", idParameter, nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, usuarioUltimaModificacionParameter);
-        }
-    
         public virtual int paDesactivarActivarColaboradores(Nullable<int> id, Nullable<bool> estado)
         {
             var idParameter = id.HasValue ?
@@ -896,47 +867,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarServicios", idParameter, estadoParameter);
         }
     
-        public virtual int PaInsertarEventos(Nullable<int> idEmpresa, Nullable<int> idUsuario, Nullable<int> idUsuarioCreador, Nullable<int> idRol, Nullable<int> idServicio, Nullable<int> tipoUnidadEvento, Nullable<System.DateTime> horarioInicial, Nullable<System.DateTime> horaFinal, string usuarioCreacion, ObjectParameter respuestaCorrecta)
-        {
-            var idEmpresaParameter = idEmpresa.HasValue ?
-                new ObjectParameter("IdEmpresa", idEmpresa) :
-                new ObjectParameter("IdEmpresa", typeof(int));
-    
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(int));
-    
-            var idUsuarioCreadorParameter = idUsuarioCreador.HasValue ?
-                new ObjectParameter("IdUsuarioCreador", idUsuarioCreador) :
-                new ObjectParameter("IdUsuarioCreador", typeof(int));
-    
-            var idRolParameter = idRol.HasValue ?
-                new ObjectParameter("IdRol", idRol) :
-                new ObjectParameter("IdRol", typeof(int));
-    
-            var idServicioParameter = idServicio.HasValue ?
-                new ObjectParameter("IdServicio", idServicio) :
-                new ObjectParameter("IdServicio", typeof(int));
-    
-            var tipoUnidadEventoParameter = tipoUnidadEvento.HasValue ?
-                new ObjectParameter("TipoUnidadEvento", tipoUnidadEvento) :
-                new ObjectParameter("TipoUnidadEvento", typeof(int));
-    
-            var horarioInicialParameter = horarioInicial.HasValue ?
-                new ObjectParameter("HorarioInicial", horarioInicial) :
-                new ObjectParameter("HorarioInicial", typeof(System.DateTime));
-    
-            var horaFinalParameter = horaFinal.HasValue ?
-                new ObjectParameter("HoraFinal", horaFinal) :
-                new ObjectParameter("HoraFinal", typeof(System.DateTime));
-    
-            var usuarioCreacionParameter = usuarioCreacion != null ?
-                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
-                new ObjectParameter("UsuarioCreacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarEventos", idEmpresaParameter, idUsuarioParameter, idUsuarioCreadorParameter, idRolParameter, idServicioParameter, tipoUnidadEventoParameter, horarioInicialParameter, horaFinalParameter, usuarioCreacionParameter, respuestaCorrecta);
-        }
-    
         public virtual ObjectResult<paObtenerTodosLosEventosXIdEmpresa_Result> paObtenerTodosLosEventosXIdEmpresa(Nullable<int> idEmpresa)
         {
             var idEmpresaParameter = idEmpresa.HasValue ?
@@ -971,6 +901,89 @@ namespace Entidades
                 new ObjectParameter("IdEmpresa", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result>("paObtenerTodosLosEventosHorasLibresXIdEmpresa", idEmpresaParameter);
+        }
+    
+        public virtual int PaInsertarEventos(Nullable<int> idEmpresa, Nullable<int> idUsuario, Nullable<int> idUsuarioCreador, Nullable<int> idRol, Nullable<int> idServicio, string nombre, Nullable<int> tipoUnidadEvento, Nullable<System.DateTime> horarioInicial, Nullable<System.DateTime> horaFinal, string usuarioCreacion, ObjectParameter respuestaCorrecta)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            var idUsuarioCreadorParameter = idUsuarioCreador.HasValue ?
+                new ObjectParameter("IdUsuarioCreador", idUsuarioCreador) :
+                new ObjectParameter("IdUsuarioCreador", typeof(int));
+    
+            var idRolParameter = idRol.HasValue ?
+                new ObjectParameter("IdRol", idRol) :
+                new ObjectParameter("IdRol", typeof(int));
+    
+            var idServicioParameter = idServicio.HasValue ?
+                new ObjectParameter("IdServicio", idServicio) :
+                new ObjectParameter("IdServicio", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var tipoUnidadEventoParameter = tipoUnidadEvento.HasValue ?
+                new ObjectParameter("TipoUnidadEvento", tipoUnidadEvento) :
+                new ObjectParameter("TipoUnidadEvento", typeof(int));
+    
+            var horarioInicialParameter = horarioInicial.HasValue ?
+                new ObjectParameter("HorarioInicial", horarioInicial) :
+                new ObjectParameter("HorarioInicial", typeof(System.DateTime));
+    
+            var horaFinalParameter = horaFinal.HasValue ?
+                new ObjectParameter("HoraFinal", horaFinal) :
+                new ObjectParameter("HoraFinal", typeof(System.DateTime));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarEventos", idEmpresaParameter, idUsuarioParameter, idUsuarioCreadorParameter, idRolParameter, idServicioParameter, nombreParameter, tipoUnidadEventoParameter, horarioInicialParameter, horaFinalParameter, usuarioCreacionParameter, respuestaCorrecta);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosEventosXIdUsuario_Result> paObtenerTodosLosEventosXIdUsuario(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosXIdUsuario_Result>("paObtenerTodosLosEventosXIdUsuario", idUsuarioParameter);
+        }
+    
+        public virtual int paActualizarServicios(Nullable<int> id, string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, string usuarioUltimaModificacion)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var tiempoEstimadoParameter = tiempoEstimado.HasValue ?
+                new ObjectParameter("TiempoEstimado", tiempoEstimado) :
+                new ObjectParameter("TiempoEstimado", typeof(int));
+    
+            var tipoUnidadParameter = tipoUnidad.HasValue ?
+                new ObjectParameter("TipoUnidad", tipoUnidad) :
+                new ObjectParameter("TipoUnidad", typeof(int));
+    
+            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
+                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
+                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarServicios", idParameter, nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, usuarioUltimaModificacionParameter);
         }
     }
 }

@@ -269,6 +269,11 @@ namespace LogicaNegocio
             return AD.ObtenerTodosLosEventosHorasLibresXIdEmpresa(IdEmpresa);
         }
 
+        public List<Eventos> ObtenerTodosLosEventosXIdUsuario(int IdUsuario)
+        {
+            return AD.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
+        }
+
 
         #endregion
 

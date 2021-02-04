@@ -275,5 +275,46 @@ namespace SistemaRegistroCitas.Controllers
                 return RedirectToAction("Login", "Home");
             }
         }
+
+        public JsonResult ObtenerTodosLosEventosXIdUsuario()
+        {
+            List<Eventos> Eventos = new List<Eventos>();
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+
+                Eventos = LN.ObtenerTodosLosEventosXIdUsuario(usuario.Id);
+            }
+
+
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ListaEventoUsuario()
+        {
+            usuario = (Usuario)Session["Usuario"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
+
+            if (usuario != null)
+            {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
     }
 }

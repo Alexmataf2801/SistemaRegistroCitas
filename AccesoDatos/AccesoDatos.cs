@@ -403,7 +403,7 @@ namespace AccesoDatos
             try
             {
                 RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
-                entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, eventos.IdUsuarioCrecion, IdRol, eventos.IdServicio,eventos.TipoUnidadEvento,
+                entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, eventos.IdUsuarioCrecion, IdRol, eventos.IdServicio,eventos.Nombre, eventos.TipoUnidadEvento,
                     eventos.HorarioInicial, eventos.HoraFinal, eventos.UsuarioCreacion,RespuestaCorrecta);
                 Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
             }
@@ -1420,6 +1420,40 @@ namespace AccesoDatos
                     Eventos.UsuarioCreacion = item.UsuarioCreacion;
                     Eventos.NombreColaborador = item.NombreColaborador;
                    
+
+                    ListaEventos.Add(Eventos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaEventos;
+        }
+
+
+        public List<Eventos> ObtenerTodosLosEventosXIdUsuario(int IdUsuario)
+        {
+            List<Eventos> ListaEventos = new List<Eventos>();
+            try
+            {
+                var info = entities.paObtenerTodosLosEventosXIdUsuario(IdUsuario);
+
+                foreach (var item in info)
+                {
+                    Eventos Eventos = new Eventos();
+
+                    Eventos.Id = item.Id;
+                    Eventos.IdUsuario = item.IdUsuario;
+                    Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
+                    Eventos.IdServicio = item.IdServicio;
+                    Eventos.Nombre = item.Nombre;
+                    Eventos.TipoUnidadEvento = item.TipoUnidadEvento;
+                    Eventos.HorarioInicial = item.HorarioInicial;
+                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.UsuarioCreacion = item.UsuarioCreacion;                
+                  
 
                     ListaEventos.Add(Eventos);
                 }
