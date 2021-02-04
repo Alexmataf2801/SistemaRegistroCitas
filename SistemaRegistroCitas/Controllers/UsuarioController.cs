@@ -43,6 +43,15 @@ namespace SistemaRegistroCitas.Controllers
             return Json(usuario, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ObtenerUsuarioSesion() {
+            Usuario usuarioSession = new Usuario();
+            if (Session["Usuario"] != null) {
+
+                usuarioSession = (Usuario)Session["Usuario"];
+            }
+            return Json(usuarioSession, JsonRequestBehavior.AllowGet); ;
+        }
+
         public void CargarConfiguracionesEmpresa(int IdEmpresa) {
             //ColaboradoresEmpresa(IdEmpresa); // Carga Colaboradores empresa en el combo
             //ObtenerCalendarioEmpresa(IdEmpresa); // Nos carga todos los eventos de la empresa en el calendario

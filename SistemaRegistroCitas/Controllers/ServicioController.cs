@@ -20,11 +20,19 @@ namespace SistemaRegistroCitas.Controllers
             return View();
         }
 
-        public JsonResult ObtenerServicios()
+        public JsonResult ObtenerServiciosActivos()
         {
             List<Servicio> servicios = new List<Servicio>();
 
-            servicios = LN.ObtenerServicios();
+
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+
+                servicios = LN.ObtenerServiciosActivos(usuario.IdEmpresa);
+
+            }       
 
             return Json(servicios, JsonRequestBehavior.AllowGet);
         }
@@ -32,8 +40,9 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ServicioXId(int Id)
         {
+            Servicio InfoServicio = new Servicio();
 
-            Servicio InfoServicio = LN.ServicioXId(Id);
+             InfoServicio = LN.ServicioXId(Id);
 
             return Json(InfoServicio, JsonRequestBehavior.AllowGet);
         }

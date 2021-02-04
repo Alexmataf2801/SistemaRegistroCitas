@@ -4,6 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+    <style>
+        body {
+            padding-right: 0px !important;
+        }
+    </style>
 
 
 <div class="container" style="margin: 0 auto; width: 95%">
@@ -14,10 +19,15 @@
                     <label>Colaboradores</label>
                 </div>
                 <div class="form-group col-md-3">
-                    <select class="form-control" id="Colaboradores">
-                        <option value="0">Seleccione uno...</option>
+                    <select class="form-control" onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();' id="Colaboradores">
+                        <option value="0"  selected hidden>Seleccione uno...</option>
                     </select>
                 </div>
+                <style>
+                    option:hover {
+                        background-color: #379fef;
+                    }
+                </style>
             </div>
             <div style="margin: 0 auto; width: 95%">
                 <div style="text-align: center; margin-bottom: auto">
@@ -29,6 +39,10 @@
         </div>
     </div>
 </div>
+
+<input class="form-control" readonly type="hidden" id="DiaSeleccionado" />
+<input class="form-control" readonly type="hidden" id="ValidarEvento" />
+
 <div class="modal fade" id="NuevoEvento" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-top-left-radius: 10px; border-top-right-radius: 10px">
@@ -100,7 +114,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnReservar" class="btn btn-primary" onclick="InsertarEvento()">Reservar</button>
+                <button type="button" id="btnReservar" class="btn btn-primary" @*onclick="InsertarEventos();"*@>Reservar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -108,7 +122,82 @@
 
 
 </div>
+
+
+<div class="modal fade" id="EventoTiempo" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-top-left-radius: 10px; border-top-right-radius: 10px">
+            <div class="modal-header" style="background-color:#337AB7; border-top-left-radius: 10px; border-top-right-radius: 10px">
+                <h4 style="text-align:center; color:#FFFFFF" class="modal-title">Seleccione el Tiempo Libre</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label>Tiempo Libre</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <select class="form-control" id="SeleccionTiempoLibre">
+                            <option value="0">Seleccione uno...</option>
+                            <option value="1">Hora Libre</option>
+                            <option value="2">30 Min Libre</option>
+                            <option value="3">Dia libre</option>                              
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label>Descripcion</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <textarea readonly type="text" class="form-control" rows="6" style="border-radius:4px; max-height:300px; min-height: 80px; max-width: 100%; min-width: 100%;" id="DescripcionTiempoLibre"></textarea>
+                    </div>
+                </div>
+
+              
+
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label>Horario Inicial</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input class="form-control" readonly type="text" id="TiempoInicialLibre" />
+                        <input class="form-control" readonly type="hidden" id="TiempoInicialLibreOculto" />
+                        <input class="form-control" readonly type="hidden" id="" />
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label>Horario Final</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input class="form-control" readonly type="text" id="TiempoFinalLibre" />
+                        <input class="form-control" readonly type="hidden" id="TiempoFinalLibreOculto" />
+                    </div>
+                </div>
+
+
+
+                <div class="controls">
+                    <input type="hidden" id="TiempoLibreDias" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnReservarTiempo" class="btn btn-primary" @*onclick="InsertarTiempoLibre();"*@>Reservar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
 <script src="~/Js/jquery.min.js"></script>
+
 <script>
 
     //$(function () {

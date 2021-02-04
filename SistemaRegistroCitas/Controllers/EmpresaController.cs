@@ -35,7 +35,8 @@ namespace SistemaRegistroCitas.Controllers
             Usuario usu = (Usuario)Session["Usuario"];
 
             horarioEmpresa = LN.ObtenerHorarioEmpresa(usu.IdEmpresa);
-
+            horarioEmpresa.IdEmpresa = usu.IdEmpresa;
+            Session["HorarioEmpresa"] = horarioEmpresa;
             return Json(horarioEmpresa, JsonRequestBehavior.AllowGet);
         }
 

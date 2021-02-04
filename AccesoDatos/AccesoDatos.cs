@@ -97,23 +97,7 @@ namespace AccesoDatos
 
 
         }
-
-        public bool InsertarEvento(Evento evento)
-        {
-            bool Respuesta = true;
-            try
-            {
-                entities.paInsertarEvento(evento.IdUsuario, evento.IdServicio, evento.Estado, evento.UsuarioCreacion, evento.HorarioInicial, evento.HoraFinal);
-                Respuesta = true;
-            }
-            catch (Exception ex)
-            {
-                Respuesta = false;
-            }
-
-            return Respuesta;
-
-        }
+     
 
         public bool InsertarRoles(Roles roles)
         {
@@ -412,6 +396,27 @@ namespace AccesoDatos
 
         }
 
+        public int InsertarEventos(Eventos eventos, int IdEmpresa, int IdRol)
+        {
+            ObjectParameter RespuestaCorrecta;
+            int Respuesta = 0;
+            try
+            {
+                RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
+                entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, eventos.IdUsuarioCrecion, IdRol, eventos.IdServicio,eventos.Nombre, eventos.TipoUnidadEvento,
+                    eventos.HorarioInicial, eventos.HoraFinal, eventos.UsuarioCreacion,RespuestaCorrecta);
+                Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
+            }
+            catch (Exception ex)
+            {
+
+                Respuesta = 3;
+            }
+
+            return Respuesta;
+
+
+        }
 
         #endregion
 
@@ -667,20 +672,36 @@ namespace AccesoDatos
             return SeElimino;
         }
 
+        public bool EliminarEventos(int Id)
+        {
+            bool SeElimino = false;
+
+            try
+            {
+                entities.paEliminarEventos(Id);
+                SeElimino = true;
+            }
+            catch (Exception)
+            {
+                SeElimino = false;
+            }
+
+            return SeElimino;
+        }
 
         #endregion
 
 
         #region SELECTS
 
-        public List<Servicio> ObtenerServicios()
+        public List<Servicio> ObtenerServiciosActivos(int IdEmpresa)
 
         {
             List<Servicio> ListaServcios = new List<Servicio>();
             try
             {
 
-                var info = entities.paObtenerServiciosActivos();
+                var info = entities.paObtenerServiciosActivos(IdEmpresa);
 
                 foreach (var item in info)
                 {
@@ -688,9 +709,7 @@ namespace AccesoDatos
 
                     servicio.Id = item.Id;
                     servicio.Nombre = item.Nombre;
-                    servicio.Descripcion = item.Descripcion;
-                    servicio.TiempoEstimado = item.TiempoEstimado;
-                    servicio.TipoUnidad = item.TipoUnidad;
+                   
 
                     ListaServcios.Add(servicio);
                 }
@@ -1316,10 +1335,136 @@ namespace AccesoDatos
         }
 
 
-      
+        public List<Eventos> ObtenerTodosLosEventosXIdEmpresa(int IdEmpresa)
+        {
+            List<Eventos> ListaEventos = new List<Eventos>();
+            try
+            {
+                var info = entities.paObtenerTodosLosEventosXIdEmpresa(IdEmpresa);
+
+                foreach (var item in info)
+                {
+                    Eventos Eventos = new Eventos();
+
+                    Eventos.Id = item.Id;
+                    Eventos.IdUsuario = item.IdUsuario;
+                    Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
+                    Eventos.IdServicio = item.IdServicio;
+                    Eventos.HorarioInicial = item.HorarioInicial;
+                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.UsuarioCreacion = item.UsuarioCreacion;
+                    Eventos.NombreColaborador = item.NombreColaborador;
+                    Eventos.NombreServicio = item.NombreServicio;                    
+
+                    ListaEventos.Add(Eventos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaEventos;
+        }
 
 
+        public List<Eventos> ObtenerTodosLosEventosXIdUsuarioCreador(int IdUsuarioCreador)
+        {
+            List<Eventos> ListaEventos = new List<Eventos>();
+            try
+            {
+                var info = entities.paObtenerTodosLosEventosXIdUsuarioCreador(IdUsuarioCreador);
 
+                foreach (var item in info)
+                {
+                    Eventos Eventos = new Eventos();
+
+                    Eventos.Id = item.Id;
+                    Eventos.IdUsuario = item.Id;                   
+                    Eventos.IdServicio = item.IdServicio;
+                    Eventos.HorarioInicial = item.HorarioInicial;
+                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.UsuarioCreacion = item.UsuarioCreacion;
+                    Eventos.NombreColaborador = item.NombreColaborador;
+                    Eventos.NombreServicio = item.NombreServicio;
+
+                    ListaEventos.Add(Eventos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaEventos;
+        }
+
+
+        public List<Eventos> ObtenerTodosLosEventosHorasLibresXIdEmpresa(int IdEmpresa)
+        {
+            List<Eventos> ListaEventos = new List<Eventos>();
+            try
+            {
+                var info = entities.paObtenerTodosLosEventosHorasLibresXIdEmpresa(IdEmpresa);
+
+                foreach (var item in info)
+                {
+                    Eventos Eventos = new Eventos();
+
+                    Eventos.Id = item.Id;
+                    Eventos.IdUsuario = item.IdUsuario;
+                    Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
+                    Eventos.IdServicio = item.IdServicio;
+                    Eventos.HorarioInicial = item.HorarioInicial;
+                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.UsuarioCreacion = item.UsuarioCreacion;
+                    Eventos.NombreColaborador = item.NombreColaborador;
+                   
+
+                    ListaEventos.Add(Eventos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaEventos;
+        }
+
+
+        public List<Eventos> ObtenerTodosLosEventosXIdUsuario(int IdUsuario)
+        {
+            List<Eventos> ListaEventos = new List<Eventos>();
+            try
+            {
+                var info = entities.paObtenerTodosLosEventosXIdUsuario(IdUsuario);
+
+                foreach (var item in info)
+                {
+                    Eventos Eventos = new Eventos();
+
+                    Eventos.Id = item.Id;
+                    Eventos.IdUsuario = item.IdUsuario;
+                    Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
+                    Eventos.IdServicio = item.IdServicio;
+                    Eventos.Nombre = item.Nombre;
+                    Eventos.TipoUnidadEvento = item.TipoUnidadEvento;
+                    Eventos.HorarioInicial = item.HorarioInicial;
+                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.UsuarioCreacion = item.UsuarioCreacion;                
+                  
+
+                    ListaEventos.Add(Eventos);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return ListaEventos;
+        }
 
 
 

@@ -112,3 +112,38 @@ function ObtenerMinutosYHoras() {
 $(document).ready(function () {
      //ObtenerMinutosYHoras();
 });
+
+
+function LlenarComboTiempos() {
+
+    var Tiempo = $("#txtTiempoEstimadoServicio");
+    Tiempo.empty();
+    //Tiempo.append('<option value="0">Duracion del Servicio</option>');
+
+    if ($("#txtTipoUnidadServicio").val() == "1") { // Minutos
+
+        var cantidad = 30
+        var contador = 0
+
+
+        for (var i = 0; i < 6; i++) {
+            contador = contador + cantidad
+            Tiempo.append('<option value="' + contador + '">' + contador + '</option>');
+        }
+
+    } else if ($("#txtTipoUnidadServicio").val() == "2") { // Horas
+        var cantidad = 1
+        var contador = 0
+
+
+        for (var i = 0; i < 10; i++) {
+            contador = contador + cantidad
+            Tiempo.append('<option value="' + contador + '">' + contador + '</option>');
+        }
+    }
+
+}
+
+$("#txtTipoUnidadServicio").change(function () {
+    LlenarComboTiempos()
+});

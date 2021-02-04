@@ -21,12 +21,7 @@ namespace LogicaNegocio
             AD.InsertarUsuario(usuario, ref Resp);
 
         }
-
-        public bool InsertarEvento(Evento evento)
-        {
-
-            return AD.InsertarEvento(evento);
-        }
+       
 
         public bool InsertarRoles(Roles roles)
         {
@@ -63,6 +58,10 @@ namespace LogicaNegocio
         public int InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
             return AD.InsertarHorarioEmpresa(horarioEmpresa, IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves,EstadoViernes,EstadoSabado,EstadoDomingo);
+        }
+        public int InsertarEventos(Eventos eventos, int IdEmpresa, int IdRol)
+        {
+            return AD.InsertarEventos(eventos,IdEmpresa,IdRol);
         }
 
         #endregion
@@ -141,13 +140,19 @@ namespace LogicaNegocio
             return AD.EliminarServiciosXColaborador(Id);
         }
 
+
+        public bool EliminarEventos(int Id)
+        {
+            return AD.EliminarEventos(Id);
+        }
+
         #endregion
 
 
         #region SELECTS
-        public List<Servicio> ObtenerServicios()
+        public List<Servicio> ObtenerServiciosActivos(int IdEmpresa)
         {
-            return AD.ObtenerServicios();
+            return AD.ObtenerServiciosActivos(IdEmpresa);
         }
 
         public Usuario Validarlogin(Login login, int IdEmpresa)
@@ -249,7 +254,25 @@ namespace LogicaNegocio
             return AD.ObtenerHorarioEmpresa(IdEmpresa);
         }
 
-       
+        public List<Eventos> ObtenerTodosLosEventosXIdEmpresa(int IdEmpresa)
+        {
+            return AD.ObtenerTodosLosEventosXIdEmpresa(IdEmpresa);
+        }
+
+        public List<Eventos> ObtenerTodosLosEventosXIdUsuarioCreador(int IdUsuarioCreador)
+        {
+            return AD.ObtenerTodosLosEventosXIdUsuarioCreador(IdUsuarioCreador);
+        }
+
+        public List<Eventos> ObtenerTodosLosEventosHorasLibresXIdEmpresa(int IdEmpresa)
+        {
+            return AD.ObtenerTodosLosEventosHorasLibresXIdEmpresa(IdEmpresa);
+        }
+
+        public List<Eventos> ObtenerTodosLosEventosXIdUsuario(int IdUsuario)
+        {
+            return AD.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
+        }
 
 
         #endregion

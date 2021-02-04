@@ -21,22 +21,18 @@
                 <div class="form-group row">
                     <label>Descripcion</label>
                     <textarea type="text" class="form-control" rows="6" style="border-radius:4px" autocomplete="off" id="txtDescripcionServicio" maxlength="150"></textarea>
-                </div>
-                <div class="form-group row">
-                    <label>Duracion del Servicio</label>
-                    <input type="text" class="form-control" rows="6" style="border-radius:4px" autocomplete="off" id="txtTiempoEstimadoServicio" maxlength="150" />
-                </div>
-
-                @*<div class="form-group row">
-                    <label>Tipo de Unidad</label>
-                    <textarea type="text" class="form-control" rows="6" style="border-radius:4px" autocomplete="off" id="txtTipoUnidadServicio" maxlength="150"></textarea>
-                </div>*@
+                </div>             
 
                 <div class="form-group row">
                     <label>Tipo de Unidad</label>
                     <select class="form-control" style="border-radius:4px" id="txtTipoUnidadServicio"></select>
 
+                </div>
 
+                <div class="form-group row">
+                    <label>Duracion del Servicio</label>
+                    <select class="form-control" onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();' style="border-radius:4px" id="txtTiempoEstimadoServicio"></select>
+                    @*<input type="text" class="form-control" rows="6" style="border-radius:4px" autocomplete="off" id="txtTiempoEstimadoServicio" maxlength="150" />*@
                 </div>
 
                 <div style="text-align: center; margin-bottom: 20px">
