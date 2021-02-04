@@ -131,7 +131,7 @@
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\DiasLibresColaboradoresController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
-    <Compile Include="Controllers\EventoController.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InicioEmpresasController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -263,6 +263,7 @@
     <Content Include="Js\moment\moment.min.js" />
     <Content Include="Js\PruebaArbol.js" />
     <Content Include="Js\tpicker.js" />
+    <Content Include="Js\tpicker2.js" />
     <Content Include="Scripts\bloodhound.js" />
     <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -299,6 +300,10 @@
     <Content Include="Scripts\Propios\InicioEmpresas.js" />
     <Content Include="Scripts\Propios\ListaColaboradores.js" />
     <Content Include="Scripts\Propios\ListaDiaLibreColaboradores.js" />
+    <Content Include="Scripts\Propios\ListaEventoHorasLibres.js" />
+    <Content Include="Scripts\Propios\ListaEventos.js" />
+    <Content Include="Scripts\Propios\ListaEventoUsuario.js" />
+    <Content Include="Scripts\Propios\ListaEventoUsuarioCreador.js" />
     <Content Include="Scripts\Propios\ListaServicios.js" />
     <Content Include="Scripts\Propios\ListaServiciosXColaborador.js" />
     <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
@@ -343,6 +348,10 @@
     <Content Include="Views\Usuario\ListaServiciosXColaborador.cshtml" />
     <Content Include="Views\InicioEmpresas\InsertarHorarioEmpresa.cshtml" />
     <Content Include="Views\InicioEmpresas\ActualizarHorarioEmpresa.cshtml" />
+    <Content Include="Views\Eventos\ListaEvento.cshtml" />
+    <Content Include="Views\Eventos\ListaEventoUsuarioCreador.cshtml" />
+    <Content Include="Views\Eventos\ListaEventoHorasLibres.cshtml" />
+    <Content Include="Views\Eventos\ListaEventoUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

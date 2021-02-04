@@ -15,8 +15,5 @@ namespace Entidades
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public int TiempoEstimado { get; set; }
-        public int TipoUnidad { get; set; }
     }
 }
