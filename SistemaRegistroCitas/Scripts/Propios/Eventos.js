@@ -584,6 +584,7 @@ $(function () {
             HoraFinal: $("#TiempoFinalLibre").val(),
             IdUsuario: $("#Colaboradores").val(),
             IdServicio: $("#SeleccionTiempoLibre").val(),
+            Nombre: $("#SeleccionTiempoLibre option:selected").text(),
             IdDia: $("#DiaSeleccionado").val()
 
         };
@@ -640,6 +641,34 @@ $(function () {
         });
 
     } 
+
+
+    //function ObtenerTodosLosEventosXIdUsuarioSeleccionado() {
+
+    //    $.ajax({
+    //        type: "GET",
+    //        dataType: "JSON",
+    //        url: "/Eventos/ObtenerTodosLosEventosXIdUsuarioSeleccionado/",
+    //        data: { "IdUsuario": $("#Colaboradores").val() },
+    //        success: function (InfoServicios) {
+
+
+               
+
+
+    //        },
+
+    //        error: function () {
+    //            console.log('error')
+    //        },
+
+    //    });
+    //}
+    //$("#Colaboradores").change(function () {
+    //    ObtenerTodosLosEventosXIdUsuarioSeleccionado();
+    //});
+
+
 
 })
 
