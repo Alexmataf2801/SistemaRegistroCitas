@@ -319,20 +319,20 @@ namespace SistemaRegistroCitas.Controllers
 
 
 
-        //public JsonResult ObtenerTodosLosEventosXIdUsuarioSeleccionado(int IdUsuario)
-        //{
-        //    List<Eventos> Eventos = new List<Eventos>();
-        //    usuario = (Usuario)Session["Usuario"];
+        public JsonResult ObtenerTodosLosEventosXIdUsuarioSeleccionado(int IdUsuario)
+        {
+            List<Eventos> Eventos = new List<Eventos>();
+            usuario = (Usuario)Session["Usuario"];
 
-        //    if (usuario != null)
-        //    {
+            if (usuario != null)
+            {
 
-        //        Eventos = LN.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
-        //    }
+                Eventos = LN.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
+            }
 
 
-        //    return Json(Eventos, JsonRequestBehavior.AllowGet);
-        //}
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

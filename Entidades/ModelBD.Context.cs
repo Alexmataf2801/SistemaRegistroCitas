@@ -903,6 +903,44 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result>("paObtenerTodosLosEventosHorasLibresXIdEmpresa", idEmpresaParameter);
         }
     
+        public virtual ObjectResult<paObtenerTodosLosEventosXIdUsuario_Result> paObtenerTodosLosEventosXIdUsuario(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosXIdUsuario_Result>("paObtenerTodosLosEventosXIdUsuario", idUsuarioParameter);
+        }
+    
+        public virtual int paActualizarServicios(Nullable<int> id, string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, string usuarioUltimaModificacion)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var tiempoEstimadoParameter = tiempoEstimado.HasValue ?
+                new ObjectParameter("TiempoEstimado", tiempoEstimado) :
+                new ObjectParameter("TiempoEstimado", typeof(int));
+    
+            var tipoUnidadParameter = tipoUnidad.HasValue ?
+                new ObjectParameter("TipoUnidad", tipoUnidad) :
+                new ObjectParameter("TipoUnidad", typeof(int));
+    
+            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
+                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
+                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarServicios", idParameter, nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, usuarioUltimaModificacionParameter);
+        }
+    
         public virtual int PaInsertarEventos(Nullable<int> idEmpresa, Nullable<int> idUsuario, Nullable<int> idUsuarioCreador, Nullable<int> idRol, Nullable<int> idServicio, string nombre, Nullable<int> tipoUnidadEvento, Nullable<System.DateTime> horarioInicial, Nullable<System.DateTime> horaFinal, string usuarioCreacion, ObjectParameter respuestaCorrecta)
         {
             var idEmpresaParameter = idEmpresa.HasValue ?
@@ -946,44 +984,6 @@ namespace Entidades
                 new ObjectParameter("UsuarioCreacion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarEventos", idEmpresaParameter, idUsuarioParameter, idUsuarioCreadorParameter, idRolParameter, idServicioParameter, nombreParameter, tipoUnidadEventoParameter, horarioInicialParameter, horaFinalParameter, usuarioCreacionParameter, respuestaCorrecta);
-        }
-    
-        public virtual ObjectResult<paObtenerTodosLosEventosXIdUsuario_Result> paObtenerTodosLosEventosXIdUsuario(Nullable<int> idUsuario)
-        {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosXIdUsuario_Result>("paObtenerTodosLosEventosXIdUsuario", idUsuarioParameter);
-        }
-    
-        public virtual int paActualizarServicios(Nullable<int> id, string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, string usuarioUltimaModificacion)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var tiempoEstimadoParameter = tiempoEstimado.HasValue ?
-                new ObjectParameter("TiempoEstimado", tiempoEstimado) :
-                new ObjectParameter("TiempoEstimado", typeof(int));
-    
-            var tipoUnidadParameter = tipoUnidad.HasValue ?
-                new ObjectParameter("TipoUnidad", tipoUnidad) :
-                new ObjectParameter("TipoUnidad", typeof(int));
-    
-            var usuarioUltimaModificacionParameter = usuarioUltimaModificacion != null ?
-                new ObjectParameter("UsuarioUltimaModificacion", usuarioUltimaModificacion) :
-                new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarServicios", idParameter, nombreParameter, descripcionParameter, tiempoEstimadoParameter, tipoUnidadParameter, usuarioUltimaModificacionParameter);
         }
     }
 }

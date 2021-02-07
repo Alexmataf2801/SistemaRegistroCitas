@@ -570,6 +570,17 @@
           <FunctionImport Name="paObtenerTodosLosEventosHorasLibresXIdEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result)">
           <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosEventosXIdUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuario_Result)">
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarServicios">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="TiempoEstimado" Mode="In" Type="Int32" />
+            <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
+            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="PaInsertarEventos">
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
@@ -582,17 +593,6 @@
             <Parameter Name="HoraFinal" Mode="In" Type="DateTime" />
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
             <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paObtenerTodosLosEventosXIdUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuario_Result)">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paActualizarServicios">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="TiempoEstimado" Mode="In" Type="Int32" />
-            <Parameter Name="TipoUnidad" Mode="In" Type="Int32" />
-            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServicioXId_Result">
@@ -1210,7 +1210,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="PaInsertarEventos" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarEventos" />
           <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosXIdUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosXIdUsuario">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuario_Result">
@@ -1227,6 +1226,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarServicios" />
+          <FunctionImportMapping FunctionImportName="PaInsertarEventos" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarEventos" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
