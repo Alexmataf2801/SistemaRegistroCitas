@@ -94,6 +94,8 @@ $(function () {
 
         });
 
+         setInterval(ObtenerTodosLosEventosXIdUsuarioSeleccionado, 10000);
+
     }
 
     $("#Colaboradores").change(function () {
