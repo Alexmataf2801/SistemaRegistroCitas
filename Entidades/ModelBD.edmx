@@ -30,6 +30,13 @@
           <Parameter Name="IdRol" Type="int" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="paActualizarDatosXIdEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+        </Function>
         <Function Name="paActualizarHorarioEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="InicioLunes" Type="time" Mode="In" />
           <Parameter Name="FinalLunes" Type="time" Mode="In" />
@@ -407,9 +414,6 @@
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="RespuestaUsuarioXEmpresa" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerEmpresasXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result)">
-          <Parameter Name="Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paValidarLogin">
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
             <Parameter Name="Contrasena" Mode="In" Type="String" />
@@ -594,6 +598,16 @@
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
             <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="paObtenerEmpresasXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarDatosXIdEmpresa">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServicioXId_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -688,18 +702,6 @@
         <ComplexType Name="paObtenerNombresEmpresasActivas_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
-        </ComplexType>
-        <ComplexType Name="paObtenerEmpresasXId_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
-          <Property Type="Int32" Name="Telefono" Nullable="false" />
-          <Property Type="String" Name="Logo" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="100" />
-          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
-          <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
-          <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="paObtenerTodosLosRoles_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -844,6 +846,13 @@
           <Property Type="DateTime" Name="HorarioInicial" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="HoraFinal" Nullable="false" Precision="23" />
           <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerEmpresasXId_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -994,22 +1003,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PaInsertarUsuarioXEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarUsuarioXEmpresa" />
-          <FunctionImportMapping FunctionImportName="paObtenerEmpresasXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerEmpresasXId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioUltimaModificacion" ColumnName="UsuarioUltimaModificacion" />
-                <ScalarProperty Name="FechaUltimaModificacion" ColumnName="FechaUltimaModificacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paValidarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarLogin" />
           <FunctionImportMapping FunctionImportName="paObtenerTodosLosRoles" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosRoles">
             <ResultMapping>
@@ -1227,6 +1220,18 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarServicios" />
           <FunctionImportMapping FunctionImportName="PaInsertarEventos" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarEventos" />
+          <FunctionImportMapping FunctionImportName="paObtenerEmpresasXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerEmpresasXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paActualizarDatosXIdEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarDatosXIdEmpresa" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

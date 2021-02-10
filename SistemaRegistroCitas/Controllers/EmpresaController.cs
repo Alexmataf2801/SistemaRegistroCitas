@@ -40,6 +40,48 @@ namespace SistemaRegistroCitas.Controllers
             return Json(horarioEmpresa, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ActualizarDatosXIdEmpresa(Empresa empresa)
+        {
+            usuario = (Usuario)Session["Usuario"];
+            bool SeActualizo = false;
+            SeActualizo = LN.ActualizarDatosXIdEmpresa(empresa, usuario.IdEmpresa);
+
+            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        [HttpGet]
+        public ActionResult ActualizarInicioEmpresa()
+        {
+            usuario = (Usuario)Session["Usuario"];
+            Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+            if (usuario != null)
+            {
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+
+
+
+
+
         //public ActionResult ObtenerHorarioEmpresa()
         //{
         //    HorarioEmpresa horarioEmpresa = new HorarioEmpresa();

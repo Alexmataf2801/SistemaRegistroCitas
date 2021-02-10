@@ -15,13 +15,8 @@ namespace Entidades
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public int Telefono { get; set; }
-        public string Logo { get; set; }
         public string CorreoElectronico { get; set; }
         public string Direccion { get; set; }
-        public string UsuarioCreacion { get; set; }
-        public System.DateTime FechaCreacion { get; set; }
-        public string UsuarioUltimaModificacion { get; set; }
-        public Nullable<System.DateTime> FechaUltimaModificacion { get; set; }
+        public string Descripcion { get; set; }
     }
 }

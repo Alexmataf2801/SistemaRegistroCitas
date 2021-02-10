@@ -307,6 +307,7 @@
     <Content Include="Scripts\Propios\ActualizarDatosColaborador.js" />
     <Content Include="Scripts\Propios\ActualizarDatosServicios.js" />
     <Content Include="Scripts\Propios\ActualizarHorarioEmpresa.js" />
+    <Content Include="Scripts\Propios\ActualizarInicioEmpresa.js" />
     <Content Include="Scripts\Propios\Administracion.js" />
     <Content Include="Scripts\Propios\AsignarServiciosColaborador.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
@@ -371,11 +372,11 @@
     <Content Include="Views\Guia\GuiaSubAdministrador.cshtml" />
     <Content Include="Views\Guia\GuiaUsuario.cshtml" />
     <Content Include="Views\Guia\GuiaCliente.cshtml" />
+    <Content Include="Views\Empresa\ActualizarInicioEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Cerrar\" />
-    <Folder Include="Views\Empresa\" />
     <Folder Include="Views\Evento\" />
     <Folder Include="Views\ServicioTiempo\" />
     <Folder Include="Views\UnidadMedida\" />

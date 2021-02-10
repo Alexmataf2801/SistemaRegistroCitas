@@ -584,6 +584,26 @@ namespace AccesoDatos
         }
 
 
+
+        public bool ActualizarDatosXIdEmpresa(Empresa empresa , int IdEmpresa)
+        {
+            bool Correcto = false;
+            try
+            {
+                entities.paActualizarDatosXIdEmpresa(empresa.Nombre, empresa.CorreoElectronico,empresa.Descripcion,empresa.Direccion,IdEmpresa);
+                Correcto = true;
+
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+            return Correcto;
+
+        }
+
+
         #endregion
 
 
@@ -1176,15 +1196,10 @@ namespace AccesoDatos
                 foreach (var item in info)
                 {
                     empresa.Id = item.Id;
-                    empresa.Nombre = item.Nombre;
-                    empresa.Telefono = item.Telefono;
-                    empresa.Logo = item.Logo;
-                    empresa.CorreElectronico = item.CorreoElectronico;
+                    empresa.Nombre = item.Nombre;            
+                    empresa.CorreoElectronico = item.CorreoElectronico;
                     empresa.Direccion = item.Direccion;
-                    empresa.UsuarioCreacion = item.UsuarioCreacion;
-                    empresa.FechaCreacion = item.FechaCreacion;
-                    empresa.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
-                    empresa.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                    empresa.Descripcion = item.Descripcion;               
                 }
             }
             catch (Exception ex)
