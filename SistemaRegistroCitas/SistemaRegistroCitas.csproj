@@ -132,6 +132,7 @@
     <Compile Include="Controllers\DiasLibresColaboradoresController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EventosController.cs" />
+    <Compile Include="Controllers\GuiaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InicioEmpresasController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -163,6 +164,8 @@
     <Content Include="Estilos\fullcalendar-daygrid\main.min.css" />
     <Content Include="Estilos\fullcalendar-timegrid\main.min.css" />
     <Content Include="Estilos\fullcalendar\main.min.css" />
+    <Content Include="Estilos\Guia\estilosAdministracion.css" />
+    <Content Include="Estilos\Guia\estilosUsuarios.css" />
     <Content Include="Estilos\jquery-ui.css" />
     <Content Include="Estilos\TablasMantenimientos.css" />
     <Content Include="Estilos\tpicker.css" />
@@ -173,6 +176,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\GuiaImagenes\cuenta.svg" />
+    <Content Include="Imagenes\GuiaImagenes\empresa.svg" />
+    <Content Include="Imagenes\GuiaImagenes\entrega.svg" />
+    <Content Include="Imagenes\GuiaImagenes\evento.svg" />
+    <Content Include="Imagenes\GuiaImagenes\pagos.svg" />
+    <Content Include="Imagenes\GuiaImagenes\seguridad.svg" />
+    <Content Include="Imagenes\GuiaImagenes\servicios.svg" />
+    <Content Include="Imagenes\GuiaImagenes\suma.svg" />
+    <Content Include="Imagenes\GuiaImagenes\thumb.png" />
+    <Content Include="Imagenes\GuiaImagenes\usuarios.svg" />
     <Content Include="Imagenes\Iconos\Icono.png" />
     <Content Include="Imagenes\Login\bg.jpg" />
     <Content Include="Imagenes\Login\fondo.jpg" />
@@ -254,6 +267,8 @@
     <Content Include="Js\fullcalendar\locales\zh-cn.js" />
     <Content Include="Js\fullcalendar\locales\zh-tw.js" />
     <Content Include="Js\fullcalendar\main.min.js" />
+    <Content Include="Js\Guia\categorias.js" />
+    <Content Include="Js\Guia\preguntasFrecuentes.js" />
     <Content Include="Js\jquery-1.12.4.js" />
     <Content Include="Js\jquery-ui.js" />
     <Content Include="Js\jquery.min.js" />
@@ -292,6 +307,7 @@
     <Content Include="Scripts\Propios\ActualizarDatosColaborador.js" />
     <Content Include="Scripts\Propios\ActualizarDatosServicios.js" />
     <Content Include="Scripts\Propios\ActualizarHorarioEmpresa.js" />
+    <Content Include="Scripts\Propios\ActualizarInicioEmpresa.js" />
     <Content Include="Scripts\Propios\Administracion.js" />
     <Content Include="Scripts\Propios\AsignarServiciosColaborador.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
@@ -352,11 +368,15 @@
     <Content Include="Views\Eventos\ListaEventoUsuarioCreador.cshtml" />
     <Content Include="Views\Eventos\ListaEventoHorasLibres.cshtml" />
     <Content Include="Views\Eventos\ListaEventoUsuario.cshtml" />
+    <Content Include="Views\Guia\GuiaAdministrador.cshtml" />
+    <Content Include="Views\Guia\GuiaSubAdministrador.cshtml" />
+    <Content Include="Views\Guia\GuiaUsuario.cshtml" />
+    <Content Include="Views\Guia\GuiaCliente.cshtml" />
+    <Content Include="Views\Empresa\ActualizarInicioEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Cerrar\" />
-    <Folder Include="Views\Empresa\" />
     <Folder Include="Views\Evento\" />
     <Folder Include="Views\ServicioTiempo\" />
     <Folder Include="Views\UnidadMedida\" />

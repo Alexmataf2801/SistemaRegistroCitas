@@ -316,5 +316,23 @@ namespace SistemaRegistroCitas.Controllers
                 return RedirectToAction("Login", "Home");
             }
         }
+
+
+
+        public JsonResult ObtenerTodosLosEventosXIdUsuarioSeleccionado(int IdUsuario)
+        {
+            List<Eventos> Eventos = new List<Eventos>();
+            usuario = (Usuario)Session["Usuario"];
+
+            if (usuario != null)
+            {
+
+                Eventos = LN.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
+            }
+
+
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

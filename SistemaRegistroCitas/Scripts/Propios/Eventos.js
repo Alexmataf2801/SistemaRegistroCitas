@@ -45,6 +45,66 @@ function FormatoMinutos(ObjetoMinutos) {
 
 
 $(function () {
+        
+
+    function ObtenerTodosLosEventosXIdUsuarioSeleccionado() {
+
+        $.ajax({
+            type: "GET",
+            dataType: "JSON",
+            url: "/Eventos/ObtenerTodosLosEventosXIdUsuarioSeleccionado/",
+            async: false,
+            data: { "IdUsuario": $("#Colaboradores").val() },
+            success: function (InfoServicios) {
+
+
+                calendar.removeAllEvents();
+
+                $(InfoServicios).each(function (i, v) {
+
+                
+
+                    var event =
+                    {
+
+                        title: Nombre = v.Nombre,
+                        start: FechaInicial = moment(v.HorarioInicial).format('YYYY-MM-DD[T]HH:mm:ss'),
+                        end: FechaFinal = moment(v.HoraFinal).format('YYYY-MM-DD[T]HH:mm:ss')
+
+
+                    }
+
+                 
+
+                    calendar.addEvent(
+                        event
+                                           
+                    );
+                   
+                });
+
+              
+            },
+
+
+            error: function () {
+                console.log('error')
+
+            },
+
+        });
+
+         setInterval(ObtenerTodosLosEventosXIdUsuarioSeleccionado, 10000);
+
+    }
+
+    $("#Colaboradores").change(function () {
+        ObtenerTodosLosEventosXIdUsuarioSeleccionado();
+
+    });   
+
+
+
 
     var calendarEl = document.getElementById('calendar');
     var Calendar = FullCalendar.Calendar;
@@ -157,10 +217,7 @@ $(function () {
             alert("Se Cayo");
         }
 
-    });
-
-
-
+    }); 
 
 
     function TiempoLibre() {
@@ -266,15 +323,15 @@ $(function () {
 
     var calendar = new Calendar(calendarEl, {
         plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
-        defaultView: 'timeGridWeek',
+        defaultView: 'timeGridWeek',   
         header: {
             left: 'prev,next today',
             center: 'title',
             right: 'timeGridWeek,timeGridDay,listWeek'
         },
-             
-        hiddenDays: hiddenDays,          
-        
+
+        hiddenDays: hiddenDays,
+
         businessHours: [ // specify an array instead 
             {
                 daysOfWeek: [1], //Lunes
@@ -314,38 +371,38 @@ $(function () {
         ],
 
 
-       
+
         locale: 'es',
         // antes estaba editable, que podia mover el evento y sus horas, como esta ahora solo los puede mover 
         eventStartEditable: true,
-        dateClick: function (info) {        
+        dateClick: function (info) {
             var TipoModal = ""
             var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm:ss');
 
             var FechaDelDia = new Date(FechaSeleccionada);
             Dia = FechaDelDia.getDay();
 
-            $('#DiaSeleccionado').val(Dia);  
-            
+            $('#DiaSeleccionado').val(Dia);
+
             if (Usuario.IdRol == 4) {
 
                 TipoModal = "#NuevoEvento"
                 $('#TiempoFinal').val("");
-                $('#TiempoCita').val(FechaSeleccionada);               
+                $('#TiempoCita').val(FechaSeleccionada);
                 $('#txtHorario').val(moment(info.dateStr).format('DD-MM-YYYY hh:mm A'));
                 $('#txtHorarioOculta').val(info.dateStr);
 
 
             } else {
                 TipoModal = "#EventoTiempo"
-               
+
                 $('#TiempoFinal').val("");
                 $('#TiempoCita').val(FechaSeleccionada);
                 $('#txtHorario').val(moment(info.dateStr).format('MM-DD-YYYY hh:mm A'));
                 $('#txtHorarioOculta').val(info.dateStr);
 
             }
-            
+
             //Fecha = FechaCompletaSeleccioada.getDate();            
             //Mes = FechaCompletaSeleccioada.getMonth();
             //Año = FechaCompletaSeleccioada.getFullYear();
@@ -354,47 +411,19 @@ $(function () {
             var FechaCompletaSeleccioada = new Date(FechaSeleccionada);
             Dia = FechaCompletaSeleccioada.getDay();
             HoraSeleccionada = FechaCompletaSeleccioada.getHours();
-            MinutosSeleccionados = FechaCompletaSeleccioada.getMinutes();         
-            HoraTotalSeleccionada = FormatoHoras(HoraSeleccionada) + ":" + FormatoMinutos(MinutosSeleccionados)  
-            
+            MinutosSeleccionados = FechaCompletaSeleccioada.getMinutes();
+            HoraTotalSeleccionada = FormatoHoras(HoraSeleccionada) + ":" + FormatoMinutos(MinutosSeleccionados)
+
             if ($("#Colaboradores").val() == "0") {
                 $("#msjModalIncorrecto").html("<label>¡No se ha seleccionado un colaborador!</label>");
                 $('#MsjIncorrecto').modal('show');
             } else {
-            switch (Dia) {
+                switch (Dia) {
 
-                case 0:
-                    if (InicioDomingo <= HoraTotalSeleccionada) {
-                        if (FinalDomingo > HoraTotalSeleccionada) {
-                            $(TipoModal).modal();
-                        } else {
-                            $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
-                            $('#MsjIncorrecto').modal('show');
-                        }
-
-                    } else {
-                        $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
-                        $('#MsjIncorrecto').modal('show');
-                    }
-                    break;
-                case 1:
-                    if (InicioLunes <= HoraTotalSeleccionada) {
-                        if (FinalLunes > HoraTotalSeleccionada) {
-                            $(TipoModal).modal();
-                        } else {
-                            $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
-                            $('#MsjIncorrecto').modal('show');
-                        }                      
-
-                    } else {
-                        $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
-                        $('#MsjIncorrecto').modal('show');
-                    }
-                    break;
-                case 2:
-                    if (InicioMartes <= HoraTotalSeleccionada) {
-                        if (FinalMartes > HoraTotalSeleccionada) {
-                            $(TipoModal).modal();
+                    case 0:
+                        if (InicioDomingo <= HoraTotalSeleccionada) {
+                            if (FinalDomingo > HoraTotalSeleccionada) {
+                                $(TipoModal).modal();
                             } else {
                                 $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                                 $('#MsjIncorrecto').modal('show');
@@ -405,76 +434,104 @@ $(function () {
                             $('#MsjIncorrecto').modal('show');
                         }
                         break;
-                case 3:
-                    if (InicioMiercoles <= HoraTotalSeleccionada) {
-                        if (FinalMiercoles > HoraTotalSeleccionada) {
-                            $(TipoModal).modal();
+                    case 1:
+                        if (InicioLunes <= HoraTotalSeleccionada) {
+                            if (FinalLunes > HoraTotalSeleccionada) {
+                                $(TipoModal).modal();
+                            } else {
+                                $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
+                                $('#MsjIncorrecto').modal('show');
+                            }
+
                         } else {
                             $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                             $('#MsjIncorrecto').modal('show');
                         }
+                        break;
+                    case 2:
+                        if (InicioMartes <= HoraTotalSeleccionada) {
+                            if (FinalMartes > HoraTotalSeleccionada) {
+                                $(TipoModal).modal();
+                            } else {
+                                $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
+                                $('#MsjIncorrecto').modal('show');
+                            }
 
-                    } else {
-                        $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
-                        $('#MsjIncorrecto').modal('show');
-                    }
-                    break;
-                case 4:
-                    if (InicioJueves <= HoraTotalSeleccionada) {
-                        if (FinalJueves > HoraTotalSeleccionada) {
-                            $(TipoModal).modal();
                         } else {
                             $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                             $('#MsjIncorrecto').modal('show');
                         }
+                        break;
+                    case 3:
+                        if (InicioMiercoles <= HoraTotalSeleccionada) {
+                            if (FinalMiercoles > HoraTotalSeleccionada) {
+                                $(TipoModal).modal();
+                            } else {
+                                $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
+                                $('#MsjIncorrecto').modal('show');
+                            }
 
-                    } else {
-                        $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
-                        $('#MsjIncorrecto').modal('show');
-                    }
-                    break;
-                case 5:
-                    if (InicioViernes <= HoraTotalSeleccionada) {
-                        if (FinalViernes > HoraTotalSeleccionada) {
-                            $(TipoModal).modal();
                         } else {
                             $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                             $('#MsjIncorrecto').modal('show');
                         }
+                        break;
+                    case 4:
+                        if (InicioJueves <= HoraTotalSeleccionada) {
+                            if (FinalJueves > HoraTotalSeleccionada) {
+                                $(TipoModal).modal();
+                            } else {
+                                $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
+                                $('#MsjIncorrecto').modal('show');
+                            }
 
-                    } else {
-                        $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
-                        $('#MsjIncorrecto').modal('show');
-                    }
-                    break;
-                case 6:
-                    if (InicioSabado <= HoraTotalSeleccionada) {
-                        if (FinalSabado > HoraTotalSeleccionada) {
-                            $(TipoModal).modal();
                         } else {
                             $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                             $('#MsjIncorrecto').modal('show');
                         }
+                        break;
+                    case 5:
+                        if (InicioViernes <= HoraTotalSeleccionada) {
+                            if (FinalViernes > HoraTotalSeleccionada) {
+                                $(TipoModal).modal();
+                            } else {
+                                $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
+                                $('#MsjIncorrecto').modal('show');
+                            }
 
-                    } else {
+                        } else {
+                            $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
+                            $('#MsjIncorrecto').modal('show');
+                        }
+                        break;
+                    case 6:
+                        if (InicioSabado <= HoraTotalSeleccionada) {
+                            if (FinalSabado > HoraTotalSeleccionada) {
+                                $(TipoModal).modal();
+                            } else {
+                                $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
+                                $('#MsjIncorrecto').modal('show');
+                            }
+
+                        } else {
+                            $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
+                            $('#MsjIncorrecto').modal('show');
+                        }
+                        break;
+
+                    default:
                         $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                         $('#MsjIncorrecto').modal('show');
-                    }
-                    break;
+                }
 
-                default:
-                    $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
-                    $('#MsjIncorrecto').modal('show');
-            }    
+            }
 
-        }
-                                       
 
         },
         //eventClick: function (info) {
 
         //    IdRol = 4
-            
+
         //    if (IdRol == 3 ) {
         //        $('#NuevoEvento').modal();
         //    }
@@ -483,17 +540,24 @@ $(function () {
         //    }
 
         //}
-       
-        //events: [
-        //    {
-        //        title: 'Prueba',
-        //        start: $("#TiempoCita").val(),//'2020-02-17T14:30:00',//new Date(y, m, 1),
-        //        backgroundColor: '#f56954', //red
-        //        borderColor: '#f56954', //red
-        //        allDay: false
-        //    }
 
+
+        //events: ListaEventos
+
+        //    [
+        //    {
+
+        //        title: Nombre,
+        //        start: FechaInicial,
+        //        end: FechaFinal
+        //    }      
+            
+                 
         //]
+
+
+
+
     });
 
     calendar.render();
@@ -584,6 +648,7 @@ $(function () {
             HoraFinal: $("#TiempoFinalLibre").val(),
             IdUsuario: $("#Colaboradores").val(),
             IdServicio: $("#SeleccionTiempoLibre").val(),
+            Nombre: $("#SeleccionTiempoLibre option:selected").text(),
             IdDia: $("#DiaSeleccionado").val()
 
         };
@@ -640,6 +705,59 @@ $(function () {
         });
 
     } 
+
+
+    //function ObtenerTodosLosEventosXIdUsuarioSeleccionado() {
+
+    //    $.ajax({
+    //        type: "GET",
+    //        dataType: "JSON",
+    //        url: "/Eventos/ObtenerTodosLosEventosXIdUsuarioSeleccionado/",
+    //        data: { "IdUsuario": $("#Colaboradores").val() },
+    //        success: function (InfoServicios) {
+                
+
+    //            $.each(InfoServicios, function (i, item) {
+
+
+
+    //                Nombre = item.Nombre,
+    //                    FechaInicial = moment(item.HorarioInicial).format('YYYY-MM-DD[T]HH:mm:ss'),
+    //                    FechaFinal = moment(item.HoraFinal).format('YYYY-MM-DD[T]HH:mm:ss')
+    //                console.log(Nombre, FechaInicial, FechaFinal)
+
+    //                events: [
+    //                    {
+
+    //                        title: Nombre,
+    //                        start: FechaInicial,
+    //                        end: FechaFinal
+
+    //                    }
+
+    //                ]
+
+
+    //            });
+           
+
+              
+
+
+
+    //        },
+
+    //        error: function () {
+    //            console.log('error')
+    //        },
+
+    //    });
+    //}
+    //$("#Colaboradores").change(function () {
+    //    ObtenerTodosLosEventosXIdUsuarioSeleccionado();
+    //});
+
+
 
 })
 
