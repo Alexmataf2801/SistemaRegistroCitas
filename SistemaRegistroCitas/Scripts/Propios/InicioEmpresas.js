@@ -10,9 +10,11 @@
             console.log(InfoEmpresas);
 
             $("#txtNombreEmpresa").val(InfoEmpresas.Nombre);
-            $("#txtContactoEmpresa").val(InfoEmpresas.Telefono);
+            $("#txtContactoEmpresa").val(InfoEmpresas.CorreoElectronico);
+            $("#txtDescripcion").val(InfoEmpresas.Descripcion);
+            $("#txtDireccion").val(InfoEmpresas.Direccion);
 
-            
+       
           
 
         },

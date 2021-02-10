@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "GuiaAdministrador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Estilos/Guia/estilosAdministracion.css" rel="stylesheet" />
+<div class="container" style="margin: 0 auto; width: 90%">
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+            <div style="margin: 0 auto; width: 95%">
+
+                <main>
+                    <h1 class="titulo">Guia del Administrador</h1>
+                    <div class="categorias" id="categorias">
+                        <div class="categoria activa" data-categoria="empresa">
+                            <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M6 7v-7h13v10h5v14h-23v-17h5zm0 16v-4h-1v4h1zm8-4h-3v4h3v-4zm6 0h-1v4h1v-4zm2-7h-3v6h2v4h1v-10zm-5-10h-9v20h1v-5h7v5h1v-20zm-13 20v-4h2v-9h-3v13h1zm17-6h-1v-2h1v2zm-17-2h1v2h-1v-2zm8 1h-2v-2h2v2zm3 0h-2v-2h2v2zm-10-4v2h-1v-2h1zm7 1h-2v-2h2v2zm3 0h-2v-2h2v2zm-3-3h-2v-2h2v2zm3 0h-2v-2h2v2zm-3-3h-2v-2h2v2zm3 0h-2v-2h2v2z" /></svg>
+                            <p>Empresa</p>
+                        </div>
+                        <div class="categoria" data-categoria="evento">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 3v-2c0-.552.447-1 1-1s1 .448 1 1v2c0 .552-.447 1-1 1s-1-.448-1-1zm-12 1c.553 0 1-.448 1-1v-2c0-.552-.447-1-1-1-.553 0-1 .448-1 1v2c0 .552.447 1 1 1zm13 13v-3h-1v4h3v-1h-2zm-5 .5c0 2.481 2.019 4.5 4.5 4.5s4.5-2.019 4.5-4.5-2.019-4.5-4.5-4.5-4.5 2.019-4.5 4.5zm11 0c0 3.59-2.91 6.5-6.5 6.5s-6.5-2.91-6.5-6.5 2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5zm-14.237 3.5h-7.763v-13h19v1.763c.727.33 1.399.757 2 1.268v-9.031h-3v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-9v1c0 1.316-1.278 2.339-2.658 1.894-.831-.268-1.342-1.111-1.342-1.984v-.91h-3v21h11.031c-.511-.601-.938-1.273-1.268-2z" /></svg>
+                            <p>Eventos</p>
+                        </div>
+                        <div class="categoria" data-categoria="servicios">
+                            <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M9.484 15.696l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm0-5l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm0-5l-.711-.696-2.552 2.607-1.539-1.452-.698.709 2.25 2.136 3.25-3.304zm10.516 11.304h-8v1h8v-1zm0-5h-8v1h8v-1zm0-5h-8v1h8v-1zm4-5h-24v20h24v-20zm-1 19h-22v-18h22v18z" /></svg>
+                            <p>Servicios</p>
+                        </div>
+                        <div class="categoria" data-categoria="usuario">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.997 18h-11.995l-.002-.623c0-1.259.1-1.986 1.588-2.33 1.684-.389 3.344-.736 2.545-2.209-2.366-4.363-.674-6.838 1.866-6.838 2.491 0 4.226 2.383 1.866 6.839-.775 1.464.826 1.812 2.545 2.209 1.49.344 1.589 1.072 1.589 2.333l-.002.619zm4.811-2.214c-1.29-.298-2.49-.559-1.909-1.657 1.769-3.342.469-5.129-1.4-5.129-1.265 0-2.248.817-2.248 2.324 0 3.903 2.268 1.77 2.246 6.676h4.501l.002-.463c0-.946-.074-1.493-1.192-1.751zm-22.806 2.214h4.501c-.021-4.906 2.246-2.772 2.246-6.676 0-1.507-.983-2.324-2.248-2.324-1.869 0-3.169 1.787-1.399 5.129.581 1.099-.619 1.359-1.909 1.657-1.119.258-1.193.805-1.193 1.751l.002.463z" /></svg>
+                            <p>Usuario</p>
+                        </div>
+                    </div>
+
+                    <div class="preguntas">
+                        
+                        <!-- Preguntas Empresa -->
+                        <div class="contenedor-preguntas activo" data-categoria="empresa">
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como insertar el horario de la empresa?<img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit.</p>
+                            </div>
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como actualizar el horario de la empresa? <img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.</p>
+                            </div>
+                        </div>
+                       
+                        <!-- Preguntas Eventos -->
+                        <div class="contenedor-preguntas" data-categoria="evento">
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como insertar dias/horas libres a los colaboradores? <img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.</p>
+                            </div>
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como eliminar dias/horas libres a los colaboradores? <img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.</p>
+                            </div>
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como eliminar eventos de los clientes? <img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.</p>
+                            </div>
+                        </div>
+
+                        <!-- Preguntas Servicios -->
+                        <div class="contenedor-preguntas" data-categoria="servicios">
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como insertar servicios? <img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.</p>
+                            </div>
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como actualizar/eliminar servicios? <img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.</p>
+                            </div>
+
+                        </div>
+
+                        <!-- Preguntas Usuario -->
+                        <div class="contenedor-preguntas" data-categoria="usuario">
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como insertar colaboradores?  <img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.</p>
+                            </div>
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como actualizar/eliminar colaboradores?  <img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.</p>
+                            </div>
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como asignar servicios a los colaboradores?  <img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.</p>
+                            </div>
+                            <div class="contenedor-pregunta">
+                                <p class="pregunta">¿Como activar/desactivar asignaciones a los colaboradores?  <img src="~/Imagenes/GuiaImagenes/suma.svg" /></p>
+                                <p class="respuesta">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.adipisicing elit. Voluptatum laborum porro voluptates, sequi aliquam mollitia! Nostrum eius iure sapiente, voluptates soluta adipisci, perferendis voluptatibus eligendi vel saepe harum. Consectetur, doloribus.</p>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </main>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Js/jquery.min.js"></script>
+<script src="~/Js/Guia/categorias.js"></script>
+<script src="~/Js/Guia/preguntasFrecuentes.js"></script>
+
+

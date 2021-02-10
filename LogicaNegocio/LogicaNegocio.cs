@@ -115,6 +115,11 @@ namespace LogicaNegocio
             return AD.ActualizarHorarioEmpresa(horarioEmpresa, IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
         }
 
+        public bool ActualizarDatosXIdEmpresa(Empresa empresa, int IdEmpresa)
+        {
+            return AD.ActualizarDatosXIdEmpresa(empresa, IdEmpresa);
+        }
+
         #endregion
 
 
