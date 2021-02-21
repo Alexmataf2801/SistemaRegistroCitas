@@ -284,11 +284,11 @@ namespace SistemaRegistroCitas.Controllers
         {
             List<Usuario> usuarios = new List<Usuario>();
             
-            usuario = (Usuario)Session["Usuario"];
+           usuario = (Usuario)Session["Usuario"];
 
            if(usuario != null)
             {
-                usuarios = LN.ObtenerTodosLosColaboradores(usuario.IdEmpresa);
+               usuarios = LN.ObtenerTodosLosColaboradores(usuario.IdEmpresa,usuario.IdRol);
  
             }
 

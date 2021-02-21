@@ -4,6 +4,7 @@ using Entidades.ClasesEntidades;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.Linq;
 
 namespace AccesoDatos
 {
@@ -908,16 +909,26 @@ namespace AccesoDatos
 
         }
 
-        public List<Roles> ObtenerTodoLosRoles()
+        public List<Roles> ObtenerTodoLosRoles(int IdRol)
         {
 
             List<Roles> ListaRoles = new List<Roles>();
+            dynamic Result = null;
             try
             {
 
                 var info = entities.paObtenerTodosLosRoles();
 
-                foreach (var item in info)
+                if (IdRol != 1)
+                {
+                    Result = info.Where(x => x.Id != 1).ToList();
+                }
+                else
+                {
+                    Result = info.ToList();
+                }
+
+                foreach (var item in Result)
                 {
                     Roles roles = new Roles();
 
@@ -1010,14 +1021,24 @@ namespace AccesoDatos
             return ListaServicios;
         }
 
-        public List<Usuario> ObtenerTodosLosColaboradores(int IdEmpresa)
+        public List<Usuario> ObtenerTodosLosColaboradores(int IdEmpresa, int IdRol)
         {
                List<Usuario> ListaColaboradores = new List<Usuario>();
+                dynamic Result = null;
             try
             {
                 var info = entities.paObtenerTodosLosColaboradores(IdEmpresa);
 
-                foreach(var item in info)
+                if (IdRol != 1)
+                {
+                    Result = info.Where(x => x.IdRol != 1).ToList();
+                }
+                else {
+                    Result = info.ToList();
+                }
+             
+               
+                foreach(var item in Result)
                 {
                     Usuario usuario = new Usuario();
 
@@ -1038,7 +1059,9 @@ namespace AccesoDatos
                     usuario.FechaUltimaModificacion = item.FechaUltimaModificacion;
                     usuario.NombreRol = item.NombreRol;
 
-                    ListaColaboradores.Add(usuario);
+                    ListaColaboradores.Add(usuario);                  
+
+
 
                 }
             }

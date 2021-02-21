@@ -31,6 +31,7 @@
 function ObtenerDatosServicio() {
     var Id = sessionStorage.getItem("IdServicioEditar");
     ObtenerMinutosYHoras();
+   
     $.ajax({
         type: "POST",
         datatype: "JSON",
@@ -39,16 +40,10 @@ function ObtenerDatosServicio() {
         success: function (Info) {
             if (Info) {
                 $("#txtNombre").val(Info.Nombre);
-                $("#txtDescripcionServicio").val(Info.Descripcion);
-                $("#txtTiempoEstimadoServicio").val(Info.TiempoEstimado);
-
-                //if (Info.TipoUnidad) {
-                //    $("#txtTipoUnidadServicio").val(1);
-                //} else {
-                //    $("#txtTipoUnidadServicio").val(2);
-                //}
+                $("#txtDescripcionServicio").val(Info.Descripcion);          
                 $("#txtTipoUnidadServicio").val(Info.TipoUnidad);
-
+                LlenarComboTiempos();
+                $("#txtTiempoEstimadoServicio").val(Info.TiempoEstimado);
             }
         },
         error: function (Error) {
@@ -87,7 +82,7 @@ function ObtenerMinutosYHoras() {
         type: "GET",
         dataType: "JSON",
         url: "/UnidadMedida/ObtenerMinutosYHoras/",
-
+        async:false,
         success: function (InfoServicios) {
 
 

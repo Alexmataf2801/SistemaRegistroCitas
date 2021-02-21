@@ -195,9 +195,9 @@ namespace LogicaNegocio
             return AD.ObtenerRoles();
         }
 
-        public List<Roles> ObtenerTodoLosRoles()
+        public List<Roles> ObtenerTodoLosRoles(int IdRol)
         {
-            return AD.ObtenerTodoLosRoles();
+            return AD.ObtenerTodoLosRoles(IdRol);
         }
 
         public Roles ObtenerRolXId(int IdRol)
@@ -210,9 +210,9 @@ namespace LogicaNegocio
             return AD.ObtenerTodosLosServicios(IdEmpresa);
         }
 
-        public List<Usuario> ObtenerTodosLosColaboradores(int IdEmpresa)
+        public List<Usuario> ObtenerTodosLosColaboradores(int IdEmpresa, int IdRol)
         {
-            return AD.ObtenerTodosLosColaboradores(IdEmpresa);
+            return AD.ObtenerTodosLosColaboradores(IdEmpresa, IdRol);
         }
 
         public Usuario ObtenerColaboradoresXId (int Id)
