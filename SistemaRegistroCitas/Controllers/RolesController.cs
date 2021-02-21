@@ -51,7 +51,9 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult ObtenerTodoLosRoles()
         {
             List<Roles> roles = new List<Roles>();
-            roles = LN.ObtenerTodoLosRoles();
+
+            usuario = (Usuario)Session["Usuario"];
+            roles = LN.ObtenerTodoLosRoles(usuario.IdRol);
 
             return Json(roles, JsonRequestBehavior.AllowGet);
         }
