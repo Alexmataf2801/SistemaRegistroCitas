@@ -85,6 +85,39 @@ function InsertarDatosColaborador() {
 }
 
 
+function ObtenerTodoLosRoles() {
+
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        url: "/Roles/ObtenerTodoLosRoles/",
+
+        success: function (InfoServicios) {
+
+
+            var clasificacion = $("#IdRol");
+
+            $(InfoServicios).each(function (i, v) {
+                clasificacion.append('<option value="' + v.Id + '">' + v.Nombre + '</option>');
+
+
+            });
+
+
+        },
+
+        error: function () {
+            console.log('error')
+        },
+
+    });
+}
+
+$(document).ready(function () {
+     ObtenerTodoLosRoles();
+});
+
+
 function LimpiarDatosColaborador() {
     $("#txtIdentificacion").val('');
     $("#txtNombre").val('');
