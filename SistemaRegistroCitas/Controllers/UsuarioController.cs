@@ -519,5 +519,42 @@ namespace SistemaRegistroCitas.Controllers
             return Json(Respuesta, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult EditarContrasenaXCorreoElectronico(Login login)
+        {
+            usuario = (Usuario)Session["Usuario"];
+            int Respuesta = 0;
+            Respuesta = LN.EditarContrasenaXCorreoElectronico(login,usuario.CorreoElectronico);
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ActualizarContrasenaXCorreoElectronico()
+
+        {
+            usuario = (Usuario)Session["Usuario"];
+
+
+            if (usuario != null)
+            {
+                Menu = ArmarMenu(usuario.Id);
+
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
     }
 }

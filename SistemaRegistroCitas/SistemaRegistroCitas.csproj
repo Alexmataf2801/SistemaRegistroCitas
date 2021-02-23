@@ -311,6 +311,7 @@
     <Content Include="Scripts\Propios\Administracion.js" />
     <Content Include="Scripts\Propios\AsignarServiciosColaborador.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
+    <Content Include="Scripts\Propios\EditarContrasenaXCorreoElectronico.js" />
     <Content Include="Scripts\Propios\Empresa.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
     <Content Include="Scripts\Propios\InicioEmpresas.js" />
@@ -373,6 +374,7 @@
     <Content Include="Views\Guia\GuiaUsuario.cshtml" />
     <Content Include="Views\Guia\GuiaCliente.cshtml" />
     <Content Include="Views\Empresa\ActualizarInicioEmpresa.cshtml" />
+    <Content Include="Views\Usuario\ActualizarContrasenaXCorreoElectronico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

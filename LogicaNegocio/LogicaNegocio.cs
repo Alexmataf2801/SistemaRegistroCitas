@@ -120,6 +120,11 @@ namespace LogicaNegocio
             return AD.ActualizarDatosXIdEmpresa(empresa, IdEmpresa);
         }
 
+
+        public int EditarContrasenaXCorreoElectronico(Login login, string CorreoElectronico)
+        {
+            return AD.EditarContrasenaXCorreoElectronico(login, CorreoElectronico);
+        }
         #endregion
 
 

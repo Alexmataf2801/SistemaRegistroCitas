@@ -106,6 +106,13 @@
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
         </Function>
+        <Function Name="paEditarContrasenaXCorreoElectronico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="ContrasenaActual" Type="varchar" Mode="In" />
+          <Parameter Name="NuevaContrasena" Type="varchar" Mode="In" />
+          <Parameter Name="ConfirmaContrasena" Type="varchar" Mode="In" />
+          <Parameter Name="Confirmacion" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="paEliminarColaboradores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
@@ -607,6 +614,13 @@
             <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="Direccion" Mode="In" Type="String" />
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paEditarContrasenaXCorreoElectronico">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="ContrasenaActual" Mode="In" Type="String" />
+            <Parameter Name="NuevaContrasena" Mode="In" Type="String" />
+            <Parameter Name="ConfirmaContrasena" Mode="In" Type="String" />
+            <Parameter Name="Confirmacion" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServicioXId_Result">
@@ -1232,6 +1246,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarDatosXIdEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarDatosXIdEmpresa" />
+          <FunctionImportMapping FunctionImportName="paEditarContrasenaXCorreoElectronico" FunctionName="BDSistemaRegistroCitasModel.Store.paEditarContrasenaXCorreoElectronico" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

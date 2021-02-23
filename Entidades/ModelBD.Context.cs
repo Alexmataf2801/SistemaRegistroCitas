@@ -1010,5 +1010,26 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarDatosXIdEmpresa", nombreParameter, correoElectronicoParameter, descripcionParameter, direccionParameter, idEmpresaParameter);
         }
+    
+        public virtual int paEditarContrasenaXCorreoElectronico(string correoElectronico, string contrasenaActual, string nuevaContrasena, string confirmaContrasena, ObjectParameter confirmacion)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var contrasenaActualParameter = contrasenaActual != null ?
+                new ObjectParameter("ContrasenaActual", contrasenaActual) :
+                new ObjectParameter("ContrasenaActual", typeof(string));
+    
+            var nuevaContrasenaParameter = nuevaContrasena != null ?
+                new ObjectParameter("NuevaContrasena", nuevaContrasena) :
+                new ObjectParameter("NuevaContrasena", typeof(string));
+    
+            var confirmaContrasenaParameter = confirmaContrasena != null ?
+                new ObjectParameter("ConfirmaContrasena", confirmaContrasena) :
+                new ObjectParameter("ConfirmaContrasena", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEditarContrasenaXCorreoElectronico", correoElectronicoParameter, contrasenaActualParameter, nuevaContrasenaParameter, confirmaContrasenaParameter, confirmacion);
+        }
     }
 }

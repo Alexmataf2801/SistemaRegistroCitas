@@ -604,6 +604,27 @@ namespace AccesoDatos
 
         }
 
+        public int EditarContrasenaXCorreoElectronico(Login login, string CorreoElectronico)
+        {
+            int Respuesta = 0;
+            ObjectParameter Confirmacion;
+
+            try
+            {
+                Confirmacion = new ObjectParameter("Confirmacion", typeof(int));
+                entities.paEditarContrasenaXCorreoElectronico(CorreoElectronico, login.ContrasenaActual, login.NuevaContrasena, login.ConfirmaContrasena, Confirmacion);
+
+                Respuesta = Convert.ToInt32(Confirmacion.Value.ToString());
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Respuesta;
+        }
+
+
 
         #endregion
 
@@ -711,6 +732,7 @@ namespace AccesoDatos
         }
 
         #endregion
+
 
 
         #region SELECTS
