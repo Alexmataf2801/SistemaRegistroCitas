@@ -556,5 +556,66 @@ namespace SistemaRegistroCitas.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult ActualizarPerfil()
+        {
+            usuario = (Usuario)Session["Usuario"];
+
+
+            if (usuario != null)
+            {
+                Menu = ArmarMenu(usuario.Id);
+
+                if (usuario.Id > 0)
+                {
+                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                    ViewBag.Menu = Menu;
+
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
+
+        public JsonResult ObtenerPerfilColaboradorXId()
+        {
+            Usuario perfil = new Usuario();
+
+            usuario = (Usuario)Session["Usuario"];
+
+            perfil = LN.ObtenerPerfilColaboradorXId(usuario.Id);
+
+            return Json(perfil, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ValidarCorreoElectronicoPerfil(string CorreoElectronico)
+        {
+            usuario = (Usuario)Session["Usuario"];
+            int Respuesta = 0;
+            Respuesta = LN.ValidarCorreoElectronico(usuario.Id, CorreoElectronico);
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ActualizarPerfil(Usuario perfil)
+        {
+            usuario = (Usuario)Session["Usuario"];
+            bool SeActualizo = false;
+            perfil.UsuarioUltimaModificacion = usuario.NombreCompleto;
+            perfil.Id = usuario.Id;
+            perfil.IdRol = usuario.IdRol;
+            SeActualizo = LN.ActualizarColaboradores(perfil);
+
+            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+
+        }
+
     }
 }

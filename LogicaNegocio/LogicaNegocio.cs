@@ -125,6 +125,12 @@ namespace LogicaNegocio
         {
             return AD.EditarContrasenaXCorreoElectronico(login, CorreoElectronico);
         }
+
+        public bool ActualizarPerfil(Usuario perfil)
+        {
+            return AD.ActualizarPerfil(perfil);
+        }
+
         #endregion
 
 
@@ -282,6 +288,11 @@ namespace LogicaNegocio
         public List<Eventos> ObtenerTodosLosEventosXIdUsuario(int IdUsuario)
         {
             return AD.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
+        }
+
+        public Usuario ObtenerPerfilColaboradorXId(int Id)
+        {
+            return AD.ObtenerPerfilColaboradorXId(Id);
         }
 
 

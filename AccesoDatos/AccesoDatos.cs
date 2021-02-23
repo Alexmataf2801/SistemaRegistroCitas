@@ -624,6 +624,25 @@ namespace AccesoDatos
             return Respuesta;
         }
 
+        public bool ActualizarPerfil(Usuario perfil)
+        {
+            bool Correcto = false;
+
+            try
+            {
+
+                entities.paActualizarPerfil(perfil.Id, perfil.Identificacion, perfil.Nombre, perfil.PrimerApellido, perfil.SegundoApellido, perfil.CorreoElectronico, perfil.Telefono,
+                    perfil.Genero, perfil.IdRol, perfil.UsuarioUltimaModificacion);
+                Correcto = true;
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+            return Correcto;
+        }
+
 
 
         #endregion
@@ -1527,6 +1546,42 @@ namespace AccesoDatos
         }
 
 
+
+
+
+        public Usuario ObtenerPerfilColaboradorXId(int Id)
+        {
+            Usuario perfil = new Usuario();
+
+            try
+            {
+                var info = entities.paObtenerPerfilColaboradorXId(Id);
+
+                foreach (var item in info)
+                {
+                    perfil.Id = item.Id;
+                    perfil.Nombre = item.Nombre;
+                    perfil.PrimerApellido = item.PrimerApellido;
+                    perfil.SegundoApellido = item.SegundoApellido;
+                    perfil.Identificacion = item.Identificacion;
+                    perfil.CorreoElectronico = item.CorreoElectronico;
+                    perfil.Telefono = item.Telefono;
+                    perfil.Genero = item.Genero;
+                    perfil.IdRol = item.IdRol;
+                    perfil.Estado = item.Estado;
+                    perfil.UsuarioCreacion = item.UsuarioCreacion;
+                    perfil.FechaCreacion = item.FechaCreacion;
+                    perfil.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    perfil.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return perfil;
+        }
 
         #endregion
 

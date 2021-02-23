@@ -120,6 +120,9 @@
     <Compile Include="paObtenerNombresEmpresasActivas_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerPerfilColaboradorXId_Result.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="PaObtenerRoles_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>

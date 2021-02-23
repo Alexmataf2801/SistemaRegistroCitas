@@ -323,6 +323,7 @@
     <Content Include="Scripts\Propios\ListaEventoUsuarioCreador.js" />
     <Content Include="Scripts\Propios\ListaServicios.js" />
     <Content Include="Scripts\Propios\ListaServiciosXColaborador.js" />
+    <Content Include="Scripts\Propios\ObtenerPerfilColaboradorXId.js" />
     <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
     <Content Include="Scripts\Propios\Roles\Roles.js" />
     <Content Include="Scripts\Propios\Roles\ListaRoles.js" />
@@ -375,6 +376,7 @@
     <Content Include="Views\Guia\GuiaCliente.cshtml" />
     <Content Include="Views\Empresa\ActualizarInicioEmpresa.cshtml" />
     <Content Include="Views\Usuario\ActualizarContrasenaXCorreoElectronico.cshtml" />
+    <Content Include="Views\Usuario\ActualizarPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
