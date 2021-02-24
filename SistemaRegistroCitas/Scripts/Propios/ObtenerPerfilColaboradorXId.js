@@ -5,12 +5,12 @@
         url: "/Usuario/ObtenerPerfilColaboradorXId/",       
         success: function (Info) {
             if (Info) {
-                $("#txtIdentificacionColaborador").val(Info.Identificacion);
-                $("#txtNombreColaborador").val(Info.Nombre);
-                $("#txtPrimerApellidoColaborador").val(Info.PrimerApellido);
-                $("#txtSegundoApellidoColaborador").val(Info.SegundoApellido);
-                $("#txtCorreoElectronicoColaborador").val(Info.CorreoElectronico);
-                $("#txtTelefonoColaborador").val(Info.Telefono);
+                $("#txtIdentificacionPerfil").val(Info.Identificacion);
+                $("#txtNombrePerfil").val(Info.Nombre);
+                $("#txtPrimerApellidoPerfil").val(Info.PrimerApellido);
+                $("#txtSegundoApellidoPerfil").val(Info.SegundoApellido);
+                $("#txtCorreoElectronicoPerfil").val(Info.CorreoElectronico);
+                $("#txtTelefonoPerfil").val(Info.Telefono);
                 if (Info.Genero) {
                     $("#ddlGenero").val(1);
                 } else {
@@ -30,7 +30,7 @@
 
 }
 function ValidarCorreoElectronicoPerfil() {  
-    var CorreoElectronico = $("#txtCorreoElectronicoColaborador").val();
+    var CorreoElectronico = $("#txtCorreoElectronicoPerfil").val();
     $.ajax({
         type: "GET",
         dataType: "JSON",
@@ -59,19 +59,19 @@ function ValidarCorreoElectronicoPerfil() {
 
 function ActualizarPerfil() {   
     var Usuario = {      
-        Identificacion: $("#txtIdentificacionColaborador").val(),
-        Nombre: $("#txtNombreColaborador").val(),
-        PrimerApellido: $("#txtPrimerApellidoColaborador").val(),
-        SegundoApellido: $("#txtSegundoApellidoColaborador").val(),
-        CorreoElectronico: $("#txtCorreoElectronicoColaborador").val(),
-        Telefono: $("#txtTelefonoColaborador").val(),
+        Identificacion: $("#txtIdentificacionPerfil").val(),
+        Nombre: $("#txtNombrePerfil").val(),
+        PrimerApellido: $("#txtPrimerApellidoPerfil").val(),
+        SegundoApellido: $("#txtSegundoApellidoPerfil").val(),
+        CorreoElectronico: $("#txtCorreoElectronicoPerfil").val(),
+        Telefono: $("#txtTelefonoPerfil").val(),
         Genero: $("#ddlGenero").val()     
 
     };
 
-    if ($("#txtCorreoElectronicoColaborador").val() === "" ||
-        $("#txtNombreColaborador").val() === "" ||
-        $("#txtPrimerApellidoColaborador").val() === "") {
+    if ($("#txtCorreoElectronicoPerfil").val() === "" ||
+        $("#txtNombrePerfil").val() === "" ||
+        $("#txtPrimerApellidoPerfil").val() === "") {
         $("#msjModalIncorrecto").html("<label>¡Falta complementar datos importantes!</label>");
         $('#MsjIncorrecto').modal('show');
     }
@@ -105,12 +105,12 @@ function ActualizarPerfil() {
 
 
 function LimpiarCampos() {
-    $("#txtIdentificacionColaborador").val("");
-    $("#txtNombreColaborador").val("");
-    $("#txtPrimerApellidoColaborador").val("");
-    $("#txtSegundoApellidoColaborador").val("");
-    $("#txtCorreoElectronicoColaborador").val("");
-    $("#txtTelefonoColaborador").val("");
+    $("#txtIdentificacionPerfil").val("");
+    $("#txtNombrePerfil").val("");
+    $("#txtPrimerApellidoPerfil").val("");
+    $("#txtSegundoApellidoPerfil").val("");
+    $("#txtCorreoElectronicoPerfil").val("");
+    $("#txtTelefonoPerfil").val("");
     $("#ddlGenero").val("");   
 }
 
@@ -119,7 +119,7 @@ function RedireccionarPerfil() {
 }
 
 
-$(document).on('blur', '#txtCorreoElectronicoColaborador', function () {
+$(document).on('blur', '#txtCorreoElectronicoPerfil', function () {
     ValidarCorreoElectronicoPerfil();
 
 });
