@@ -323,6 +323,10 @@
     <Content Include="Scripts\Propios\ListaEventoUsuarioCreador.js" />
     <Content Include="Scripts\Propios\ListaServicios.js" />
     <Content Include="Scripts\Propios\ListaServiciosXColaborador.js" />
+    <Content Include="Scripts\Propios\MostrarYOcultarContrasenaConfirmar.js" />
+    <Content Include="Scripts\Propios\MostrarYOcultarContrasenaNueva.js" />
+    <Content Include="Scripts\Propios\MostrarYOcutarContrasenaActual.js" />
+    <Content Include="Scripts\Propios\MostrarYOcutarContrsena.js" />
     <Content Include="Scripts\Propios\ObtenerPerfilColaboradorXId.js" />
     <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
     <Content Include="Scripts\Propios\Roles\Roles.js" />

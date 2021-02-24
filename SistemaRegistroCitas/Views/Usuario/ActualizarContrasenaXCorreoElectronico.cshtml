@@ -15,20 +15,29 @@
                     </div>
 
 
-                    <div class="form-group row">
+                    <div class="form-group row input-group">
                         <label>Contraseña Actual</label>
                         <input type="password" class="form-control" style="border-radius:4px" autocomplete="off" id="txtContrasenaActual" maxlength="150" />
+                        <span  style="cursor:pointer; border:none; font-size: 15px;" class="input-group-addon"> 
+                            <i id="OjoActual"  style="padding-top:23px;" class="fa fa-eye"></i>                        
+                        </span>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row input-group">
                         <label>Nueva Contraseña</label>
                         <input type="password" class="form-control" style="border-radius:4px" autocomplete="off" id="txtNuevaContrasena" maxlength="150" />
+                        <span style="cursor:pointer; border:none; font-size: 15px;" class="input-group-addon">
+                            <i id="OjoNueva" style="padding-top: 23px;" class="fa fa-eye"></i>
+                        </span>
                     </div>
 
 
-                    <div class="form-group row">
+                    <div class="form-group row input-group">
                         <label>Confirmar Contraseña</label>
                         <input type="password" class="form-control" style="border-radius:4px" autocomplete="off" id="txtConfirmaContrasena" maxlength="150" />
+                        <span style="cursor:pointer; border:none; font-size: 15px;" class="input-group-addon">
+                            <i id="OjoConfirmar" style="padding-top:23px;" class="fa fa-eye"></i>
+                        </span>
                     </div>
 
 
@@ -45,5 +54,8 @@
     </div>
 
 
-    <script src="~/Js/jquery.min.js"></script>
+    <script src="~/Js/jquery.min.js"></script>  
+    <script src="~/Scripts/Propios/MostrarYOcutarContrasenaActual.js"></script>
+    <script src="~/Scripts/Propios/MostrarYOcultarContrasenaNueva.js"></script>
+    <script src="~/Scripts/Propios/MostrarYOcultarContrasenaConfirmar.js"></script>
     <script src="~/Scripts/Propios/EditarContrasenaXCorreoElectronico.js"></script>
