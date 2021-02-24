@@ -41,10 +41,14 @@ function ValidarCorreoElectronicoPerfil() {
 
 
             if (Validar) {
-                alert("no funciona");
+                //alert("no funciona");
+                $("#MensajeCorreoCorrecto").empty();
+                $("#MensajeCorreoCorrecto").append('<p>¡CorreoElectronico Denegado!</p>').css("color", "red");
             }
             else {
-                alert("Si funciona");
+                //alert("Si funciona");
+                $("#MensajeCorreoCorrecto").empty();
+                $("#MensajeCorreoCorrecto").append('<p>¡CorreoElectronico valido!</p>').css("color", "green");
             }
 
         },
