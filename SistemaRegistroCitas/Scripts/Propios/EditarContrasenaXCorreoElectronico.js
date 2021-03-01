@@ -16,10 +16,15 @@
             switch (Info) {
 
                 case 1:
-                    $("#lblMensajeCorrecto").html("<label>¡Contraseña Actualizada Correctamenta!</label>");
-                    $("#lblTituloCorrecto").html("<label>Información</label>");
-                    $('#MsjCorrecto').modal('show');
-                    LimpiarCampos()
+                    $("#msjCorrectoActContrasena").html("<label>¡Contraseña Actualizada Correctamenta!</label>");
+                    $('#ModalCorrectoActContrasena').modal('show');
+                    $('#ModalCorrectoActContrasena').on('hidden.bs.modal', function () {
+                        // do something…
+                        LimpiarCampos();
+                        CerrarSession();
+                        Redireccionar();
+                    });                    
+                    
                     break;
                 case 2:                  
                     $("#msjModalIncorrecto").html("<label>¡La nueva contraseñas no conside!</label>");
@@ -49,4 +54,25 @@ function LimpiarCampos() {
     $("#txtNuevaContrasena").val("");
     $("#txtConfirmaContrasena").val("");
  
+}
+function Redireccionar() {
+    location.href = '/Home/Login/';
+}
+
+function CerrarSession() {   
+
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        url: "/Usuario/CerrarSession/",
+       
+        success: function (Info) {            
+
+        },
+
+        error: function () {
+            console.log('error')
+        },
+
+    });
 }
