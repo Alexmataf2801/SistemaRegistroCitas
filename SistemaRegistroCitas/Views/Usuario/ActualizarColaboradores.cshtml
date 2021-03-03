@@ -41,7 +41,7 @@
 
                 <div class="form-group row">
                     <label>Telefono</label>
-                    <input type="tel" class="form-control" style="border-radius:4px" autocomplete="off" id="txtTelefonoColaborador" maxlength="150">
+                    <input type="tel"  onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)" class="form-control" style="border-radius:4px" autocomplete="off" id="txtTelefonoColaborador" maxlength="150">
                 </div>
 
                 <div class="form-group row">
@@ -88,6 +88,14 @@
     </div>
 </div>
 <!--FIN MODAL CORRECTO-->
+
+<script type="text/javascript">
+
+    function limpiarNumero(obj) {
+        /* El evento "change" sólo saltará si son diferentes */
+        obj.value = obj.value.replace(/\D/g, '');
+    }
+</script>
 
 <script src="~/Js/jquery.min.js"></script>
 <script src="~/Scripts/Propios/ActualizarDatosColaborador.js"></script>

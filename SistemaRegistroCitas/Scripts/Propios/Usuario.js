@@ -9,43 +9,52 @@
         Telefono: $("#txtTelefono").val(),
         Genero: $("#ddlGenero").val()
     };
+    var ValidarCorreo = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+           //    /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+   
 
-    $.ajax({
-        type: "POST",
-        dataType: "JSON",
-        url: "/Usuario/InsertarUsuario/",
-        data: { usuario },
-        success: function (Info) {
-            
-            switch (Info) {
-                
-                case 0:
-                    $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-                    $('#MsjIncorrecto').modal('show');
-                    break;
-                case 1:
-                    LimpiarValores();
-                    $('#fm-modal').modal('hide');
-                    $('#MsjCorreo').modal('show');
-                    break;
-                case 2:
-                    $("#msjModal").html("<label>¡El CorreoElectronico ingresado ya existe!</label>");
-                    $('#MsjIncorrecto').modal('show');
-                    break;
-                
-                default:
-                    $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
-                    $('#MsjIncorrecto').modal('show');
+    if (!ValidarCorreo.test($("#txtCorreoElectronico").val()))  {
+        $("#msjModal").html("<label>¡El CorreoElectronico no es valido!</label>");
+        $('#MsjIncorrecto').modal('show');
+    }
+    else {
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/Usuario/InsertarUsuario/",
+            data: { usuario },
+            success: function (Info) {
+
+                switch (Info) {
+
+                    case 0:
+                        $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                        $('#MsjIncorrecto').modal('show');
+                        break;
+                    case 1:
+                        LimpiarValores();
+                        $('#fm-modal').modal('hide');
+                        $('#MsjCorreo').modal('show');
+                        break;
+                    case 2:
+                        $("#msjModal").html("<label>¡El CorreoElectronico ingresado ya existe!</label>");
+                        $('#MsjIncorrecto').modal('show');
+                        break;
+
+                    default:
+                        $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                        $('#MsjIncorrecto').modal('show');
+                }
+
+            },
+            error: function (Error) {
+                alert("Se Cayo");
             }
 
-        },
-        error: function (Error) {
-            alert("Se Cayo");
-        }
+        });
 
-    });
-
-
+    }
 }
 
 

@@ -14,7 +14,7 @@
             if (Validar) {
                 //alert("no funciona");
                 $("#MensajeCorreoCorrecto").empty();
-                $("#MensajeCorreoCorrecto").append('<p>¡CorreoElectronico Denegado!</p>').css("color", "red");
+                $("#MensajeCorreoCorrecto").append('<p>¡El CorreoElectronico ya existe!</p>').css("color", "red");
           
             }
             else {
