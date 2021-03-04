@@ -318,6 +318,12 @@ $(function () {
 
     $("#SeleccionTiempoLibre").change(function () {
         TiempoLibre();
+        if (parseInt($("#SeleccionTiempoLibre").val()) <= 3) {
+            $("#btnReservarTiempo").prop("disabled", false);
+        } else {
+            $("#btnReservarTiempo").prop("disabled", true);
+        }
+        
     });
 
 
@@ -601,6 +607,7 @@ $(function () {
                         $("#lblTituloCorrecto").html("<label>Información</label>");
                         $('#MsjCorrecto').modal('show');
                         doSubmit();
+                        LimpiarEventoslientes();
                         break;
                     case 2:
                         $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
@@ -674,6 +681,7 @@ $(function () {
                         $("#lblTituloCorrecto").html("<label>Información</label>");
                         $('#MsjCorrecto').modal('show');
                         doSubmitTiempo();
+                        LimpiarEventosDiasLibres();
                         break;
                     case 2:
                         $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
@@ -692,6 +700,34 @@ $(function () {
 
         });
 
+
+    }
+
+    $("#btnCerrarModalEventoTiempo").click(function () {
+        LimpiarEventosDiasLibres();
+    });
+    $("#btnCerrarEventoCliente").click(function () {
+        LimpiarEventoslientes()
+    });
+
+    function LimpiarEventosDiasLibres() {
+
+        $("#TiempoInicialLibre").val("")
+        $("#TiempoFinalLibre").val("")
+        $("#SeleccionTiempoLibre").val("0")
+        $("#btnReservarTiempo").prop("disabled", true);
+
+    }
+
+    function LimpiarEventoslientes() {
+
+        $("#txtHorario").val("")
+        $("#TiempoFinal").val("")
+        $("#txtDescripcionServicio").val("")
+        $("#btnReservar").prop("disabled", true)
+        $("#TiempoAprox").val("")        
+        $("#Servicios").val("0")
+        
 
     }
 

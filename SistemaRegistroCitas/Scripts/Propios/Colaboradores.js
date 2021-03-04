@@ -46,6 +46,12 @@ function InsertarDatosColaborador() {
         Genero: $("#ddlGenero").val(),
         IdRol: $("#IdRol").val()
     };
+    var ValidarCorreo = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    if (!ValidarCorreo.test($("#txtCorreoElectronico").val())) {
+        $("#msjModalIncorrecto").html("<label>¡El CorreoElectronico no es valido!</label>");
+        $('#MsjIncorrecto').modal('show');
+    }
+    else {
 
     $.ajax({
         type: "POST",
@@ -56,7 +62,7 @@ function InsertarDatosColaborador() {
             
             switch (Info) {
                 case 0:
-                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                    $("#msjModalIncorrecto").html("<label>¡Faltan datos, vuelva a intentarlo!</label>");
                     $('#MsjIncorrecto').modal('show');
                     break;
                 case 1:
@@ -80,7 +86,7 @@ function InsertarDatosColaborador() {
         }
 
     });
-
+    }
 
 }
 

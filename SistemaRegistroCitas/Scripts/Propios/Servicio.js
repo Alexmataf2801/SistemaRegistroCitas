@@ -11,7 +11,7 @@
             var clasificacion = $("#Servicios");
 
             clasificacion.empty();
-            //clasificacion.append('<option value="0">Seleccione uno...</option>');
+            clasificacion.append('<option disabled selected hidden value="0">Seleccione uno...</option>');
 
             $(InfoServicios).each(function (i, v) {
                 clasificacion.append('<option value="' + v.IdServicio + '">' + v.NombreServicio + '</option>');

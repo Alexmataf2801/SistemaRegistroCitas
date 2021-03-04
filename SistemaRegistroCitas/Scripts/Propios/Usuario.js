@@ -29,7 +29,7 @@
                 switch (Info) {
 
                     case 0:
-                        $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                        $("#msjModal").html("<label>¡Faltan datos, vuelva a intentarlo!</label>");
                         $('#MsjIncorrecto').modal('show');
                         break;
                     case 1:

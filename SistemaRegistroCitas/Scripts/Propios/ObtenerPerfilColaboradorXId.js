@@ -30,6 +30,7 @@
 
 }
 function ValidarCorreoElectronicoPerfil() {  
+    var ValidarCorreo = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     var CorreoElectronico = $("#txtCorreoElectronicoPerfil").val();
     $.ajax({
         type: "GET",
@@ -40,10 +41,11 @@ function ValidarCorreoElectronicoPerfil() {
         success: function (Validar) {
 
 
-            if (Validar) {
+            if (Validar || 
+                !ValidarCorreo.test($("#txtCorreoElectronicoPerfil").val())) {
                 //alert("no funciona");
                 $("#MensajeCorreoCorrecto").empty();
-                $("#MensajeCorreoCorrecto").append('<p>¡El CorreoElectronico ya existe!</p>').css("color", "red");
+                $("#MensajeCorreoCorrecto").append('<p>¡El Correo Electronico ya existe o no es valido!</p>').css("color", "red");
             }
             else {
                 //alert("Si funciona");
@@ -62,6 +64,7 @@ function ValidarCorreoElectronicoPerfil() {
 
 
 function ActualizarPerfil() {   
+    var ValidarCorreo = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     var Usuario = {      
         Identificacion: $("#txtIdentificacionPerfil").val(),
         Nombre: $("#txtNombrePerfil").val(),
@@ -75,8 +78,9 @@ function ActualizarPerfil() {
 
     if ($("#txtCorreoElectronicoPerfil").val() === "" ||
         $("#txtNombrePerfil").val() === "" ||
-        $("#txtPrimerApellidoPerfil").val() === "") {
-        $("#msjModalIncorrecto").html("<label>¡Falta complementar datos importantes!</label>");
+        $("#txtPrimerApellidoPerfil").val() === "" || 
+        ValidarCorreo.test($("#txtCorreoElectronicoColaborador").val()) === false) {
+        $("#msjModalIncorrecto").html("<label>¡Falta complementar datos importantes o el Correo Electronico no es valido!</label>");
         $('#MsjIncorrecto').modal('show');
     }
     else {

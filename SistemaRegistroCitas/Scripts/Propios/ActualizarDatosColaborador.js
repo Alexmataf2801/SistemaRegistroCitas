@@ -1,5 +1,6 @@
 ﻿function ActualizarDatosColaborador() {
     var Id = sessionStorage.getItem("IdColaboradorEditar");
+    var ValidarCorreo = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     var Usuario = {
         Id: Id,
         Identificacion: $("#txtIdentificacionColaborador").val(),
@@ -15,8 +16,9 @@
 
     if ($("#txtCorreoElectronicoColaborador").val() === "" ||
         $("#txtNombreColaborador").val() === "" ||
-        $("#txtPrimerApellidoColaborador").val() === "") {
-        $("#msjModalIncorrecto").html("<label>¡Falta complementar datos importantes!</label>");
+        $("#txtPrimerApellidoColaborador").val() === "" ||
+        ValidarCorreo.test($("#txtCorreoElectronicoColaborador").val()) === false) {
+        $("#msjModalIncorrecto").html("<label>¡Falta complementar datos importantes o el Correo Electronico no es valido!</label>");
         $('#MsjIncorrecto').modal('show');
     }
     else {
