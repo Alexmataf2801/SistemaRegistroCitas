@@ -202,7 +202,7 @@ namespace SistemaRegistroCitas.Controllers
             if (usuario != null)
             {
 
-                Eventos = LN.ObtenerTodosLosEventosXIdUsuarioCreador(usuario.Id);
+                Eventos = LN.ObtenerTodosLosEventosXIdUsuarioCreador(usuario.Id,usuario.IdEmpresa);
             }
 
 

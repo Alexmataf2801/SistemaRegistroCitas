@@ -1447,12 +1447,12 @@ namespace AccesoDatos
         }
 
 
-        public List<Eventos> ObtenerTodosLosEventosXIdUsuarioCreador(int IdUsuarioCreador)
+        public List<Eventos> ObtenerTodosLosEventosXIdUsuarioCreador(int IdUsuarioCreador, int IdEmpresa)
         {
             List<Eventos> ListaEventos = new List<Eventos>();
             try
             {
-                var info = entities.paObtenerTodosLosEventosXIdUsuarioCreador(IdUsuarioCreador);
+                var info = entities.paObtenerTodosLosEventosXIdUsuarioCreador(IdUsuarioCreador,IdEmpresa);
 
                 foreach (var item in info)
                 {
