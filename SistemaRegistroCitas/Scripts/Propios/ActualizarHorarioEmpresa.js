@@ -30,10 +30,19 @@
         url: "/InicioEmpresas/ActualizarHorarioEmpresa/",
         data: { horarioEmpresa: HorarioEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo },
         success: function (Info) {
-            if (Info) {
-                $("#lblMensajeCorrecto").html("<label>¡Horarios Actualizados Correctamente!</label>");
-                $("#lblTituloCorrecto").html("<label>Información</label>");
-                $('#MsjCorrecto').modal('show');               
+            switch (Info) {
+                case 1:
+                    $("#lblMensajeCorrecto").html("<label>¡Horario Actualizado Correctamenta!</label>");
+                    $("#lblTituloCorrecto").html("<label>Información</label>");
+                    $('#MsjCorrecto').modal('show');
+                    break;
+                case 2:
+                    $("#msjModalIncorrecto").html("<label>¡El Horario no se puede actualizar, existe un evento asignado en ese rango de horas!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                    break;
+                default:
+                    $("#msjModalIncorrecto").html("<label>¡Algo fallo al actualizar el Horario!</label>");
+                    $('#MsjIncorrecto').modal('show');
             }
         },
         error: function (Error) {

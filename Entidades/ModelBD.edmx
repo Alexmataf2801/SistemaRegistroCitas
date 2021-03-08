@@ -60,6 +60,7 @@
           <Parameter Name="FinalDomingo" Type="time" Mode="In" />
           <Parameter Name="EstadoDomingo" Type="bit" Mode="In" />
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="RespuestaCorrecta" Type="int" Mode="InOut" />
         </Function>
         <Function Name="paActualizarPerfil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
@@ -519,30 +520,6 @@
           <FunctionImport Name="paObtenerHorarioEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerHorarioEmpresa_Result)">
           <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paActualizarHorarioEmpresa">
-            <Parameter Name="InicioLunes" Mode="In" Type="Time" />
-            <Parameter Name="FinalLunes" Mode="In" Type="Time" />
-            <Parameter Name="EstadoLunes" Mode="In" Type="Boolean" />
-            <Parameter Name="InicioMartes" Mode="In" Type="Time" />
-            <Parameter Name="FinalMartes" Mode="In" Type="Time" />
-            <Parameter Name="EstadoMartes" Mode="In" Type="Boolean" />
-            <Parameter Name="InicioMiercoles" Mode="In" Type="Time" />
-            <Parameter Name="FinalMiercoles" Mode="In" Type="Time" />
-            <Parameter Name="EstadoMiercoles" Mode="In" Type="Boolean" />
-            <Parameter Name="InicioJueves" Mode="In" Type="Time" />
-            <Parameter Name="FinalJueves" Mode="In" Type="Time" />
-            <Parameter Name="EstadoJueves" Mode="In" Type="Boolean" />
-            <Parameter Name="InicioViernes" Mode="In" Type="Time" />
-            <Parameter Name="FinalViernes" Mode="In" Type="Time" />
-            <Parameter Name="EstadoViernes" Mode="In" Type="Boolean" />
-            <Parameter Name="InicioSabado" Mode="In" Type="Time" />
-            <Parameter Name="FinalSabado" Mode="In" Type="Time" />
-            <Parameter Name="EstadoSabado" Mode="In" Type="Boolean" />
-            <Parameter Name="InicioDomingo" Mode="In" Type="Time" />
-            <Parameter Name="FinalDomingo" Mode="In" Type="Time" />
-            <Parameter Name="EstadoDomingo" Mode="In" Type="Boolean" />
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="PaInsertarHorarioEmpresa">
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="InicioLunes" Mode="In" Type="Time" />
@@ -653,6 +630,31 @@
           <FunctionImport Name="paObtenerTodosLosEventosXIdUsuarioCreador" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuarioCreador_Result)">
             <Parameter Name="IdUsuarioCreador" Mode="In" Type="Int32" />
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarHorarioEmpresa">
+            <Parameter Name="InicioLunes" Mode="In" Type="Time" />
+            <Parameter Name="FinalLunes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoLunes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioMartes" Mode="In" Type="Time" />
+            <Parameter Name="FinalMartes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoMartes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioMiercoles" Mode="In" Type="Time" />
+            <Parameter Name="FinalMiercoles" Mode="In" Type="Time" />
+            <Parameter Name="EstadoMiercoles" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioJueves" Mode="In" Type="Time" />
+            <Parameter Name="FinalJueves" Mode="In" Type="Time" />
+            <Parameter Name="EstadoJueves" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioViernes" Mode="In" Type="Time" />
+            <Parameter Name="FinalViernes" Mode="In" Type="Time" />
+            <Parameter Name="EstadoViernes" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioSabado" Mode="In" Type="Time" />
+            <Parameter Name="FinalSabado" Mode="In" Type="Time" />
+            <Parameter Name="EstadoSabado" Mode="In" Type="Boolean" />
+            <Parameter Name="InicioDomingo" Mode="In" Type="Time" />
+            <Parameter Name="FinalDomingo" Mode="In" Type="Time" />
+            <Parameter Name="EstadoDomingo" Mode="In" Type="Boolean" />
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServicioXId_Result">
@@ -1207,7 +1209,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paActualizarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarHorarioEmpresa" />
           <FunctionImportMapping FunctionImportName="PaInsertarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarHorarioEmpresa" />
           <FunctionImportMapping FunctionImportName="paEliminarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarColaboradores" />
           <FunctionImportMapping FunctionImportName="paElimminarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paElimminarServicios" />
@@ -1316,6 +1317,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paActualizarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarHorarioEmpresa" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

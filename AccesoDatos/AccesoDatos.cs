@@ -563,21 +563,23 @@ namespace AccesoDatos
             return SeActualizo;
         }
 
-       public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
+       public int ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
-            bool Correcto = false;
+            int Correcto = 0;
+            ObjectParameter RespuestaCorrecta;
             try
             {
+                RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
                 entities.paActualizarHorarioEmpresa(horarioEmpresa.InicioLunes, horarioEmpresa.FinalLunes, EstadoLunes, horarioEmpresa.InicioMartes, horarioEmpresa.FinalMartes,EstadoMartes,
                     horarioEmpresa.InicioMiercoles, horarioEmpresa.FinalMiercoles,EstadoMiercoles, horarioEmpresa.InicioJueves, horarioEmpresa.FinalJueves,EstadoJueves,
                     horarioEmpresa.InicioViernes, horarioEmpresa.FinalViernes, EstadoViernes, horarioEmpresa.InicioSabado, horarioEmpresa.FinalSabado,EstadoSabado,
-                    horarioEmpresa.InicioDomingo, horarioEmpresa.FinalDomingo, EstadoDomingo, IdEmpresa);
-                Correcto = true;
+                    horarioEmpresa.InicioDomingo, horarioEmpresa.FinalDomingo, EstadoDomingo, IdEmpresa, RespuestaCorrecta);
+                Correcto = Convert.ToInt32(RespuestaCorrecta.Value.ToString()); 
 
             }
             catch (Exception ex)
             {
-                Correcto = false;
+                throw;
             }
 
             return Correcto;
