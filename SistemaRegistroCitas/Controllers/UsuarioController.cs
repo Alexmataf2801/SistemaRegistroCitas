@@ -37,9 +37,7 @@ namespace SistemaRegistroCitas.Controllers
             Usuario usuario = LN.Validarlogin(login, IdEmpresa);
             usuario.IdEmpresa = IdEmpresa;
             Session["Usuario"] = usuario;
-            ArmarMenu(usuario.Id);
-            //Session["EmpresaSeleccionada"] = IdEmpresa;
-            //CargarConfiguracionesEmpresa(IdEmpresa);
+            ArmarMenu(usuario.Id);          
             return Json(usuario, JsonRequestBehavior.AllowGet);
         }
 
@@ -50,13 +48,7 @@ namespace SistemaRegistroCitas.Controllers
                 usuarioSession = (Usuario)Session["Usuario"];
             }
             return Json(usuarioSession, JsonRequestBehavior.AllowGet); ;
-        }
-
-        public void CargarConfiguracionesEmpresa(int IdEmpresa) {
-            //ColaboradoresEmpresa(IdEmpresa); // Carga Colaboradores empresa en el combo
-            //ObtenerCalendarioEmpresa(IdEmpresa); // Nos carga todos los eventos de la empresa en el calendario
-
-        }
+        }       
 
         public List<Menu> ObtenerMenuUsuario(int IdUsuario)
         {

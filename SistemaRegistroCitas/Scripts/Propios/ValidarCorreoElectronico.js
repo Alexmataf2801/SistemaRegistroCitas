@@ -14,14 +14,14 @@
 
             if (Validar ||
                 !ValidarCorreo.test($("#txtCorreoElectronicoColaborador").val())) {
-                //alert("no funciona");
+               
                 $("#MensajeCorreoCorrecto").empty();
                 $("#MensajeCorreoCorrecto").append('<p>¡El Correo Electronico ya existe o no es valido!</p>').css("color", "red");
           
             }
             else {
 
-                //alert("Si funciona");
+               
                 $("#MensajeCorreoCorrecto").empty();
                 $("#MensajeCorreoCorrecto").append('<p>¡CorreoElectronico valido!</p>').css("color", "green");
              
@@ -36,9 +36,6 @@
     });
 }
 
-$(document).ready(function () {
-    //ValidarCorreoElectronico();
-});
 
 $(document).on('blur', '#txtCorreoElectronicoColaborador', function () {
     ValidarCorreoElectronico();

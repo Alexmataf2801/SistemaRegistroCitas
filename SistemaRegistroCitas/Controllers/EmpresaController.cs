@@ -79,19 +79,5 @@ namespace SistemaRegistroCitas.Controllers
 
 
 
-
-
-
-        //public ActionResult ObtenerHorarioEmpresa()
-        //{
-        //    HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
-
-        //    Usuario usu = (Usuario)Session["Usuario"];
-
-        //    horarioEmpresa = LN.ObtenerHorarioEmpresa(usu.IdEmpresa);
-
-        //    return View("InicioEmpresas", horarioEmpresa);
-        //}
-
     }
 }

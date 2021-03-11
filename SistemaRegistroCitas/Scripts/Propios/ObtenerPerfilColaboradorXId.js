@@ -43,12 +43,12 @@ function ValidarCorreoElectronicoPerfil() {
 
             if (Validar || 
                 !ValidarCorreo.test($("#txtCorreoElectronicoPerfil").val())) {
-                //alert("no funciona");
+                
                 $("#MensajeCorreoCorrecto").empty();
                 $("#MensajeCorreoCorrecto").append('<p>¡El Correo Electronico ya existe o no es valido!</p>').css("color", "red");
             }
             else {
-                //alert("Si funciona");
+               
                 $("#MensajeCorreoCorrecto").empty();
                 $("#MensajeCorreoCorrecto").append('<p>¡CorreoElectronico valido!</p>').css("color", "green");
             }

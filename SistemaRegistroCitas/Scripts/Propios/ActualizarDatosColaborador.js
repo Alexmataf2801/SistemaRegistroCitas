@@ -137,6 +137,3 @@ function ObtenerTodoLosRoles() {
     });
 }
 
-$(document).ready(function () {
-   // ObtenerTodoLosRoles();
-});

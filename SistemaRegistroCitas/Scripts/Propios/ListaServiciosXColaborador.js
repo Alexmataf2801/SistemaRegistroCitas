@@ -41,11 +41,6 @@
     });
 }
 
-//$(document).ready(function () {
-//    ObtenerServiciosXColaborador();
-//});
-
-
 
 function ConfirmarEliminarServicioXColaborador(Id) {
     $("#IdServicioXColaboradorSeleccionado").val(Id);

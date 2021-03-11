@@ -113,16 +113,14 @@ function ObtenerMinutosYHoras() {
     });
 }
 
-$(document).ready(function () {
-     //ObtenerMinutosYHoras();
-});
+
 
 
 function LlenarComboTiempos() {
 
     var Tiempo = $("#txtTiempoEstimadoServicio");
     Tiempo.empty();
-    //Tiempo.append('<option value="0">Duracion del Servicio</option>');
+   
 
     if ($("#txtTipoUnidadServicio").val() == "1") { // Minutos
 

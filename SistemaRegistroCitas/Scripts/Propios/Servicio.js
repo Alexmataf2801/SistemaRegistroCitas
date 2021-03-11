@@ -137,7 +137,7 @@ function LlenarComboTiempos() {
 
     var Tiempo = $("#txtTiempoEstimado");
     Tiempo.empty();
-    //Tiempo.append('<option value="0">Duracion del Servicio</option>');
+   
 
     if ($("#TipoUnidad").val()== "1") { // Minutos
 
@@ -170,8 +170,4 @@ $("#TipoUnidad").change(function () {
     LlenarComboTiempos()
 });
 
-
-//$(document).ready(function () {
-//    LlenarComboTiempos();
-//});
 

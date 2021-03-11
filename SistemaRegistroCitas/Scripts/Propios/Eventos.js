@@ -340,39 +340,39 @@ $(function () {
 
         businessHours: [ // specify an array instead 
             {
-                daysOfWeek: [1], //Lunes
-                startTime: InicioLunes, // 8am
-                endTime: FinalLunes // 6pm
+                daysOfWeek: [1], 
+                startTime: InicioLunes, 
+                endTime: FinalLunes 
             },
             {
-                daysOfWeek: [2], // Martes
-                startTime: InicioMartes, // 10am
-                endTime: FinalMartes // 4pm
+                daysOfWeek: [2], 
+                startTime: InicioMartes, 
+                endTime: FinalMartes 
             },
             {
-                daysOfWeek: [3], // Miercoles
-                startTime: InicioMiercoles, // 10am
-                endTime: FinalMiercoles // 4pm
+                daysOfWeek: [3],  
+                startTime: InicioMiercoles, 
+                endTime: FinalMiercoles 
             },
             {
-                daysOfWeek: [4], // Jueves
-                startTime: InicioJueves, // 10am
-                endTime: FinalJueves // 4pm
+                daysOfWeek: [4], 
+                startTime: InicioJueves,
+                endTime: FinalJueves 
             },
             {
-                daysOfWeek: [5], // Viernes
-                startTime: InicioViernes, // 10am
-                endTime: FinalViernes // 4pm
+                daysOfWeek: [5], 
+                startTime: InicioViernes, 
+                endTime: FinalViernes
             },
             {
-                daysOfWeek: [6], // Sabado
-                startTime: InicioSabado, // 10am
-                endTime: FinalSabado // 4pm
+                daysOfWeek: [6], 
+                startTime: InicioSabado, 
+                endTime: FinalSabado 
             },
             {
-                daysOfWeek: [0], // Domingo
-                startTime: InicioDomingo, // 10am
-                endTime: FinalDomingo // 4pm
+                daysOfWeek: [0], 
+                startTime: InicioDomingo, 
+                endTime: FinalDomingo 
             },
         ],
 
@@ -408,12 +408,7 @@ $(function () {
                 $('#txtHorarioOculta').val(info.dateStr);
 
             }
-
-            //Fecha = FechaCompletaSeleccioada.getDate();            
-            //Mes = FechaCompletaSeleccioada.getMonth();
-            //Año = FechaCompletaSeleccioada.getFullYear();
-
-            // HoraSeleccionada
+         
             var FechaCompletaSeleccioada = new Date(FechaSeleccionada);
             Dia = FechaCompletaSeleccioada.getDay();
             HoraSeleccionada = FechaCompletaSeleccioada.getHours();
@@ -533,36 +528,7 @@ $(function () {
             }
 
 
-        },
-        //eventClick: function (info) {
-
-        //    IdRol = 4
-
-        //    if (IdRol == 3 ) {
-        //        $('#NuevoEvento').modal();
-        //    }
-        //    else {
-        //        $('#EventoTiempo').modal();
-        //    }
-
-        //}
-
-
-        //events: ListaEventos
-
-        //    [
-        //    {
-
-        //        title: Nombre,
-        //        start: FechaInicial,
-        //        end: FechaFinal
-        //    }      
-            
-                 
-        //]
-
-
-
+        },   
 
     });
 
@@ -743,55 +709,7 @@ $(function () {
     } 
 
 
-    //function ObtenerTodosLosEventosXIdUsuarioSeleccionado() {
-
-    //    $.ajax({
-    //        type: "GET",
-    //        dataType: "JSON",
-    //        url: "/Eventos/ObtenerTodosLosEventosXIdUsuarioSeleccionado/",
-    //        data: { "IdUsuario": $("#Colaboradores").val() },
-    //        success: function (InfoServicios) {
-                
-
-    //            $.each(InfoServicios, function (i, item) {
-
-
-
-    //                Nombre = item.Nombre,
-    //                    FechaInicial = moment(item.HorarioInicial).format('YYYY-MM-DD[T]HH:mm:ss'),
-    //                    FechaFinal = moment(item.HoraFinal).format('YYYY-MM-DD[T]HH:mm:ss')
-    //                console.log(Nombre, FechaInicial, FechaFinal)
-
-    //                events: [
-    //                    {
-
-    //                        title: Nombre,
-    //                        start: FechaInicial,
-    //                        end: FechaFinal
-
-    //                    }
-
-    //                ]
-
-
-    //            });
-           
-
-              
-
-
-
-    //        },
-
-    //        error: function () {
-    //            console.log('error')
-    //        },
-
-    //    });
-    //}
-    //$("#Colaboradores").change(function () {
-    //    ObtenerTodosLosEventosXIdUsuarioSeleccionado();
-    //});
+    
 
 
 

@@ -26,36 +26,7 @@
     });
 }
 
-//$(document).ready(function () {
-//    //ObtenerEmpresasXId();
-//});
 
-
-
-//function ObtenerHorarioEmpresa() {
-//    $.ajax({
-//        type: "GET",
-//        dataType: "JSON",
-//        url: "/Empresa/ObtenerHorarioEmpresa/",
-
-//        success: function (InfoEmpresas) {
-                       
-//            document.getElementById('InicioLunes').innerHTML = InfoEmpresas.InicioLunes.Hours
-//            document.getElementById('FinalLunes').innerHTML = InfoEmpresas.FinalLunes.Hours
-
-
-
-
-
-
-//        },
-
-//        error: function () {
-//            console.log('error')
-//        },
-
-//    });
-//}
 
 
 function InsertarHorarioEmpresa() {
@@ -107,18 +78,6 @@ function InsertarHorarioEmpresa() {
                     $('#MsjIncorrecto').modal('show');
             }
 
-
-
-            //if (Info) {
-            //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
-            //    $("#lblTituloCorrecto").html("<label>Información</label>");
-            //    $('#MsjCorrecto').modal('show');
-            //} else {
-            //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
-            //    $('#MsjIncorrecto').modal('show');
-            //}
-
-
         },
         error: function (Error) {
             alert("Se Cayo");
@@ -153,6 +112,5 @@ function LimpiarValores() {
 
 
 $(document).ready(function () {
-    ObtenerEmpresasXId();
-    //ObtenerHorarioEmpresa();
+    ObtenerEmpresasXId(); 
 });
