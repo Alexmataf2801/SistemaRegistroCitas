@@ -30,6 +30,10 @@
           <Parameter Name="IdRol" Type="int" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="paActualizarContrasena" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="ContrasenaTemporal" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="paActualizarDatosXIdEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
@@ -322,6 +326,10 @@
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
         </Function>
         <Function Name="paObtenerUsuariosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PaValidarCorreo_OlvidoContrasena" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="Respuesta" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="PaValidarCorreoElectronico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
@@ -446,9 +454,6 @@
           </FunctionImport>
           <FunctionImport Name="paObtenerTodosLosRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosRoles_Result)" />
           <FunctionImport Name="PaObtenerRoles" ReturnType="Collection(BDSistemaRegistroCitasModel.PaObtenerRoles_Result)" />
-          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
-          <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="PaInsertarDatosServicios">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
@@ -605,13 +610,6 @@
             <Parameter Name="Direccion" Mode="In" Type="String" />
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paEditarContrasenaXCorreoElectronico">
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="ContrasenaActual" Mode="In" Type="String" />
-            <Parameter Name="NuevaContrasena" Mode="In" Type="String" />
-            <Parameter Name="ConfirmaContrasena" Mode="In" Type="String" />
-            <Parameter Name="Confirmacion" Mode="InOut" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paObtenerPerfilColaboradorXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerPerfilColaboradorXId_Result)">
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -655,6 +653,24 @@
             <Parameter Name="EstadoDomingo" Mode="In" Type="Boolean" />
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarContrasena">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="ContrasenaTemporal" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paEditarContrasenaXCorreoElectronico">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="ContrasenaActual" Mode="In" Type="String" />
+            <Parameter Name="NuevaContrasena" Mode="In" Type="String" />
+            <Parameter Name="ConfirmaContrasena" Mode="In" Type="String" />
+            <Parameter Name="Confirmacion" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PaValidarCorreo_OlvidoContrasena">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServicioXId_Result">
@@ -764,19 +780,6 @@
         <ComplexType Name="PaObtenerRoles_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="paObtenerUsuario_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="150" />
-          <Property Type="Int32" Name="Telefono" Nullable="false" />
-          <Property Type="Boolean" Name="Genero" Nullable="false" />
-          <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="IdRol" Nullable="false" />
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
         </ComplexType>
         <ComplexType Name="paObtenerTodosLosColaboradores_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -917,6 +920,20 @@
           <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="NombreColaborador" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerUsuario_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Telefono" Nullable="false" />
+          <Property Type="Boolean" Name="Genero" Nullable="false" />
+          <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="IdRol" Nullable="false" />
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Boolean" Name="Temporal" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1087,23 +1104,6 @@
               <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.PaObtenerRoles_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paObtenerUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerUsuario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerUsuario_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
-                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
-                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Genero" ColumnName="Genero" />
-                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1281,7 +1281,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarDatosXIdEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarDatosXIdEmpresa" />
-          <FunctionImportMapping FunctionImportName="paEditarContrasenaXCorreoElectronico" FunctionName="BDSistemaRegistroCitasModel.Store.paEditarContrasenaXCorreoElectronico" />
           <FunctionImportMapping FunctionImportName="paObtenerPerfilColaboradorXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerPerfilColaboradorXId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerPerfilColaboradorXId_Result">
@@ -1318,6 +1317,27 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarHorarioEmpresa" />
+          <FunctionImportMapping FunctionImportName="paActualizarContrasena" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarContrasena" />
+          <FunctionImportMapping FunctionImportName="paEditarContrasenaXCorreoElectronico" FunctionName="BDSistemaRegistroCitasModel.Store.paEditarContrasenaXCorreoElectronico" />
+          <FunctionImportMapping FunctionImportName="PaValidarCorreo_OlvidoContrasena" FunctionName="BDSistemaRegistroCitasModel.Store.PaValidarCorreo_OlvidoContrasena" />
+          <FunctionImportMapping FunctionImportName="paObtenerUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerUsuario_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Temporal" ColumnName="Temporal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

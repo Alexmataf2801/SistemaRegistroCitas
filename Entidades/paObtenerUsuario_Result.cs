@@ -24,5 +24,6 @@ namespace Entidades
         public string FotoPerfil { get; set; }
         public int IdRol { get; set; }
         public int IdEmpresa { get; set; }
+        public bool Temporal { get; set; }
     }
 }

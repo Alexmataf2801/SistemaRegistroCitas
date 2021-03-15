@@ -131,6 +131,12 @@ namespace LogicaNegocio
             return AD.ActualizarPerfil(perfil);
         }
 
+        public bool ActualizarContrasena(string CorreoElectronico, string ContrasenaTemporal)
+        {
+    
+            return AD.ActualizarContrasena(CorreoElectronico, ContrasenaTemporal);
+        }
+
         #endregion
 
 
@@ -265,6 +271,7 @@ namespace LogicaNegocio
         {
             return AD.ValidarCorreoElectronico(Id, CorreoElectronico);
         }
+
         public HorarioEmpresa ObtenerHorarioEmpresa(int IdEmpresa)
         {
             return AD.ObtenerHorarioEmpresa(IdEmpresa);
@@ -295,6 +302,10 @@ namespace LogicaNegocio
             return AD.ObtenerPerfilColaboradorXId(Id);
         }
 
+        public int ValidarCorreo_OlvidoContrasena(string CorreoElectronico)
+        {
+            return AD.ValidarCorreo_OlvidoContrasena(CorreoElectronico);
+        }
 
         #endregion
 

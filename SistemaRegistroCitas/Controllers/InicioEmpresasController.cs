@@ -22,30 +22,44 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult InicioEmpresas()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
-            HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
 
-            if (usuario != null)
+
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
+
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
+                HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
+
+                if (usuario != null)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
-                 
-                    horarioEmpresa = LN.ObtenerHorarioEmpresa(usuario.IdEmpresa);
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
 
-                    return View("InicioEmpresas", horarioEmpresa);
+                        horarioEmpresa = LN.ObtenerHorarioEmpresa(usuario.IdEmpresa);
 
+                        return View("InicioEmpresas", horarioEmpresa);
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
                     return RedirectToAction("Login", "Home");
                 }
+
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
+
+
+          
         }
         
         public JsonResult ObtenerEmpresasXId()

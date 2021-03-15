@@ -66,7 +66,8 @@ namespace SistemaRegistroCitas.Controllers
 
         public ActionResult InsertarServicios()
         {
-            usuario = (Usuario)Session["Usuario"];
+            usuario =  (Usuario)Session["Usuario"];
+
             Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
             if (usuario != null)

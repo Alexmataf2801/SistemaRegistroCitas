@@ -645,6 +645,23 @@ namespace AccesoDatos
             return Correcto;
         }
 
+        public bool ActualizarContrasena(string CorreoElectronico, string ContrasenaTemporal)
+        {
+            bool Correcto = false;
+            try
+            {
+                entities.paActualizarContrasena(CorreoElectronico, ContrasenaTemporal);
+                Correcto = true;
+            }
+            catch (Exception)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
 
 
         #endregion
@@ -838,6 +855,7 @@ namespace AccesoDatos
                     usuario.Genero = item.Genero;
                     usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;
                     usuario.IdRol = item.IdRol;
+                    usuario.CTemp = item.Temporal;
 
                     if (item.IdRol != 4) {
 
@@ -1583,6 +1601,31 @@ namespace AccesoDatos
             }
 
             return perfil;
+        }
+
+
+
+        public int ValidarCorreo_OlvidoContrasena(string CorreoElectronico)
+        {
+            int valor = 0;
+            ObjectParameter Respuesta;
+
+
+            try
+            {
+                Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                entities.PaValidarCorreo_OlvidoContrasena(CorreoElectronico, Respuesta);
+
+
+                valor = Convert.ToInt32(Respuesta.Value.ToString());
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return valor;
         }
 
         #endregion

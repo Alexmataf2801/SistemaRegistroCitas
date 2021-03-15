@@ -381,15 +381,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PaObtenerRoles_Result>("PaObtenerRoles");
         }
     
-        public virtual ObjectResult<paObtenerUsuario_Result> paObtenerUsuario(string correoElectronico)
-        {
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
-        }
-    
         public virtual int PaInsertarDatosServicios(string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, Nullable<bool> estado, string usuarioCreacion)
         {
             var nombreParameter = nombre != null ?
@@ -909,27 +900,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarDatosXIdEmpresa", nombreParameter, correoElectronicoParameter, descripcionParameter, direccionParameter, idEmpresaParameter);
         }
     
-        public virtual int paEditarContrasenaXCorreoElectronico(string correoElectronico, string contrasenaActual, string nuevaContrasena, string confirmaContrasena, ObjectParameter confirmacion)
-        {
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            var contrasenaActualParameter = contrasenaActual != null ?
-                new ObjectParameter("ContrasenaActual", contrasenaActual) :
-                new ObjectParameter("ContrasenaActual", typeof(string));
-    
-            var nuevaContrasenaParameter = nuevaContrasena != null ?
-                new ObjectParameter("NuevaContrasena", nuevaContrasena) :
-                new ObjectParameter("NuevaContrasena", typeof(string));
-    
-            var confirmaContrasenaParameter = confirmaContrasena != null ?
-                new ObjectParameter("ConfirmaContrasena", confirmaContrasena) :
-                new ObjectParameter("ConfirmaContrasena", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEditarContrasenaXCorreoElectronico", correoElectronicoParameter, contrasenaActualParameter, nuevaContrasenaParameter, confirmaContrasenaParameter, confirmacion);
-        }
-    
         public virtual ObjectResult<paObtenerPerfilColaboradorXId_Result> paObtenerPerfilColaboradorXId(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -1088,6 +1058,58 @@ namespace Entidades
                 new ObjectParameter("IdEmpresa", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarHorarioEmpresa", inicioLunesParameter, finalLunesParameter, estadoLunesParameter, inicioMartesParameter, finalMartesParameter, estadoMartesParameter, inicioMiercolesParameter, finalMiercolesParameter, estadoMiercolesParameter, inicioJuevesParameter, finalJuevesParameter, estadoJuevesParameter, inicioViernesParameter, finalViernesParameter, estadoViernesParameter, inicioSabadoParameter, finalSabadoParameter, estadoSabadoParameter, inicioDomingoParameter, finalDomingoParameter, estadoDomingoParameter, idEmpresaParameter, respuestaCorrecta);
+        }
+    
+        public virtual int paActualizarContrasena(string correoElectronico, string contrasenaTemporal)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var contrasenaTemporalParameter = contrasenaTemporal != null ?
+                new ObjectParameter("ContrasenaTemporal", contrasenaTemporal) :
+                new ObjectParameter("ContrasenaTemporal", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarContrasena", correoElectronicoParameter, contrasenaTemporalParameter);
+        }
+    
+        public virtual int paEditarContrasenaXCorreoElectronico(string correoElectronico, string contrasenaActual, string nuevaContrasena, string confirmaContrasena, ObjectParameter confirmacion)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var contrasenaActualParameter = contrasenaActual != null ?
+                new ObjectParameter("ContrasenaActual", contrasenaActual) :
+                new ObjectParameter("ContrasenaActual", typeof(string));
+    
+            var nuevaContrasenaParameter = nuevaContrasena != null ?
+                new ObjectParameter("NuevaContrasena", nuevaContrasena) :
+                new ObjectParameter("NuevaContrasena", typeof(string));
+    
+            var confirmaContrasenaParameter = confirmaContrasena != null ?
+                new ObjectParameter("ConfirmaContrasena", confirmaContrasena) :
+                new ObjectParameter("ConfirmaContrasena", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEditarContrasenaXCorreoElectronico", correoElectronicoParameter, contrasenaActualParameter, nuevaContrasenaParameter, confirmaContrasenaParameter, confirmacion);
+        }
+    
+        public virtual int PaValidarCorreo_OlvidoContrasena(string correoElectronico, ObjectParameter respuesta)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaValidarCorreo_OlvidoContrasena", correoElectronicoParameter, respuesta);
+        }
+    
+        public virtual ObjectResult<paObtenerUsuario_Result> paObtenerUsuario(string correoElectronico)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
         }
     }
 }

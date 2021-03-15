@@ -29,6 +29,7 @@ namespace Entidades.ClasesEntidades
         public DateTime FechaCreacion { get; set; }
         public string UsuarioUltimaModificacion { get; set; }
         public DateTime? FechaUltimaModificacion { get; set; }
+        public bool CTemp { get; set; }
 
     }
 }

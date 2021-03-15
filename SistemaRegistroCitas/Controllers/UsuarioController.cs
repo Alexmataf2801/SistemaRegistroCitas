@@ -15,6 +15,7 @@ namespace SistemaRegistroCitas.Controllers
         Usuario usuario = new Usuario();
         string Menu = string.Empty;
         LogicaNegocio.LogicaNegocio LN = new LogicaNegocio.LogicaNegocio();
+        Utilidades utilidades = new Utilidades();
 
 
 
@@ -26,6 +27,7 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult InsertarUsuario(Usuario usuario)
         {
+           
             int Resp = 0;
             LN.InsertarUsuario(usuario, ref Resp);
 
@@ -47,8 +49,10 @@ namespace SistemaRegistroCitas.Controllers
 
                 usuarioSession = (Usuario)Session["Usuario"];
             }
-            return Json(usuarioSession, JsonRequestBehavior.AllowGet); ;
-        }       
+            return Json(usuarioSession, JsonRequestBehavior.AllowGet);
+        }
+
+     
 
         public List<Menu> ObtenerMenuUsuario(int IdUsuario)
         {
@@ -184,26 +188,37 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult InsertarColaborador()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = ArmarMenu(usuario.Id);
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
+
+
+                Menu = ArmarMenu(usuario.Id);
+
+                if (usuario != null)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
-                   
-                    return View();
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
                     return RedirectToAction("Login", "Home");
                 }
+
             }
-            else
-            {
-                return RedirectToAction("Login", "Home");
+            else {
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
+           
         }
 
   
@@ -607,6 +622,43 @@ namespace SistemaRegistroCitas.Controllers
 
             return Json(SeActualizo, JsonRequestBehavior.AllowGet);
 
+        }
+
+        public JsonResult OlvidoContrasena(string CorreoElectronico) 
+        {
+
+            bool Correcto = false;
+           
+            try
+            {
+                int ExisteCorreo = LN.ValidarCorreo_OlvidoContrasena(CorreoElectronico.Trim());
+
+                if (ExisteCorreo == 1) {
+
+                    string ContrasenaTemporal = utilidades.ObtenerClaveTemporal();
+                    bool SeActualizo = LN.ActualizarContrasena(CorreoElectronico, ContrasenaTemporal);
+
+                    Correo correo = new Correo();
+                    correo.Subject = "Contraseña Temporal Sistema Citas";
+                    correo.Body = "Su nueva contraseña temporal es " + ContrasenaTemporal + " ,porfavor ingrese al sistema y realice el cambio por su seguridad.";
+                    correo.To = CorreoElectronico;
+
+                    bool SeEnvioCorreo = utilidades.EnviarCorreoGenerico(correo);
+
+                    if (SeActualizo) {
+                        Correcto = true;
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
     }

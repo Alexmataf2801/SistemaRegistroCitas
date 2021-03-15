@@ -31,7 +31,7 @@
                     <a href="#"><img src="~/Imagenes/Login/logo.png" alt=""></a>
                 </div>
 
-                <div class="menu col-xs-12 col-md-6">                 
+                <div class="menu col-xs-12 col-md-6">
                     <a href="#">Precios</a>
                     <a href="#">Contacto</a>
                 </div>
@@ -61,7 +61,8 @@
                                 </div>
 
                                 <input type="button" onclick="Loguear();" class="btn btn-primary btn-block" value="Iniciar sesion">
-                                <p><a class="enlace" href="recuperador.html">¿Olvidaste la contraseña?</a></p>
+                                <p><a class="enlace" href="#" data-toggle="modal" data-target="#OlvidarContrasena">¿Olvidaste la contraseña?</a></p>
+                                @*<button class="btn btn-success btn-block data" data-toggle="modal" data-target="#OlvidarContrasena">¿Olvidaste la contraseña?</button>*@
                             </form>
 
                             <button class="btn btn-success btn-block data" data-toggle="modal" data-target="#fm-modal">Registrarse</button>
@@ -106,6 +107,38 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+                            <div class="modal fade" id="OlvidarContrasena" tabindex="-1" role="dialog" aria-labelledby="fm-modal" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Olvido Contraseña</h5>
+                                            <button class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <br />
+                                        <div>
+                                            <p>
+                                                Escribe tu correo con el cual registraste tu cuenta para enviarte una contraseña temporal.
+                                            </p>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="form-group">
+                                                <input type="text" required class="form-control" id="txtCorreo_Olvidado" placeholder="Correo" name="Correo">
+                                            </div>
+
+                                            <input type="submit" class="btn btn-success btn-block" onclick="OlvidarContrasena();" value="Enviar">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                         </div>
 
 
@@ -187,6 +220,50 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="MsjCorrecto" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #28a745 ">
+                    <h5 class="modal-title" id="lblTituloCorrecto"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="lblMensajeCorrecto"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="MsjIncorrecto" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #dc3545">
+                    <h5 class="modal-title">Información</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="msjModalIncorrecto"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
     <script type="text/javascript">
 
         function limpiarNumero(obj) {
@@ -195,14 +272,15 @@
         }
     </script>
 
-  
 
-    <script src="~/Js/Login/jquery-3.4.1.min.js"></script>   
+
+    <script src="~/Js/Login/jquery-3.4.1.min.js"></script>
     <script src="~/Js/Login/popper.min.js"></script>
     <script src="~/Js/Login/bootstrap.min.js"></script>
     <script src="~/Scripts/Propios/Usuario.js"></script>
     <script src="~/Scripts/Propios/Empresa.js"></script>
-    <script src="~/Scripts/Propios/MostrarYOcutarContrsena.js"></script>  
+    <script src="~/Scripts/Propios/MostrarYOcutarContrsena.js"></script>
+    <script src="~/Scripts/Propios/OlvidarContrasena.js"></script>
     <script src="~/Js/jquery-ui.js"></script>
 
     <script type="text/javascript">
@@ -236,7 +314,7 @@
                     alert("Request: " + JSON.stringify(request));
                 }
             });
-        }               
+        }
 
 
     </script>
