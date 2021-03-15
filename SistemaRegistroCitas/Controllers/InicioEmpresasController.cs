@@ -54,9 +54,9 @@ namespace SistemaRegistroCitas.Controllers
 
             }
             else
-            {
-                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
-            }
+                {
+                    return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
+                }
 
 
           
@@ -101,16 +101,25 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult InsertarHorarioEmpresa()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
-                {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+                if (usuario != null)
+                {
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
@@ -119,7 +128,7 @@ namespace SistemaRegistroCitas.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
@@ -138,8 +147,12 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult ActualizarHorarioEmpresa()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);
-            HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
+
+            if (!usuario.CTemp)
+            {
+
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
+                HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
 
             if (usuario != null)
             {
@@ -157,10 +170,15 @@ namespace SistemaRegistroCitas.Controllers
                     return RedirectToAction("Login", "Home");
                 }
             }
-            else
-            {
-                return RedirectToAction("Login", "Home");
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
             }
+            else
+                {
+                    return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
+                }
         }
 
 

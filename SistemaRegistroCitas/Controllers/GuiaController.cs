@@ -21,16 +21,25 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult GuiaAdministrador()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
-                {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+                if (usuario != null)
+                {
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
@@ -39,23 +48,32 @@ namespace SistemaRegistroCitas.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
         public ActionResult GuiaSubAdministrador()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
-                {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+                if (usuario != null)
+                {
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
@@ -64,23 +82,32 @@ namespace SistemaRegistroCitas.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
         public ActionResult GuiaUsuario()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
-                {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+                if (usuario != null)
+                {
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
@@ -89,23 +116,32 @@ namespace SistemaRegistroCitas.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
         public ActionResult GuiaCliente()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
-                {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+                if (usuario != null)
+                {
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
@@ -114,8 +150,9 @@ namespace SistemaRegistroCitas.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
+
     }
 }
