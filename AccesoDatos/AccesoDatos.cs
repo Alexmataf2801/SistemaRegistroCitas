@@ -102,7 +102,7 @@ namespace AccesoDatos
 
         public bool InsertarRoles(Roles roles)
         {
-            bool Respuesta = true;
+            bool Respuesta = false;
             try
             {
                 entities.PaInsertarRoles(roles.Nombre, roles.Descripcion, roles.Estado, roles.UsuarioCreacion);
@@ -118,7 +118,7 @@ namespace AccesoDatos
 
         public bool InsertarDatosServicios(Servicio servicio, int IdEmpresa)
         {
-            bool Respuesta = true;
+            bool Respuesta = false;
             try
             {
                 entities.PaInsertarServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad,servicio.UsuarioCreacion,IdEmpresa);
@@ -153,7 +153,7 @@ namespace AccesoDatos
 
         public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
         {
-            bool Respuesta = true;
+            bool Respuesta = false;
             try
             {
                 entities.PaInsertarUnidadMedida(unidadMedida.Nombre, unidadMedida.Descripcion, unidadMedida.Estado, unidadMedida.UsuarioCreacion);
