@@ -79,7 +79,7 @@ function ActualizarPerfil() {
     if ($("#txtCorreoElectronicoPerfil").val() === "" ||
         $("#txtNombrePerfil").val() === "" ||
         $("#txtPrimerApellidoPerfil").val() === "" || 
-        ValidarCorreo.test($("#txtCorreoElectronicoColaborador").val()) === false) {
+        ValidarCorreo.test($("#txtCorreoElectronicoPerfil").val()) === false) {
         $("#msjModalIncorrecto").html("<label>¡Falta complementar datos importantes o el Correo Electronico no es valido!</label>");
         $('#MsjIncorrecto').modal('show');
     }
