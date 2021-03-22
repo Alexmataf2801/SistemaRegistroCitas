@@ -64,6 +64,13 @@ namespace LogicaNegocio
             return AD.InsertarEventos(eventos,IdEmpresa,IdRol);
         }
 
+        public void InsertarBitacora(Bitacora bitacora)
+        {
+
+            AD.InsertarBitacora(bitacora);
+
+        }
+
         #endregion
 
 

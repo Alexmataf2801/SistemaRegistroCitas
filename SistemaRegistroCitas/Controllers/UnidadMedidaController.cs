@@ -9,7 +9,8 @@ namespace SistemaRegistroCitas.Controllers
 {
     public class UnidadMedidaController : Controller
     {
-
+        Usuario usuario = new Usuario();
+        UsuarioController usuarioControllador = new UsuarioController();
         LogicaNegocio.LogicaNegocio LN = new LogicaNegocio.LogicaNegocio();
         
 
@@ -21,10 +22,29 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerMinutosYHoras()
         {
-            List<UnidadMedida> unidadMedida = new List<UnidadMedida>();
-            unidadMedida = LN.ObtenerMinutosYHoras();
+            try
+            {
+                List<UnidadMedida> unidadMedida = new List<UnidadMedida>();
+                unidadMedida = LN.ObtenerMinutosYHoras();
 
-            return Json(unidadMedida, JsonRequestBehavior.AllowGet);
+                return Json(unidadMedida, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
         }
     }
 }

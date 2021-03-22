@@ -12,6 +12,7 @@ namespace SistemaRegistroCitas.Controllers
 {
     public class UsuarioController : Controller
     {
+       
         Usuario usuario = new Usuario();
         string Menu = string.Empty;
         LogicaNegocio.LogicaNegocio LN = new LogicaNegocio.LogicaNegocio();
@@ -27,15 +28,40 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult InsertarUsuario(Usuario usuario)
         {
-           
-            int Resp = 0;
-            LN.InsertarUsuario(usuario, ref Resp);
+            try
+            {               
 
-            return Json(Resp, JsonRequestBehavior.AllowGet);
+                usuario = (Usuario)Session["Usuario"];
+
+                int Resp = 0;
+                LN.InsertarUsuario(usuario, ref Resp);
+
+                return Json(Resp, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+               
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+
+                 LN.InsertarBitacora(bitacora);
+               
+                 return Json(false, JsonRequestBehavior.AllowGet);
+
+
+            }
+           
+          
         }
 
         public JsonResult Loguear(Login login, int IdEmpresa)
         {
+
+
             Usuario usuario = LN.Validarlogin(login, IdEmpresa);
             usuario.IdEmpresa = IdEmpresa;
             Session["Usuario"] = usuario;
@@ -224,29 +250,68 @@ namespace SistemaRegistroCitas.Controllers
   
         public JsonResult InsertarDatosColaborador(Usuario usuario)
         {
-            int Resp = 0;
-            Usuario usu = (Usuario)Session["Usuario"];
-            usuario.IdEmpresa = usu.IdEmpresa;
-            LN.InsertarDatosColaborador(usuario, ref Resp);
+            try
+            {                
 
-            return Json(Resp, JsonRequestBehavior.AllowGet);
+                int Resp = 0;
+                Usuario usu = (Usuario)Session["Usuario"];
+                usuario.IdEmpresa = usu.IdEmpresa;
+                LN.InsertarDatosColaborador(usuario, ref Resp);
+
+                return Json(Resp, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
 
         public JsonResult ObtenerColaboradoresActivos()
         {
-            List<Usuario> usuarios = new List<Usuario>();
 
-            usuario = (Usuario)Session["Usuario"];
-
-            if (usuario != null)
+            try
             {
-               
-                usuarios = LN.ObtenerColaboradoresActivos(usuario.IdEmpresa);
+                
+                List<Usuario> usuarios = new List<Usuario>();
 
-            }            
+                usuario = (Usuario)Session["Usuario"];
 
-            return Json(usuarios, JsonRequestBehavior.AllowGet);
+                if (usuario != null)
+                {
+
+                    usuarios = LN.ObtenerColaboradoresActivos(usuario.IdEmpresa);
+
+                }
+
+                return Json(usuarios, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
         public JsonResult ObtenerTodosUsuarios()
@@ -298,37 +363,96 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerTodosLosColaboradores()
         {
-            List<Usuario> usuarios = new List<Usuario>();
-            
-           usuario = (Usuario)Session["Usuario"];
 
-           if(usuario != null)
+            try
             {
-               usuarios = LN.ObtenerTodosLosColaboradores(usuario.IdEmpresa,usuario.IdRol);
- 
-            }
+                List<Usuario> usuarios = new List<Usuario>();
 
-                  
-            return Json(usuarios, JsonRequestBehavior.AllowGet);
+                usuario = (Usuario)Session["Usuario"];
+
+                if (usuario != null)
+                {
+                    usuarios = LN.ObtenerTodosLosColaboradores(usuario.IdEmpresa, usuario.IdRol);
+
+                }
+
+
+                return Json(usuarios, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+          
         }
 
         public JsonResult DesactivarActivarColaboradores(int Id, bool Estado)
         {
+            try
+            {
 
-            bool SeActualizoEstado = false;
+                bool SeActualizoEstado = false;
 
-            SeActualizoEstado = LN.DesactivarActivarColaboradores(Id, Estado);
+                SeActualizoEstado = LN.DesactivarActivarColaboradores(Id, Estado);
 
-            return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+                return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+            
         }
 
         public JsonResult EliminarColaboradores(int Id)
         {
-            bool SeElimino = false;
+            try
+            {
+                bool SeElimino = false;
 
-            SeElimino = LN.EliminarColaboradores(Id);
+                SeElimino = LN.EliminarColaboradores(Id);
 
-            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+                return Json(SeElimino, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
 
 
         }
@@ -373,23 +497,62 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ActualizarColaboradores(Usuario usuario)
         {
-            
-            bool SeActualizo = false;
-            usuario.UsuarioUltimaModificacion = usuario.NombreCompleto;
-            SeActualizo = LN.ActualizarColaboradores(usuario);
+            try
+            {
+                bool SeActualizo = false;
+                usuario.UsuarioUltimaModificacion = usuario.NombreCompleto;
+                SeActualizo = LN.ActualizarColaboradores(usuario);
 
-            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+                return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
+            
 
         }
 
 
         public JsonResult ObtenerColaboradoresXId(int Id)
         {
-            Usuario usuario = new Usuario();
 
-            usuario = LN.ObtenerColaboradoresXId(Id);
+            try
+            {
+                Usuario usuario = new Usuario();
 
-            return Json(usuario, JsonRequestBehavior.AllowGet);
+                usuario = LN.ObtenerColaboradoresXId(Id);
+
+                return Json(usuario, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+          
         }
 
 
@@ -478,10 +641,31 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult AsignarServiciosXColaborador(Usuario UsuarioXServicio)
 
         {
-            
-            int Respuesta = LN.AsignarServiciosXColaborador(UsuarioXServicio);
 
-            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+
+                int Respuesta = LN.AsignarServiciosXColaborador(UsuarioXServicio);
+
+                return Json(Respuesta, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
+            
         }
 
         [HttpGet]
@@ -524,26 +708,64 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerServiciosXColaborador()
         {
-            List<Usuario> ServiciosXColaborador = new List<Usuario>();
 
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+                List<Usuario> ServiciosXColaborador = new List<Usuario>();
 
-            if (usuario != null)
-            {                
-                ServiciosXColaborador = LN.ObtenerServiciosXColaborador(usuario.IdEmpresa);
+                usuario = (Usuario)Session["Usuario"];
+
+                if (usuario != null)
+                {
+                    ServiciosXColaborador = LN.ObtenerServiciosXColaborador(usuario.IdEmpresa);
+                }
+
+
+                return Json(ServiciosXColaborador, JsonRequestBehavior.AllowGet);
             }
-            
+            catch (Exception ex)
+            {
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
 
-            return Json(ServiciosXColaborador, JsonRequestBehavior.AllowGet);
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+           
         }
 
         public JsonResult EliminarServiciosXColaborador(int Id)
         {
-            bool SeElimino = false;
+            try
+            {
+                bool SeElimino = false;
 
-            SeElimino = LN.EliminarServiciosXColaborador(Id);
+                SeElimino = LN.EliminarServiciosXColaborador(Id);
 
-            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+                return Json(SeElimino, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+           
 
 
         }
@@ -551,36 +773,113 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult DesactivarActivarServicioXColaborador(int Id, bool Estado)
         {
 
-            bool SeActualizoEstado = false;
+            try
+            {
+                bool SeActualizoEstado = false;
 
-            SeActualizoEstado = LN.DesactivarActivarServicioXColaborador(Id, Estado);
+                SeActualizoEstado = LN.DesactivarActivarServicioXColaborador(Id, Estado);
 
-            return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+                return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+            
         }
 
 
         public JsonResult ObtenerServiciosXColaboradorXId(int IdColaborador)
         {
-            List<Usuario> usuario = new List<Usuario>();
+            try
+            {
+                List<Usuario> usuario = new List<Usuario>();
 
-            usuario = LN.ObtenerServiciosXColaboradorXId(IdColaborador);
+                usuario = LN.ObtenerServiciosXColaboradorXId(IdColaborador);
 
-            return Json(usuario, JsonRequestBehavior.AllowGet);
+                return Json(usuario, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+           
         }
 
         public JsonResult ValidarCorreoElectronico(int Id, string CorreoElectronico)
         {
-            int Respuesta = 0;
-          Respuesta = LN.ValidarCorreoElectronico(Id, CorreoElectronico);
-            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+            try
+            {
+                int Respuesta = 1;
+                Respuesta = LN.ValidarCorreoElectronico(Id, CorreoElectronico);
+                return Json(Respuesta, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+             
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+           
         }
 
         public JsonResult EditarContrasenaXCorreoElectronico(Login login)
         {
-            usuario = (Usuario)Session["Usuario"];
-            int Respuesta = 0;
-            Respuesta = LN.EditarContrasenaXCorreoElectronico(login,usuario.CorreoElectronico);
-            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+                int Respuesta = 0;
+                Respuesta = LN.EditarContrasenaXCorreoElectronico(login, usuario.CorreoElectronico);
+                return Json(Respuesta, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+           
         }
 
         [HttpGet]
@@ -651,33 +950,91 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerPerfilColaboradorXId()
         {
-            Usuario perfil = new Usuario();
+            try
+            {
+                Usuario perfil = new Usuario();
 
-            usuario = (Usuario)Session["Usuario"];
+                usuario = (Usuario)Session["Usuario"];
 
-            perfil = LN.ObtenerPerfilColaboradorXId(usuario.Id);
+                perfil = LN.ObtenerPerfilColaboradorXId(usuario.Id);
 
-            return Json(perfil, JsonRequestBehavior.AllowGet);
+                return Json(perfil, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+           
         }
 
         public JsonResult ValidarCorreoElectronicoPerfil(string CorreoElectronico)
         {
-            usuario = (Usuario)Session["Usuario"];
-            int Respuesta = 0;
-            Respuesta = LN.ValidarCorreoElectronico(usuario.Id, CorreoElectronico);
-            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+                int Respuesta = 0;
+                Respuesta = LN.ValidarCorreoElectronico(usuario.Id, CorreoElectronico);
+                return Json(Respuesta, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+           
         }
 
         public JsonResult ActualizarPerfil(Usuario perfil)
         {
-            usuario = (Usuario)Session["Usuario"];
-            bool SeActualizo = false;
-            perfil.UsuarioUltimaModificacion = usuario.NombreCompleto;
-            perfil.Id = usuario.Id;
-            perfil.IdRol = usuario.IdRol;
-            SeActualizo = LN.ActualizarColaboradores(perfil);
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+                bool SeActualizo = false;
+                perfil.UsuarioUltimaModificacion = usuario.NombreCompleto;
+                perfil.Id = usuario.Id;
+                perfil.IdRol = usuario.IdRol;
+                SeActualizo = LN.ActualizarColaboradores(perfil);
 
-            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+                return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
 
         }
 

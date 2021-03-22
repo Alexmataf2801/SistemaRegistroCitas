@@ -1111,5 +1111,26 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarUsuario", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, idUsuario, respuesta);
         }
+    
+        public virtual int paInsertarBitacora(string clase, string metodo, string error, string usuarioCreacion)
+        {
+            var claseParameter = clase != null ?
+                new ObjectParameter("Clase", clase) :
+                new ObjectParameter("Clase", typeof(string));
+    
+            var metodoParameter = metodo != null ?
+                new ObjectParameter("Metodo", metodo) :
+                new ObjectParameter("Metodo", typeof(string));
+    
+            var errorParameter = error != null ?
+                new ObjectParameter("Error", error) :
+                new ObjectParameter("Error", typeof(string));
+    
+            var usuarioCreacionParameter = usuarioCreacion != null ?
+                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
+                new ObjectParameter("UsuarioCreacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarBitacora", claseParameter, metodoParameter, errorParameter, usuarioCreacionParameter);
+        }
     }
 }

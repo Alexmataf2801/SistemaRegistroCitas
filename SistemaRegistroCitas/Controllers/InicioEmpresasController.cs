@@ -64,35 +64,56 @@ namespace SistemaRegistroCitas.Controllers
         
         public JsonResult ObtenerEmpresasXId()
         {
-            Empresa empresa = new Empresa();
-            int EmpresaUsuario = 0;
-            usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+            try
             {
-                if (usuario.IdRol == 4)
+                Empresa empresa = new Empresa();
+                int EmpresaUsuario = 0;
+                usuario = (Usuario)Session["Usuario"];
+
+                if (usuario != null)
                 {
-                    //var IdEmpresa = Request.UrlReferrer.ToString().Split('=')[1];
-                    EmpresaUsuario = Convert.ToInt32(usuario.IdEmpresa);
+                    if (usuario.IdRol == 4)
+                    {
+                        //var IdEmpresa = Request.UrlReferrer.ToString().Split('=')[1];
+                        EmpresaUsuario = Convert.ToInt32(usuario.IdEmpresa);
+
+                    }
+                    else
+                    {
+                        EmpresaUsuario = usuario.IdEmpresa;
+
+                    }
+
+                    empresa = LN.paObtenerEmpresasXId(EmpresaUsuario);
+
+                    return Json(empresa, JsonRequestBehavior.AllowGet);
 
                 }
                 else
                 {
-                    EmpresaUsuario = usuario.IdEmpresa;
+
+                    return Json(null, JsonRequestBehavior.AllowGet);
+
 
                 }
-
-                empresa = LN.paObtenerEmpresasXId(EmpresaUsuario);
-
-                return Json(empresa, JsonRequestBehavior.AllowGet);
-
             }
-            else {
+            catch (Exception ex)
+            {
 
-                return Json(null, JsonRequestBehavior.AllowGet);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
 
 
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
+           
 
               
         }
@@ -135,12 +156,31 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
 
         {
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
 
-            usuario = (Usuario)Session["Usuario"];
+                int Respuesta = LN.InsertarHorarioEmpresa(horarioEmpresa, usuario.IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
 
-            int Respuesta = LN.InsertarHorarioEmpresa(horarioEmpresa, usuario.IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
+                return Json(Respuesta, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
 
-            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+           
         }
 
         [HttpGet]
@@ -184,11 +224,30 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
-            usuario = (Usuario)Session["Usuario"];
-            int SeActualizo = 0;
-            SeActualizo = LN.ActualizarHorarioEmpresa(horarioEmpresa,usuario.IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+                int SeActualizo = 0;
+                SeActualizo = LN.ActualizarHorarioEmpresa(horarioEmpresa, usuario.IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
 
-            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+                return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+           
 
         }
 

@@ -27,27 +27,49 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult InsertarEventos(Eventos eventos)
 
         {
+
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+                eventos.UsuarioCreacion = usuario.NombreCompleto;
+                eventos.IdUsuarioCrecion = usuario.Id;
+                int Respuesta = 0;
+
+                TimeSpan HoraInicio = eventos.HorarioInicial.TimeOfDay;
+                TimeSpan HoraFin = eventos.HoraFinal.TimeOfDay;
+
+                if (ValidarHoraEvento(eventos.IdDia, HoraInicio.ToString(), HoraFin.ToString()))
+                {
+                    Respuesta = LN.InsertarEventos(eventos, usuario.IdEmpresa, usuario.IdRol);
+                }
+                else
+                {
+                    Respuesta = 5;
+                }
+
+                return Json(Respuesta, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
            
-            usuario = (Usuario)Session["Usuario"];
-            eventos.UsuarioCreacion = usuario.NombreCompleto;
-            eventos.IdUsuarioCrecion = usuario.Id;
-            int Respuesta = 0;
-
-            TimeSpan HoraInicio = eventos.HorarioInicial.TimeOfDay;
-            TimeSpan HoraFin = eventos.HoraFinal.TimeOfDay;
-
-            if (ValidarHoraEvento(eventos.IdDia, HoraInicio.ToString(), HoraFin.ToString()))
-            {
-                Respuesta = LN.InsertarEventos(eventos, usuario.IdEmpresa, usuario.IdRol);
-            }
-            else
-            {
-                Respuesta = 5;
-            }
+            
 
              
 
-            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+           
         }
 
         public bool ValidarHoraEvento(int Dia, string Inicio, string Final)
@@ -144,17 +166,36 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerTodosLosEventosXIdEmpresa()
         {
-            List<Eventos> Eventos = new List<Eventos>();
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+                List<Eventos> Eventos = new List<Eventos>();
+                usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+                if (usuario != null)
+                {
+
+                    Eventos = LN.ObtenerTodosLosEventosXIdEmpresa(usuario.IdEmpresa);
+                }
+
+
+                return Json(Eventos, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex )
             {
 
-                Eventos = LN.ObtenerTodosLosEventosXIdEmpresa(usuario.IdEmpresa);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-
-
-            return Json(Eventos, JsonRequestBehavior.AllowGet);
+            
         }
 
         [HttpGet]
@@ -194,28 +235,65 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult EliminarEventos(int Id)
         {
-            bool SeElimino = false;
+            try
+            {
+                bool SeElimino = false;
 
-            SeElimino = LN.EliminarEventos(Id);
+                SeElimino = LN.EliminarEventos(Id);
 
-            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+                return Json(SeElimino, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
 
 
         }
 
         public JsonResult ObtenerTodosLosEventosXIdUsuarioCreador()
         {
-            List<Eventos> Eventos = new List<Eventos>();
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+                List<Eventos> Eventos = new List<Eventos>();
+                usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+                if (usuario != null)
+                {
+
+                    Eventos = LN.ObtenerTodosLosEventosXIdUsuarioCreador(usuario.Id, usuario.IdEmpresa);
+                }
+
+
+                return Json(Eventos, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
             {
 
-                Eventos = LN.ObtenerTodosLosEventosXIdUsuarioCreador(usuario.Id,usuario.IdEmpresa);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-
-
-            return Json(Eventos, JsonRequestBehavior.AllowGet);
+            
         }
 
         [HttpGet]
@@ -255,17 +333,36 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerTodosLosEventosHorasLibresXIdEmpresa()
         {
-            List<Eventos> Eventos = new List<Eventos>();
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+                List<Eventos> Eventos = new List<Eventos>();
+                usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+                if (usuario != null)
+                {
+
+                    Eventos = LN.ObtenerTodosLosEventosHorasLibresXIdEmpresa(usuario.IdEmpresa);
+                }
+
+
+                return Json(Eventos, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
             {
 
-                Eventos = LN.ObtenerTodosLosEventosHorasLibresXIdEmpresa(usuario.IdEmpresa);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-
-
-            return Json(Eventos, JsonRequestBehavior.AllowGet);
+            
         }
 
         [HttpGet]
@@ -305,17 +402,36 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerTodosLosEventosXIdUsuario()
         {
-            List<Eventos> Eventos = new List<Eventos>();
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+                List<Eventos> Eventos = new List<Eventos>();
+                usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+                if (usuario != null)
+                {
+
+                    Eventos = LN.ObtenerTodosLosEventosXIdUsuario(usuario.Id);
+                }
+
+
+                return Json(Eventos, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
             {
 
-                Eventos = LN.ObtenerTodosLosEventosXIdUsuario(usuario.Id);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-
-
-            return Json(Eventos, JsonRequestBehavior.AllowGet);
+           
         }
 
         [HttpGet]
@@ -357,17 +473,36 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerTodosLosEventosXIdUsuarioSeleccionado(int IdUsuario)
         {
-            List<Eventos> Eventos = new List<Eventos>();
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+                List<Eventos> Eventos = new List<Eventos>();
+                usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+                if (usuario != null)
+                {
+
+                    Eventos = LN.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
+                }
+
+
+                return Json(Eventos, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
             {
 
-                Eventos = LN.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-
-
-            return Json(Eventos, JsonRequestBehavior.AllowGet);
+          
         }
 
     }

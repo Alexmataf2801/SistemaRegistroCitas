@@ -90,7 +90,7 @@ namespace AccesoDatos
             }
             catch (Exception ex)
             {
-
+                //ex.Message.ToString();
                 throw;
             }
 
@@ -418,6 +418,23 @@ namespace AccesoDatos
 
 
         }
+
+        public void InsertarBitacora (Bitacora bitacora)
+        {
+            try
+            {
+
+                var info = entities.paInsertarBitacora(bitacora.Clase, bitacora.Metodo, bitacora.Error, bitacora.UsuarioCreacion);
+
+            }
+            catch (Exception ex)
+            {
+        
+             
+                throw;
+            }
+        }
+
 
         #endregion
 
