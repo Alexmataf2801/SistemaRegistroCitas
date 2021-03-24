@@ -181,6 +181,7 @@
     <Content Include="Imagenes\GuiaImagenes\entrega.svg" />
     <Content Include="Imagenes\GuiaImagenes\evento.svg" />
     <Content Include="Imagenes\GuiaImagenes\pagos.svg" />
+    <Content Include="Imagenes\GuiaImagenes\Perfil.svg" />
     <Content Include="Imagenes\GuiaImagenes\seguridad.svg" />
     <Content Include="Imagenes\GuiaImagenes\servicios.svg" />
     <Content Include="Imagenes\GuiaImagenes\suma.svg" />

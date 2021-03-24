@@ -27,10 +27,10 @@
 
                 switch (IdServicio) {
                     case 1:
-                        IdServicio = "Hora"
+                        IdServicio = "1 Hora Libre"
                         break;
                     case 2:
-                        IdServicio = "30Min"
+                        IdServicio = "30 Minutos Libres"
                         break;
                     case 3:
                         IdServicio = "Dia libre"
