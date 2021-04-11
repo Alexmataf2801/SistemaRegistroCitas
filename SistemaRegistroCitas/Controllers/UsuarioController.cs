@@ -210,6 +210,7 @@ namespace SistemaRegistroCitas.Controllers
             return menuArmado.ToString();
         }
 
+
         [HttpGet]
         public ActionResult InsertarColaborador()
         {
@@ -217,36 +218,44 @@ namespace SistemaRegistroCitas.Controllers
 
             if (!usuario.CTemp)
             {
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
+                {               
 
+                    Menu = ArmarMenu(usuario.Id);
 
-                Menu = ArmarMenu(usuario.Id);
-
-                if (usuario != null)
-                {
-                    if (usuario.Id > 0)
+                    if (usuario != null)
                     {
-                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                        ViewBag.Menu = Menu;
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
 
-                        return View();
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
                     }
                     else
                     {
                         return RedirectToAction("Login", "Home");
                     }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
 
             }
+
             else {
                 return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
            
         }
-
+       
   
         public JsonResult InsertarDatosColaborador(Usuario usuario)
         {
@@ -329,30 +338,38 @@ namespace SistemaRegistroCitas.Controllers
 
             if (!usuario.CTemp)
             {
-
-
-                Menu = ArmarMenu(usuario.Id);
-
-                if (usuario != null)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    if (usuario.Id > 0)
-                    {
-                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                        ViewBag.Menu = Menu;
 
-                        return View();
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
                     }
                     else
                     {
                         return RedirectToAction("Login", "Home");
                     }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
 
             }
+
             else
             {
                 return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
@@ -464,30 +481,38 @@ namespace SistemaRegistroCitas.Controllers
 
             if (!usuario.CTemp)
             {
-
-
-                Menu = ArmarMenu(usuario.Id);
-
-                if (usuario != null)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    if (usuario.Id > 0)
-                    {
-                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                        ViewBag.Menu = Menu;
 
-                        return View();
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
                     }
                     else
                     {
                         return RedirectToAction("Login", "Home");
                     }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
 
             }
+
             else
             {
                 return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
@@ -563,30 +588,38 @@ namespace SistemaRegistroCitas.Controllers
 
             if (!usuario.CTemp)
             {
-
-
-                Menu = ArmarMenu(usuario.Id);
-
-                if (usuario != null)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    if (usuario.Id > 0)
-                    {
-                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                        ViewBag.Menu = Menu;
 
-                        return View();
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
                     }
                     else
                     {
                         return RedirectToAction("Login", "Home");
                     }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
 
             }
+
             else
             {
                 return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
@@ -607,30 +640,38 @@ namespace SistemaRegistroCitas.Controllers
 
             if (!usuario.CTemp)
             {
-
-
-                Menu = ArmarMenu(usuario.Id);
-
-                if (usuario != null)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    if (usuario.Id > 0)
-                    {
-                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                        ViewBag.Menu = Menu;
 
-                        return View();
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
                     }
                     else
                     {
                         return RedirectToAction("Login", "Home");
                     }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
 
             }
+
             else
             {
                 return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
@@ -675,30 +716,38 @@ namespace SistemaRegistroCitas.Controllers
 
             if (!usuario.CTemp)
             {
-
-
-                Menu = ArmarMenu(usuario.Id);
-
-                if (usuario != null)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    if (usuario.Id > 0)
-                    {
-                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                        ViewBag.Menu = Menu;
 
-                        return View();
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
                     }
                     else
                     {
                         return RedirectToAction("Login", "Home");
                     }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
 
             }
+
             else
             {
                 return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
@@ -919,15 +968,15 @@ namespace SistemaRegistroCitas.Controllers
 
 
                 Menu = ArmarMenu(usuario.Id);
-
+                Usuario perfil = new Usuario();
                 if (usuario != null)
                 {
                     if (usuario.Id > 0)
                     {
                         ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
                         ViewBag.Menu = Menu;
-
-                        return View();
+                        perfil = LN.ObtenerPerfilColaboradorXId(usuario.Id);
+                        return View("ActualizarPerfil",perfil);
                     }
                     else
                     {
@@ -948,35 +997,35 @@ namespace SistemaRegistroCitas.Controllers
         }
 
 
-        public JsonResult ObtenerPerfilColaboradorXId()
-        {
-            try
-            {
-                Usuario perfil = new Usuario();
+        //public JsonResult ObtenerPerfilColaboradorXId()
+        //{
+        //    try
+        //    {
+        //        Usuario perfil = new Usuario();
 
-                usuario = (Usuario)Session["Usuario"];
+        //        usuario = (Usuario)Session["Usuario"];
 
-                perfil = LN.ObtenerPerfilColaboradorXId(usuario.Id);
+        //        perfil = LN.ObtenerPerfilColaboradorXId(usuario.Id);
 
-                return Json(perfil, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
+        //        return Json(perfil, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                usuario = (Usuario)Session["Usuario"];
-                var bitacora = new Bitacora();
-                bitacora.Clase = this.GetType().Name;
-                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                bitacora.Error = ex.Message.ToString();
-                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+        //        usuario = (Usuario)Session["Usuario"];
+        //        var bitacora = new Bitacora();
+        //        bitacora.Clase = this.GetType().Name;
+        //        bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+        //        bitacora.Error = ex.Message.ToString();
+        //        bitacora.UsuarioCreacion = usuario.NombreCompleto;
 
 
-                LN.InsertarBitacora(bitacora);
+        //        LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-           
-        }
+        //        return Json(false, JsonRequestBehavior.AllowGet);
+        //    }
+
+        //}
 
         public JsonResult ValidarCorreoElectronicoPerfil(string CorreoElectronico)
         {
@@ -984,7 +1033,7 @@ namespace SistemaRegistroCitas.Controllers
             try
             {
                 usuario = (Usuario)Session["Usuario"];
-                int Respuesta = 0;
+                int Respuesta = 1;
                 Respuesta = LN.ValidarCorreoElectronico(usuario.Id, CorreoElectronico);
                 return Json(Respuesta, JsonRequestBehavior.AllowGet);
             }

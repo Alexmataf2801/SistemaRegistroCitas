@@ -1,34 +1,35 @@
-﻿function ObtenerPerfilColaboradorXId() {  
-    $.ajax({
-        type: "GET",
-        datatype: "JSON",
-        url: "/Usuario/ObtenerPerfilColaboradorXId/",       
-        success: function (Info) {
-            if (Info) {
-                $("#txtIdentificacionPerfil").val(Info.Identificacion);
-                $("#txtNombrePerfil").val(Info.Nombre);
-                $("#txtPrimerApellidoPerfil").val(Info.PrimerApellido);
-                $("#txtSegundoApellidoPerfil").val(Info.SegundoApellido);
-                $("#txtCorreoElectronicoPerfil").val(Info.CorreoElectronico);
-                $("#txtTelefonoPerfil").val(Info.Telefono);
-                if (Info.Genero) {
-                    $("#ddlGenero").val(1);
-                } else {
-                    $("#ddlGenero").val(0);
-                }              
+﻿//function ObtenerPerfilColaboradorXId() {  
+//    $.ajax({
+//        type: "GET",
+//        datatype: "JSON",
+//        url: "/Usuario/ObtenerPerfilColaboradorXId/",       
+//        success: function (Info) {
+//            if (Info) {
+//                $("#txtIdentificacionPerfil").val(Info.Identificacion);
+//                $("#txtNombrePerfil").val(Info.Nombre);
+//                $("#txtPrimerApellidoPerfil").val(Info.PrimerApellido);
+//                $("#txtSegundoApellidoPerfil").val(Info.SegundoApellido);
+//                $("#txtCorreoElectronicoPerfil").val(Info.CorreoElectronico);
+//                $("#txtTelefonoPerfil").val(Info.Telefono);
+//                if (Info.Genero) {
+//                    $("#ddlGenero").val(1);
+//                } else {
+//                    $("#ddlGenero").val(0);
+//                }              
 
 
-            }
-        },
-        error: function (Error) {
-            $("#msjModalIncorrecto").html("<label>¡Error al obtener datos del Colaborador!</label>");
-            $('#MsjIncorrecto').modal('show');
-        }
+//            }
+//        },
+//        error: function (Error) {
+//            $("#msjModalIncorrecto").html("<label>¡Error al obtener datos del Colaborador!</label>");
+//            $('#MsjIncorrecto').modal('show');
+//        }
 
-    });
+//    });
 
 
-}
+//}
+
 function ValidarCorreoElectronicoPerfil() {  
     var ValidarCorreo = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     var CorreoElectronico = $("#txtCorreoElectronicoPerfil").val();
@@ -133,6 +134,6 @@ $(document).on('blur', '#txtCorreoElectronicoPerfil', function () {
 });
 
 
-$(document).ready(function () {
-    ObtenerPerfilColaboradorXId();
-});
+//$(document).ready(function () {
+//    ObtenerPerfilColaboradorXId();
+//});

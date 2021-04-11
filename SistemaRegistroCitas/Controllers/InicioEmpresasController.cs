@@ -125,26 +125,33 @@ namespace SistemaRegistroCitas.Controllers
 
             if (!usuario.CTemp)
             {
-
-                Menu = usuarioControllador.ArmarMenu(usuario.Id);
-
-                if (usuario != null)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    if (usuario.Id > 0)
-                    {
-                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                        ViewBag.Menu = Menu;
+                    Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
-                        return View();
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
                     }
                     else
                     {
                         return RedirectToAction("Login", "Home");
                     }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
             }
             else
@@ -190,29 +197,35 @@ namespace SistemaRegistroCitas.Controllers
 
             if (!usuario.CTemp)
             {
-
-                Menu = usuarioControllador.ArmarMenu(usuario.Id);
-                HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
-
-            if (usuario != null)
-            {
-                if (usuario.Id > 0)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
+                    Menu = usuarioControllador.ArmarMenu(usuario.Id);
+                    HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
 
-                    horarioEmpresa = LN.ObtenerHorarioEmpresa(usuario.IdEmpresa);
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
 
-                    return View("ActualizarHorarioEmpresa", horarioEmpresa);
+                            horarioEmpresa = LN.ObtenerHorarioEmpresa(usuario.IdEmpresa);
+
+                            return View("ActualizarHorarioEmpresa", horarioEmpresa);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
-                }
-            }
-                else
-                {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
             }
             else

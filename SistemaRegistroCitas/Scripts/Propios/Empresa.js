@@ -43,6 +43,47 @@ function ObtenerNombresEmpresasActivas() {
 }
 
 
+function Loguear() {
+
+    var login = {
+
+        'CorreoElectronico': $("#txtCorreoElectronicoLogin").val(),
+        'Contrasena': $("#txtPassword").val()
+
+    }
+    var IdEmpresa = $("#hfIdEmpresaSel").val();
+
+
+    if ($("#hfIdEmpresaSel").val() === "") {
+        $("#msjModal").html("<label>¡Selecione Correctamente la Empresa!</label>");
+        $('#MsjIncorrecto').modal('show');
+    }
+    else {
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/Usuario/Loguear",
+        data: { login, IdEmpresa },
+        success: function (Info) {
+            if (Info.Id > 0) {
+                //window.location.href = "/InicioEmpresas/InicioEmpresas?IdEmpresa=" + IdEmpresa
+                window.location.href = "/InicioEmpresas/InicioEmpresas"
+            } else {
+                $("#msjModal").html("<label>¡Usuario o Contraseña Invalido!</label>");
+                $('#MsjIncorrecto').modal('show');
+            }
+
+        },
+        error: function (request, error) {
+            alert("Request: " + JSON.stringify(request));
+        }
+    });
+    }
+}
+
+
+
 
 
 $(document).ready(function () {

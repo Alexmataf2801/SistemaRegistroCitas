@@ -128,7 +128,7 @@
                                         <div class="modal-body">
 
                                             <div class="form-group">
-                                                <input type="text" required class="form-control" id="txtCorreo_Olvidado" placeholder="Correo" name="Correo">
+                                                <input type="text" required class="form-control" id="txtCorreo_Olvidado" placeholder="Correo Electronico" name="Correo">
                                             </div>
 
                                             <input type="submit" class="btn btn-success btn-block" onclick="OlvidarContrasena();" value="Enviar">
@@ -282,44 +282,6 @@
     <script src="~/Scripts/Propios/MostrarYOcutarContrsena.js"></script>
     <script src="~/Scripts/Propios/OlvidarContrasena.js"></script>
     <script src="~/Js/jquery-ui.js"></script>
-
-    <script type="text/javascript">
-
-        function Loguear() {
-
-            var login = {
-
-                'CorreoElectronico': $("#txtCorreoElectronicoLogin").val(),
-                'Contrasena': $("#txtPassword").val()
-
-            }
-            var IdEmpresa = $("#hfIdEmpresaSel").val();
-
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "/Usuario/Loguear",
-                data: { login, IdEmpresa },
-                success: function (Info) {
-                    if (Info.Id > 0) {
-                        //window.location.href = "/InicioEmpresas/InicioEmpresas?IdEmpresa=" + IdEmpresa
-                        window.location.href = "/InicioEmpresas/InicioEmpresas"
-                    } else {
-                        $("#msjModal").html("<label>¡Usuario o Contraseña Invalido!</label>");
-                        $('#MsjIncorrecto').modal('show');
-                    }
-
-                },
-                error: function (request, error) {
-                    alert("Request: " + JSON.stringify(request));
-                }
-            });
-        }
-
-
-    </script>
-
-
 
 </body>
 
