@@ -60,22 +60,58 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult Loguear(Login login, int IdEmpresa)
         {
+            try
+            {
+                Usuario usuario = LN.Validarlogin(login, IdEmpresa);
+                usuario.IdEmpresa = IdEmpresa;
+                Session["Usuario"] = usuario;
+                ArmarMenu(usuario.Id);          
+                return Json(usuario, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = " ";
 
 
-            Usuario usuario = LN.Validarlogin(login, IdEmpresa);
-            usuario.IdEmpresa = IdEmpresa;
-            Session["Usuario"] = usuario;
-            ArmarMenu(usuario.Id);          
-            return Json(usuario, JsonRequestBehavior.AllowGet);
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+
+            }
         }
 
         public JsonResult ObtenerUsuarioSesion() {
-            Usuario usuarioSession = new Usuario();
-            if (Session["Usuario"] != null) {
 
-                usuarioSession = (Usuario)Session["Usuario"];
+            try
+            {
+                Usuario usuarioSession = new Usuario();
+                if (Session["Usuario"] != null)
+                {
+
+                    usuarioSession = (Usuario)Session["Usuario"];
+                }
+                return Json(usuarioSession, JsonRequestBehavior.AllowGet);
+
             }
-            return Json(usuarioSession, JsonRequestBehavior.AllowGet);
+            catch (Exception ex)
+            {
+
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = " ";
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+           
         }
 
      
@@ -629,8 +665,25 @@ namespace SistemaRegistroCitas.Controllers
 
         public ActionResult CerrarSession()
         {
-            Session["Usuario"] = null;
-            return RedirectToAction("Login", "Home");
+            try
+            {
+                Session["Usuario"] = null;
+                return RedirectToAction("Login", "Home");
+            }
+            catch (Exception ex)
+            {
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+           
         }
 
         [HttpGet]
@@ -1118,7 +1171,16 @@ namespace SistemaRegistroCitas.Controllers
             catch (Exception ex)
             {
 
-                throw;
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = " ";
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
 
             return Json(Correcto, JsonRequestBehavior.AllowGet);

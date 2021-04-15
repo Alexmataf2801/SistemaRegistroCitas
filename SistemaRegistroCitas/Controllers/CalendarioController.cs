@@ -24,26 +24,33 @@ namespace SistemaRegistroCitas.Controllers
 
             if (!usuario.CTemp)
             {
-
-                Menu = usuarioControllador.ArmarMenu(usuario.Id);
-
-                if (usuario != null)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2 || usuario.IdRol == 4)
                 {
-                    if (usuario.Id > 0)
-                    {
-                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                        ViewBag.Menu = Menu;
+                    Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
-                        return View();
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
                     }
                     else
                     {
                         return RedirectToAction("Login", "Home");
                     }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
             }
             else

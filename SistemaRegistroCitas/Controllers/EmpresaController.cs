@@ -21,11 +21,29 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerNombresEmpresasActivas()
         {
-            List<Empresa> empresas = new List<Empresa>();
+            try
+            {
+                List<Empresa> empresas = new List<Empresa>();
 
-            empresas = LN.ObtenerNombresEmpresasActivas();
+                empresas = LN.ObtenerNombresEmpresasActivas();
 
-            return Json(empresas, JsonRequestBehavior.AllowGet);
+                return Json(empresas, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                               
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = " ";
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
         public JsonResult ObtenerHorarioEmpresa()

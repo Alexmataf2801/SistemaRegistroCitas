@@ -143,6 +143,17 @@ namespace SistemaRegistroCitas.Controllers
             }
             catch (Exception ex)
             {
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
 
             }
 
@@ -152,11 +163,31 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult InsertarPermisosXUsuario(int IdUsuario, List<int> ListaPermisos)
         {
-            bool Correcto = false;
 
-            Correcto = LN.InsertarPermisosXUsuario(IdUsuario, ListaPermisos);
+            try
+            {
+                bool Correcto = false;
 
-            return Json(Correcto, JsonRequestBehavior.AllowGet);
+                Correcto = LN.InsertarPermisosXUsuario(IdUsuario, ListaPermisos);
+
+                return Json(Correcto, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                 usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
 
         }
 
