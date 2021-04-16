@@ -27,13 +27,14 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult InsertarEventos(Eventos eventos)
 
         {
+            int Respuesta = 0;
 
             try
             {
                 usuario = (Usuario)Session["Usuario"];
                 eventos.UsuarioCreacion = usuario.NombreCompleto;
                 eventos.IdUsuarioCrecion = usuario.Id;
-                int Respuesta = 0;
+                
 
                 TimeSpan HoraInicio = eventos.HorarioInicial.TimeOfDay;
                 TimeSpan HoraFin = eventos.HoraFinal.TimeOfDay;
@@ -47,7 +48,7 @@ namespace SistemaRegistroCitas.Controllers
                     Respuesta = 5;
                 }
 
-                return Json(Respuesta, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -62,102 +63,116 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+                
             }
-           
-            
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
 
-             
-
-           
         }
 
         public bool ValidarHoraEvento(int Dia, string Inicio, string Final)
         {
-            HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
-            horarioEmpresa = (HorarioEmpresa)Session["HorarioEmpresa"];
-
             bool Respuesta = false;
 
-            switch (Dia)
+            try
             {
+                HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
+                horarioEmpresa = (HorarioEmpresa)Session["HorarioEmpresa"];
 
-                case 0:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
+                switch (Dia)
+                {
 
-                        if (horarioEmpresa.InicioDomingo <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalDomingo >= TimeSpan.Parse(Final))
+                    case 0:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
                         {
-                            Respuesta = true;
+
+                            if (horarioEmpresa.InicioDomingo <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalDomingo >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
+
                         }
 
-                    }
-
-                    break;
-                case 1:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
-
-
-                        if (horarioEmpresa.InicioLunes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalLunes >= TimeSpan.Parse(Final))
+                        break;
+                    case 1:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
                         {
-                            Respuesta = true;
-                        }
-                    }
 
-                    break;
-                case 2:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    { 
-                        if (horarioEmpresa.InicioMartes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalMartes >= TimeSpan.Parse(Final))
-                        {
-                            Respuesta = true;
-                        }
-                     }
-                    break;
-                case 3:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
-                        if (horarioEmpresa.InicioMiercoles <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalMiercoles >= TimeSpan.Parse(Final))
-                        {
-                            Respuesta = true;
-                        }
-                    }
 
-                    break;
-                case 4:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
-                        if (horarioEmpresa.InicioJueves <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalJueves >= TimeSpan.Parse(Final))
-                        {
-                            Respuesta = true;
+                            if (horarioEmpresa.InicioLunes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalLunes >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
                         }
-                    }
 
-                    break;
-                case 5:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
-                        if (horarioEmpresa.InicioViernes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalViernes >= TimeSpan.Parse(Final))
+                        break;
+                    case 2:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
                         {
-                            Respuesta = true;
+                            if (horarioEmpresa.InicioMartes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalMartes >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
                         }
-                    }
-
-                    break;
-                case 6:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
-                        if (horarioEmpresa.InicioSabado <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalSabado >= TimeSpan.Parse(Final))
+                        break;
+                    case 3:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
                         {
-                            Respuesta = true;
+                            if (horarioEmpresa.InicioMiercoles <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalMiercoles >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
                         }
-                    }
 
-                    break;
-                default:
-                    break;
+                        break;
+                    case 4:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
+                        {
+                            if (horarioEmpresa.InicioJueves <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalJueves >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
+                        }
+
+                        break;
+                    case 5:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
+                        {
+                            if (horarioEmpresa.InicioViernes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalViernes >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
+                        }
+
+                        break;
+                    case 6:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
+                        {
+                            if (horarioEmpresa.InicioSabado <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalSabado >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
+                        }
+
+                        break;
+                    default:
+                        break;
+                }
             }
+            catch (Exception ex)
+            {
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+            }
+           
+
+           
 
             return Respuesta;
 
@@ -166,9 +181,10 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerTodosLosEventosXIdEmpresa()
         {
+            List<Eventos> Eventos = new List<Eventos>();
             try
             {
-                List<Eventos> Eventos = new List<Eventos>();
+                
                 usuario = (Usuario)Session["Usuario"];
 
                 if (usuario != null)
@@ -176,9 +192,7 @@ namespace SistemaRegistroCitas.Controllers
 
                     Eventos = LN.ObtenerTodosLosEventosXIdEmpresa(usuario.IdEmpresa);
                 }
-
-
-                return Json(Eventos, JsonRequestBehavior.AllowGet);
+               
             }
             catch (Exception ex )
             {
@@ -193,9 +207,9 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
-            
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
@@ -242,13 +256,13 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult EliminarEventos(int Id)
         {
+            bool SeElimino = false;
             try
-            {
-                bool SeElimino = false;
+            {               
 
                 SeElimino = LN.EliminarEventos(Id);
 
-                return Json(SeElimino, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -262,18 +276,20 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+                
             }
-            
+            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+
 
 
         }
 
         public JsonResult ObtenerTodosLosEventosXIdUsuarioCreador()
         {
+            List<Eventos> Eventos = new List<Eventos>();
             try
             {
-                List<Eventos> Eventos = new List<Eventos>();
+                
                 usuario = (Usuario)Session["Usuario"];
 
                 if (usuario != null)
@@ -281,9 +297,7 @@ namespace SistemaRegistroCitas.Controllers
 
                     Eventos = LN.ObtenerTodosLosEventosXIdUsuarioCreador(usuario.Id, usuario.IdEmpresa);
                 }
-
-
-                return Json(Eventos, JsonRequestBehavior.AllowGet);
+                               
             }
             catch (Exception ex)
             {
@@ -298,9 +312,10 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
-            
+
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
@@ -347,9 +362,10 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerTodosLosEventosHorasLibresXIdEmpresa()
         {
+            List<Eventos> Eventos = new List<Eventos>();
             try
             {
-                List<Eventos> Eventos = new List<Eventos>();
+               
                 usuario = (Usuario)Session["Usuario"];
 
                 if (usuario != null)
@@ -358,8 +374,6 @@ namespace SistemaRegistroCitas.Controllers
                     Eventos = LN.ObtenerTodosLosEventosHorasLibresXIdEmpresa(usuario.IdEmpresa);
                 }
 
-
-                return Json(Eventos, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -373,10 +387,10 @@ namespace SistemaRegistroCitas.Controllers
 
 
                 LN.InsertarBitacora(bitacora);
-
-                return Json(false, JsonRequestBehavior.AllowGet);
+             
             }
-            
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
@@ -423,9 +437,10 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerTodosLosEventosXIdUsuario()
         {
+            List<Eventos> Eventos = new List<Eventos>();
             try
             {
-                List<Eventos> Eventos = new List<Eventos>();
+                
                 usuario = (Usuario)Session["Usuario"];
 
                 if (usuario != null)
@@ -434,8 +449,7 @@ namespace SistemaRegistroCitas.Controllers
                     Eventos = LN.ObtenerTodosLosEventosXIdUsuario(usuario.Id);
                 }
 
-
-                return Json(Eventos, JsonRequestBehavior.AllowGet);
+               
             }
             catch (Exception ex)
             {
@@ -450,9 +464,10 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
-           
+
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
@@ -501,9 +516,10 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerTodosLosEventosXIdUsuarioSeleccionado(int IdUsuario)
         {
+            List<Eventos> Eventos = new List<Eventos>();
             try
             {
-                List<Eventos> Eventos = new List<Eventos>();
+                
                 usuario = (Usuario)Session["Usuario"];
 
                 if (usuario != null)
@@ -512,8 +528,7 @@ namespace SistemaRegistroCitas.Controllers
                     Eventos = LN.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
                 }
 
-
-                return Json(Eventos, JsonRequestBehavior.AllowGet);
+                                
             }
             catch (Exception ex)
             {
@@ -528,9 +543,9 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
-          
+            return Json(Eventos, JsonRequestBehavior.AllowGet);
+
         }
 
     }

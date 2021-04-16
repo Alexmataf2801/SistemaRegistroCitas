@@ -22,9 +22,10 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerServiciosActivos()
         {
+            List<Servicio> servicios = new List<Servicio>();
             try
             {
-                List<Servicio> servicios = new List<Servicio>();
+                
 
 
                 usuario = (Usuario)Session["Usuario"];
@@ -36,7 +37,7 @@ namespace SistemaRegistroCitas.Controllers
 
                 }
 
-                return Json(servicios, JsonRequestBehavior.AllowGet);
+               
             }
             catch (Exception ex)
             {
@@ -51,21 +52,23 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+                
             }
-           
+            return Json(servicios, JsonRequestBehavior.AllowGet);
+
         }
 
 
         public JsonResult ServicioXId(int Id)
         {
+            Servicio InfoServicio = new Servicio();
             try
             {
-                Servicio InfoServicio = new Servicio();
+               
 
                 InfoServicio = LN.ServicioXId(Id);
 
-                return Json(InfoServicio, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -80,16 +83,18 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+               
             }
-            
+            return Json(InfoServicio, JsonRequestBehavior.AllowGet);
+
         }
 
         public JsonResult ObtenerTodosLosServicios()
         {
+            List<Servicio> servicios = new List<Servicio>();
             try
             {
-                List<Servicio> servicios = new List<Servicio>();
+                
                 usuario = (Usuario)Session["Usuario"];
 
                 if (usuario != null)
@@ -99,7 +104,7 @@ namespace SistemaRegistroCitas.Controllers
                 }
 
 
-                return Json(servicios, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -114,9 +119,11 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+                
             }
-           
+
+            return Json(servicios, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
@@ -166,13 +173,14 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult InsertarDatosServicios(Servicio servicio)
         {
+            bool Respuesta = false;
             try
             {
                 usuario = (Usuario)Session["Usuario"];
                 servicio.UsuarioCreacion = usuario.NombreCompleto;
-                bool Respuesta = LN.InsertarDatosServicios(servicio, usuario.IdEmpresa);
+                 Respuesta = LN.InsertarDatosServicios(servicio, usuario.IdEmpresa);
 
-                return Json(Respuesta, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -187,9 +195,10 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+               
             }
-            
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
@@ -236,13 +245,14 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult DesactivarActivarServicios(int Id, bool Estado)
         {
+            bool SeActualizoEstado = false;
             try
             {
-                bool SeActualizoEstado = false;
+                
 
                 SeActualizoEstado = LN.DesactivarActivarServicios(Id, Estado);
 
-                return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -257,21 +267,24 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+                
             }
 
-            
+            return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+
+
         }
 
         public JsonResult ElimnarServicio(int Id)
         {
+            bool SeElimino = false;
             try
             {
-                bool SeElimino = false;
+                
 
                 SeElimino = LN.EliminarServicios(Id);
 
-                return Json(SeElimino, JsonRequestBehavior.AllowGet);
+               
             }
             catch (Exception ex)
             {
@@ -286,10 +299,10 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+              
             }
-            
 
+            return Json(SeElimino, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -337,14 +350,14 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ActualizarServicios(Servicio servicio)
         {
+            bool SeActualizo = false;
             try
             {
-                usuario = (Usuario)Session["Usuario"];
-                bool SeActualizo = false;
+                usuario = (Usuario)Session["Usuario"];                
                 servicio.UsuarioUltimaModificacion = usuario.NombreCompleto;
                 SeActualizo = LN.ActualizarServicios(servicio);
 
-                return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+               
             }
             catch (Exception ex)
             {
@@ -359,9 +372,11 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+               
             }
-           
+
+            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+
 
         }
     }

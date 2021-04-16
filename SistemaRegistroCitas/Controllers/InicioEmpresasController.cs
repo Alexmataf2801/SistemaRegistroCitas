@@ -64,10 +64,10 @@ namespace SistemaRegistroCitas.Controllers
         
         public JsonResult ObtenerEmpresasXId()
         {
-
+            Empresa empresa = new Empresa();
             try
             {
-                Empresa empresa = new Empresa();
+                
                 int EmpresaUsuario = 0;
                 usuario = (Usuario)Session["Usuario"];
 
@@ -87,16 +87,10 @@ namespace SistemaRegistroCitas.Controllers
 
                     empresa = LN.paObtenerEmpresasXId(EmpresaUsuario);
 
-                    return Json(empresa, JsonRequestBehavior.AllowGet);
+                   
 
                 }
-                else
-                {
-
-                    return Json(null, JsonRequestBehavior.AllowGet);
-
-
-                }
+                
             }
             catch (Exception ex)
             {
@@ -111,11 +105,11 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
-           
 
-              
+            return Json(empresa, JsonRequestBehavior.AllowGet);
+
+
         }
 
         [HttpGet]
@@ -163,13 +157,14 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult InsertarHorarioEmpresa(HorarioEmpresa horarioEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
 
         {
+            int Respuesta = 0;
             try
             {
                 usuario = (Usuario)Session["Usuario"];
 
-                int Respuesta = LN.InsertarHorarioEmpresa(horarioEmpresa, usuario.IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
+                 Respuesta = LN.InsertarHorarioEmpresa(horarioEmpresa, usuario.IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
 
-                return Json(Respuesta, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -184,10 +179,11 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
 
-           
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+
+
         }
 
         [HttpGet]
@@ -237,13 +233,13 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
+            int SeActualizo = 0;
             try
             {
-                usuario = (Usuario)Session["Usuario"];
-                int SeActualizo = 0;
+                usuario = (Usuario)Session["Usuario"];                
                 SeActualizo = LN.ActualizarHorarioEmpresa(horarioEmpresa, usuario.IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
 
-                return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+               
             }
             catch (Exception ex)
             {
@@ -258,9 +254,8 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
-           
+            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
 
         }
 

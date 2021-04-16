@@ -51,12 +51,13 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerRoles()
         {
+            List<Roles> roles = new List<Roles>();
             try
             {
-                List<Roles> roles = new List<Roles>();
+               
                 roles = LN.ObtenerRoles();
 
-                return Json(roles, JsonRequestBehavior.AllowGet);
+               
             }
             catch (Exception ex)
             {
@@ -70,22 +71,21 @@ namespace SistemaRegistroCitas.Controllers
 
 
                 LN.InsertarBitacora(bitacora);
-
-                return Json(false, JsonRequestBehavior.AllowGet);
+                                
             }
-            
+            return Json(roles, JsonRequestBehavior.AllowGet);
+
         }
 
         public JsonResult ObtenerTodoLosRoles()
         {
+            List<Roles> roles = new List<Roles>();
             try
             {
-                List<Roles> roles = new List<Roles>();
-
+                
                 usuario = (Usuario)Session["Usuario"];
                 roles = LN.ObtenerTodoLosRoles(usuario.IdRol);
-
-                return Json(roles, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -100,9 +100,9 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
-            
+            return Json(roles, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
@@ -177,13 +177,13 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult DesactivarActivarRol(int IdRol, bool Estado)
         {
+            bool SeActualizoEstado = false;
             try
             {
-                bool SeActualizoEstado = false;
-
+                
                 SeActualizoEstado = LN.DesactivarActivarRol(IdRol, Estado);
 
-                return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -198,21 +198,22 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
 
-           
+            return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+
+
         }
 
         public JsonResult ElimnarRol(int IdRol)
         {
+            bool SeElimino = false;
             try
-            {
-                bool SeElimino = false;
+            {                
 
                 SeElimino = LN.EliminarRol(IdRol);
 
-                return Json(SeElimino, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -226,23 +227,22 @@ namespace SistemaRegistroCitas.Controllers
 
 
                 LN.InsertarBitacora(bitacora);
-
-                return Json(false, JsonRequestBehavior.AllowGet);
+                                
             }
-            
+            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+
 
 
         }
 
         public JsonResult ObtenerRolXId(int IdRol)
         {
+            Roles rol = new Roles();
             try
-            {
-                Roles rol = new Roles();
+            {               
 
                 rol = LN.ObtenerRolXId(IdRol);
-
-                return Json(rol, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -256,22 +256,21 @@ namespace SistemaRegistroCitas.Controllers
 
 
                 LN.InsertarBitacora(bitacora);
-
-                return Json(false, JsonRequestBehavior.AllowGet);
+               
             }
-           
+            return Json(rol, JsonRequestBehavior.AllowGet);
+
         }
 
         public JsonResult ActualizarRol(Roles rol)
         {
+            bool SeActualizo = false;
             try
             {
-                usuario = (Usuario)Session["Usuario"];
-                bool SeActualizo = false;
+                usuario = (Usuario)Session["Usuario"];               
                 rol.UsuarioUltimaModificacion = usuario.NombreCompleto;
                 SeActualizo = LN.ActualizarRol(rol);
-
-                return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+                                
             }
             catch (Exception ex)
             {
@@ -286,9 +285,8 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
-           
+            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
 
         }
 

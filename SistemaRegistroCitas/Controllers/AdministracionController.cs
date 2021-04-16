@@ -152,8 +152,7 @@ namespace SistemaRegistroCitas.Controllers
 
 
                 LN.InsertarBitacora(bitacora);
-
-                return Json(false, JsonRequestBehavior.AllowGet);
+               
 
             }
 
@@ -163,15 +162,15 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult InsertarPermisosXUsuario(int IdUsuario, List<int> ListaPermisos)
         {
+            bool Correcto = false;
 
             try
             {
-                bool Correcto = false;
+                
 
                 Correcto = LN.InsertarPermisosXUsuario(IdUsuario, ListaPermisos);
 
-                return Json(Correcto, JsonRequestBehavior.AllowGet);
-
+               
             }
             catch (Exception ex)
             {
@@ -185,9 +184,10 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+              
             }
-            
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
+
 
         }
 

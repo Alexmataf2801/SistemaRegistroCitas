@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClasesEntidades\Bitacora.cs" />
+    <Compile Include="ClasesEntidades\ClaseEnum.cs" />
     <Compile Include="ClasesEntidades\Correo.cs" />
     <Compile Include="ClasesEntidades\DiasLibresColaboradores.cs" />
     <Compile Include="ClasesEntidades\Empresa.cs" />

@@ -22,12 +22,13 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerMinutosYHoras()
         {
+            List<UnidadMedida> unidadMedida = new List<UnidadMedida>();
             try
             {
-                List<UnidadMedida> unidadMedida = new List<UnidadMedida>();
+                
                 unidadMedida = LN.ObtenerMinutosYHoras();
 
-                return Json(unidadMedida, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -42,9 +43,10 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+                
             }
-            
+            return Json(unidadMedida, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

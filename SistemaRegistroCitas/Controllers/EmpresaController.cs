@@ -21,13 +21,13 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerNombresEmpresasActivas()
         {
+            List<Empresa> empresas = new List<Empresa>();
             try
             {
-                List<Empresa> empresas = new List<Empresa>();
-
+                
                 empresas = LN.ObtenerNombresEmpresasActivas();
 
-                return Json(empresas, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -41,23 +41,23 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
             }
-            
+            return Json(empresas, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ObtenerHorarioEmpresa()
         {
+            HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
             try
             {
-                HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
+                
 
                 Usuario usu = (Usuario)Session["Usuario"];
 
                 horarioEmpresa = LN.ObtenerHorarioEmpresa(usu.IdEmpresa);
                 horarioEmpresa.IdEmpresa = usu.IdEmpresa;
                 Session["HorarioEmpresa"] = horarioEmpresa;
-                return Json(horarioEmpresa, JsonRequestBehavior.AllowGet);
+                
             }
             catch (Exception ex)
             {
@@ -72,20 +72,21 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+               
             }
-           
+            return Json(horarioEmpresa, JsonRequestBehavior.AllowGet);
+
         }
 
         public JsonResult ActualizarDatosXIdEmpresa(Empresa empresa)
         {
+            bool SeActualizo = false;
             try
             {
                 usuario = (Usuario)Session["Usuario"];
-                bool SeActualizo = false;
+               
                 SeActualizo = LN.ActualizarDatosXIdEmpresa(empresa, usuario.IdEmpresa);
-
-                return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+                               
             }
             catch (Exception ex)
             {
@@ -100,12 +101,13 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+                
             }
-            
+
+            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+
 
         }
-
 
         [HttpGet]
         public ActionResult ActualizarInicioEmpresa()
