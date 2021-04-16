@@ -48,7 +48,8 @@ $(function () {
         
 
     function ObtenerTodosLosEventosXIdUsuarioSeleccionado() {
-
+        var EventoArreglo = []
+        
         $.ajax({
             type: "GET",
             dataType: "JSON",
@@ -72,17 +73,18 @@ $(function () {
                         end: FechaFinal = moment(v.HoraFinal).format('YYYY-MM-DD[T]HH:mm:ss')
 
 
-                    }
+                    }                  
 
-                 
+                    EventoArreglo.push(event)
 
-                    calendar.addEvent(
-                        event
-                                           
-                    );
+                   
                    
                 });
 
+                calendar.addEventSource(
+                    EventoArreglo
+
+                );
               
             },
 
@@ -92,9 +94,7 @@ $(function () {
 
             },
 
-        });
-
-         setInterval(ObtenerTodosLosEventosXIdUsuarioSeleccionado, 60000);
+        });        
 
     }
 

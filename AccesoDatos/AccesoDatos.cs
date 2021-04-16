@@ -404,8 +404,9 @@ namespace AccesoDatos
             try
             {
                 RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
-                entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, eventos.IdUsuarioCrecion, IdRol, eventos.IdServicio,eventos.Nombre, eventos.TipoUnidadEvento,
-                    eventos.HorarioInicial, eventos.HoraFinal, eventos.UsuarioCreacion,RespuestaCorrecta);
+                entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, eventos.IdUsuarioCrecion, IdRol, eventos.IdServicio, eventos.Nombre, eventos.TipoUnidadEvento,
+                    eventos.HorarioInicial, eventos.HoraFinal, eventos.UsuarioCreacion, RespuestaCorrecta);
+
                 Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
             }
             catch (Exception ex)
@@ -1554,7 +1555,7 @@ namespace AccesoDatos
             List<Eventos> ListaEventos = new List<Eventos>();
             try
             {
-                var info = entities.paObtenerTodosLosEventosXIdUsuario(IdUsuario);
+                var info = entities.paObtenerTodosLosEventosXIdUsuario(IdUsuario).ToList();
 
                 foreach (var item in info)
                 {
@@ -1581,9 +1582,6 @@ namespace AccesoDatos
 
             return ListaEventos;
         }
-
-
-
 
 
         public Usuario ObtenerPerfilColaboradorXId(int Id)
