@@ -561,17 +561,8 @@
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerTodosLosEventosXIdEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdEmpresa_Result)">
-          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paEliminarEventos">
           <Parameter Name="Id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paObtenerTodosLosEventosHorasLibresXIdEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result)">
-          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paObtenerTodosLosEventosXIdUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuario_Result)">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paActualizarServicios">
             <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -618,10 +609,6 @@
             <Parameter Name="Genero" Mode="In" Type="Boolean" />
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
             <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="paObtenerTodosLosEventosXIdUsuarioCreador" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuarioCreador_Result)">
-            <Parameter Name="IdUsuarioCreador" Mode="In" Type="Int32" />
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paActualizarHorarioEmpresa">
             <Parameter Name="InicioLunes" Mode="In" Type="Time" />
@@ -683,6 +670,19 @@
             <Parameter Name="Metodo" Mode="In" Type="String" />
             <Parameter Name="Error" Mode="In" Type="String" />
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosEventosXIdUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuario_Result1)">
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosEventosHorasLibresXIdEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result)">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosEventosXIdEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdEmpresa_Result)">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerTodosLosEventosXIdUsuarioCreador" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuarioCreador_Result)">
+            <Parameter Name="IdUsuarioCreador" Mode="In" Type="Int32" />
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServicioXId_Result">
@@ -868,27 +868,6 @@
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
         </ComplexType>
-        <ComplexType Name="paObtenerTodosLosEventosXIdEmpresa_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
-          <Property Type="Int32" Name="IdUsuarioCreador" Nullable="false" />
-          <Property Type="Int32" Name="IdServicio" Nullable="false" />
-          <Property Type="DateTime" Name="HorarioInicial" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="HoraFinal" Nullable="false" Precision="23" />
-          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="NombreColaborador" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
-        </ComplexType>
-        <ComplexType Name="paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
-          <Property Type="Int32" Name="IdUsuarioCreador" Nullable="false" />
-          <Property Type="Int32" Name="IdServicio" Nullable="false" />
-          <Property Type="DateTime" Name="HorarioInicial" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="HoraFinal" Nullable="false" Precision="23" />
-          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="NombreColaborador" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="paObtenerTodosLosEventosXIdUsuario_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="IdUsuario" Nullable="false" />
@@ -923,16 +902,6 @@
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
         </ComplexType>
-        <ComplexType Name="paObtenerTodosLosEventosXIdUsuarioCreador_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
-          <Property Type="Int32" Name="IdServicio" Nullable="false" />
-          <Property Type="DateTime" Name="HorarioInicial" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="HoraFinal" Nullable="false" Precision="23" />
-          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="NombreColaborador" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
-        </ComplexType>
         <ComplexType Name="paObtenerUsuario_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
@@ -946,6 +915,48 @@
           <Property Type="Int32" Name="IdRol" Nullable="false" />
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
           <Property Type="Boolean" Name="Temporal" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosLosEventosXIdUsuario_Result1">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuarioCreador" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="TipoUnidadEvento" Nullable="false" />
+          <Property Type="DateTime" Name="HorarioInicial" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="HoraFinal" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuarioCreador" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="DateTime" Name="HorarioInicial" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="HoraFinal" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="NombreColaborador" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosLosEventosXIdEmpresa_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuarioCreador" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="DateTime" Name="HorarioInicial" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="HoraFinal" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="NombreColaborador" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerTodosLosEventosXIdUsuarioCreador_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="DateTime" Name="HorarioInicial" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="HoraFinal" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="NombreColaborador" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1233,51 +1244,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paDesactivarActivarServicioXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarServicioXColaborador" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarServicios" />
-          <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosXIdEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosXIdEmpresa">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdEmpresa_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="IdUsuarioCreador" ColumnName="IdUsuarioCreador" />
-                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
-                <ScalarProperty Name="HorarioInicial" ColumnName="HorarioInicial" />
-                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="NombreColaborador" ColumnName="NombreColaborador" />
-                <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paEliminarEventos" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarEventos" />
-          <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosHorasLibresXIdEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosHorasLibresXIdEmpresa">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="IdUsuarioCreador" ColumnName="IdUsuarioCreador" />
-                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
-                <ScalarProperty Name="HorarioInicial" ColumnName="HorarioInicial" />
-                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="NombreColaborador" ColumnName="NombreColaborador" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosXIdUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosXIdUsuario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuario_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="IdUsuarioCreador" ColumnName="IdUsuarioCreador" />
-                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="TipoUnidadEvento" ColumnName="TipoUnidadEvento" />
-                <ScalarProperty Name="HorarioInicial" ColumnName="HorarioInicial" />
-                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarServicios" />
           <FunctionImportMapping FunctionImportName="PaInsertarEventos" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarEventos" />
           <FunctionImportMapping FunctionImportName="paObtenerEmpresasXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerEmpresasXId">
@@ -1313,20 +1280,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarPerfil" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarPerfil" />
-          <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosXIdUsuarioCreador" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosXIdUsuarioCreador">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuarioCreador_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
-                <ScalarProperty Name="HorarioInicial" ColumnName="HorarioInicial" />
-                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="NombreColaborador" ColumnName="NombreColaborador" />
-                <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paActualizarHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarHorarioEmpresa" />
           <FunctionImportMapping FunctionImportName="paActualizarContrasena" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarContrasena" />
           <FunctionImportMapping FunctionImportName="paEditarContrasenaXCorreoElectronico" FunctionName="BDSistemaRegistroCitasModel.Store.paEditarContrasenaXCorreoElectronico" />
@@ -1351,6 +1304,64 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
           <FunctionImportMapping FunctionImportName="paInsertarBitacora" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarBitacora" />
+          <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosXIdUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosXIdUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuario_Result1">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdUsuarioCreador" ColumnName="IdUsuarioCreador" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="TipoUnidadEvento" ColumnName="TipoUnidadEvento" />
+                <ScalarProperty Name="HorarioInicial" ColumnName="HorarioInicial" />
+                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosHorasLibresXIdEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosHorasLibresXIdEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdUsuarioCreador" ColumnName="IdUsuarioCreador" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="HorarioInicial" ColumnName="HorarioInicial" />
+                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="NombreColaborador" ColumnName="NombreColaborador" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosXIdEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosXIdEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdEmpresa_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdUsuarioCreador" ColumnName="IdUsuarioCreador" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="HorarioInicial" ColumnName="HorarioInicial" />
+                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="NombreColaborador" ColumnName="NombreColaborador" />
+                <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosXIdUsuarioCreador" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosXIdUsuarioCreador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuarioCreador_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="HorarioInicial" ColumnName="HorarioInicial" />
+                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="NombreColaborador" ColumnName="NombreColaborador" />
+                <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

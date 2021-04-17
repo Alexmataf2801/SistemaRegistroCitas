@@ -719,15 +719,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paDesactivarActivarServicios", idParameter, estadoParameter);
         }
     
-        public virtual ObjectResult<paObtenerTodosLosEventosXIdEmpresa_Result> paObtenerTodosLosEventosXIdEmpresa(Nullable<int> idEmpresa)
-        {
-            var idEmpresaParameter = idEmpresa.HasValue ?
-                new ObjectParameter("IdEmpresa", idEmpresa) :
-                new ObjectParameter("IdEmpresa", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosXIdEmpresa_Result>("paObtenerTodosLosEventosXIdEmpresa", idEmpresaParameter);
-        }
-    
         public virtual int paEliminarEventos(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -735,24 +726,6 @@ namespace Entidades
                 new ObjectParameter("Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarEventos", idParameter);
-        }
-    
-        public virtual ObjectResult<paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result> paObtenerTodosLosEventosHorasLibresXIdEmpresa(Nullable<int> idEmpresa)
-        {
-            var idEmpresaParameter = idEmpresa.HasValue ?
-                new ObjectParameter("IdEmpresa", idEmpresa) :
-                new ObjectParameter("IdEmpresa", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result>("paObtenerTodosLosEventosHorasLibresXIdEmpresa", idEmpresaParameter);
-        }
-    
-        public virtual ObjectResult<paObtenerTodosLosEventosXIdUsuario_Result> paObtenerTodosLosEventosXIdUsuario(Nullable<int> idUsuario)
-        {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosXIdUsuario_Result>("paObtenerTodosLosEventosXIdUsuario", idUsuarioParameter);
         }
     
         public virtual int paActualizarServicios(Nullable<int> id, string nombre, string descripcion, Nullable<int> tiempoEstimado, Nullable<int> tipoUnidad, string usuarioUltimaModificacion)
@@ -915,19 +888,6 @@ namespace Entidades
                 new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarPerfil", idParameter, identificacionParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, usuarioUltimaModificacionParameter);
-        }
-    
-        public virtual ObjectResult<paObtenerTodosLosEventosXIdUsuarioCreador_Result> paObtenerTodosLosEventosXIdUsuarioCreador(Nullable<int> idUsuarioCreador, Nullable<int> idEmpresa)
-        {
-            var idUsuarioCreadorParameter = idUsuarioCreador.HasValue ?
-                new ObjectParameter("IdUsuarioCreador", idUsuarioCreador) :
-                new ObjectParameter("IdUsuarioCreador", typeof(int));
-    
-            var idEmpresaParameter = idEmpresa.HasValue ?
-                new ObjectParameter("IdEmpresa", idEmpresa) :
-                new ObjectParameter("IdEmpresa", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosXIdUsuarioCreador_Result>("paObtenerTodosLosEventosXIdUsuarioCreador", idUsuarioCreadorParameter, idEmpresaParameter);
         }
     
         public virtual int paActualizarHorarioEmpresa(Nullable<System.TimeSpan> inicioLunes, Nullable<System.TimeSpan> finalLunes, Nullable<bool> estadoLunes, Nullable<System.TimeSpan> inicioMartes, Nullable<System.TimeSpan> finalMartes, Nullable<bool> estadoMartes, Nullable<System.TimeSpan> inicioMiercoles, Nullable<System.TimeSpan> finalMiercoles, Nullable<bool> estadoMiercoles, Nullable<System.TimeSpan> inicioJueves, Nullable<System.TimeSpan> finalJueves, Nullable<bool> estadoJueves, Nullable<System.TimeSpan> inicioViernes, Nullable<System.TimeSpan> finalViernes, Nullable<bool> estadoViernes, Nullable<System.TimeSpan> inicioSabado, Nullable<System.TimeSpan> finalSabado, Nullable<bool> estadoSabado, Nullable<System.TimeSpan> inicioDomingo, Nullable<System.TimeSpan> finalDomingo, Nullable<bool> estadoDomingo, Nullable<int> idEmpresa, ObjectParameter respuestaCorrecta)
@@ -1131,6 +1091,46 @@ namespace Entidades
                 new ObjectParameter("UsuarioCreacion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarBitacora", claseParameter, metodoParameter, errorParameter, usuarioCreacionParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosEventosXIdUsuario_Result1> paObtenerTodosLosEventosXIdUsuario(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosXIdUsuario_Result1>("paObtenerTodosLosEventosXIdUsuario", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result> paObtenerTodosLosEventosHorasLibresXIdEmpresa(Nullable<int> idEmpresa)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result>("paObtenerTodosLosEventosHorasLibresXIdEmpresa", idEmpresaParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosEventosXIdEmpresa_Result> paObtenerTodosLosEventosXIdEmpresa(Nullable<int> idEmpresa)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosXIdEmpresa_Result>("paObtenerTodosLosEventosXIdEmpresa", idEmpresaParameter);
+        }
+    
+        public virtual ObjectResult<paObtenerTodosLosEventosXIdUsuarioCreador_Result> paObtenerTodosLosEventosXIdUsuarioCreador(Nullable<int> idUsuarioCreador, Nullable<int> idEmpresa)
+        {
+            var idUsuarioCreadorParameter = idUsuarioCreador.HasValue ?
+                new ObjectParameter("IdUsuarioCreador", idUsuarioCreador) :
+                new ObjectParameter("IdUsuarioCreador", typeof(int));
+    
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerTodosLosEventosXIdUsuarioCreador_Result>("paObtenerTodosLosEventosXIdUsuarioCreador", idUsuarioCreadorParameter, idEmpresaParameter);
         }
     }
 }

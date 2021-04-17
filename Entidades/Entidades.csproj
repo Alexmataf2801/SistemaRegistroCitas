@@ -162,6 +162,9 @@
     <Compile Include="paObtenerTodosLosEventosXIdUsuario_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="paObtenerTodosLosEventosXIdUsuario_Result1.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="paObtenerTodosLosRoles_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
