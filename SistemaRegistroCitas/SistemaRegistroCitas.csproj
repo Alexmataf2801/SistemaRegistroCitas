@@ -176,6 +176,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\cargando.gif" />
     <Content Include="Imagenes\GuiaImagenes\cuenta.svg" />
     <Content Include="Imagenes\GuiaImagenes\empresa.svg" />
     <Content Include="Imagenes\GuiaImagenes\entrega.svg" />
@@ -194,6 +195,8 @@
     <Content Include="Imagenes\Login\logo.png" />
     <Content Include="Imagenes\Login\precios-bg.jpg" />
     <Content Include="Imagenes\Login\textura3.png" />
+    <Content Include="Imagenes\nube.gif" />
+    <Content Include="Imagenes\reloj.gif" />
     <Content Include="Js\adminlte.min.js" />
     <Content Include="Js\Arbol.js" />
     <Content Include="Js\bootstrap.min.js" />

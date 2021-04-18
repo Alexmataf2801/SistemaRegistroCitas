@@ -27,7 +27,8 @@
 
                 TablaRoles.row.add([value.UsuarioCreacion, Nombre, HorarioInicial, HoraFinal]).draw();
             });
-            
+
+            $('#cargando').html(' ')
         },
         error: function (Error) {
         }

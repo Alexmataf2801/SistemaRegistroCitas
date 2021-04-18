@@ -578,6 +578,11 @@ $(function () {
                     case 2:
                         $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
                         $('#MsjIncorrecto').modal('show');
+
+                        $('#MsjIncorrecto').on('hidden.bs.modal', function () {
+                            ObtenerTodosLosEventosXIdUsuarioSeleccionado();
+                            LimpiarEventoslientes();
+                        });
                         break;
                     default:
                         $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
@@ -652,6 +657,14 @@ $(function () {
                     case 2:
                         $("#msjModalIncorrecto").html("<label>¡Ya existe un Evento asignado!</label>");
                         $('#MsjIncorrecto').modal('show');
+                        
+
+                        $('#MsjIncorrecto').on('hidden.bs.modal', function () {
+                        
+                            ObtenerTodosLosEventosXIdUsuarioSeleccionado();
+                            LimpiarEventosDiasLibres();
+                        }); 
+
                         break;
                     default:
                         $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");

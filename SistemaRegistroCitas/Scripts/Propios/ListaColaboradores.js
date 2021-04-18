@@ -33,7 +33,7 @@
                 TablaRoles.row.add([Editar, value.Nombre, value.PrimerApellido, value.NombreRol, estado, CambiarEstado, Eliminar]).draw();
             });
 
-
+            $('#cargando').html(' ')
         },
         error: function (Error) {
         }

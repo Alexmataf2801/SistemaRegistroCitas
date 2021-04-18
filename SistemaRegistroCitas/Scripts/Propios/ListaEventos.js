@@ -1,4 +1,4 @@
-﻿function ObtenerTodosLosEventosXIdEmpresa() {
+﻿function ObtenerTodosLosEventosXIdEmpresa() {   
     $.ajax({
         type: "GET",
         url: "/Eventos/ObtenerTodosLosEventosXIdEmpresa",
@@ -26,9 +26,10 @@
                 var Eliminar = "<a type='button' class='btn btn-danger fa fa-trash' onclick='ConfirmarEliminarEvento(" + value.Id + ")'></a>";
 
                 TablaRoles.row.add([value.NombreColaborador, value.UsuarioCreacion, value.NombreServicio, HorarioInicial, HoraFinal, Eliminar]).draw();
+               
             });
 
-
+            $('#cargando').html(' ')
         },
         error: function (Error) {
         }

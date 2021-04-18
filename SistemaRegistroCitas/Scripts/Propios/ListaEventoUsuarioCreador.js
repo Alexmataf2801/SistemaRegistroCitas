@@ -28,7 +28,7 @@
                 TablaRoles.row.add([value.NombreColaborador, value.NombreServicio, HorarioInicial, HoraFinal, Eliminar]).draw();
             });
 
-
+            $('#cargando').html(' ')
         },
         error: function (Error) {
         }
