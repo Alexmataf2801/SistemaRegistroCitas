@@ -1,0 +1,276 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+header{
+   background: #3b5998;
+}
+header .contenedor_logo_menu
+ {
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4); 
+}
+    header .contenedor_logo_menu .logo a 
+    {
+      display: block; 
+    }
+
+      header .contenedor_logo_menu .logo a img 
+      {
+        vertical-align: top; 
+    }
+    header .contenedor_logo_menu .menu 
+    {
+      text-align: right;
+      line-height: 50px; 
+    }
+      header .contenedor_logo_menu .menu a 
+      {
+        color: #fff;
+        margin-left: 60px;
+        font-size: 18px;
+     }
+
+section
+{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+section .imgBx
+{
+position: relative;
+width: 50%;
+height:100% ;
+}
+
+section .imgBx:before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(225deg,#3b5998,#3b5998);
+    z-index: 1;
+    mix-blend-mode: screen;
+   
+}
+
+section .imgBx img 
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+section .contentBx
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+section .contentBx .formBx
+{
+    width: 50%;
+}
+section .contentBx .formBx h2 
+{
+    color: #607d8b;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #3b5998;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+section .contentBx .formBx .inputBx
+{
+    margin-bottom: 20px;
+}
+
+section .contentBx .formBx .cn{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #607d8b;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+section .contentBx .formBx .inputBx span
+{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #607d8b;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+section .contentBx .formBx .inputBx input
+{
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #607d8b;
+    background: transparent;
+    border-radius: 5px;
+}
+section .contentBx .formBx .inputBx .enlace 
+{
+  display: flex;
+  justify-content: center;
+}
+section .contentBx .formBx .inputBx .registrarse {
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #ffff;   
+    border-radius: 5px;
+}
+section .contentBx .formBx .inputBx .registrar {
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #ffff;   
+    background: #218838;
+    border-radius: 5px;
+}
+section .contentBx .formBx .inputBx .iniciarSesion
+{
+    background: #3b5998;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+section .contentBx .formBx .inputBx .iniciarSesion:hover
+{
+    background: #4e6aa1;
+}
+
+section .contentBx .formBx .inputBx p
+{
+    color: #607d8b;
+}
+section .contentBx .formBx .inputBx p a
+{
+    color: #3b5998;
+}
+section .contentBx .formBx h3
+{
+    color: #607d8b;
+    text-align: center;
+    margin: 80px 0 10px;
+    font-weight: 500;
+}
+section .contentBx .formBx .sci
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section .contentBx .formBx .sci li
+{
+    list-style: none;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #607d8b;
+    border-radius: 50%;
+    margin: 0 7px;
+    cursor: pointer;
+}
+/*Cambiar para que el hover sea para cada uno, no de todos com esta ahorita */
+section .contentBx .formBx .sci .facebook:hover
+{
+background: #3b5998 ;
+}
+section .contentBx .formBx .sci .instagram:hover
+{
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+}
+section .contentBx .formBx .sci .youtube:hover
+{
+background: #c4302b  ;
+}
+section .contentBx .formBx .sci li img
+{
+transform: scale(0.5);
+filter: invert(1);
+}
+
+@media (max-width: 768px)
+{
+    header .contenedor_logo_menu .menu
+    {
+        text-align: left;
+    }
+    section .imgBx
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    section .contentBx
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    section .contentBx .formBx
+    {
+        width: 100%;
+        padding: 35px;
+        background: rgb(255 255 255 / 0.9);
+        margin: 50px;
+        height: 104%;
+    }
+    section .contentBx .formBx h3
+    {
+        color: #607d8b;
+        text-align: center;
+        margin: 30px 0 10px;
+        font-weight: 500;
+    }
+}

@@ -10,17 +10,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Inicio</title>
-
-  
-    <link href="~/Estilos/EstilosLogin/bootstrap.min.css" rel="stylesheet" />   
-    <link href="~/Estilos/EstilosLogin/font-awesome.min.css" rel="stylesheet" />
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-    <link href="~/Estilos/EstilosLogin/Login.css" rel="stylesheet" />
-    <link href="~/Estilos/EstilosLogin/estilos.css" rel="stylesheet" />  
+    <link href="~/Estilos/EstilosLogin/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Estilos/EstilosLogin/css/EstilosLogin.css" rel="stylesheet" />
+    <link href="~/Estilos/EstilosLogin/fonts/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Estilos/jquery-ui.css" rel="stylesheet" />
-
-
 </head>
+
+<style>
+    .modal-backdrop {
+        z-index: 0 !important;
+    }
+</style>
 
 <body>
 
@@ -32,155 +32,128 @@
                 </div>
 
                 <div class="menu col-xs-12 col-md-6">
-                    <a href="#">Precios</a>
-                    <a href="#">Contacto</a>
+                    <a href="Precios.html">Precios</a>
+                    <a href="Informacion.html">Informacion</a>
                 </div>
-            </div>
-
-            <div class="row textos">
-
-
-                <div class="container2 col col-sm-12 col-lx-12">
-                    <div class="row m-1">
-
-                        <div class="col">
-                            <form class="formulario" action="">
-
-                                <div @*id="txtIdEmpresaLogin"*@ class="form-group">
-                                    <input type="text" required class="form-control" id="txtIdEmpresaLogin" placeholder="Empresa" name="Empresa">
-                                    <input type="hidden" id="hfIdEmpresaSel" />
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="email" required class="form-control" placeholder="Correo Electronico" id="txtCorreoElectronicoLogin" name="CorreoElectronico">
-                                </div>
-
-                                <div class="form-group input-group-prepend">
-                                    <input type="password" required class="form-control " placeholder="Password" name="password" id="txtPassword">
-                                    <span id="Ojo" style="padding:10px; margin-left:3px; cursor:pointer;" class="fa fa-eye input-group-text"></span>
-                                </div>
-
-                                <input type="button" onclick="Loguear();" class="btn btn-primary btn-block" value="Iniciar sesion">
-                                <p><a class="enlace" href="#" data-toggle="modal" data-target="#OlvidarContrasena">¿Olvidaste la contraseña?</a></p>
-                                @*<button class="btn btn-success btn-block data" data-toggle="modal" data-target="#OlvidarContrasena">¿Olvidaste la contraseña?</button>*@
-                            </form>
-
-                            <button class="btn btn-success btn-block data" data-toggle="modal" data-target="#fm-modal">Registrarse</button>
-                            <div class="modal fade" id="fm-modal" tabindex="-1" role="dialog" aria-labelledby="fm-modal" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Registro</h5>
-                                            <button class="close" data-dismiss="modal" aria-label="Cerrar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-
-                                        <div class="modal-body">
-
-                                            <div class="form-group">
-                                                <input type="text" required class="form-control" id="txtIdentificacion" placeholder="Identificación" name="Identificación">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" required class="form-control" id="txtNombre" placeholder="Nombre" name="Nombre">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" required class="form-control" id="txtPrimerApellido" placeholder="Primer Apellido" name="Primer Apellido">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="txtSegundoApellido" placeholder="Segundo Apellido" name="Segundo Apellido">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="email" required class="form-control" id="txtCorreoElectronico" placeholder="Correo Electrónico" name="Correo electronico">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="tel" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)" required class=" validanumericos form-control" id="txtTelefono" placeholder="Telefono" name="Telefono">
-                                            </div>
-                                            <div class="form-group">
-                                                <select class="form-control" id="ddlGenero">
-                                                    <option value="0">Masculino</option>
-                                                    <option value="1">Femenino</option>
-                                                </select>
-                                            </div>
-                                            <input type="submit" class="btn btn-success btn-block" onclick="InsertarUsuario()" value="Registrar">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="modal fade" id="OlvidarContrasena" tabindex="-1" role="dialog" aria-labelledby="fm-modal" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Olvido Contraseña</h5>
-                                            <button class="close" data-dismiss="modal" aria-label="Cerrar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <br />
-                                        <div>
-                                            <p>
-                                                Escribe tu correo con el cual registraste tu cuenta para enviarte una contraseña temporal.
-                                            </p>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <div class="form-group">
-                                                <input type="text" required class="form-control" id="txtCorreo_Olvidado" placeholder="Correo Electronico" name="Correo">
-                                            </div>
-
-                                            <input type="submit" class="btn btn-success btn-block" onclick="OlvidarContrasena();" value="Enviar">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-
-
-                    </div>
-                </div>
-
-
             </div>
         </div>
     </header>
 
 
 
-    <footer>
-        <div class="direccion">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h4 class="titulo">Contacto</h4>
-                        <p class="calle">Si deseas obtener algunos de nuestro planes<br />contactanos en el siguiente numero o correo electronico.</p>
-                        <p class="telefono">WhatsApp (+506) 8598-4564</p>
-                        <p class="correo">contacto [arroba] correo.com</p>
-                    </div>
-                    <div class="col-md-4 logo">
-                        <img src="~/Imagenes/Login/logo.png" alt="" class="logo">
-                    </div>
-                </div>
-            </div>
+    <section>
+        <div class="imgBx">
+            <img src="~/Imagenes/Login/Fondo.jpg" alt="">
         </div>
+        <div class="contentBx">
+            <div class="formBx">
+                <h2>INICIAR SESIÓN</h2>
+                <form>
+                    <div class="inputBx">
+                        <span>Nombre de la empresa</span>
+                        <input required id="txtIdEmpresaLogin" placeholder="Nombre de la empresa" type="text" name="Empresa">
+                        <input type="hidden" id="hfIdEmpresaSel" />
+                    </div>
+                    <div class="inputBx">
+                        <span>Correo electronico</span>
+                        <input type="email" required placeholder="Correo Electronico" id="txtCorreoElectronicoLogin" name="CorreoElectronico">
+                    </div>
+                    <span class="cn">Contraseña</span>
+                    <div class="inputBx input-group-prepend">
+                        <input id="txtPassword" placeholder="Contraseña" type="password" name="password">
+                        <span id="Ojo" style="padding:11px; margin-left:3px; cursor:pointer;" class="fa fa-eye input-group-text"></span>
+                    </div>
 
-        <div class="social">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <a class="facebook" href="#"><i class="fa fa-envelope"></i></a>
-                        <a class="twitter" href="#"><i class="fa fa-youtube"></i></a>
-                        <a class="youtube" href="#"><i class="fa fa-facebook"></i></a>
+                    <div class="inputBx">
+
+                        <input type="button" onclick="Loguear();" class="iniciarSesion" value="Iniciar sesion">
+                        <p><a class="enlace" href="#" data-toggle="modal" data-target="#OlvidarContrasena">¿Olvidaste la contraseña?</a></p>
+
+                    </div>
+                </form>
+                <div class="inputBx">
+                    <button class="registrarse btn btn-success btn-block data" data-toggle="modal" data-target="#fm-modal">Registrarse</button>
+                    <div class="modal fade" id="fm-modal" tabindex="-1" role="dialog" aria-labelledby="fm-modal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Registro</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Cerrar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <input type="text" required class="form-control" id="txtIdentificacion" placeholder="Identificación" name="Identificación">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" required class="form-control" id="txtNombre" placeholder="Nombre" name="Nombre">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" required class="form-control" id="txtPrimerApellido" placeholder="Primer Apellido" name="Primer Apellido">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="txtSegundoApellido" placeholder="Segundo Apellido" name="Segundo Apellido">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" required class="form-control" id="txtCorreoElectronico" placeholder="Correo Electrónico" name="Correo electronico">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="tel" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)" required class="form-control" id="txtTelefono" placeholder="Telefono" name="Telefono">
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" id="ddlGenero">
+                                            <option value="0">Masculino</option>
+                                            <option value="1">Femenino</option>
+                                        </select>
+                                    </div>
+                                    <input type="submit" class="registrar btn btn-success btn-block" onclick="InsertarUsuario()" value="Registrar">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
+                <div class="modal fade" id="OlvidarContrasena" tabindex="-1" role="dialog" aria-labelledby="fm-modal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Olvido Contraseña</h5>
+                                <button class="close" data-dismiss="modal" aria-label="Cerrar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <br />
+                            <div>
+                                <p style="text-align: center; padding: 0; margin: 1px;">
+                                    Escribe tu correo con el cual registraste tu cuenta para enviarte una contraseña temporal.
+                                </p>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <input type="text" required class="form-control" id="txtCorreo_Olvidado" placeholder="Correo Electronico" name="Correo">
+                                </div>
+
+                                <input type="submit" class="btn btn-success btn-block" onclick="OlvidarContrasena();" value="Enviar">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Nuestras Redes Sociales</h3>
+                <ul class="sci">
+                    <a href=""><li class="facebook"><img src="~/Imagenes/Login/Facebook.png" alt=""></li></a>
+                    <a href=""><li class="instagram"><img src="~/Imagenes/Login/instagram.png" alt=""></li></a>
+                    <a href=""><li class="youtube"><img src="~/Imagenes/Login/Youtube.png" alt=""></li></a>
+                </ul>
             </div>
+            
         </div>
-    </footer>
+    </section>
 
     <div class="modal fade" id="MsjCorreo" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
