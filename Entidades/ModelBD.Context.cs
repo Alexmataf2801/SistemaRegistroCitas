@@ -1132,5 +1132,22 @@ namespace Entidades
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerUsuario_Result>("paObtenerUsuario", correoElectronicoParameter);
         }
+    
+        public virtual int paValidarBeneficiosXPlan(Nullable<int> idEmpresa, Nullable<int> idPlan, Nullable<int> idRol, ObjectParameter respuesta)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var idPlanParameter = idPlan.HasValue ?
+                new ObjectParameter("IdPlan", idPlan) :
+                new ObjectParameter("IdPlan", typeof(int));
+    
+            var idRolParameter = idRol.HasValue ?
+                new ObjectParameter("IdRol", idRol) :
+                new ObjectParameter("IdRol", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paValidarBeneficiosXPlan", idEmpresaParameter, idPlanParameter, idRolParameter, respuesta);
+        }
     }
 }

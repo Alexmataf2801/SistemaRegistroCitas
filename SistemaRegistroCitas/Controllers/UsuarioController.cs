@@ -334,6 +334,7 @@ namespace SistemaRegistroCitas.Controllers
 
                 Usuario usu = (Usuario)Session["Usuario"];
                 usuario.IdEmpresa = usu.IdEmpresa;
+                usuario.IdPlan = usu.IdPlan;
                 LN.InsertarDatosColaborador(usuario, ref Resp);
 
 

@@ -282,66 +282,72 @@ namespace AccesoDatos
             ObjectParameter RespuestaUsuarioXEmpresa;
             try
             {
-                IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
-                Respuesta = new ObjectParameter("Respuesta", typeof(int));
-                RespuestaUsuarioXEmpresa = new ObjectParameter("RespuestaUsuarioXEmpresa", typeof(int));
-                var info = entities.PaInsertarDatosColaborador(usuario.Nombre,
-                                                      usuario.PrimerApellido,
-                                                      usuario.SegundoApellido,
-                                                      usuario.Identificacion,
-                                                      usuario.CorreoElectronico,
-                                                      usuario.Telefono,
-                                                      usuario.Genero,
-                                                      usuario.IdRol,
-                                                      IdUsuario,
-                                                      Respuesta);
-
-              
-
-                if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
+                if (ValidarBeneficiosXPlan(usuario.IdEmpresa, usuario.IdPlan, usuario.IdRol) == 1 )
                 {
-                    switch (Respuesta.Value.ToString())
+                    IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
+                    Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    RespuestaUsuarioXEmpresa = new ObjectParameter("RespuestaUsuarioXEmpresa", typeof(int));
+                    var info = entities.PaInsertarDatosColaborador(usuario.Nombre,
+                                                          usuario.PrimerApellido,
+                                                          usuario.SegundoApellido,
+                                                          usuario.Identificacion,
+                                                          usuario.CorreoElectronico,
+                                                          usuario.Telefono,
+                                                          usuario.Genero,
+                                                          usuario.IdRol,
+                                                          IdUsuario,
+                                                          Respuesta);
+
+
+
+                    if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
                     {
-                        case "1":
+                        switch (Respuesta.Value.ToString())
+                        {
+                            case "1":
 
-                        var infoUsuarioXEmpresa = entities.PaInsertarUsuarioXEmpresa(
-                                                    Convert.ToInt32(IdUsuario.Value.ToString()),
-                                                     usuario.IdRol,
-                                                     usuario.IdEmpresa,
-                                                     RespuestaUsuarioXEmpresa);
+                                var infoUsuarioXEmpresa = entities.PaInsertarUsuarioXEmpresa(
+                                                            Convert.ToInt32(IdUsuario.Value.ToString()),
+                                                             usuario.IdRol,
+                                                             usuario.IdEmpresa,
+                                                             RespuestaUsuarioXEmpresa);
 
-                            Login login = new Login();
-                            login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
-                            login.CorreoElectronico = usuario.CorreoElectronico;
-                            login.Contrasena = utilidades.ObtenerClaveTemporal();
+                                Login login = new Login();
+                                login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
+                                login.CorreoElectronico = usuario.CorreoElectronico;
+                                login.Contrasena = utilidades.ObtenerClaveTemporal();
 
 
-                            if (InsertarLogin(login))
-                            {
+                                if (InsertarLogin(login))
+                                {
+                                    Resp = Convert.ToInt32(Respuesta.Value.ToString());
+                                    utilidades.EnviarCorreo(login.Contrasena, usuario.CorreoElectronico);
+                                }
+
+                                break;
+
+                            default:
+
                                 Resp = Convert.ToInt32(Respuesta.Value.ToString());
-                                utilidades.EnviarCorreo(login.Contrasena, usuario.CorreoElectronico);
-                            }
 
-                            break;
+                                break;
+                        }
 
-                        default:
-
-                            Resp = Convert.ToInt32(Respuesta.Value.ToString());
-
-                            break;
+                    }
+                    else
+                    {
+                        Resp = 0;
                     }
 
                 }
                 else
                 {
-                    Resp = 0;
+                    Resp = 3;
                 }
-
-
             }
             catch (Exception ex)
             {
-                Resp = 0;
+                Resp = 4;
             }
 
         }
@@ -1645,6 +1651,28 @@ namespace AccesoDatos
                 throw;
             }
             return valor;
+        }
+
+
+        public int ValidarBeneficiosXPlan(int IdEmpresa, int IdPlan, int IdRol)
+        {
+            int varlor = 0;
+            ObjectParameter Respuesta;
+
+            try
+            {
+                Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                entities.paValidarBeneficiosXPlan(IdEmpresa, IdPlan, IdRol, Respuesta);
+
+                varlor = Convert.ToInt32(Respuesta.Value.ToString());
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return varlor;
         }
 
         #endregion

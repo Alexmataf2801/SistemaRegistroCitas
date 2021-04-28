@@ -75,6 +75,14 @@ function InsertarDatosColaborador() {
                     $("#msjModalIncorrecto").html("<label>¡El Correo ingresado ya existe!</label>");
                     $('#MsjIncorrecto').modal('show');
                     break;
+                case 3:
+                    $("#msjModalIncorrecto").html("<label>¡Su plan no permite mas colaboradores con ese tipo de rol!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                    break;
+                case 4:
+                    $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                    break;
                 default:
                     $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
                     $('#MsjIncorrecto').modal('show');

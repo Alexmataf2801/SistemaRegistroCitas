@@ -332,6 +332,12 @@
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
         </Function>
         <Function Name="paObtenerUsuariosActivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="paValidarBeneficiosXPlan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="IdPlan" Type="int" Mode="In" />
+          <Parameter Name="IdRol" Type="int" Mode="In" />
+          <Parameter Name="Respuesta" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="PaValidarCorreo_OlvidoContrasena" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="Respuesta" Type="int" Mode="InOut" />
@@ -682,7 +688,13 @@
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+          <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="paValidarBeneficiosXPlan">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="IdPlan" Mode="In" Type="Int32" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServicioXId_Result">
@@ -1364,6 +1376,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paValidarBeneficiosXPlan" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarBeneficiosXPlan" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
