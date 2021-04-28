@@ -46,7 +46,7 @@ function InsertarDatosColaborador() {
         Genero: $("#ddlGenero").val(),
         IdRol: $("#IdRol").val()
     };
-    var ValidarCorreo = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    var ValidarCorreo = /^[A-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     if (!ValidarCorreo.test($("#txtCorreoElectronico").val())) {
         $("#msjModalIncorrecto").html("<label>¡El CorreoElectronico no es valido!</label>");
         $('#MsjIncorrecto').modal('show');
