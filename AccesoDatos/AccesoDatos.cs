@@ -518,10 +518,13 @@ namespace AccesoDatos
            
             try
             {
-                
-                entities.paActualizarColaboradores(usuario.Id, usuario.Identificacion, usuario.Nombre, usuario.PrimerApellido, usuario.SegundoApellido, usuario.CorreoElectronico, usuario.Telefono,
+                if (ValidarCorreoElectronico(usuario.Id, usuario.CorreoElectronico) == 0)
+                {
+                    entities.paActualizarColaboradores(usuario.Id, usuario.Identificacion, usuario.Nombre, usuario.PrimerApellido, usuario.SegundoApellido, usuario.CorreoElectronico, usuario.Telefono,
                     usuario.Genero, usuario.IdRol, usuario.UsuarioUltimaModificacion);
-                Correcto = true;
+                    Correcto = true;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -874,6 +877,7 @@ namespace AccesoDatos
                     usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;
                     usuario.IdRol = item.IdRol;
                     usuario.CTemp = item.Temporal;
+                    usuario.IdPlan = item.IdPlan;
 
                     if (item.IdRol != 4) {
 

@@ -650,9 +650,6 @@
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
-          <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="paInsertarUsuario">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="PrimerApellido" Mode="In" Type="String" />
@@ -675,14 +672,17 @@
           <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerTodosLosEventosHorasLibresXIdEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result)">
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerTodosLosEventosXIdEmpresa" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdEmpresa_Result)">
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paObtenerTodosLosEventosXIdUsuarioCreador" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerTodosLosEventosXIdUsuarioCreador_Result)">
             <Parameter Name="IdUsuarioCreador" Mode="In" Type="Int32" />
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerUsuario" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerUsuario_Result)">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServicioXId_Result">
@@ -902,20 +902,6 @@
           <Property Type="String" Name="UsuarioUltimaModificacion" Nullable="true" MaxLength="150" />
           <Property Type="DateTime" Name="FechaUltimaModificacion" Nullable="true" Precision="23" />
         </ComplexType>
-        <ComplexType Name="paObtenerUsuario_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="150" />
-          <Property Type="Int32" Name="Telefono" Nullable="false" />
-          <Property Type="Boolean" Name="Genero" Nullable="false" />
-          <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
-          <Property Type="Int32" Name="IdRol" Nullable="false" />
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Boolean" Name="Temporal" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="paObtenerTodosLosEventosXIdUsuario_Result1">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="IdUsuario" Nullable="false" />
@@ -957,6 +943,21 @@
           <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="NombreColaborador" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="NombreServicio" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="paObtenerUsuario_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Telefono" Nullable="false" />
+          <Property Type="Boolean" Name="Genero" Nullable="false" />
+          <Property Type="String" Name="FotoPerfil" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="IdRol" Nullable="false" />
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdPlan" Nullable="false" />
+          <Property Type="Boolean" Name="Temporal" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1284,24 +1285,6 @@
           <FunctionImportMapping FunctionImportName="paActualizarContrasena" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarContrasena" />
           <FunctionImportMapping FunctionImportName="paEditarContrasenaXCorreoElectronico" FunctionName="BDSistemaRegistroCitasModel.Store.paEditarContrasenaXCorreoElectronico" />
           <FunctionImportMapping FunctionImportName="PaValidarCorreo_OlvidoContrasena" FunctionName="BDSistemaRegistroCitasModel.Store.PaValidarCorreo_OlvidoContrasena" />
-          <FunctionImportMapping FunctionImportName="paObtenerUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerUsuario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerUsuario_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
-                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
-                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Genero" ColumnName="Genero" />
-                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-                <ScalarProperty Name="Temporal" ColumnName="Temporal" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
           <FunctionImportMapping FunctionImportName="paInsertarBitacora" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarBitacora" />
           <FunctionImportMapping FunctionImportName="paObtenerTodosLosEventosXIdUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerTodosLosEventosXIdUsuario">
@@ -1359,6 +1342,25 @@
                 <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
                 <ScalarProperty Name="NombreColaborador" ColumnName="NombreColaborador" />
                 <ScalarProperty Name="NombreServicio" ColumnName="NombreServicio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paObtenerUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerUsuario_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="FotoPerfil" ColumnName="FotoPerfil" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdPlan" ColumnName="IdPlan" />
+                <ScalarProperty Name="Temporal" ColumnName="Temporal" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
