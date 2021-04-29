@@ -29,6 +29,7 @@
           <Parameter Name="Genero" Type="bit" Mode="In" />
           <Parameter Name="IdRol" Type="int" Mode="In" />
           <Parameter Name="UsuarioUltimaModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Respuesta" Type="int" Mode="InOut" />
         </Function>
         <Function Name="paActualizarContrasena" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
@@ -505,18 +506,6 @@
             <Parameter Name="IdServicio" Mode="In" Type="Int32" />
             <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paActualizarColaboradores">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
-            <Parameter Name="Identificacion" Mode="In" Type="String" />
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
-            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="Int32" />
-            <Parameter Name="Genero" Mode="In" Type="Boolean" />
-            <Parameter Name="IdRol" Mode="In" Type="Int32" />
-            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="PaValidarCorreoElectronico">
             <Parameter Name="Id" Mode="In" Type="Int32" />
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
@@ -694,6 +683,19 @@
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="IdPlan" Mode="In" Type="Int32" />
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarColaboradores">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="Int32" />
+            <Parameter Name="Genero" Mode="In" Type="Boolean" />
+            <Parameter Name="IdRol" Mode="In" Type="Int32" />
+            <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -1215,7 +1217,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PaInsertarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarServicios" />
           <FunctionImportMapping FunctionImportName="PaAsignarServiciosXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaAsignarServiciosXColaborador" />
-          <FunctionImportMapping FunctionImportName="paActualizarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarColaboradores" />
           <FunctionImportMapping FunctionImportName="PaValidarCorreoElectronico" FunctionName="BDSistemaRegistroCitasModel.Store.PaValidarCorreoElectronico" />
           <FunctionImportMapping FunctionImportName="paObtenerHorarioEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerHorarioEmpresa">
             <ResultMapping>
@@ -1377,6 +1378,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paValidarBeneficiosXPlan" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarBeneficiosXPlan" />
+          <FunctionImportMapping FunctionImportName="paActualizarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarColaboradores" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

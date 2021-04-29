@@ -518,26 +518,32 @@ namespace AccesoDatos
             return SeActualizo;
         }
 
-        public bool ActualizarColaboradores(Usuario usuario)
+        public int ActualizarColaboradores(Usuario usuarios)
         {
-            bool Correcto = false;
-           
+            int valor = 0;
+            ObjectParameter Respuesta;
+
             try
             {
-                if (ValidarCorreoElectronico(usuario.Id, usuario.CorreoElectronico) == 0)
+                if (ValidarBeneficiosXPlan(usuarios.IdEmpresa, usuarios.IdPlan, usuarios.IdRol) == 1)
                 {
-                    entities.paActualizarColaboradores(usuario.Id, usuario.Identificacion, usuario.Nombre, usuario.PrimerApellido, usuario.SegundoApellido, usuario.CorreoElectronico, usuario.Telefono,
-                    usuario.Genero, usuario.IdRol, usuario.UsuarioUltimaModificacion);
-                    Correcto = true;
+                    Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    entities.paActualizarColaboradores(usuarios.Id, usuarios.Identificacion, usuarios.Nombre, usuarios.PrimerApellido, usuarios.SegundoApellido, usuarios.CorreoElectronico, usuarios.Telefono,
+                    usuarios.Genero, usuarios.IdRol, usuarios.UsuarioUltimaModificacion, Respuesta);
+                    valor = Convert.ToInt32(Respuesta.Value.ToString());
                 }
-                
+                else
+                {
+                    valor = 2;
+                }
+
             }
             catch (Exception ex)
             {
-                Correcto = false;
+                throw;
             }
 
-            return Correcto;
+            return valor;
         }
         public bool DesactivarActivarColaboradores(int Id, bool Estado)
         {
@@ -659,10 +665,14 @@ namespace AccesoDatos
 
             try
             {
+                if (ValidarCorreoElectronico(perfil.Id,perfil.CorreoElectronico) == 0)
+                {
+                    entities.paActualizarPerfil(perfil.Id, perfil.Identificacion, perfil.Nombre, perfil.PrimerApellido, perfil.SegundoApellido, perfil.CorreoElectronico, perfil.Telefono,
+                   perfil.Genero, perfil.IdRol, perfil.UsuarioUltimaModificacion);
+                    Correcto = true;
+                }
 
-                entities.paActualizarPerfil(perfil.Id, perfil.Identificacion, perfil.Nombre, perfil.PrimerApellido, perfil.SegundoApellido, perfil.CorreoElectronico, perfil.Telefono,
-                    perfil.Genero, perfil.IdRol, perfil.UsuarioUltimaModificacion);
-                Correcto = true;
+               
             }
             catch (Exception ex)
             {

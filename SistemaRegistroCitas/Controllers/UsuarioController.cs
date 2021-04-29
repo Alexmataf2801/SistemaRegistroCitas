@@ -590,15 +590,19 @@ namespace SistemaRegistroCitas.Controllers
 
         }
 
-        public JsonResult ActualizarColaboradores(Usuario usuario)
+        public JsonResult ActualizarColaboradores(Usuario usuarios)
         {
+            
+            int SeActualizo = 0;
             try
             {
-                bool SeActualizo = false;
-                usuario.UsuarioUltimaModificacion = usuario.NombreCompleto;
-                SeActualizo = LN.ActualizarColaboradores(usuario);
+                usuario = (Usuario)Session["Usuario"];
 
-                return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+                usuarios.UsuarioUltimaModificacion = usuario.NombreCompleto;
+                usuarios.IdPlan = usuario.IdPlan;
+                usuarios.IdEmpresa = usuario.IdEmpresa;
+                SeActualizo = LN.ActualizarColaboradores(usuarios);
+              
             }
             catch (Exception ex)
             {
@@ -609,14 +613,12 @@ namespace SistemaRegistroCitas.Controllers
                 bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
                 bitacora.Error = ex.Message.ToString();
                 bitacora.UsuarioCreacion = usuario.NombreCompleto;
-
-
                 LN.InsertarBitacora(bitacora);
 
-                return Json(false, JsonRequestBehavior.AllowGet);
+              
             }
 
-
+            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -1161,7 +1163,7 @@ namespace SistemaRegistroCitas.Controllers
                 perfil.UsuarioUltimaModificacion = usuario.NombreCompleto;
                 perfil.Id = usuario.Id;
                 perfil.IdRol = usuario.IdRol;
-                SeActualizo = LN.ActualizarColaboradores(perfil);
+                SeActualizo = LN.ActualizarPerfil(perfil);
 
                 
             }

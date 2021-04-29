@@ -97,9 +97,9 @@ namespace LogicaNegocio
             return AD.DesactivarActivarServicios(Id, Estado);
         }
 
-        public bool ActualizarColaboradores (Usuario usuario)
+        public int ActualizarColaboradores (Usuario usuarios)
         {
-            return AD.ActualizarColaboradores(usuario);
+            return AD.ActualizarColaboradores(usuarios);
         }
 
         public bool DesactivarActivarColaboradores(int Id, bool Estado)
