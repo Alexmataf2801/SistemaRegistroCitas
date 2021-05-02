@@ -1,15 +1,9 @@
-﻿function OlvidarContrasena() {
-  
-    var CorreoElectronico = $("#txtCorreo_Olvidado").val();
+﻿function OlvidarContrasena()
+{  
+         var CorreoElectronico = $("#txtCorreo_Olvidado").val();  
 
-    //var ValidarCorreo = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-    //if (!ValidarCorreo.test($("#txtCorreo_Olvidado").val())) {
-    //    $("#msjModalIncorrecto").html("<label>¡El CorreoElectronico no es valido!</label>");
-    //    $('#MsjIncorrecto').modal('show');
-    //}
-    //else {
+    $.ajax({
 
-        $.ajax({
             type: "POST",
             dataType: "JSON",
             url: "/Usuario/OlvidoContrasena/",
@@ -36,7 +30,6 @@
                 alert("Se Cayo");
             }
 
-        });
-    //}
+   });
 
 }

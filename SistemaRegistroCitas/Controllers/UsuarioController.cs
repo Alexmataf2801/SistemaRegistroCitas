@@ -1092,36 +1092,6 @@ namespace SistemaRegistroCitas.Controllers
         }
 
 
-        //public JsonResult ObtenerPerfilColaboradorXId()
-        //{
-        //    try
-        //    {
-        //        Usuario perfil = new Usuario();
-
-        //        usuario = (Usuario)Session["Usuario"];
-
-        //        perfil = LN.ObtenerPerfilColaboradorXId(usuario.Id);
-
-        //        return Json(perfil, JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        usuario = (Usuario)Session["Usuario"];
-        //        var bitacora = new Bitacora();
-        //        bitacora.Clase = this.GetType().Name;
-        //        bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
-        //        bitacora.Error = ex.Message.ToString();
-        //        bitacora.UsuarioCreacion = usuario.NombreCompleto;
-
-
-        //        LN.InsertarBitacora(bitacora);
-
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-
-        //}
-
         public JsonResult ValidarCorreoElectronicoPerfil(string CorreoElectronico)
         {
             int Respuesta = 1;

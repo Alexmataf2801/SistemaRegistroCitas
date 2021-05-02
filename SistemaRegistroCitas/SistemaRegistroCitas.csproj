@@ -184,7 +184,6 @@
     <Content Include="Imagenes\GuiaImagenes\seguridad.svg" />
     <Content Include="Imagenes\GuiaImagenes\servicios.svg" />
     <Content Include="Imagenes\GuiaImagenes\suma.svg" />
-    <Content Include="Imagenes\GuiaImagenes\thumb.png" />
     <Content Include="Imagenes\GuiaImagenes\usuarios.svg" />
     <Content Include="Imagenes\Iconos\Icono.png" />
     <Content Include="Imagenes\Login\Facebook.png" />

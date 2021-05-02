@@ -21,7 +21,6 @@
     return Hora + ":" + Minuto
 }
 
-
 function FormatoHoras(ObjetoHoras) {
     var Tamanos = ObjetoHoras
     if (Tamanos < 10) {
@@ -41,8 +40,6 @@ function FormatoMinutos(ObjetoMinutos) {
     }
 
 }
-
-
 
 $(function () {
         
@@ -379,8 +376,6 @@ $(function () {
 
 
         locale: 'es',
-        // antes estaba editable, que podia mover el evento y sus horas, como esta ahora solo los puede mover 
-        //eventStartEditable: true,
         dateClick: function (info) {
             var TipoModal = ""
             var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm:ss');
@@ -591,7 +586,7 @@ $(function () {
 
             },
             error: function (Error) {
-                //alert(Error);
+               
                 console.log(Error);
             }
 
@@ -673,7 +668,7 @@ $(function () {
 
             },
             error: function (Error) {
-                //alert(Error);
+            
                 console.log(Error);
             }
 

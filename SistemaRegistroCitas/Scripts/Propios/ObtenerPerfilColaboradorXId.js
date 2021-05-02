@@ -100,8 +100,3 @@ $(document).on('blur', '#txtCorreoElectronicoPerfil', function () {
     ValidarCorreoElectronicoPerfil();
 
 });
-
-
-//$(document).ready(function () {
-//    ObtenerPerfilColaboradorXId();
-//});
