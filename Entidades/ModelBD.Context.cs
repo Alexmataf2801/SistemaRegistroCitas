@@ -37,39 +37,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerServicioXId_Result>("paObtenerServicioXId", idParameter);
         }
     
-        public virtual int paInsertarEmpresa(string nombre, Nullable<int> telefono, string logo, string correoElectronico, Nullable<bool> estado, string direccion, string usuarioCreacion)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var telefonoParameter = telefono.HasValue ?
-                new ObjectParameter("Telefono", telefono) :
-                new ObjectParameter("Telefono", typeof(int));
-    
-            var logoParameter = logo != null ?
-                new ObjectParameter("Logo", logo) :
-                new ObjectParameter("Logo", typeof(string));
-    
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("Estado", estado) :
-                new ObjectParameter("Estado", typeof(bool));
-    
-            var direccionParameter = direccion != null ?
-                new ObjectParameter("Direccion", direccion) :
-                new ObjectParameter("Direccion", typeof(string));
-    
-            var usuarioCreacionParameter = usuarioCreacion != null ?
-                new ObjectParameter("UsuarioCreacion", usuarioCreacion) :
-                new ObjectParameter("UsuarioCreacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarEmpresa", nombreParameter, telefonoParameter, logoParameter, correoElectronicoParameter, estadoParameter, direccionParameter, usuarioCreacionParameter);
-        }
-    
         public virtual int PaInsertarRoles(string nombre, string descripcion, Nullable<bool> estado, string usuarioCreacion)
         {
             var nombreParameter = nombre != null ?
@@ -757,40 +724,6 @@ namespace Entidades
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaInsertarEventos", idEmpresaParameter, idUsuarioParameter, idUsuarioCreadorParameter, idRolParameter, idServicioParameter, nombreParameter, tipoUnidadEventoParameter, horarioInicialParameter, horaFinalParameter, usuarioCreacionParameter, respuestaCorrecta);
         }
     
-        public virtual ObjectResult<paObtenerEmpresasXId_Result> paObtenerEmpresasXId(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerEmpresasXId_Result>("paObtenerEmpresasXId", idParameter);
-        }
-    
-        public virtual int paActualizarDatosXIdEmpresa(string nombre, string correoElectronico, string descripcion, string direccion, Nullable<int> idEmpresa)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var direccionParameter = direccion != null ?
-                new ObjectParameter("Direccion", direccion) :
-                new ObjectParameter("Direccion", typeof(string));
-    
-            var idEmpresaParameter = idEmpresa.HasValue ?
-                new ObjectParameter("IdEmpresa", idEmpresa) :
-                new ObjectParameter("IdEmpresa", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarDatosXIdEmpresa", nombreParameter, correoElectronicoParameter, descripcionParameter, direccionParameter, idEmpresaParameter);
-        }
-    
         public virtual ObjectResult<paObtenerPerfilColaboradorXId_Result> paObtenerPerfilColaboradorXId(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -1148,6 +1081,40 @@ namespace Entidades
                 new ObjectParameter("UsuarioUltimaModificacion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarColaboradores", idParameter, identificacionParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, correoElectronicoParameter, telefonoParameter, generoParameter, idRolParameter, usuarioUltimaModificacionParameter, respuesta);
+        }
+    
+        public virtual ObjectResult<paObtenerEmpresasXId_Result> paObtenerEmpresasXId(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<paObtenerEmpresasXId_Result>("paObtenerEmpresasXId", idParameter);
+        }
+    
+        public virtual int paActualizarDatosXIdEmpresa(string nombre, string contacto, string descripcion, string direccion, Nullable<int> idEmpresa)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var contactoParameter = contacto != null ?
+                new ObjectParameter("Contacto", contacto) :
+                new ObjectParameter("Contacto", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paActualizarDatosXIdEmpresa", nombreParameter, contactoParameter, descripcionParameter, direccionParameter, idEmpresaParameter);
         }
     }
 }

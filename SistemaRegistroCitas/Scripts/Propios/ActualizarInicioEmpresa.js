@@ -2,7 +2,7 @@
   
     var empresa = {
         Nombre: $("#txtNombreEmpresa").val(),
-        CorreoElectronico: $("#txtContactoEmpresa").val(),
+        Contacto: $("#txtContactoEmpresa").val(),
         Descripcion: $("#txtDescripcionEmpresa").val(),
         Direccion: $("#txtDireccionEmpresa").val(),     
 
@@ -48,7 +48,7 @@ function ObtenerEmpresasXId() {
             console.log(InfoEmpresas);
 
             $("#txtNombreEmpresa").val(InfoEmpresas.Nombre);
-            $("#txtContactoEmpresa").val(InfoEmpresas.CorreoElectronico);
+            $("#txtContactoEmpresa").val(InfoEmpresas.Contacto);
             $("#txtDescripcionEmpresa").val(InfoEmpresas.Descripcion);
             $("#txtDireccionEmpresa").val(InfoEmpresas.Direccion);
 

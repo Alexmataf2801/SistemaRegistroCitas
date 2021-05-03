@@ -37,7 +37,7 @@
         </Function>
         <Function Name="paActualizarDatosXIdEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
-          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="Contacto" Type="varchar" Mode="In" />
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="Direccion" Type="varchar" Mode="In" />
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
@@ -173,15 +173,6 @@
           <Parameter Name="TiempoEstimado" Type="int" Mode="In" />
           <Parameter Name="TipoUnidad" Type="int" Mode="In" />
           <Parameter Name="Estado" Type="bit" Mode="In" />
-          <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="paInsertarEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Nombre" Type="varchar" Mode="In" />
-          <Parameter Name="Telefono" Type="int" Mode="In" />
-          <Parameter Name="Logo" Type="varchar" Mode="In" />
-          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
-          <Parameter Name="Estado" Type="bit" Mode="In" />
-          <Parameter Name="Direccion" Type="varchar" Mode="In" />
           <Parameter Name="UsuarioCreacion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="PaInsertarEventos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -364,15 +355,6 @@
         <EntityContainer Name="BDSistemaRegistroCitasEntities" annotation:LazyLoadingEnabled="true" >
           <FunctionImport Name="paObtenerServicioXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerServicioXId_Result)">
           <Parameter Name="Id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paInsertarEmpresa">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="Telefono" Mode="In" Type="Int32" />
-            <Parameter Name="Logo" Mode="In" Type="String" />
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Estado" Mode="In" Type="Boolean" />
-            <Parameter Name="Direccion" Mode="In" Type="String" />
-            <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PaInsertarRoles">
             <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -580,16 +562,6 @@
             <Parameter Name="UsuarioCreacion" Mode="In" Type="String" />
             <Parameter Name="RespuestaCorrecta" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paObtenerEmpresasXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result)">
-          <Parameter Name="Id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="paActualizarDatosXIdEmpresa">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
-            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="Direccion" Mode="In" Type="String" />
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paObtenerPerfilColaboradorXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerPerfilColaboradorXId_Result)">
           <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -697,6 +669,16 @@
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
             <Parameter Name="UsuarioUltimaModificacion" Mode="In" Type="String" />
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paObtenerEmpresasXId" ReturnType="Collection(BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paActualizarDatosXIdEmpresa">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Contacto" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="paObtenerServicioXId_Result">
@@ -893,13 +875,6 @@
           <Property Type="DateTime" Name="HoraFinal" Nullable="false" Precision="23" />
           <Property Type="String" Name="UsuarioCreacion" Nullable="false" MaxLength="150" />
         </ComplexType>
-        <ComplexType Name="paObtenerEmpresasXId_Result">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
-          <Property Type="String" Name="CorreoElectronico" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
-        </ComplexType>
         <ComplexType Name="paObtenerPerfilColaboradorXId_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
@@ -973,6 +948,13 @@
           <Property Type="Int32" Name="IdPlan" Nullable="false" />
           <Property Type="Boolean" Name="Temporal" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="paObtenerEmpresasXId_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Contacto" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -992,7 +974,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paInsertarEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarEmpresa" />
           <FunctionImportMapping FunctionImportName="PaInsertarRoles" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarRoles" />
           <FunctionImportMapping FunctionImportName="PaInsertarUnidadMedida" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarUnidadMedida" />
           <FunctionImportMapping FunctionImportName="paInsertarLogin" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarLogin" />
@@ -1261,18 +1242,6 @@
           <FunctionImportMapping FunctionImportName="paEliminarEventos" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarEventos" />
           <FunctionImportMapping FunctionImportName="paActualizarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarServicios" />
           <FunctionImportMapping FunctionImportName="PaInsertarEventos" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarEventos" />
-          <FunctionImportMapping FunctionImportName="paObtenerEmpresasXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerEmpresasXId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="paActualizarDatosXIdEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarDatosXIdEmpresa" />
           <FunctionImportMapping FunctionImportName="paObtenerPerfilColaboradorXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerPerfilColaboradorXId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerPerfilColaboradorXId_Result">
@@ -1379,6 +1348,18 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="paValidarBeneficiosXPlan" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarBeneficiosXPlan" />
           <FunctionImportMapping FunctionImportName="paActualizarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarColaboradores" />
+          <FunctionImportMapping FunctionImportName="paObtenerEmpresasXId" FunctionName="BDSistemaRegistroCitasModel.Store.paObtenerEmpresasXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDSistemaRegistroCitasModel.paObtenerEmpresasXId_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="paActualizarDatosXIdEmpresa" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarDatosXIdEmpresa" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -626,7 +626,7 @@ namespace AccesoDatos
             bool Correcto = false;
             try
             {
-                entities.paActualizarDatosXIdEmpresa(empresa.Nombre, empresa.CorreoElectronico,empresa.Descripcion,empresa.Direccion,IdEmpresa);
+                entities.paActualizarDatosXIdEmpresa(empresa.Nombre, empresa.Contacto,empresa.Descripcion,empresa.Direccion,IdEmpresa);
                 Correcto = true;
 
             }
@@ -1319,7 +1319,7 @@ namespace AccesoDatos
                 {
                     empresa.Id = item.Id;
                     empresa.Nombre = item.Nombre;            
-                    empresa.CorreoElectronico = item.CorreoElectronico;
+                    empresa.Contacto = item.Contacto;
                     empresa.Direccion = item.Direccion;
                     empresa.Descripcion = item.Descripcion;               
                 }
