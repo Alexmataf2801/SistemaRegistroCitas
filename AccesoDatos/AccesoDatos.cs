@@ -520,16 +520,25 @@ namespace AccesoDatos
         public int ActualizarColaboradores(Usuario usuarios)
         {
             int valor = 0;
-            ObjectParameter Respuesta;
+            
 
             try
             {
                 if (ValidarBeneficiosXPlan(usuarios.IdEmpresa, usuarios.IdPlan, usuarios.IdRol) == 1)
                 {
-                    Respuesta = new ObjectParameter("Respuesta", typeof(int));
-                    entities.paActualizarColaboradores(usuarios.Id, usuarios.Identificacion, usuarios.Nombre, usuarios.PrimerApellido, usuarios.SegundoApellido, usuarios.CorreoElectronico, usuarios.Telefono,
-                    usuarios.Genero, usuarios.IdRol, usuarios.UsuarioUltimaModificacion, Respuesta);
-                    valor = Convert.ToInt32(Respuesta.Value.ToString());
+                    if (ValidarCorreoElectronico(usuarios.Id, usuarios.CorreoElectronico) == 0)
+                    {
+                       
+                        entities.paActualizarColaboradores(usuarios.Id, usuarios.Identificacion, usuarios.Nombre, usuarios.PrimerApellido, usuarios.SegundoApellido, usuarios.CorreoElectronico, usuarios.Telefono,
+                        usuarios.Genero, usuarios.IdRol, usuarios.UsuarioUltimaModificacion);
+                        valor = 1;
+                        
+                    }
+                    else
+                    {
+                        valor = 3;
+                    }             
+
                 }
                 else
                 {

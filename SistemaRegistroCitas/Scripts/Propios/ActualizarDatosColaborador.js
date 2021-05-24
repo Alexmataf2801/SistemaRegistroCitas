@@ -34,7 +34,7 @@
             switch (Info) {
 
                 case 0:
-                    $("#msjModalIncorrecto").html("<label>¡No se puede actualizar el Correo ingresado ya existe!</label>");
+                    $("#msjModalIncorrecto").html("<label>¡Algo fallo al actualizar el Colaborador!</label>");
                     $('#MsjIncorrecto').modal('show');
                     break;
                 case 1:
@@ -45,6 +45,11 @@
                 case 2:
                     $("#msjModalIncorrecto").html("<label>¡Su plan no permite mas colaboradores con ese tipo de rol!</label>");
                     $('#MsjIncorrecto').modal('show');                 
+                    break;
+
+                case 3:
+                    $("#msjModalIncorrecto").html("<label>¡No se puede actualizar el Correo ingresado ya existe!</label>");
+                    $('#MsjIncorrecto').modal('show');
                     break;
                 default:
                     $("#msjModalIncorrecto").html("<label>¡Algo fallo al actualizar el Colaborador!</label>");
