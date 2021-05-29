@@ -156,6 +156,7 @@
     <Content Include="Estilos\EstilosLogin\css\bootstrap.min.css" />
     <Content Include="Estilos\EstilosLogin\css\EstilosLogin.css" />
     <Content Include="Estilos\EstilosLogin\fonts\font-awesome.min.css" />
+    <Content Include="Estilos\EstilosPlanes\EstilosPrecios.css" />
     <Content Include="Estilos\font-awesome.min.css" />
     <Content Include="Estilos\fullcalendar-Agenda\Fullcalendar-Agenda.min.css" />
     <Content Include="Estilos\fullcalendar-bootstrap\main.min.css" />
@@ -276,6 +277,7 @@
     <Content Include="Js\Login\jquery-3.4.1.min.js" />
     <Content Include="Js\Login\popper.min.js" />
     <Content Include="Js\moment\moment.min.js" />
+    <Content Include="Js\Planes\EfectoPrecios.js" />
     <Content Include="Js\PruebaArbol.js" />
     <Content Include="Js\tpicker.js" />
     <Content Include="Js\tpicker2.js" />
@@ -383,6 +385,7 @@
     <Content Include="Views\Empresa\ActualizarInicioEmpresa.cshtml" />
     <Content Include="Views\Usuario\ActualizarContrasenaXCorreoElectronico.cshtml" />
     <Content Include="Views\Usuario\ActualizarPerfil.cshtml" />
+    <Content Include="Views\Home\Planes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

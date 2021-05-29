@@ -27,6 +27,11 @@ namespace SistemaRegistroCitas.Controllers
             return View();
         }
 
+        public ActionResult Planes()
+        {
+            return View();
+        }
+
        
 
     }
