@@ -32,8 +32,7 @@ namespace SistemaRegistroCitas.Controllers
 
             try
             {
-
-                usuario = (Usuario)Session["Usuario"];
+                       
 
 
                 LN.InsertarUsuario(usuario, ref Resp);

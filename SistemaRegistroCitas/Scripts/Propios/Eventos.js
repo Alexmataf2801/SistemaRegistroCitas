@@ -247,7 +247,7 @@ $(function () {
 
         } else if ($("#SeleccionTiempoLibre").val() == "3") {  // Dias
 
-            var FechaSeleccionadaCombo = moment(TiempoInicialLibre).format('MM-DD-YYYY')            
+            var FechaSeleccionadaCombo = moment(TiempoInicialLibre).format('YYYY-MM-DD')            
            
             switch (Dia) {
                 case 0:
@@ -399,7 +399,7 @@ $(function () {
 
                 $('#TiempoFinal').val("");
                 $('#TiempoCita').val(FechaSeleccionada);
-                $('#txtHorario').val(moment(info.dateStr).format('MM-DD-YYYY hh:mm A'));
+                $('#txtHorario').val(FechaSeleccionada);
                 $('#txtHorarioOculta').val(info.dateStr);
 
             }
