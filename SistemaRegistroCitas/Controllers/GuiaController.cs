@@ -182,5 +182,49 @@ namespace SistemaRegistroCitas.Controllers
             }
         }
 
+
+
+        public ActionResult GuiaRegristroDatos()
+        {
+            usuario = (Usuario)Session["Usuario"];
+
+            if (!usuario.CTemp)
+            {
+                if (usuario.IdRol == 1)
+                {
+                    Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
+                }
+                else
+                {
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
+                }
+            }
+            else
+            {
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
+            }
+        }
+
+
     }
 }

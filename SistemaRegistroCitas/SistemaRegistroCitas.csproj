@@ -164,6 +164,7 @@
     <Content Include="Estilos\fullcalendar-timegrid\main.min.css" />
     <Content Include="Estilos\fullcalendar\main.min.css" />
     <Content Include="Estilos\Guia\estilosAdministracion.css" />
+    <Content Include="Estilos\Guia\estilosTemario.css" />
     <Content Include="Estilos\Guia\estilosUsuarios.css" />
     <Content Include="Estilos\jquery-ui.css" />
     <Content Include="Estilos\TablasMantenimientos.css" />
@@ -269,6 +270,7 @@
     <Content Include="Js\fullcalendar\locales\zh-tw.js" />
     <Content Include="Js\fullcalendar\main.min.js" />
     <Content Include="Js\Guia\categorias.js" />
+    <Content Include="Js\Guia\mainTemario.js" />
     <Content Include="Js\Guia\preguntasFrecuentes.js" />
     <Content Include="Js\jquery-1.12.4.js" />
     <Content Include="Js\jquery-ui.js" />
@@ -386,6 +388,7 @@
     <Content Include="Views\Usuario\ActualizarContrasenaXCorreoElectronico.cshtml" />
     <Content Include="Views\Usuario\ActualizarPerfil.cshtml" />
     <Content Include="Views\Home\Planes.cshtml" />
+    <Content Include="Views\Guia\GuiaRegristroDatos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
