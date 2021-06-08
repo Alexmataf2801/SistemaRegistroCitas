@@ -32,8 +32,8 @@ namespace SistemaRegistroCitas.Controllers
 
             try
             {
-                       
 
+                usuario.TerminosYCondiciones = true;
 
                 LN.InsertarUsuario(usuario, ref Resp);
 

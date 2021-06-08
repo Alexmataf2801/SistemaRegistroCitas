@@ -19,6 +19,7 @@ namespace Entidades.ClasesEntidades
         public string CorreoElectronico { get; set; }
         public int Telefono { get; set; }
         public bool Genero { get; set; }
+        public bool TerminosYCondiciones { get; set; }
         public int IdRol { get; set; }
         public int IdEmpresa { get; set; }
         public int IdPlan { get; set; }

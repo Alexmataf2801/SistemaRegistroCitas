@@ -32,6 +32,7 @@ namespace AccesoDatos
                                                       usuario.CorreoElectronico,
                                                       usuario.Telefono,
                                                       usuario.Genero,
+                                                      usuario.TerminosYCondiciones,
                                                       usuario.IdRol,
                                                       IdUsuario,
                                                       Respuesta);

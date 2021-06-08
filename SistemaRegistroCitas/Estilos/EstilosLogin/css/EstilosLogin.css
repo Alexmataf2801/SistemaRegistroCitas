@@ -138,11 +138,14 @@ section .contentBx .formBx .inputBx input
     background: transparent;
     border-radius: 5px;
 }
-section .contentBx .formBx .inputBx .enlace 
-{
-  display: flex;
-  justify-content: center;
-}
+    section .contentBx .formBx .inputBx .CheckTerminosYCondiciones {
+        width: 20px;
+    }
+
+    section .contentBx .formBx .inputBx .enlace {
+        display: flex;
+        justify-content: center;
+    }
 section .contentBx .formBx .inputBx .registrarse {
     width: 100%;
     padding: 10px 20px;
