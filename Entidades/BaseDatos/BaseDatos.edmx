@@ -475,9 +475,6 @@
             <Parameter Name="ConfirmaContrasena" Mode="In" Type="String" />
             <Parameter Name="Confirmacion" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="paEliminarColaboradores">
-          <Parameter Name="Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="paEliminarEmpresasControlDeAdministracion">
           <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -730,6 +727,9 @@
             <Parameter Name="IdRol" Mode="In" Type="Int32" />
             <Parameter Name="IdUsuario" Mode="InOut" Type="Int32" />
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paEliminarColaboradores">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="PaObtenerColaboradoresActivos_Result">
@@ -1029,7 +1029,6 @@
           <FunctionImportMapping FunctionImportName="paDesactivarActivarServicios" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarServicios" />
           <FunctionImportMapping FunctionImportName="paDesactivarActivarServicioXColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.paDesactivarActivarServicioXColaborador" />
           <FunctionImportMapping FunctionImportName="paEditarContrasenaXCorreoElectronico" FunctionName="BDSistemaRegistroCitasModel.Store.paEditarContrasenaXCorreoElectronico" />
-          <FunctionImportMapping FunctionImportName="paEliminarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarColaboradores" />
           <FunctionImportMapping FunctionImportName="paEliminarEmpresasControlDeAdministracion" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarEmpresasControlDeAdministracion" />
           <FunctionImportMapping FunctionImportName="paEliminarEventos" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarEventos" />
           <FunctionImportMapping FunctionImportName="paEliminarPermisosUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarPermisosUsuario" />
@@ -1440,6 +1439,7 @@
           <FunctionImportMapping FunctionImportName="paActualizarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paActualizarColaboradores" />
           <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
+          <FunctionImportMapping FunctionImportName="paEliminarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarColaboradores" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

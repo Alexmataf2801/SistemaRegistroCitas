@@ -390,15 +390,6 @@ namespace Entidades.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEditarContrasenaXCorreoElectronico", correoElectronicoParameter, contrasenaActualParameter, nuevaContrasenaParameter, confirmaContrasenaParameter, confirmacion);
         }
     
-        public virtual int paEliminarColaboradores(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarColaboradores", idParameter);
-        }
-    
         public virtual int paEliminarEmpresasControlDeAdministracion(Nullable<int> idEmpresa)
         {
             var idEmpresaParameter = idEmpresa.HasValue ?
@@ -1237,6 +1228,15 @@ namespace Entidades.BaseDatos
                 new ObjectParameter("IdRol", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paInsertarUsuario", nombreParameter, primerApellidoParameter, segundoApellidoParameter, identificacionParameter, correoElectronicoParameter, telefonoParameter, generoParameter, terminosYCondicionesParameter, idRolParameter, idUsuario, respuesta);
+        }
+    
+        public virtual int paEliminarColaboradores(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarColaboradores", idParameter);
         }
     }
 }
