@@ -29,7 +29,7 @@ namespace AccesoDatos
                                                       usuario.PrimerApellido,
                                                       usuario.SegundoApellido,
                                                       usuario.Identificacion,
-                                                      usuario.CorreoElectronico,
+                                                      usuario.CorreoElectronico.Trim(),
                                                       usuario.Telefono,
                                                       usuario.Genero,
                                                       usuario.TerminosYCondiciones,
@@ -291,7 +291,7 @@ namespace AccesoDatos
                                                           usuario.PrimerApellido,
                                                           usuario.SegundoApellido,
                                                           usuario.Identificacion,
-                                                          usuario.CorreoElectronico,
+                                                          usuario.CorreoElectronico.Trim(),
                                                           usuario.Telefono,
                                                           usuario.Genero,
                                                           usuario.IdRol,
@@ -527,10 +527,10 @@ namespace AccesoDatos
             {
                 if (ValidarBeneficiosXPlan(usuarios.IdEmpresa, usuarios.IdPlan, usuarios.IdRol) == 1)
                 {
-                    if (ValidarCorreoElectronico(usuarios.Id, usuarios.CorreoElectronico) == 0)
+                    if (ValidarCorreoElectronico(usuarios.Id, usuarios.CorreoElectronico.Trim()) == 0)
                     {
                        
-                        entities.paActualizarColaboradores(usuarios.Id, usuarios.Identificacion, usuarios.Nombre, usuarios.PrimerApellido, usuarios.SegundoApellido, usuarios.CorreoElectronico, usuarios.Telefono,
+                        entities.paActualizarColaboradores(usuarios.Id, usuarios.Identificacion, usuarios.Nombre, usuarios.PrimerApellido, usuarios.SegundoApellido, usuarios.CorreoElectronico.Trim(), usuarios.Telefono,
                         usuarios.Genero, usuarios.IdRol, usuarios.UsuarioUltimaModificacion);
                         valor = 1;
                         
@@ -674,9 +674,9 @@ namespace AccesoDatos
 
             try
             {
-                if (ValidarCorreoElectronico(perfil.Id,perfil.CorreoElectronico) == 0)
+                if (ValidarCorreoElectronico(perfil.Id,perfil.CorreoElectronico.Trim()) == 0)
                 {
-                    entities.paActualizarPerfil(perfil.Id, perfil.Identificacion, perfil.Nombre, perfil.PrimerApellido, perfil.SegundoApellido, perfil.CorreoElectronico, perfil.Telefono,
+                    entities.paActualizarPerfil(perfil.Id, perfil.Identificacion, perfil.Nombre, perfil.PrimerApellido, perfil.SegundoApellido, perfil.CorreoElectronico.Trim(), perfil.Telefono,
                    perfil.Genero, perfil.IdRol, perfil.UsuarioUltimaModificacion);
                     Correcto = true;
                 }

@@ -25,6 +25,11 @@
                 $("#lblMensajeCorrecto").html("<label>¡Inicio Empresa Actualizado Correctamente!</label>");
                 $("#lblTituloCorrecto").html("<label>Información</label>");
                 $('#MsjCorrecto').modal('show');
+                $('#MsjCorrecto').on('hidden.bs.modal', function () {
+                    // do something…
+                    Redireccionar();
+                }); 
+              
             }
         },
         error: function (Error) {
@@ -34,6 +39,10 @@
 
     });
     }
+}
+
+function Redireccionar() {
+    location.href = '/InicioEmpresas/InicioEmpresas';
 }
 
 function ObtenerEmpresasXId() {

@@ -10,7 +10,7 @@
             console.log(InfoEmpresas);
 
             $("#txtNombreEmpresa").val(InfoEmpresas.Nombre);
-            $("#txtContactoEmpresa").val(InfoEmpresas.CorreoElectronico);
+            $("#txtContactoEmpresa").val(InfoEmpresas.Contacto);
             $("#txtDescripcion").val(InfoEmpresas.Descripcion);
             $("#txtDireccion").val(InfoEmpresas.Direccion);
 
@@ -68,6 +68,10 @@ function InsertarHorarioEmpresa() {
                     $("#lblMensajeCorrecto").html("<label>¡Horario asignado Correctamenta!</label>");
                     $("#lblTituloCorrecto").html("<label>Información</label>");
                     $('#MsjCorrecto').modal('show');
+                    $('#MsjCorrecto').on('hidden.bs.modal', function () {
+                        // do something…
+                        Redireccionar();
+                    }); 
                     break;
                 case 2:
                     $("#msjModalIncorrecto").html("<label>¡Ya existe un horario asignado!</label>");
@@ -86,6 +90,10 @@ function InsertarHorarioEmpresa() {
     });
 
 
+}
+
+function Redireccionar() {
+    location.href = '/InicioEmpresas/InicioEmpresas';
 }
 
 function LimpiarValores() {

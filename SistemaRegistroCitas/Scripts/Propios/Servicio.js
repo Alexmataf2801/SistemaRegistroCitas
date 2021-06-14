@@ -95,6 +95,9 @@ function InsertarDatosServicios() {
                 $("#lblMensajeCorrecto").html("<label>¡Información Almacenada Correctamenta!</label>");
                 $("#lblTituloCorrecto").html("<label>Información</label>");
                 $('#MsjCorrecto').modal('show');
+                var TipoUnidad = $("#TipoUnidad");
+                TipoUnidad.append('<option disabled selected hidden value="0">Tipo de Unidad</option>');
+
             } else {
                 $("#msjModalIncorrecto").html("<label>¡Fallo en la creación del servicio!</label>");
                 $('#MsjIncorrecto').modal('show');

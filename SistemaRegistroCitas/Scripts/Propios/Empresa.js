@@ -47,7 +47,7 @@ function Loguear() {
 
     var login = {
 
-        'CorreoElectronico': $("#txtCorreoElectronicoLogin").val(),
+        'CorreoElectronico': $("#txtCorreoElectronicoLogin").val().trim(),
         'Contrasena': $("#txtPassword").val()
 
     }

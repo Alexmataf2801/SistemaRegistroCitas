@@ -35,6 +35,10 @@
                     $("#lblMensajeCorrecto").html("<label>¡Horario Actualizado Correctamenta!</label>");
                     $("#lblTituloCorrecto").html("<label>Información</label>");
                     $('#MsjCorrecto').modal('show');
+                    $('#MsjCorrecto').on('hidden.bs.modal', function () {
+                        // do something…
+                        Redireccionar();
+                    }); 
                     break;
                 case 2:
                     $("#msjModalIncorrecto").html("<label>¡El Horario no se puede actualizar, existe un evento asignado en ese rango de horas!</label>");
@@ -52,4 +56,8 @@
 
     });
 
+}
+
+function Redireccionar() {
+    location.href = '/InicioEmpresas/InicioEmpresas';
 }
