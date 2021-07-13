@@ -16,7 +16,7 @@
                         </div>
                         <div class="form-group">
                             <textarea class="form-control " id="txtDescripcion" placeholder="Descripcion" name="Descripcion" style="max-height: 300px; min-height: 80px; max-width: 100%;min-width: 100%;" maxlength="500"></textarea>
-                          
+
                         </div>
 
                         <div class="form-group">
@@ -26,12 +26,12 @@
                                 <option value="2">Horas</option>
                             </select>
                         </div>
-                        <div class="form-group">                           
+                        <div class="form-group">
                             <select required class="form-control" onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();' id="txtTiempoEstimado">
                                 <option value="0" disabled selected hidden>Duracion del Servicio</option>
                             </select>
                         </div>
-                       
+
                     </div>
                     <div class="footer">
                         <button class="btn btn-primary" onclick="InsertarDatosServicios();return false">Guardar</button>
@@ -44,4 +44,5 @@
     </div>
 </div>
 <script src="~/Js/jquery.min.js"></script>
-<script src="~/Scripts/Propios/Servicio.js"></script>
+@*<script src="~/Scripts/Propios/Servicio.js"></script>*@
+@Scripts.Render("~/bundles/Servicio")

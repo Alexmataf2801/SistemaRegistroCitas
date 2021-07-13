@@ -3,11 +3,11 @@
     ViewBag.Title = "ListaServiciosXColaborador";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <style>
-        body {
-            padding-right: 0px !important;
-        }
-    </style>
+<style>
+    body {
+        padding-right: 0px !important;
+    }
+</style>
 <div class="container" style="margin: 0 auto; width: 90%">
     <div class="panel panel-default" style="margin-top: 20px">
         <div class="panel-body">
@@ -53,4 +53,5 @@
 </div>
 <!--FIN MODAL INFORMACION-->
 <script src="~/Js/jquery.min.js"></script>
-<script src="~/Scripts/Propios/ListaServiciosXColaborador.js"></script>
+@*<script src="~/Scripts/Propios/ListaServiciosXColaborador.js"></script>*@
+@Scripts.Render("~/bundles/ListaServiciosXColaborador")

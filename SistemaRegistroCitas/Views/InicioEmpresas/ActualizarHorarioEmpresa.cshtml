@@ -5,216 +5,216 @@
 }
 
 <div class="container" style="margin: 0 auto; width: 95%">
-        <div class="panel panel-default" style="margin-top: 20px">
-            <div class="panel-body">
-                <div class="row">
-                    <div style="text-align:center" class="form-group col-md-12">
-                        <h3 id="lblTitulo" style="text-align:center" class="box-header">Actualizar Horario</h3>
-                        <hr />                       
-                    </div>
-
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+            <div class="row">
+                <div style="text-align:center" class="form-group col-md-12">
+                    <h3 id="lblTitulo" style="text-align:center" class="box-header">Actualizar Horario</h3>
+                    <hr />
                 </div>
-                <div style="margin: 0 auto; width: 95%">
-                    <div style="text-align: center; margin-bottom: auto">
-                        <div class="body">
 
-                            <div class="col-12">
-                                <div>
-                                    <label>Lunes</label>                                 
-                                    <input id="EstadoLunes" type="checkbox" checked=@Model.EstadoLunes />
-                                </div>
-                                <br />
-                                <div>
-                                   
-                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioLunes id="InicioLunes" style="width:100px; display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('InicioLunes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalLunes id="FinalLunes" style="width:100px;display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('FinalLunes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                            </div>
-
-
-                            <br />
-
-                            <div class="col-12">
-                                <div>
-                                    <label>Martes</label>
-                                    <input id="EstadoMartes" type="checkbox" checked=@Model.EstadoMartes />
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioMartes id="InicioMartes" style="width:100px; display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('InicioMartes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalMartes id="FinalMartes" style="width:100px;display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('FinalMartes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                            </div>
-
-                            <br />
-
-                            <div class="col-12">
-                                <div>
-                                    <label>Miercoles</label>
-                                    <input id="EstadoMiercoles" type="checkbox" checked=@Model.EstadoMiercoles />
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioMiercoles id="InicioMiercoles" style="width:100px; display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('InicioMiercoles', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalMiercoles id="FinalMiercoles" style="width:100px;display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('FinalMiercoles', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                            </div>
-
-
-                            <br />
-
-                            <div class="col-12">
-                                <div>
-                                    <label>Jueves</label>
-                                    <input id="EstadoJueves" type="checkbox" checked=@Model.EstadoJueves />
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioJueves id="InicioJueves" style="width:100px; display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('InicioJueves', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalJueves id="FinalJueves" style="width:100px;display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('FinalJueves', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                            </div>
-
-                            <br />
-
-                            <div class="col-12" >
-                                <div>
-                                    <label>Viernes</label>
-                                    <input id="EstadoViernes" type="checkbox" checked=@Model.EstadoViernes />
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioViernes id="InicioViernes" style="width:100px; display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('InicioViernes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalViernes id="FinalViernes" style="width:100px;display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('FinalViernes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                            </div>
-
-
-                            <br />
-
-                            <div class="col-12" >
-                                <div>
-                                    <label>Sabado</label>
-                                    <input id="EstadoSabado" type="checkbox" checked=@Model.EstadoSabado />
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioSabado id="InicioSabado" style="width:100px; display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('InicioSabado', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalSabado id="FinalSabado" style="width:100px;display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('FinalSabado', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                            </div>
-
-                            <br />
-
-                            <div class="col-12" >
-                                <div>
-                                    <label>Domingo</label>
-                                    <input id="EstadoDomingo" type="checkbox" checked=@Model.EstadoDomingo />
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Abre </span> <input readonly type="text" value=@Model.InicioDomingo id="InicioDomingo" style="width:100px; display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('InicioDomingo', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                                <br />
-                                <div>
-
-                                    <span>Cierra </span><input readonly type="text" value=@Model.FinalDomingo id="FinalDomingo" style="width:100px;display: inline-block;" class="form-control" placeholder="">
-
-                                    <a class="btn btn-primary" onclick="showpickers('FinalDomingo', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
-
-                                </div>
-                            </div>
-
-
-                            <div class="timepicker"></div>
-                            <br />
-                            <br />
-                            <br />
-                            <div class="footer">
-                                <button class="btn btn-primary" onclick="ActualizarHorarioEmpresa(); return false">Guardar</button>
-
-
-                            </div>
-
-                        </div>                        
-                                                
-                     </div>
-                      
-
-                    </div>
-
-                </div>
             </div>
+            <div style="margin: 0 auto; width: 95%">
+                <div style="text-align: center; margin-bottom: auto">
+                    <div class="body">
+
+                        <div class="col-12">
+                            <div>
+                                <label>Lunes</label>
+                                <input id="EstadoLunes" type="checkbox" checked=@Model.EstadoLunes />
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Abre </span> <input readonly type="text" value=@Model.InicioLunes id="InicioLunes" style="width:100px; display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('InicioLunes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Cierra </span><input readonly type="text" value=@Model.FinalLunes id="FinalLunes" style="width:100px;display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('FinalLunes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                        </div>
+
+
+                        <br />
+
+                        <div class="col-12">
+                            <div>
+                                <label>Martes</label>
+                                <input id="EstadoMartes" type="checkbox" checked=@Model.EstadoMartes />
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Abre </span> <input readonly type="text" value=@Model.InicioMartes id="InicioMartes" style="width:100px; display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('InicioMartes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Cierra </span><input readonly type="text" value=@Model.FinalMartes id="FinalMartes" style="width:100px;display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('FinalMartes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="col-12">
+                            <div>
+                                <label>Miercoles</label>
+                                <input id="EstadoMiercoles" type="checkbox" checked=@Model.EstadoMiercoles />
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Abre </span> <input readonly type="text" value=@Model.InicioMiercoles id="InicioMiercoles" style="width:100px; display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('InicioMiercoles', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Cierra </span><input readonly type="text" value=@Model.FinalMiercoles id="FinalMiercoles" style="width:100px;display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('FinalMiercoles', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                        </div>
+
+
+                        <br />
+
+                        <div class="col-12">
+                            <div>
+                                <label>Jueves</label>
+                                <input id="EstadoJueves" type="checkbox" checked=@Model.EstadoJueves />
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Abre </span> <input readonly type="text" value=@Model.InicioJueves id="InicioJueves" style="width:100px; display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('InicioJueves', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Cierra </span><input readonly type="text" value=@Model.FinalJueves id="FinalJueves" style="width:100px;display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('FinalJueves', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="col-12">
+                            <div>
+                                <label>Viernes</label>
+                                <input id="EstadoViernes" type="checkbox" checked=@Model.EstadoViernes />
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Abre </span> <input readonly type="text" value=@Model.InicioViernes id="InicioViernes" style="width:100px; display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('InicioViernes', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Cierra </span><input readonly type="text" value=@Model.FinalViernes id="FinalViernes" style="width:100px;display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('FinalViernes', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                        </div>
+
+
+                        <br />
+
+                        <div class="col-12">
+                            <div>
+                                <label>Sabado</label>
+                                <input id="EstadoSabado" type="checkbox" checked=@Model.EstadoSabado />
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Abre </span> <input readonly type="text" value=@Model.InicioSabado id="InicioSabado" style="width:100px; display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('InicioSabado', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Cierra </span><input readonly type="text" value=@Model.FinalSabado id="FinalSabado" style="width:100px;display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('FinalSabado', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="col-12">
+                            <div>
+                                <label>Domingo</label>
+                                <input id="EstadoDomingo" type="checkbox" checked=@Model.EstadoDomingo />
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Abre </span> <input readonly type="text" value=@Model.InicioDomingo id="InicioDomingo" style="width:100px; display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('InicioDomingo', 24);" style="width:40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                            <br />
+                            <div>
+
+                                <span>Cierra </span><input readonly type="text" value=@Model.FinalDomingo id="FinalDomingo" style="width:100px;display: inline-block;" class="form-control" placeholder="">
+
+                                <a class="btn btn-primary" onclick="showpickers('FinalDomingo', 24);" style="width: 40px;"><i class="fa fa-clock-o"></i></a>
+
+                            </div>
+                        </div>
+
+
+                        <div class="timepicker"></div>
+                        <br />
+                        <br />
+                        <br />
+                        <div class="footer">
+                            <button class="btn btn-primary" onclick="ActualizarHorarioEmpresa(); return false">Guardar</button>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
         </div>
     </div>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/Propios/ActualizarHorarioEmpresa.js"></script>
+</div>
+    </div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/ActualizarHorarioEmpresa")

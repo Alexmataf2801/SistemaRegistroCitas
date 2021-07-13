@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
+using System.Globalization;
 
 namespace AccesoDatos
 {
@@ -411,7 +412,7 @@ namespace AccesoDatos
             {
                 RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
                 entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, eventos.IdUsuarioCrecion, IdRol, eventos.IdServicio, eventos.Nombre, eventos.TipoUnidadEvento,
-                    eventos.HorarioInicial, eventos.HoraFinal, eventos.UsuarioCreacion, RespuestaCorrecta);
+                   Convert.ToDateTime(eventos.HorarioInicial), Convert.ToDateTime(eventos.HoraFinal), eventos.UsuarioCreacion, RespuestaCorrecta);
 
                 Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
             }
@@ -1496,8 +1497,8 @@ namespace AccesoDatos
                     Eventos.IdUsuario = item.IdUsuario;
                     Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
                     Eventos.IdServicio = item.IdServicio;
-                    Eventos.HorarioInicial = item.HorarioInicial;
-                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.HorarioInicial = item.HorarioInicial.ToString();
+                    Eventos.HoraFinal = item.HoraFinal.ToString();
                     Eventos.UsuarioCreacion = item.UsuarioCreacion;
                     Eventos.NombreColaborador = item.NombreColaborador;
                     Eventos.NombreServicio = item.NombreServicio;                    
@@ -1528,8 +1529,8 @@ namespace AccesoDatos
                     Eventos.Id = item.Id;
                     Eventos.IdUsuario = item.Id;                   
                     Eventos.IdServicio = item.IdServicio;
-                    Eventos.HorarioInicial = item.HorarioInicial;
-                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.HorarioInicial = item.HorarioInicial.ToString();
+                    Eventos.HoraFinal = item.HoraFinal.ToString();
                     Eventos.UsuarioCreacion = item.UsuarioCreacion;
                     Eventos.NombreColaborador = item.NombreColaborador;
                     Eventos.NombreServicio = item.NombreServicio;
@@ -1561,8 +1562,8 @@ namespace AccesoDatos
                     Eventos.IdUsuario = item.IdUsuario;
                     Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
                     Eventos.IdServicio = item.IdServicio;
-                    Eventos.HorarioInicial = item.HorarioInicial;
-                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.HorarioInicial = item.HorarioInicial.ToString();
+                    Eventos.HoraFinal = item.HoraFinal.ToString();
                     Eventos.UsuarioCreacion = item.UsuarioCreacion;
                     Eventos.NombreColaborador = item.NombreColaborador;
                    
@@ -1596,8 +1597,8 @@ namespace AccesoDatos
                     Eventos.IdServicio = item.IdServicio;
                     Eventos.Nombre = item.Nombre;
                     Eventos.TipoUnidadEvento = item.TipoUnidadEvento;
-                    Eventos.HorarioInicial = item.HorarioInicial;
-                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.HorarioInicial = item.HorarioInicial.ToString();
+                    Eventos.HoraFinal = item.HoraFinal.ToString();
                     Eventos.UsuarioCreacion = item.UsuarioCreacion;                
                   
 

@@ -3,6 +3,7 @@ using Entidades.ClasesEntidades;
 using LogicaNegocio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -34,10 +35,12 @@ namespace SistemaRegistroCitas.Controllers
                 usuario = (Usuario)Session["Usuario"];
                 eventos.UsuarioCreacion = usuario.NombreCompleto;
                 eventos.IdUsuarioCrecion = usuario.Id;
-                
 
-                TimeSpan HoraInicio = eventos.HorarioInicial.TimeOfDay;
-                TimeSpan HoraFin = eventos.HoraFinal.TimeOfDay;
+
+                TimeSpan HoraInicio = Convert.ToDateTime(eventos.HorarioInicial).TimeOfDay;
+                //eventos.HorarioInicial.TimeOfDay;
+                TimeSpan HoraFin = Convert.ToDateTime(eventos.HoraFinal).TimeOfDay;
+                //TimeSpan HoraFin = eventos.HoraFinal.TimeOfDay;
 
                 if (ValidarHoraEvento(eventos.IdDia, HoraInicio.ToString(), HoraFin.ToString()))
                 {

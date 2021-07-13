@@ -21,9 +21,10 @@
             TablaRoles.clear().draw();
             $(Info).each(function (key, value) {
 
+                var Nombre = value.Nombre;
                 var HorarioInicial = moment(value.HorarioInicial).format('DD-MM-YYYY HH:mm A');
                 var HoraFinal = moment(value.HoraFinal).format('DD-MM-YYYY HH:mm A');               
-                var Nombre = value.Nombre;
+               
 
                 TablaRoles.row.add([value.UsuarioCreacion, Nombre, HorarioInicial, HoraFinal]).draw();
             });
