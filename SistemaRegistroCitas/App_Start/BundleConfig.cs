@@ -62,6 +62,11 @@ namespace SistemaRegistroCitas
             bundles.Add(new ScriptBundle("~/bundles/Servicio").Include("~/Scripts/Propios/Servicio*"));
             bundles.Add(new ScriptBundle("~/bundles/ListaServicios").Include("~/Scripts/Propios/ListaServicios*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Usuario").Include("~/Scripts/Propios/Usuario*"));
+            bundles.Add(new ScriptBundle("~/bundles/Empresa").Include("~/Scripts/Propios/Empresa*"));
+            bundles.Add(new ScriptBundle("~/bundles/MostrarYOcutarContrsena").Include("~/Scripts/Propios/MostrarYOcutarContrsena*"));
+            bundles.Add(new ScriptBundle("~/bundles/OlvidarContrasena").Include("~/Scripts/Propios/OlvidarContrasena*"));
+
 
 
             BundleTable.EnableOptimizations = true;

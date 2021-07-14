@@ -20,31 +20,36 @@
 
 
         if ($('#TerminosYCondiciones').prop('checked')) {
-
+            mostrar();
             $.ajax({
                 type: "POST",
                 dataType: "JSON",
                 url: "/Usuario/InsertarUsuario/",
                 data: { usuario },
                 success: function (Info) {
-
+                   
                     switch (Info) {
-
+                      
                         case 0:
+                            esconder();
                             $("#msjModal").html("<label>¡Faltan datos, vuelva a intentarlo!</label>");
-                            $('#MsjIncorrecto').modal('show');
+                            $('#MsjIncorrecto').modal('show');                        
                             break;
-                        case 1:
+                        case 1:    
+                            
                             LimpiarValores();
                             $('#fm-modal').modal('hide');
                             $('#MsjCorreo').modal('show');
+                            esconder();
                             break;
                         case 2:
+                            esconder();
                             $("#msjModal").html("<label>¡El CorreoElectronico ingresado ya existe!</label>");
                             $('#MsjIncorrecto').modal('show');
                             break;
 
                         default:
+                            esconder();
                             $("#msjModal").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
                             $('#MsjIncorrecto').modal('show');
                     }
@@ -76,4 +81,18 @@ function LimpiarValores() {
     $("#txtIdentificacion").val('');
     $("#txtCorreoElectronico").val('');
     $("#txtTelefono").val('');
+}
+
+function mostrar() {
+    var x = document.getElementById("cargando");
+   
+        x.style.display = "block";
+   
+}
+
+function esconder() {
+    var x = document.getElementById("cargando");
+
+    x.style.display = "none";
+
 }
