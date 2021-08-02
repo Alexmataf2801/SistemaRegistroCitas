@@ -16,8 +16,8 @@ namespace Entidades.ClasesEntidades
         public int IdRol { get; set; }
         public int IdServicio { get; set; }
         public int TipoUnidadEvento { get; set; }
-        public DateTime HorarioInicial { get; set; }
-        public DateTime HoraFinal { get; set; }
+        public string HorarioInicial { get; set; }
+        public string HoraFinal { get; set; }
         public bool Estado { get; set; }
         public string UsuarioCreacion { get; set; }
         public string NombreColaborador { get; set; }
@@ -27,6 +27,7 @@ namespace Entidades.ClasesEntidades
         public string UsuarioUltimaModificacion { get; set; }
         public DateTime? FechaUltimaModificacion { get; set; }
 
-        
+       
+
     }
 }

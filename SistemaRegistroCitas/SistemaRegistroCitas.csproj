@@ -153,11 +153,10 @@
     <Content Include="Estilos\bootstrap.css" />
     <Content Include="Estilos\checkbox\EstilosCheckbox.css" />
     <Content Include="Estilos\datatables.min.css" />
-    <Content Include="Estilos\EstilosLogin\estilos.css" />
-    <Content Include="Estilos\EstilosLogin\EstilosLoginPropio.css" />
-    <Content Include="Estilos\EstilosLogin\bootstrap.min.css" />
-    <Content Include="Estilos\EstilosLogin\font-awesome.min.css" />
-    <Content Include="Estilos\EstilosLogin\Login.css" />
+    <Content Include="Estilos\EstilosLogin\css\bootstrap.min.css" />
+    <Content Include="Estilos\EstilosLogin\css\EstilosLogin.css" />
+    <Content Include="Estilos\EstilosLogin\fonts\font-awesome.min.css" />
+    <Content Include="Estilos\EstilosPlanes\EstilosPrecios.css" />
     <Content Include="Estilos\font-awesome.min.css" />
     <Content Include="Estilos\fullcalendar-Agenda\Fullcalendar-Agenda.min.css" />
     <Content Include="Estilos\fullcalendar-bootstrap\main.min.css" />
@@ -165,6 +164,7 @@
     <Content Include="Estilos\fullcalendar-timegrid\main.min.css" />
     <Content Include="Estilos\fullcalendar\main.min.css" />
     <Content Include="Estilos\Guia\estilosAdministracion.css" />
+    <Content Include="Estilos\Guia\estilosTemario.css" />
     <Content Include="Estilos\Guia\estilosUsuarios.css" />
     <Content Include="Estilos\jquery-ui.css" />
     <Content Include="Estilos\TablasMantenimientos.css" />
@@ -176,23 +176,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\cargando.gif" />
     <Content Include="Imagenes\GuiaImagenes\cuenta.svg" />
     <Content Include="Imagenes\GuiaImagenes\empresa.svg" />
     <Content Include="Imagenes\GuiaImagenes\entrega.svg" />
     <Content Include="Imagenes\GuiaImagenes\evento.svg" />
     <Content Include="Imagenes\GuiaImagenes\pagos.svg" />
+    <Content Include="Imagenes\GuiaImagenes\Perfil.svg" />
     <Content Include="Imagenes\GuiaImagenes\seguridad.svg" />
     <Content Include="Imagenes\GuiaImagenes\servicios.svg" />
     <Content Include="Imagenes\GuiaImagenes\suma.svg" />
-    <Content Include="Imagenes\GuiaImagenes\thumb.png" />
     <Content Include="Imagenes\GuiaImagenes\usuarios.svg" />
     <Content Include="Imagenes\Iconos\Icono.png" />
-    <Content Include="Imagenes\Login\bg.jpg" />
-    <Content Include="Imagenes\Login\fondo.jpg" />
-    <Content Include="Imagenes\Login\fondo3.jpg" />
+    <Content Include="Imagenes\Login\Facebook.png" />
+    <Content Include="Imagenes\Login\Fondo.jpg" />
+    <Content Include="Imagenes\Login\instagram.png" />
     <Content Include="Imagenes\Login\logo.png" />
-    <Content Include="Imagenes\Login\precios-bg.jpg" />
-    <Content Include="Imagenes\Login\textura3.png" />
+    <Content Include="Imagenes\Login\Youtube.png" />
+    <Content Include="Imagenes\nube.gif" />
+    <Content Include="Imagenes\reloj.gif" />
     <Content Include="Js\adminlte.min.js" />
     <Content Include="Js\Arbol.js" />
     <Content Include="Js\bootstrap.min.js" />
@@ -268,6 +270,7 @@
     <Content Include="Js\fullcalendar\locales\zh-tw.js" />
     <Content Include="Js\fullcalendar\main.min.js" />
     <Content Include="Js\Guia\categorias.js" />
+    <Content Include="Js\Guia\mainTemario.js" />
     <Content Include="Js\Guia\preguntasFrecuentes.js" />
     <Content Include="Js\jquery-1.12.4.js" />
     <Content Include="Js\jquery-ui.js" />
@@ -276,6 +279,7 @@
     <Content Include="Js\Login\jquery-3.4.1.min.js" />
     <Content Include="Js\Login\popper.min.js" />
     <Content Include="Js\moment\moment.min.js" />
+    <Content Include="Js\Planes\EfectoPrecios.js" />
     <Content Include="Js\PruebaArbol.js" />
     <Content Include="Js\tpicker.js" />
     <Content Include="Js\tpicker2.js" />
@@ -293,6 +297,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Estilos\EstilosLogin\fonts\fontawesome-webfont.woff2" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -311,6 +317,7 @@
     <Content Include="Scripts\Propios\Administracion.js" />
     <Content Include="Scripts\Propios\AsignarServiciosColaborador.js" />
     <Content Include="Scripts\Propios\Colaboradores.js" />
+    <Content Include="Scripts\Propios\EditarContrasenaXCorreoElectronico.js" />
     <Content Include="Scripts\Propios\Empresa.js" />
     <Content Include="Scripts\Propios\Eventos.js" />
     <Content Include="Scripts\Propios\InicioEmpresas.js" />
@@ -322,6 +329,12 @@
     <Content Include="Scripts\Propios\ListaEventoUsuarioCreador.js" />
     <Content Include="Scripts\Propios\ListaServicios.js" />
     <Content Include="Scripts\Propios\ListaServiciosXColaborador.js" />
+    <Content Include="Scripts\Propios\MostrarYOcultarContrasenaConfirmar.js" />
+    <Content Include="Scripts\Propios\MostrarYOcultarContrasenaNueva.js" />
+    <Content Include="Scripts\Propios\MostrarYOcutarContrasenaActual.js" />
+    <Content Include="Scripts\Propios\MostrarYOcutarContrsena.js" />
+    <Content Include="Scripts\Propios\ObtenerPerfilColaboradorXId.js" />
+    <Content Include="Scripts\Propios\OlvidarContrasena.js" />
     <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
     <Content Include="Scripts\Propios\Roles\Roles.js" />
     <Content Include="Scripts\Propios\Roles\ListaRoles.js" />
@@ -373,9 +386,14 @@
     <Content Include="Views\Guia\GuiaUsuario.cshtml" />
     <Content Include="Views\Guia\GuiaCliente.cshtml" />
     <Content Include="Views\Empresa\ActualizarInicioEmpresa.cshtml" />
+    <Content Include="Views\Usuario\ActualizarContrasenaXCorreoElectronico.cshtml" />
+    <Content Include="Views\Usuario\ActualizarPerfil.cshtml" />
+    <Content Include="Views\Home\Planes.cshtml" />
+    <Content Include="Views\Guia\GuiaRegristroDatos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Bitacora\" />
     <Folder Include="Views\Cerrar\" />
     <Folder Include="Views\Evento\" />
     <Folder Include="Views\ServicioTiempo\" />

@@ -10,7 +10,7 @@
             console.log(InfoEmpresas);
 
             $("#txtNombreEmpresa").val(InfoEmpresas.Nombre);
-            $("#txtContactoEmpresa").val(InfoEmpresas.CorreoElectronico);
+            $("#txtContactoEmpresa").val(InfoEmpresas.Contacto);
             $("#txtDescripcion").val(InfoEmpresas.Descripcion);
             $("#txtDireccion").val(InfoEmpresas.Direccion);
 
@@ -26,36 +26,7 @@
     });
 }
 
-//$(document).ready(function () {
-//    //ObtenerEmpresasXId();
-//});
 
-
-
-//function ObtenerHorarioEmpresa() {
-//    $.ajax({
-//        type: "GET",
-//        dataType: "JSON",
-//        url: "/Empresa/ObtenerHorarioEmpresa/",
-
-//        success: function (InfoEmpresas) {
-                       
-//            document.getElementById('InicioLunes').innerHTML = InfoEmpresas.InicioLunes.Hours
-//            document.getElementById('FinalLunes').innerHTML = InfoEmpresas.FinalLunes.Hours
-
-
-
-
-
-
-//        },
-
-//        error: function () {
-//            console.log('error')
-//        },
-
-//    });
-//}
 
 
 function InsertarHorarioEmpresa() {
@@ -97,6 +68,10 @@ function InsertarHorarioEmpresa() {
                     $("#lblMensajeCorrecto").html("<label>¡Horario asignado Correctamenta!</label>");
                     $("#lblTituloCorrecto").html("<label>Información</label>");
                     $('#MsjCorrecto').modal('show');
+                    $('#MsjCorrecto').on('hidden.bs.modal', function () {
+                        // do something…
+                        Redireccionar();
+                    }); 
                     break;
                 case 2:
                     $("#msjModalIncorrecto").html("<label>¡Ya existe un horario asignado!</label>");
@@ -107,18 +82,6 @@ function InsertarHorarioEmpresa() {
                     $('#MsjIncorrecto').modal('show');
             }
 
-
-
-            //if (Info) {
-            //    $("#lblMensajeCorrecto").html("<label>¡Horarios Insertados Correctamente!</label>");
-            //    $("#lblTituloCorrecto").html("<label>Información</label>");
-            //    $('#MsjCorrecto').modal('show');
-            //} else {
-            //    $("#msjModalIncorrecto").html("<label>¡Fallo el Insertar Horario!</label>");
-            //    $('#MsjIncorrecto').modal('show');
-            //}
-
-
         },
         error: function (Error) {
             alert("Se Cayo");
@@ -127,6 +90,10 @@ function InsertarHorarioEmpresa() {
     });
 
 
+}
+
+function Redireccionar() {
+    location.href = '/InicioEmpresas/InicioEmpresas';
 }
 
 function LimpiarValores() {
@@ -153,6 +120,5 @@ function LimpiarValores() {
 
 
 $(document).ready(function () {
-    ObtenerEmpresasXId();
-    //ObtenerHorarioEmpresa();
+    ObtenerEmpresasXId(); 
 });

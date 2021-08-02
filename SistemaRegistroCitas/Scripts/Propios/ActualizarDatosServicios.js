@@ -7,6 +7,14 @@
         TiempoEstimado: $("#txtTiempoEstimadoServicio").val(),
         TipoUnidad: $("#txtTipoUnidadServicio").val()
     };
+
+
+    if ($("#txtNombre").val() === "") {
+        $("#msjModalIncorrecto").html("<label>¡Falta complementar datos importantes!</label>");
+        $('#MsjIncorrecto').modal('show');
+    }
+    else {
+
     $.ajax({
         type: "POST",
         datatype: "JSON",
@@ -26,6 +34,7 @@
 
     });
 
+    }
 }
 
 function ObtenerDatosServicio() {
@@ -104,16 +113,14 @@ function ObtenerMinutosYHoras() {
     });
 }
 
-$(document).ready(function () {
-     //ObtenerMinutosYHoras();
-});
+
 
 
 function LlenarComboTiempos() {
 
     var Tiempo = $("#txtTiempoEstimadoServicio");
     Tiempo.empty();
-    //Tiempo.append('<option value="0">Duracion del Servicio</option>');
+   
 
     if ($("#txtTipoUnidadServicio").val() == "1") { // Minutos
 

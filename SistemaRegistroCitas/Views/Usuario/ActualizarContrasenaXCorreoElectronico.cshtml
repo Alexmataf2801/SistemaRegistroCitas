@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "ActualizarContrasenaXCorreoElectronico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin: 0 auto; width: 90%">
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+            <div style="margin: 0 auto; width: 95%">
+
+                <div style="text-align: center; margin-bottom: 50px">
+                    <h3 id="lblTitulo" style="text-align:center" class="box-header">Actualizar Contraseña</h3>
+                    <hr />
+                </div>
+
+
+                <div class="form-group row input-group">
+                    <label>Contraseña Actual</label>
+                    <input type="password" class="form-control" style="border-radius:4px" autocomplete="off" id="txtContrasenaActual" maxlength="150" />
+                    <span style="cursor:pointer; border:none; font-size: 15px;" class="input-group-addon">
+                        <i id="OjoActual" style="padding-top:23px;" class="fa fa-eye"></i>
+                    </span>
+                </div>
+
+                <div class="form-group row input-group">
+                    <label>Nueva Contraseña</label>
+                    <input type="password" class="form-control" style="border-radius:4px" autocomplete="off" id="txtNuevaContrasena" maxlength="150" />
+                    <span style="cursor:pointer; border:none; font-size: 15px;" class="input-group-addon">
+                        <i id="OjoNueva" style="padding-top: 23px;" class="fa fa-eye"></i>
+                    </span>
+                </div>
+
+
+                <div class="form-group row input-group">
+                    <label>Confirmar Contraseña</label>
+                    <input type="password" class="form-control" style="border-radius:4px" autocomplete="off" id="txtConfirmaContrasena" maxlength="150" />
+                    <span style="cursor:pointer; border:none; font-size: 15px;" class="input-group-addon">
+                        <i id="OjoConfirmar" style="padding-top:23px;" class="fa fa-eye"></i>
+                    </span>
+                </div>
+
+
+                <div style="text-align: center; margin-bottom: 20px">
+                    <div class="col-md-12">
+                        <div class="row" style="margin: 15px">
+                            <a class="btn btn-success" style="margin:0 auto" onclick="EditarContrasenaXCorreoElectronico()">Guardar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--INICIO MODAL CORRECTO-->
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalCorrectoActContrasena">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#5CB85C;">
+                <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
+            </div>
+            <div class="modal-body">
+                <p id="msjCorrectoActContrasena" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <a type="button" style="margin:0 auto" class="btn btn-success" data-dismiss="modal">Cerrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL CORRECTO-->
+
+<script src="~/Js/jquery.min.js"></script>
+@*<script src="~/Scripts/Propios/MostrarYOcutarContrasenaActual.js"></script>
+<script src="~/Scripts/Propios/MostrarYOcultarContrasenaNueva.js"></script>
+<script src="~/Scripts/Propios/MostrarYOcultarContrasenaConfirmar.js"></script>
+<script src="~/Scripts/Propios/EditarContrasenaXCorreoElectronico.js"></script>*@
+
+@Scripts.Render("~/bundles/MostrarYOcutarContrasenaActual")
+@Scripts.Render("~/bundles/MostrarYOcultarContrasenaNueva")
+@Scripts.Render("~/bundles/MostrarYOcultarContrasenaConfirmar")
+@Scripts.Render("~/bundles/EditarContrasenaXCorreoElectronico")

@@ -19,16 +19,25 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult Index()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
-                {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+                if (usuario != null)
+                {
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
@@ -37,7 +46,7 @@ namespace SistemaRegistroCitas.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
@@ -134,6 +143,16 @@ namespace SistemaRegistroCitas.Controllers
             }
             catch (Exception ex)
             {
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+               
 
             }
 
@@ -145,9 +164,30 @@ namespace SistemaRegistroCitas.Controllers
         {
             bool Correcto = false;
 
-            Correcto = LN.InsertarPermisosXUsuario(IdUsuario, ListaPermisos);
+            try
+            {
+                
 
+                Correcto = LN.InsertarPermisosXUsuario(IdUsuario, ListaPermisos);
+
+               
+            }
+            catch (Exception ex)
+            {
+                 usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+              
+            }
             return Json(Correcto, JsonRequestBehavior.AllowGet);
+
 
         }
 

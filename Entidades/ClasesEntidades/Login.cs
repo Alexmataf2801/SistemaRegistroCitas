@@ -12,6 +12,9 @@ namespace Entidades.ClasesEntidades
         public int IdUsuario { get; set; }
         public string CorreoElectronico { get; set; }
         public string Contrasena { get; set; }
+        public string ContrasenaActual { get; set; }
+        public string NuevaContrasena { get; set; }
+        public string ConfirmaContrasena { get; set; }
         public bool Temporal { get; set; }
         public bool Estado { get; set; }
         public DateTime FehaCreacion { get; set; }

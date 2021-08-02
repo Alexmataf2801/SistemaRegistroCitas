@@ -82,12 +82,8 @@
                     </div>
 
                     <div runat="server" id="Menu">
-                        @Html.Raw(@ViewBag.Menu);
-
-                        @*<ul class="sidebar-menu tree" data-widget="tree">
-                            <li class="treeview"><a href="#"><i class="fa fa-user"></i><span>Cerrar Sesion</span></a></li>
-                            </ul>*@
-                        <a class="treeview "><i style="margin:10px;" class="fa fa-user"><span></span></i>@Html.ActionLink("Cerrar Session", "CerrarSession", "Usuario")</a>
+                        @Html.Raw(@ViewBag.Menu);                       
+                        <a class="treeview "><i style="margin:10px;" class="fa fa-sign-out"><span></span></i>@Html.ActionLink("Cerrar Session", "CerrarSession", "Usuario")</a>
                     </div>
 
                 </section>
@@ -149,8 +145,7 @@
     </div>
 
     <script src="~/Js/jquery.min.js"></script>
-    <script src="~/Js/tpicker2.js"></script>
-    @*<script src="~/Js/tpicker.js"></script>*@
+    <script src="~/Js/tpicker2.js"></script> 
     <script src="~/Js/bootstrap.min.js"></script>
     <script src="~/Js/adminlte.min.js"></script>
     <script src="~/Js/moment/moment.min.js"></script>

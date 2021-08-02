@@ -2,7 +2,7 @@
   
     var empresa = {
         Nombre: $("#txtNombreEmpresa").val(),
-        CorreoElectronico: $("#txtContactoEmpresa").val(),
+        Contacto: $("#txtContactoEmpresa").val(),
         Descripcion: $("#txtDescripcionEmpresa").val(),
         Direccion: $("#txtDireccionEmpresa").val(),     
 
@@ -25,6 +25,11 @@
                 $("#lblMensajeCorrecto").html("<label>¡Inicio Empresa Actualizado Correctamente!</label>");
                 $("#lblTituloCorrecto").html("<label>Información</label>");
                 $('#MsjCorrecto').modal('show');
+                $('#MsjCorrecto').on('hidden.bs.modal', function () {
+                    // do something…
+                    Redireccionar();
+                }); 
+              
             }
         },
         error: function (Error) {
@@ -34,6 +39,10 @@
 
     });
     }
+}
+
+function Redireccionar() {
+    location.href = '/InicioEmpresas/InicioEmpresas';
 }
 
 function ObtenerEmpresasXId() {
@@ -48,7 +57,7 @@ function ObtenerEmpresasXId() {
             console.log(InfoEmpresas);
 
             $("#txtNombreEmpresa").val(InfoEmpresas.Nombre);
-            $("#txtContactoEmpresa").val(InfoEmpresas.CorreoElectronico);
+            $("#txtContactoEmpresa").val(InfoEmpresas.Contacto);
             $("#txtDescripcionEmpresa").val(InfoEmpresas.Descripcion);
             $("#txtDireccionEmpresa").val(InfoEmpresas.Direccion);
 

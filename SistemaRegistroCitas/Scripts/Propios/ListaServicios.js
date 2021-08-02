@@ -33,7 +33,7 @@
                 TablaRoles.row.add([Editar, value.Nombre, value.Descripcion, value.TiempoEstimado, value.NombreUnidadMedida, estado, CambiarEstado, Eliminar]).draw();
             });
 
-
+            $('#cargando').html(' ')
         },
         error: function (Error) {
         }
