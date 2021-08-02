@@ -60,6 +60,39 @@ namespace Entidades.ClasesEntidades
 
         }
 
+        public bool EnviarCorreoGenerico(Correo Correo) {
+            bool SeEnvioCorreo = false;
+            try
+            {
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = ConfigurationManager.AppSettings["Host"].ToString();
+                smtp.Port = Convert.ToInt32(ConfigurationManager.AppSettings["Port"].ToString());
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Usuario"].ToString(), ConfigurationManager.AppSettings["Clave"].ToString());
+
+                MailMessage mail = new MailMessage();
+
+                mail.Subject = Correo.Subject;
+                mail.Body = Correo.Body;
+                mail.From = new MailAddress(ConfigurationManager.AppSettings["Usuario"].ToString());
+                mail.To.Add(Correo.To);
+                //mail.Priority = MailPriority.High;
+
+                smtp.Send(mail);
+                SeEnvioCorreo = true;
+            }
+            catch (Exception ex)
+            {
+
+                
+            }
+
+            return SeEnvioCorreo;
+        }
+
+
 
         public void EnviarCorreoColaboradores(string Contraseña, string Correo)
         {

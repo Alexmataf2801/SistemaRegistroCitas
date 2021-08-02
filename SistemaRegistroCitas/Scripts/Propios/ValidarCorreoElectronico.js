@@ -1,4 +1,5 @@
 ﻿function ValidarCorreoElectronico() {
+    var ValidarCorreo = /^[A-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     var Id = sessionStorage.getItem("IdColaboradorEditar");
     var CorreoElectronico = $("#txtCorreoElectronicoColaborador").val();
 
@@ -11,11 +12,19 @@
         success: function (Validar) {
 
 
-            if (Validar) {
-                alert("no funciona");
+            if (Validar ||
+                !ValidarCorreo.test($("#txtCorreoElectronicoColaborador").val())) {
+               
+                $("#MensajeCorreoCorrecto").empty();
+                $("#MensajeCorreoCorrecto").append('<p>¡El Correo Electronico ya existe o no es valido!</p>').css("color", "red");
+          
             }
             else {
-                alert("Si funciona");
+
+               
+                $("#MensajeCorreoCorrecto").empty();
+                $("#MensajeCorreoCorrecto").append('<p>¡CorreoElectronico valido!</p>').css("color", "green");
+             
             }
                      
         },
@@ -27,9 +36,6 @@
     });
 }
 
-$(document).ready(function () {
-    //ValidarCorreoElectronico();
-});
 
 $(document).on('blur', '#txtCorreoElectronicoColaborador', function () {
     ValidarCorreoElectronico();

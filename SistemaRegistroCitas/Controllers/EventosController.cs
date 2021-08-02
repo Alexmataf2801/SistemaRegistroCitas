@@ -3,6 +3,7 @@ using Entidades.ClasesEntidades;
 using LogicaNegocio;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -27,115 +28,154 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult InsertarEventos(Eventos eventos)
 
         {
-           
-            usuario = (Usuario)Session["Usuario"];
-            eventos.UsuarioCreacion = usuario.NombreCompleto;
-            eventos.IdUsuarioCrecion = usuario.Id;
             int Respuesta = 0;
 
-            TimeSpan HoraInicio = eventos.HorarioInicial.TimeOfDay;
-            TimeSpan HoraFin = eventos.HoraFinal.TimeOfDay;
-
-            if (ValidarHoraEvento(eventos.IdDia, HoraInicio.ToString(), HoraFin.ToString()))
+            try
             {
-                Respuesta = LN.InsertarEventos(eventos, usuario.IdEmpresa, usuario.IdRol);
+                usuario = (Usuario)Session["Usuario"];
+                eventos.UsuarioCreacion = usuario.NombreCompleto;
+                eventos.IdUsuarioCrecion = usuario.Id;
+
+
+                TimeSpan HoraInicio = Convert.ToDateTime(eventos.HorarioInicial).TimeOfDay;
+                //eventos.HorarioInicial.TimeOfDay;
+                TimeSpan HoraFin = Convert.ToDateTime(eventos.HoraFinal).TimeOfDay;
+                //TimeSpan HoraFin = eventos.HoraFinal.TimeOfDay;
+
+                if (ValidarHoraEvento(eventos.IdDia, HoraInicio.ToString(), HoraFin.ToString()))
+                {
+                    Respuesta = LN.InsertarEventos(eventos, usuario.IdEmpresa, usuario.IdRol);
+                }
+                else
+                {
+                    Respuesta = 5;
+                }
+
+                
             }
-            else
+            catch (Exception ex)
             {
-                Respuesta = 5;
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                
             }
-
-             
-
             return Json(Respuesta, JsonRequestBehavior.AllowGet);
+
         }
 
         public bool ValidarHoraEvento(int Dia, string Inicio, string Final)
         {
-            HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
-            horarioEmpresa = (HorarioEmpresa)Session["HorarioEmpresa"];
-
             bool Respuesta = false;
 
-            switch (Dia)
+            try
             {
+                HorarioEmpresa horarioEmpresa = new HorarioEmpresa();
+                horarioEmpresa = (HorarioEmpresa)Session["HorarioEmpresa"];
 
-                case 0:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
+                switch (Dia)
+                {
 
-                        if (horarioEmpresa.InicioDomingo <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalDomingo >= TimeSpan.Parse(Final))
+                    case 0:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
                         {
-                            Respuesta = true;
+
+                            if (horarioEmpresa.InicioDomingo <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalDomingo >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
+
                         }
 
-                    }
-
-                    break;
-                case 1:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
-
-
-                        if (horarioEmpresa.InicioLunes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalLunes >= TimeSpan.Parse(Final))
+                        break;
+                    case 1:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
                         {
-                            Respuesta = true;
-                        }
-                    }
 
-                    break;
-                case 2:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    { 
-                        if (horarioEmpresa.InicioMartes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalMartes >= TimeSpan.Parse(Final))
-                        {
-                            Respuesta = true;
-                        }
-                     }
-                    break;
-                case 3:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
-                        if (horarioEmpresa.InicioMiercoles <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalMiercoles >= TimeSpan.Parse(Final))
-                        {
-                            Respuesta = true;
-                        }
-                    }
 
-                    break;
-                case 4:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
-                        if (horarioEmpresa.InicioJueves <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalJueves >= TimeSpan.Parse(Final))
-                        {
-                            Respuesta = true;
+                            if (horarioEmpresa.InicioLunes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalLunes >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
                         }
-                    }
 
-                    break;
-                case 5:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
-                        if (horarioEmpresa.InicioViernes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalViernes >= TimeSpan.Parse(Final))
+                        break;
+                    case 2:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
                         {
-                            Respuesta = true;
+                            if (horarioEmpresa.InicioMartes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalMartes >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
                         }
-                    }
-
-                    break;
-                case 6:
-                    if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
-                    {
-                        if (horarioEmpresa.InicioSabado <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalSabado >= TimeSpan.Parse(Final))
+                        break;
+                    case 3:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
                         {
-                            Respuesta = true;
+                            if (horarioEmpresa.InicioMiercoles <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalMiercoles >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
                         }
-                    }
 
-                    break;
-                default:
-                    break;
+                        break;
+                    case 4:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
+                        {
+                            if (horarioEmpresa.InicioJueves <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalJueves >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
+                        }
+
+                        break;
+                    case 5:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
+                        {
+                            if (horarioEmpresa.InicioViernes <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalViernes >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
+                        }
+
+                        break;
+                    case 6:
+                        if (TimeSpan.Parse(Inicio) < TimeSpan.Parse(Final))
+                        {
+                            if (horarioEmpresa.InicioSabado <= TimeSpan.Parse(Inicio) && horarioEmpresa.FinalSabado >= TimeSpan.Parse(Final))
+                            {
+                                Respuesta = true;
+                            }
+                        }
+
+                        break;
+                    default:
+                        break;
+                }
             }
+            catch (Exception ex)
+            {
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+            }
+           
+
+           
 
             return Respuesta;
 
@@ -145,51 +185,104 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult ObtenerTodosLosEventosXIdEmpresa()
         {
             List<Eventos> Eventos = new List<Eventos>();
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+                
+                usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+                if (usuario != null)
+                {
+
+                    Eventos = LN.ObtenerTodosLosEventosXIdEmpresa(usuario.IdEmpresa);
+                }
+               
+            }
+            catch (Exception ex )
             {
 
-                Eventos = LN.ObtenerTodosLosEventosXIdEmpresa(usuario.IdEmpresa);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
             }
-
-
             return Json(Eventos, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
         public ActionResult ListaEvento()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
+                    Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
-                    return View();
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
         public JsonResult EliminarEventos(int Id)
         {
             bool SeElimino = false;
+            try
+            {               
 
-            SeElimino = LN.EliminarEventos(Id);
+                SeElimino = LN.EliminarEventos(Id);
 
+                
+            }
+            catch (Exception ex)
+            {
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                
+            }
             return Json(SeElimino, JsonRequestBehavior.AllowGet);
+
 
 
         }
@@ -197,123 +290,228 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult ObtenerTodosLosEventosXIdUsuarioCreador()
         {
             List<Eventos> Eventos = new List<Eventos>();
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+                
+                usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+                if (usuario != null)
+                {
+
+                    Eventos = LN.ObtenerTodosLosEventosXIdUsuarioCreador(usuario.Id, usuario.IdEmpresa);
+                }
+                               
+            }
+            catch (Exception ex)
             {
 
-                Eventos = LN.ObtenerTodosLosEventosXIdUsuarioCreador(usuario.Id);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
             }
 
-
             return Json(Eventos, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
         public ActionResult ListaEventoUsuarioCreador()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
+                if (usuario.IdRol == 4)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
+                    Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
-                    return View();
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
         public JsonResult ObtenerTodosLosEventosHorasLibresXIdEmpresa()
         {
             List<Eventos> Eventos = new List<Eventos>();
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+               
+                usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+                if (usuario != null)
+                {
+
+                    Eventos = LN.ObtenerTodosLosEventosHorasLibresXIdEmpresa(usuario.IdEmpresa);
+                }
+
+            }
+            catch (Exception ex)
             {
 
-                Eventos = LN.ObtenerTodosLosEventosHorasLibresXIdEmpresa(usuario.IdEmpresa);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+             
             }
-
-
             return Json(Eventos, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
         public ActionResult ListaEventoHorasLibres()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
+                    Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
-                    return View();
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
         public JsonResult ObtenerTodosLosEventosXIdUsuario()
         {
             List<Eventos> Eventos = new List<Eventos>();
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+                
+                usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+                if (usuario != null)
+                {
+
+                    Eventos = LN.ObtenerTodosLosEventosXIdUsuario(usuario.Id);
+                }
+
+               
+            }
+            catch (Exception ex)
             {
 
-                Eventos = LN.ObtenerTodosLosEventosXIdUsuario(usuario.Id);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
             }
 
-
             return Json(Eventos, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
         public ActionResult ListaEventoUsuario()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
+                if (usuario.IdRol == 3)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
+                    Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
-                    return View();
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
@@ -322,16 +520,35 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult ObtenerTodosLosEventosXIdUsuarioSeleccionado(int IdUsuario)
         {
             List<Eventos> Eventos = new List<Eventos>();
-            usuario = (Usuario)Session["Usuario"];
+            try
+            {
+                
+                usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
+                if (usuario != null)
+                {
+
+                    Eventos = LN.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
+                }
+
+                                
+            }
+            catch (Exception ex)
             {
 
-                Eventos = LN.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
             }
-
-
             return Json(Eventos, JsonRequestBehavior.AllowGet);
+
         }
 
     }

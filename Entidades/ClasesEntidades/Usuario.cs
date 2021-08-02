@@ -19,8 +19,10 @@ namespace Entidades.ClasesEntidades
         public string CorreoElectronico { get; set; }
         public int Telefono { get; set; }
         public bool Genero { get; set; }
+        public bool TerminosYCondiciones { get; set; }
         public int IdRol { get; set; }
         public int IdEmpresa { get; set; }
+        public int IdPlan { get; set; }
         public int IdServicio { get; set; }
         public int IdServicioXColaborador { get; set; }
         public string FotoPerfil { get; set; }
@@ -29,6 +31,7 @@ namespace Entidades.ClasesEntidades
         public DateTime FechaCreacion { get; set; }
         public string UsuarioUltimaModificacion { get; set; }
         public DateTime? FechaUltimaModificacion { get; set; }
+        public bool CTemp { get; set; }
 
     }
 }

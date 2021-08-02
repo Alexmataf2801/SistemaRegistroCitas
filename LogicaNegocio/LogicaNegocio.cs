@@ -64,6 +64,13 @@ namespace LogicaNegocio
             return AD.InsertarEventos(eventos,IdEmpresa,IdRol);
         }
 
+        public void InsertarBitacora(Bitacora bitacora)
+        {
+
+            AD.InsertarBitacora(bitacora);
+
+        }
+
         #endregion
 
 
@@ -90,9 +97,9 @@ namespace LogicaNegocio
             return AD.DesactivarActivarServicios(Id, Estado);
         }
 
-        public bool ActualizarColaboradores (Usuario usuario)
+        public int ActualizarColaboradores (Usuario usuarios)
         {
-            return AD.ActualizarColaboradores(usuario);
+            return AD.ActualizarColaboradores(usuarios);
         }
 
         public bool DesactivarActivarColaboradores(int Id, bool Estado)
@@ -110,7 +117,7 @@ namespace LogicaNegocio
             return AD.DesactivarActivarServicioXColaborador(Id, Estado);
         }
 
-        public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
+        public int ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
             return AD.ActualizarHorarioEmpresa(horarioEmpresa, IdEmpresa, EstadoLunes, EstadoMartes, EstadoMiercoles, EstadoJueves, EstadoViernes, EstadoSabado, EstadoDomingo);
         }
@@ -118,6 +125,23 @@ namespace LogicaNegocio
         public bool ActualizarDatosXIdEmpresa(Empresa empresa, int IdEmpresa)
         {
             return AD.ActualizarDatosXIdEmpresa(empresa, IdEmpresa);
+        }
+
+
+        public int EditarContrasenaXCorreoElectronico(Login login, string CorreoElectronico)
+        {
+            return AD.EditarContrasenaXCorreoElectronico(login, CorreoElectronico);
+        }
+
+        public bool ActualizarPerfil(Usuario perfil)
+        {
+            return AD.ActualizarPerfil(perfil);
+        }
+
+        public bool ActualizarContrasena(string CorreoElectronico, string ContrasenaTemporal)
+        {
+    
+            return AD.ActualizarContrasena(CorreoElectronico, ContrasenaTemporal);
         }
 
         #endregion
@@ -254,6 +278,7 @@ namespace LogicaNegocio
         {
             return AD.ValidarCorreoElectronico(Id, CorreoElectronico);
         }
+
         public HorarioEmpresa ObtenerHorarioEmpresa(int IdEmpresa)
         {
             return AD.ObtenerHorarioEmpresa(IdEmpresa);
@@ -264,9 +289,9 @@ namespace LogicaNegocio
             return AD.ObtenerTodosLosEventosXIdEmpresa(IdEmpresa);
         }
 
-        public List<Eventos> ObtenerTodosLosEventosXIdUsuarioCreador(int IdUsuarioCreador)
+        public List<Eventos> ObtenerTodosLosEventosXIdUsuarioCreador(int IdUsuarioCreador, int IdEmpresa)
         {
-            return AD.ObtenerTodosLosEventosXIdUsuarioCreador(IdUsuarioCreador);
+            return AD.ObtenerTodosLosEventosXIdUsuarioCreador(IdUsuarioCreador, IdEmpresa);
         }
 
         public List<Eventos> ObtenerTodosLosEventosHorasLibresXIdEmpresa(int IdEmpresa)
@@ -279,6 +304,15 @@ namespace LogicaNegocio
             return AD.ObtenerTodosLosEventosXIdUsuario(IdUsuario);
         }
 
+        public Usuario ObtenerPerfilColaboradorXId(int Id)
+        {
+            return AD.ObtenerPerfilColaboradorXId(Id);
+        }
+
+        public int ValidarCorreo_OlvidoContrasena(string CorreoElectronico)
+        {
+            return AD.ValidarCorreo_OlvidoContrasena(CorreoElectronico);
+        }
 
         #endregion
 

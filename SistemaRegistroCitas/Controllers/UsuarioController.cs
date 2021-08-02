@@ -12,9 +12,11 @@ namespace SistemaRegistroCitas.Controllers
 {
     public class UsuarioController : Controller
     {
+
         Usuario usuario = new Usuario();
         string Menu = string.Empty;
         LogicaNegocio.LogicaNegocio LN = new LogicaNegocio.LogicaNegocio();
+        Utilidades utilidades = new Utilidades();
 
 
 
@@ -27,36 +29,97 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult InsertarUsuario(Usuario usuario)
         {
             int Resp = 0;
-            LN.InsertarUsuario(usuario, ref Resp);
+
+            try
+            {
+
+                usuario.TerminosYCondiciones = true;
+
+                LN.InsertarUsuario(usuario, ref Resp);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+
+                LN.InsertarBitacora(bitacora);
+
+
+
+            }
 
             return Json(Resp, JsonRequestBehavior.AllowGet);
+
+
         }
 
         public JsonResult Loguear(Login login, int IdEmpresa)
         {
-            Usuario usuario = LN.Validarlogin(login, IdEmpresa);
-            usuario.IdEmpresa = IdEmpresa;
-            Session["Usuario"] = usuario;
-            ArmarMenu(usuario.Id);
-            //Session["EmpresaSeleccionada"] = IdEmpresa;
-            //CargarConfiguracionesEmpresa(IdEmpresa);
-            return Json(usuario, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult ObtenerUsuarioSesion() {
-            Usuario usuarioSession = new Usuario();
-            if (Session["Usuario"] != null) {
-
-                usuarioSession = (Usuario)Session["Usuario"];
+            try
+            {
+                Usuario usuario = LN.Validarlogin(login, IdEmpresa);
+                usuario.IdEmpresa = IdEmpresa;
+                Session["Usuario"] = usuario;
+                ArmarMenu(usuario.Id);
+                return Json(usuario, JsonRequestBehavior.AllowGet);
             }
-            return Json(usuarioSession, JsonRequestBehavior.AllowGet); ;
+            catch (Exception ex)
+            {
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = " ";
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+
+            }
         }
 
-        public void CargarConfiguracionesEmpresa(int IdEmpresa) {
-            //ColaboradoresEmpresa(IdEmpresa); // Carga Colaboradores empresa en el combo
-            //ObtenerCalendarioEmpresa(IdEmpresa); // Nos carga todos los eventos de la empresa en el calendario
+        public JsonResult ObtenerUsuarioSesion()
+        {
 
+            Usuario usuarioSession = new Usuario();
+
+            try
+            {
+
+                if (Session["Usuario"] != null)
+                {
+
+                    usuarioSession = (Usuario)Session["Usuario"];
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = " ";
+
+
+                LN.InsertarBitacora(bitacora);
+
+            }
+
+            return Json(usuarioSession, JsonRequestBehavior.AllowGet);
         }
+
+
 
         public List<Menu> ObtenerMenuUsuario(int IdUsuario)
         {
@@ -70,7 +133,16 @@ namespace SistemaRegistroCitas.Controllers
             catch (Exception ex)
             {
 
-                throw;
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = " ";
+
+
+                LN.InsertarBitacora(bitacora);
+
+
             }
 
 
@@ -80,166 +152,244 @@ namespace SistemaRegistroCitas.Controllers
 
         public string ArmarMenu(int IdUsuario)
         {
-
-            List<Menu> menu = ObtenerMenuUsuario(IdUsuario);
-
-
             StringBuilder menuArmado = new StringBuilder();
-            menuArmado.Append("<ul class='sidebar-menu' data-widget='tree'>");
-            menuArmado.Append("<li class='header'>MENU DE NAVEGACIÓN</li>");
 
-            var listaPadres = menu.Where(p => p.IsPadre == "0").ToList();
-
-            for (int j = 0; j < listaPadres.Count; j++)
+            try
             {
-                menuArmado.Append("<li class='treeview'>");
-                menuArmado.Append("<a href='" + listaPadres[j].Url + "'>");
-                menuArmado.Append("<i class='" + listaPadres[j].Icono + "'></i><span>" + listaPadres[j].Nombre + "</span>");
-                menuArmado.Append("<span class='pull-right-container'>");
-                menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
-                menuArmado.Append("</span>");
-                menuArmado.Append("</a>");
+                List<Menu> menu = ObtenerMenuUsuario(IdUsuario);
 
-                var SegundoNivel = menu.Where(p => p.IdPadre == listaPadres[j].IdMenu).ToList();
 
-                if (SegundoNivel.Count > 0)
+
+                menuArmado.Append("<ul class='sidebar-menu' data-widget='tree'>");
+                menuArmado.Append("<li class='header'>MENU DE NAVEGACIÓN</li>");
+
+                var listaPadres = menu.Where(p => p.IsPadre == "0").ToList();
+
+                for (int j = 0; j < listaPadres.Count; j++)
                 {
-                    menuArmado.Append("<ul class='treeview-menu'>");
-                }
+                    menuArmado.Append("<li class='treeview'>");
+                    menuArmado.Append("<a href='" + listaPadres[j].Url + "'>");
+                    menuArmado.Append("<i class='" + listaPadres[j].Icono + "'></i><span>" + listaPadres[j].Nombre + "</span>");
+                    menuArmado.Append("<span class='pull-right-container'>");
+                    menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
+                    menuArmado.Append("</span>");
+                    menuArmado.Append("</a>");
 
-                for (int k = 0; k < SegundoNivel.Count; k++)
-                {
+                    var SegundoNivel = menu.Where(p => p.IdPadre == listaPadres[j].IdMenu).ToList();
 
-
-
-                    var TercerNivel = menu.Where(p => p.IdPadre == SegundoNivel[k].IdMenu).ToList();
-
-                    if (TercerNivel.Count > 0)
+                    if (SegundoNivel.Count > 0)
                     {
-                        menuArmado.Append("<li class='treeview'>");
-                        menuArmado.Append("<a href='" + SegundoNivel[k].Url + "'>");
-                        menuArmado.Append("<i class='" + SegundoNivel[k].Icono + "'></i><span>" + SegundoNivel[k].Nombre + "</span>");
-                    }
-                    else
-                    {
-
-                        menuArmado.Append("<li>");
-                        menuArmado.Append("<a href='" + SegundoNivel[k].Url + "'>");
-                        menuArmado.Append("<i class='" + SegundoNivel[k].Icono + "'></i><span>" + SegundoNivel[k].Nombre + "</span>");
-                    }
-
-                    if (TercerNivel.Count > 0)
-                    {
-                        menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
-                        menuArmado.Append("</a>");
                         menuArmado.Append("<ul class='treeview-menu'>");
                     }
 
-                    for (int a = 0; a < TercerNivel.Count; a++)
+                    for (int k = 0; k < SegundoNivel.Count; k++)
                     {
-                        var CuartoNivel = menu.Where(p => p.IdPadre == TercerNivel[a].IdMenu).ToList();
 
-                        if (CuartoNivel.Count > 0)
+
+
+                        var TercerNivel = menu.Where(p => p.IdPadre == SegundoNivel[k].IdMenu).ToList();
+
+                        if (TercerNivel.Count > 0)
                         {
                             menuArmado.Append("<li class='treeview'>");
-                            menuArmado.Append("<a href='" + TercerNivel[a].Url + "'>");
-                            menuArmado.Append("<i class='" + TercerNivel[a].Icono + "'></i><span>" + TercerNivel[a].Nombre + "</span>");
-                            menuArmado.Append("<span class='pull-right-container'>");
+                            menuArmado.Append("<a href='" + SegundoNivel[k].Url + "'>");
+                            menuArmado.Append("<i class='" + SegundoNivel[k].Icono + "'></i><span>" + SegundoNivel[k].Nombre + "</span>");
+                        }
+                        else
+                        {
+
+                            menuArmado.Append("<li>");
+                            menuArmado.Append("<a href='" + SegundoNivel[k].Url + "'>");
+                            menuArmado.Append("<i class='" + SegundoNivel[k].Icono + "'></i><span>" + SegundoNivel[k].Nombre + "</span>");
+                        }
+
+                        if (TercerNivel.Count > 0)
+                        {
                             menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
-                            menuArmado.Append("</span>");
                             menuArmado.Append("</a>");
                             menuArmado.Append("<ul class='treeview-menu'>");
+                        }
 
-                            for (int i = 0; i < CuartoNivel.Count; i++)
+                        for (int a = 0; a < TercerNivel.Count; a++)
+                        {
+                            var CuartoNivel = menu.Where(p => p.IdPadre == TercerNivel[a].IdMenu).ToList();
+
+                            if (CuartoNivel.Count > 0)
                             {
-                                menuArmado.Append("<li>");
-                                menuArmado.Append("<a href='" + CuartoNivel[i].Url + "'><i class='" + CuartoNivel[i].Icono + "'>");
-                                menuArmado.Append("</i>" + CuartoNivel[i].Nombre + "</a>");
+                                menuArmado.Append("<li class='treeview'>");
+                                menuArmado.Append("<a href='" + TercerNivel[a].Url + "'>");
+                                menuArmado.Append("<i class='" + TercerNivel[a].Icono + "'></i><span>" + TercerNivel[a].Nombre + "</span>");
+                                menuArmado.Append("<span class='pull-right-container'>");
+                                menuArmado.Append("<i class='fa fa-angle-left pull-right'></i>");
+                                menuArmado.Append("</span>");
+                                menuArmado.Append("</a>");
+                                menuArmado.Append("<ul class='treeview-menu'>");
 
+                                for (int i = 0; i < CuartoNivel.Count; i++)
+                                {
+                                    menuArmado.Append("<li>");
+                                    menuArmado.Append("<a href='" + CuartoNivel[i].Url + "'><i class='" + CuartoNivel[i].Icono + "'>");
+                                    menuArmado.Append("</i>" + CuartoNivel[i].Nombre + "</a>");
+
+                                }
+
+                                menuArmado.Append("</ul></li>");
+                            }
+                            else
+                            {
+                                menuArmado.Append("<li><a href='" + TercerNivel[a].Url + "'><i class='" + TercerNivel[a].Icono + "'></i>" + TercerNivel[a].Nombre);
+                                menuArmado.Append("</a>");
                             }
 
+                        }
+
+                        if (TercerNivel.Count > 0)
+                        {
                             menuArmado.Append("</ul></li>");
                         }
                         else
                         {
-                            menuArmado.Append("<li><a href='" + TercerNivel[a].Url + "'><i class='" + TercerNivel[a].Icono + "'></i>" + TercerNivel[a].Nombre);
                             menuArmado.Append("</a>");
+                            menuArmado.Append("</li>");
                         }
 
                     }
-
-                    if (TercerNivel.Count > 0)
-                    {
-                        menuArmado.Append("</ul></li>");
-                    }
-                    else
-                    {
-                        menuArmado.Append("</a>");
-                        menuArmado.Append("</li>");
-                    }
+                    menuArmado.Append("</ul></li>");
 
                 }
-                menuArmado.Append("</ul></li>");
-
+                menuArmado.Append("</ul>");
             }
-            menuArmado.Append("</ul>");
+            catch (Exception ex)
+            {
+
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = " ";
+
+
+                LN.InsertarBitacora(bitacora);
+            }
+
 
 
             return menuArmado.ToString();
         }
 
+
         [HttpGet]
         public ActionResult InsertarColaborador()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = ArmarMenu(usuario.Id);
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
-                   
-                    return View();
+
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
+
             }
+
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
+
         }
 
-  
+
         public JsonResult InsertarDatosColaborador(Usuario usuario)
         {
             int Resp = 0;
-            Usuario usu = (Usuario)Session["Usuario"];
-            usuario.IdEmpresa = usu.IdEmpresa;
-            LN.InsertarDatosColaborador(usuario, ref Resp);
+            try
+            {
+
+                Usuario usu = (Usuario)Session["Usuario"];
+                usuario.IdEmpresa = usu.IdEmpresa;
+                usuario.IdPlan = usu.IdPlan;
+                LN.InsertarDatosColaborador(usuario, ref Resp);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+
+                LN.InsertarBitacora(bitacora);
+            }
 
             return Json(Resp, JsonRequestBehavior.AllowGet);
+
         }
 
 
         public JsonResult ObtenerColaboradoresActivos()
         {
-            List<Usuario> usuarios = new List<Usuario>();
 
-            usuario = (Usuario)Session["Usuario"];
-
-            if (usuario != null)
+            try
             {
-               
-                usuarios = LN.ObtenerColaboradoresActivos(usuario.IdEmpresa);
 
-            }            
+                List<Usuario> usuarios = new List<Usuario>();
 
-            return Json(usuarios, JsonRequestBehavior.AllowGet);
+                usuario = (Usuario)Session["Usuario"];
+
+                if (usuario != null)
+                {
+
+                    usuarios = LN.ObtenerColaboradoresActivos(usuario.IdEmpresa);
+
+                }
+
+                return Json(usuarios, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         public JsonResult ObtenerTodosUsuarios()
@@ -254,27 +404,44 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult ListaColaboradores()
         {
             usuario = (Usuario)Session["Usuario"];
-            
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                Menu = ArmarMenu(usuario.Id);
-
-                if (usuario.Id > 0)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
+
             }
+
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
 
         }
@@ -282,37 +449,96 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerTodosLosColaboradores()
         {
-            List<Usuario> usuarios = new List<Usuario>();
-            
-           usuario = (Usuario)Session["Usuario"];
 
-           if(usuario != null)
+            try
             {
-               usuarios = LN.ObtenerTodosLosColaboradores(usuario.IdEmpresa,usuario.IdRol);
- 
+                List<Usuario> usuarios = new List<Usuario>();
+
+                usuario = (Usuario)Session["Usuario"];
+
+                if (usuario != null)
+                {
+                    usuarios = LN.ObtenerTodosLosColaboradores(usuario.IdEmpresa, usuario.IdRol);
+
+                }
+
+
+                return Json(usuarios, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
 
-                  
-            return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult DesactivarActivarColaboradores(int Id, bool Estado)
         {
+            try
+            {
 
-            bool SeActualizoEstado = false;
+                bool SeActualizoEstado = false;
 
-            SeActualizoEstado = LN.DesactivarActivarColaboradores(Id, Estado);
+                SeActualizoEstado = LN.DesactivarActivarColaboradores(Id, Estado);
 
-            return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+                return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+
         }
 
         public JsonResult EliminarColaboradores(int Id)
         {
-            bool SeElimino = false;
+            try
+            {
+                bool SeElimino = false;
 
-            SeElimino = LN.EliminarColaboradores(Id);
+                SeElimino = LN.EliminarColaboradores(Id);
 
-            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+                return Json(SeElimino, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
 
 
         }
@@ -321,36 +547,75 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult ActualizarColaboradores()
         {
             usuario = (Usuario)Session["Usuario"];
-            
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                Menu = ArmarMenu(usuario.Id);
-
-                if (usuario.Id > 0)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
+
             }
+
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
+
         }
 
-        public JsonResult ActualizarColaboradores(Usuario usuario)
+        public JsonResult ActualizarColaboradores(Usuario usuarios)
         {
             
-            bool SeActualizo = false;
-            usuario.UsuarioUltimaModificacion = usuario.NombreCompleto;
-            SeActualizo = LN.ActualizarColaboradores(usuario);
+            int SeActualizo = 0;
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+
+                usuarios.UsuarioUltimaModificacion = usuario.NombreCompleto;
+                usuarios.IdPlan = usuario.IdPlan;
+                usuarios.IdEmpresa = usuario.IdEmpresa;
+                SeActualizo = LN.ActualizarColaboradores(usuarios);
+              
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+                LN.InsertarBitacora(bitacora);
+
+              
+            }
 
             return Json(SeActualizo, JsonRequestBehavior.AllowGet);
 
@@ -359,11 +624,31 @@ namespace SistemaRegistroCitas.Controllers
 
         public JsonResult ObtenerColaboradoresXId(int Id)
         {
-            Usuario usuario = new Usuario();
 
-            usuario = LN.ObtenerColaboradoresXId(Id);
+            try
+            {
+                Usuario usuario = new Usuario();
 
-            return Json(usuario, JsonRequestBehavior.AllowGet);
+                usuario = LN.ObtenerColaboradoresXId(Id);
+
+                return Json(usuario, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
 
@@ -372,33 +657,68 @@ namespace SistemaRegistroCitas.Controllers
         {
             usuario = (Usuario)Session["Usuario"];
 
-
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                Menu = ArmarMenu(usuario.Id);
-
-                if (usuario.Id > 0)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
+
             }
+
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
+
         }
 
         public ActionResult CerrarSession()
         {
-            Session["Usuario"] = null;
-            return RedirectToAction("Login", "Home");
+            try
+            {
+                Session["Usuario"] = null;
+                return RedirectToAction("Login", "Home");
+            }
+            catch (Exception ex)
+            {
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         [HttpGet]
@@ -406,34 +726,74 @@ namespace SistemaRegistroCitas.Controllers
         {
             usuario = (Usuario)Session["Usuario"];
 
-
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                Menu = ArmarMenu(usuario.Id);
-
-                if (usuario.Id > 0)
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
                 {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
                 }
                 else
                 {
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
                 }
+
             }
+
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
+
         }
 
         public JsonResult AsignarServiciosXColaborador(Usuario UsuarioXServicio)
 
         {
-            
-            int Respuesta = LN.AsignarServiciosXColaborador(UsuarioXServicio);
+            int Respuesta = 0;
+
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+
+                Respuesta = LN.AsignarServiciosXColaborador(UsuarioXServicio);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+
+                LN.InsertarBitacora(bitacora);
+
+
+            }
 
             return Json(Respuesta, JsonRequestBehavior.AllowGet);
         }
@@ -443,11 +803,237 @@ namespace SistemaRegistroCitas.Controllers
         {
             usuario = (Usuario)Session["Usuario"];
 
+            if (!usuario.CTemp)
+            {
+                if (usuario.IdRol == 1 || usuario.IdRol == 2)
+                {
+
+                    Menu = ArmarMenu(usuario.Id);
+
+                    if (usuario != null)
+                    {
+                        if (usuario.Id > 0)
+                        {
+                            ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                            ViewBag.Menu = Menu;
+
+                            return View();
+                        }
+                        else
+                        {
+                            return RedirectToAction("Login", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+
+                }
+                else
+                {
+                    return RedirectToAction("InicioEmpresas", "InicioEmpresas");
+                }
+
+            }
+
+            else
+            {
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
+            }
+
+        }
+
+        public JsonResult ObtenerServiciosXColaborador()
+        {
+            List<Usuario> ServiciosXColaborador = new List<Usuario>();
+            try
+            {
+                
+
+                usuario = (Usuario)Session["Usuario"];
+
+                if (usuario != null)
+                {
+                    ServiciosXColaborador = LN.ObtenerServiciosXColaborador(usuario.IdEmpresa);
+                }
+
+
+                
+            }
+            catch (Exception ex)
+            {
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+
+                LN.InsertarBitacora(bitacora);
+                
+            }
+            return Json(ServiciosXColaborador, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult EliminarServiciosXColaborador(int Id)
+        {
+            bool SeElimino = false;
+            try
+            {
+               
+
+                SeElimino = LN.EliminarServiciosXColaborador(Id);
+
+               
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                
+            }
+
+            return Json(SeElimino, JsonRequestBehavior.AllowGet);
+
+
+
+        }
+
+        public JsonResult DesactivarActivarServicioXColaborador(int Id, bool Estado)
+        {
+            bool SeActualizoEstado = false;
+
+            try
+            {               
+
+                SeActualizoEstado = LN.DesactivarActivarServicioXColaborador(Id, Estado);
+                
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+                LN.InsertarBitacora(bitacora);                
+            }
+
+            return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+
+
+        }
+
+
+        public JsonResult ObtenerServiciosXColaboradorXId(int IdColaborador)
+        {
+            try
+            {
+                List<Usuario> usuario = new List<Usuario>();
+
+                usuario = LN.ObtenerServiciosXColaboradorXId(IdColaborador);
+
+                return Json(usuario, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        public JsonResult ValidarCorreoElectronico(int Id, string CorreoElectronico)
+        {
+            int Respuesta = 1;
+            try
+            {
+                
+                Respuesta = LN.ValidarCorreoElectronico(Id, CorreoElectronico);
+               
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                
+            }
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult EditarContrasenaXCorreoElectronico(Login login)
+        {
+            int Respuesta = 0;
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+                
+                Respuesta = LN.EditarContrasenaXCorreoElectronico(login, usuario.CorreoElectronico);
+                
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+               
+            }
+
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpGet]
+        public ActionResult ActualizarContrasenaXCorreoElectronico()
+
+        {
+            usuario = (Usuario)Session["Usuario"];
+            Menu = ArmarMenu(usuario.Id);
 
             if (usuario != null)
             {
-                Menu = ArmarMenu(usuario.Id);
-
                 if (usuario.Id > 0)
                 {
                     ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
@@ -466,57 +1052,155 @@ namespace SistemaRegistroCitas.Controllers
             }
         }
 
-        public JsonResult ObtenerServiciosXColaborador()
+        [HttpGet]
+        public ActionResult ActualizarPerfil()
         {
-            List<Usuario> ServiciosXColaborador = new List<Usuario>();
-
             usuario = (Usuario)Session["Usuario"];
 
-            if (usuario != null)
-            {                
-                ServiciosXColaborador = LN.ObtenerServiciosXColaborador(usuario.IdEmpresa);
+            if (!usuario.CTemp)
+            {
+
+
+                Menu = ArmarMenu(usuario.Id);
+                Usuario perfil = new Usuario();
+                if (usuario != null)
+                {
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+                        perfil = LN.ObtenerPerfilColaboradorXId(usuario.Id);
+                        return View("ActualizarPerfil", perfil);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+
             }
-            
-
-            return Json(ServiciosXColaborador, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult EliminarServiciosXColaborador(int Id)
-        {
-            bool SeElimino = false;
-
-            SeElimino = LN.EliminarServiciosXColaborador(Id);
-
-            return Json(SeElimino, JsonRequestBehavior.AllowGet);
-
+            else
+            {
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
+            }
 
         }
 
-        public JsonResult DesactivarActivarServicioXColaborador(int Id, bool Estado)
+
+        public JsonResult ValidarCorreoElectronicoPerfil(string CorreoElectronico)
         {
+            int Respuesta = 1;
 
-            bool SeActualizoEstado = false;
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+                
+                Respuesta = LN.ValidarCorreoElectronico(usuario.Id, CorreoElectronico);
+                
+            }
+            catch (Exception ex)
+            {
 
-            SeActualizoEstado = LN.DesactivarActivarServicioXColaborador(Id, Estado);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
 
-            return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
-        }
 
+                LN.InsertarBitacora(bitacora);
 
-        public JsonResult ObtenerServiciosXColaboradorXId(int IdColaborador)
-        {
-            List<Usuario> usuario = new List<Usuario>();
+                
+            }
 
-            usuario = LN.ObtenerServiciosXColaboradorXId(IdColaborador);
-
-            return Json(usuario, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult ValidarCorreoElectronico(int Id, string CorreoElectronico)
-        {
-            int Respuesta = 0;
-          Respuesta = LN.ValidarCorreoElectronico(Id, CorreoElectronico);
             return Json(Respuesta, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult ActualizarPerfil(Usuario perfil)
+        {
+            bool SeActualizo = false;
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];
+                
+                perfil.UsuarioUltimaModificacion = usuario.NombreCompleto;
+                perfil.Id = usuario.Id;
+                perfil.IdRol = usuario.IdRol;
+                SeActualizo = LN.ActualizarPerfil(perfil);
+
+                
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+                
+            }
+
+            return Json(SeActualizo, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult OlvidoContrasena(string CorreoElectronico)
+        {
+
+            bool Correcto = false;
+
+            try
+            {
+                int ExisteCorreo = LN.ValidarCorreo_OlvidoContrasena(CorreoElectronico.Trim());
+
+                if (ExisteCorreo == 1)
+                {
+
+                    string ContrasenaTemporal = utilidades.ObtenerClaveTemporal();
+                    bool SeActualizo = LN.ActualizarContrasena(CorreoElectronico, ContrasenaTemporal);
+
+                    Correo correo = new Correo();
+                    correo.Subject = "Contraseña Temporal Sistema Citas";
+                    correo.Body = "Su nueva contraseña temporal es " + ContrasenaTemporal + " ,porfavor ingrese al sistema y realice el cambio por su seguridad.";
+                    correo.To = CorreoElectronico;
+
+                    bool SeEnvioCorreo = utilidades.EnviarCorreoGenerico(correo);
+
+                    if (SeActualizo)
+                    {
+                        Correcto = true;
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = " ";
+
+
+                LN.InsertarBitacora(bitacora);
+                                
+            }
+
+            return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
     }

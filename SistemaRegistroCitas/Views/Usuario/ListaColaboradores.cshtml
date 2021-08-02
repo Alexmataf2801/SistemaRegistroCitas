@@ -29,6 +29,7 @@
                         </tr>
                     </thead>
                 </table>
+                <div style="display:flex; justify-content:center" id="cargando"><img src="~/Imagenes/reloj.gif" /></div>
             </div>
         </div>
     </div>
@@ -53,4 +54,5 @@
 </div>
 <!--FIN MODAL INFORMACION-->
 <script src="~/Js/jquery.min.js"></script>
-<script src="~/Scripts/Propios/ListaColaboradores.js"></script>
+@*<script src="~/Scripts/Propios/ListaColaboradores.js"></script>*@
+@Scripts.Render("~/bundles/ListaColaboradores")

@@ -34,17 +34,12 @@
                 TablaRoles.row.add([value.Nombre, value.NombreServicio, estado, CambiarEstado, Eliminar]).draw();
             });
 
-
+            $('#cargando').html(' ')
         },
         error: function (Error) {
         }
     });
 }
-
-//$(document).ready(function () {
-//    ObtenerServiciosXColaborador();
-//});
-
 
 
 function ConfirmarEliminarServicioXColaborador(Id) {

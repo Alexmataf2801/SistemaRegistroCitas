@@ -18,16 +18,25 @@ namespace SistemaRegistroCitas.Controllers
         public ActionResult InsertarRoles()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
-                {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+                if (usuario != null)
+                {
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
@@ -36,42 +45,89 @@ namespace SistemaRegistroCitas.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
         public JsonResult ObtenerRoles()
         {
             List<Roles> roles = new List<Roles>();
-            roles = LN.ObtenerRoles();
+            try
+            {
+               
+                roles = LN.ObtenerRoles();
 
+               
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+                                
+            }
             return Json(roles, JsonRequestBehavior.AllowGet);
+
         }
 
         public JsonResult ObtenerTodoLosRoles()
         {
             List<Roles> roles = new List<Roles>();
+            try
+            {
+                
+                usuario = (Usuario)Session["Usuario"];
+                roles = LN.ObtenerTodoLosRoles(usuario.IdRol);
+                
+            }
+            catch (Exception ex)
+            {
 
-            usuario = (Usuario)Session["Usuario"];
-            roles = LN.ObtenerTodoLosRoles(usuario.IdRol);
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
 
+
+                LN.InsertarBitacora(bitacora);
+
+            }
             return Json(roles, JsonRequestBehavior.AllowGet);
+
         }
 
         [HttpGet]
         public ActionResult ActualizarRol()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
-                {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+                if (usuario != null)
+                {
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
@@ -80,25 +136,33 @@ namespace SistemaRegistroCitas.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
-           
         }
 
         [HttpGet]
         public ActionResult ListaRoles()
         {
             usuario = (Usuario)Session["Usuario"];
-            Menu = usuarioControllador.ArmarMenu(usuario.Id);//(String)Session["Menu"];
 
-            if (usuario != null)
+            if (!usuario.CTemp)
             {
-                if (usuario.Id > 0)
-                {
-                    ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
-                    ViewBag.Menu = Menu;
 
-                    return View();
+                Menu = usuarioControllador.ArmarMenu(usuario.Id);
+
+                if (usuario != null)
+                {
+                    if (usuario.Id > 0)
+                    {
+                        ViewBag.Usuario = usuario.Nombre + " " + usuario.PrimerApellido + " " + usuario.SegundoApellido;
+                        ViewBag.Menu = Menu;
+
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Home");
+                    }
                 }
                 else
                 {
@@ -107,27 +171,66 @@ namespace SistemaRegistroCitas.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("ActualizarContrasenaXCorreoElectronico", "Usuario");
             }
         }
 
         public JsonResult DesactivarActivarRol(int IdRol, bool Estado)
         {
-
             bool SeActualizoEstado = false;
+            try
+            {
+                
+                SeActualizoEstado = LN.DesactivarActivarRol(IdRol, Estado);
 
-            SeActualizoEstado = LN.DesactivarActivarRol(IdRol, Estado);
+                
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+            }
 
             return Json(SeActualizoEstado, JsonRequestBehavior.AllowGet);
+
+
         }
 
         public JsonResult ElimnarRol(int IdRol)
         {
             bool SeElimino = false;
+            try
+            {                
 
-            SeElimino = LN.EliminarRol(IdRol);
+                SeElimino = LN.EliminarRol(IdRol);
 
+                
+            }
+            catch (Exception ex)
+            {
+
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+                                
+            }
             return Json(SeElimino, JsonRequestBehavior.AllowGet);
+
 
 
         }
@@ -135,19 +238,54 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult ObtenerRolXId(int IdRol)
         {
             Roles rol = new Roles();
+            try
+            {               
 
-            rol = LN.ObtenerRolXId(IdRol);
+                rol = LN.ObtenerRolXId(IdRol);
+                
+            }
+            catch (Exception ex)
+            {
 
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+               
+            }
             return Json(rol, JsonRequestBehavior.AllowGet);
+
         }
 
         public JsonResult ActualizarRol(Roles rol)
         {
-            usuario = (Usuario)Session["Usuario"];
             bool SeActualizo = false;
-            rol.UsuarioUltimaModificacion = usuario.NombreCompleto;
-            SeActualizo = LN.ActualizarRol(rol);
+            try
+            {
+                usuario = (Usuario)Session["Usuario"];               
+                rol.UsuarioUltimaModificacion = usuario.NombreCompleto;
+                SeActualizo = LN.ActualizarRol(rol);
+                                
+            }
+            catch (Exception ex)
+            {
 
+                usuario = (Usuario)Session["Usuario"];
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = usuario.NombreCompleto;
+
+
+                LN.InsertarBitacora(bitacora);
+
+            }
             return Json(SeActualizo, JsonRequestBehavior.AllowGet);
 
         }

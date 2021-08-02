@@ -21,14 +21,10 @@
                         <div class="form-group row">
 
                             <div class="col-12 col-md-6 mb-3">
-                                @*<label type="text" class="form-control" name="nombre" id="lblNombreEmpresa"></label>*@
-
-                                <input readonly type="text" style="text-align:center;" class="form-control" placeholder="Nombre" name="nombre" id="txtNombreEmpresa">
-
+                                <input readonly type="text" style="text-align:center;" class="form-control" placeholder="Nombre" name="nombre" id="txtNombreEmpresa" maxlength="150">
                                 <br />
-                                <textarea readonly name="Descripcion" id="txtDescripcion" placeholder="Descripcion" class="form-control" style="max-height: 400px; min-height: 400px; max-width: 100%;min-width: 100%;"></textarea>
-                                <textarea readonly name="mensaje" id="txtDireccion" placeholder="Direccion" class="form-control" style="max-height: 400px; min-height: 400px; max-width: 100%;min-width: 100%; margin-top:30px;"></textarea>
-                                @*<label style="height:200px;" class="form-control" id="txtDescripcionEmpresa" type="mensaje">Descripcion</label>*@
+                                <textarea readonly name="Descripcion" id="txtDescripcion" placeholder="Descripcion" class="form-control" style="max-height: 400px; min-height: 400px; max-width: 100%;min-width: 100%;" maxlength="500"></textarea>
+                                <textarea readonly name="mensaje" id="txtDireccion" placeholder="Direccion" class="form-control" style="max-height: 400px; min-height: 400px; max-width: 100%;min-width: 100%; margin-top:30px;" maxlength="500"></textarea>
                                 <br />
                             </div>
 
@@ -51,8 +47,8 @@
 
                                     <div style="display:@MostrarLunes">
                                         <input readonly type="text" style="text-align:center;margin-bottom: 15px;" id="txtLunes" required class="form-control" placeholder="Lunes" name="Lunes">
-                                        <label style= "display:block;text-align:center;" id="InicioLunes">Horario de apertura: @Model.InicioLunes</label>                                        
-                                        <label style= "display:block;text-align:center;" id="FinalLunes">Hora de cierre: @Model.FinalLunes</label>
+                                        <label style="display:block;text-align:center;" id="InicioLunes">Horario de apertura: @Model.InicioLunes</label>
+                                        <label style="display:block;text-align:center;" id="FinalLunes">Hora de cierre: @Model.FinalLunes</label>
                                         <br />
                                     </div>
 
@@ -70,8 +66,8 @@
 
                                     <div style="display:@MostrarMartes">
                                         <input readonly type="text" style="text-align:center;margin-bottom: 15px;" id="txtMartes" required class="form-control" placeholder="Martes" name="Martes">
-                                        <label style= "display:block;text-align:center;"  id="InicioMartes">@Model.InicioMartes</label>
-                                        <label style= "display:block;text-align:center;"  id="FinalMartes">@Model.FinalMartes</label>
+                                        <label style="display:block;text-align:center;" id="InicioMartes">Horario de apertura: @Model.InicioMartes</label>
+                                        <label style="display:block;text-align:center;" id="FinalMartes">Hora de cierre: @Model.FinalMartes</label>
                                         <br />
                                     </div>
                                 }
@@ -90,8 +86,8 @@
 
                                     <div style="display:@MostrarMiercoles">
                                         <input readonly type="text" style="text-align:center;margin-bottom: 15px;" id="txtMiercoles" required class="form-control" placeholder="Miercoles" name="Miercoles">
-                                        <label style= "display:block;text-align:center;"  id="InicioMiercoles">@Model.InicioMiercoles</label>
-                                        <label style= "display:block;text-align:center;"  id="FinalMiercoles">@Model.FinalMiercoles</label>
+                                        <label style="display:block;text-align:center;" id="InicioMiercoles">Horario de apertura: @Model.InicioMiercoles</label>
+                                        <label style="display:block;text-align:center;" id="FinalMiercoles">Hora de cierre: @Model.FinalMiercoles</label>
                                         <br />
                                     </div>
                                 }
@@ -110,8 +106,8 @@
 
                                     <div style="display:@MostrarJueves">
                                         <input readonly type="text" style="text-align:center;margin-bottom: 15px;" id="txtJueves" required class="form-control" placeholder="Jueves" name="Jueves">
-                                        <label style= "display:block;text-align:center;"  id="InicioJueves">@Model.InicioJueves</label>
-                                        <label style= "display:block;text-align:center;"  id="FinalJueves">@Model.FinalJueves</label>
+                                        <label style="display:block;text-align:center;" id="InicioJueves">Horario de apertura: @Model.InicioJueves</label>
+                                        <label style="display:block;text-align:center;" id="FinalJueves">Hora de cierre: @Model.FinalJueves</label>
                                         <br />
                                     </div>
                                 }
@@ -129,8 +125,8 @@
 
                                     <div style="display:@MostrarViernes">
                                         <input readonly type="text" style="text-align:center;margin-bottom: 15px;" id="txtViernes" required class="form-control" placeholder="Viernes" name="Viernes">
-                                        <label style= "display:block;text-align:center;"  id="InicioViernes">@Model.InicioViernes</label>
-                                        <label style= "display:block;text-align:center;"  id="FinalViernes">@Model.FinalViernes</label>
+                                        <label style="display:block;text-align:center;" id="InicioViernes">Horario de apertura: @Model.InicioViernes</label>
+                                        <label style="display:block;text-align:center;" id="FinalViernes">Hora de cierre: @Model.FinalViernes</label>
                                         <br />
                                     </div>
                                 }
@@ -148,8 +144,8 @@
 
                                     <div style="display:@MostrarSabado">
                                         <input readonly type="text" style="text-align:center;margin-bottom: 15px;" id="txtSabado" required class="form-control" placeholder="Sabado" name="Sabado">
-                                        <label style= "display:block;text-align:center;"  id="InicioSabado">@Model.InicioSabado</label>
-                                        <label style= "display:block;text-align:center;"  id="FinalSabado">@Model.FinalSabado</label>
+                                        <label style="display:block;text-align:center;" id="InicioSabado">Horario de apertura: @Model.InicioSabado</label>
+                                        <label style="display:block;text-align:center;" id="FinalSabado">Hora de cierre: @Model.FinalSabado</label>
                                         <br />
                                     </div>
                                 }
@@ -167,8 +163,8 @@
 
                                     <div style="display:@MostrarDomingo">
                                         <input readonly type="text" style="text-align:center;margin-bottom: 15px;" id="txtDomingo" required class="form-control" placeholder="Domingo" name="Domingo">
-                                        <label style= "display:block;text-align:center;"  id="InicioDomingo">@Model.InicioDomingo</label>
-                                        <label style= "display:block;text-align:center;"  id="FinalDomingo">@Model.FinalDomingo</label>
+                                        <label style="display:block;text-align:center;" id="InicioDomingo">Horario de apertura: @Model.InicioDomingo</label>
+                                        <label style="display:block;text-align:center;" id="FinalDomingo">Hora de cierre: @Model.FinalDomingo</label>
                                         <br />
                                     </div>
                                 }
@@ -180,16 +176,13 @@
                         <div class="form-group row">
 
                             <div class="col-12 col-md-6 mb-3">
-                                @*<textarea readonly name="mensaje" id="direccion" placeholder="Direccion" class="form-control" style="max-height: 300px; min-height: 250px; max-width: 100%;min-width: 100%;"></textarea>*@
-                                @*<label style="height:200px;" class="form-control" id="direccion" type="text">Direccion</label>*@
                                 <br />
-                                <label  style= "display:block;text-align:center; margin-bottom:5px">Contacto</label>
-                                <input readonly class="form-control" id="txtContactoEmpresa" placeholder="Contacto" name="Contacto" />
-                                @*<label type="text" class="form-control" name="contacto" id="txtContactoEmpresa">Contacto</label>*@
+                                <label style="display:block;text-align:center; margin-bottom:5px">Contacto</label>
+                                <input readonly class="form-control" id="txtContactoEmpresa" placeholder="Contacto" name="Contacto" maxlength="100" />
                             </div>
 
                             <div class="col-12 col-md-3 mb-3">
-                                <!--<input type="tel" required class="form-control" id="contacto" placeholder="Contacto" name="Contacto" />-->
+
                             </div>
 
                             <div class="col-12 col-md-3 mb-3">
@@ -197,7 +190,7 @@
                             </div>
                         </div>
 
-                        <!--<input type="submit" class="btn btn-primary btn-block mb-3" value="Enviar">-->
+
 
                     </div>
                 </div>
@@ -209,4 +202,4 @@
     </div>
 </div>
 <script src="~/Js/jquery.min.js"></script>
-<script src="~/Scripts/Propios/InicioEmpresas.js"></script>
+@Scripts.Render("~/bundles/InicioEmpresas")

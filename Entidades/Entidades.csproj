@@ -69,6 +69,105 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDatos\BaseDatos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseDatos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\BaseDatos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\BaseDatos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseDatos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\PaObtenerColaboradoresActivos_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerColaboradoresXId_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerDatosDeEmpresasXIdControlDeAdminitracion_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerEmpresasXId_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerHorarioEmpresa_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerMenuGeneral_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerMenuXUsuario_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerMinutosYHoras_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerNombresEmpresasActivas_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerPerfilColaboradorXId_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\PaObtenerRoles_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerRolXId_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerServiciosActivos_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerServiciosXColaboradorXId_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerServiciosXColaborador_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerServicioXId_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerTodasLasEmpresasControlDeAdminitracion_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerTodosLosColaboradores_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerTodosLosDias_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerTodosLosEventosXIdEmpresa_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerTodosLosEventosXIdUsuarioCreador_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerTodosLosEventosXIdUsuario_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerTodosLosRoles_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerTodosLosServicios_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerUsuariosActivos_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\paObtenerUsuario_Result.cs">
+      <DependentUpon>BaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClasesEntidades\Bitacora.cs" />
+    <Compile Include="ClasesEntidades\ClaseEnum.cs" />
+    <Compile Include="ClasesEntidades\Correo.cs" />
     <Compile Include="ClasesEntidades\DiasLibresColaboradores.cs" />
     <Compile Include="ClasesEntidades\Empresa.cs" />
     <Compile Include="ClasesEntidades\Eventos.cs" />
@@ -81,126 +180,20 @@
     <Compile Include="ClasesEntidades\UnidadMedida.cs" />
     <Compile Include="ClasesEntidades\Usuario.cs" />
     <Compile Include="ClasesEntidades\Utilidades.cs" />
-    <Compile Include="ModelBD.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelBD.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelBD.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelBD.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelBD.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="PaObtenerColaboradoresActivos_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerColaboradoresXId_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerEmpresasXId_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerHorarioEmpresa_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerMenuGeneral_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerMenuXUsuario_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerMinutosYHoras_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerNombresEmpresasActivas_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PaObtenerRoles_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerRolXId_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerServiciosActivos_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerServiciosXColaboradorXId_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerServiciosXColaborador_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerServicioXId_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerTodosLosColaboradores_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerTodosLosDias_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerTodosLosEventosHorasLibresXIdEmpresa_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerTodosLosEventosXIdEmpresa_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerTodosLosEventosXIdUsuarioCreador_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerTodosLosEventosXIdUsuario_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerTodosLosRoles_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerTodosLosServicios_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerUsuariosActivos_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
-    <Compile Include="paObtenerUsuario_Result.cs">
-      <DependentUpon>ModelBD.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="ModelBD.edmx">
+    <EntityDeploy Include="BaseDatos\BaseDatos.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelBD.Designer.cs</LastGenOutput>
+      <LastGenOutput>BaseDatos.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ModelBD.edmx.diagram">
-      <DependentUpon>ModelBD.edmx</DependentUpon>
+    <None Include="BaseDatos\BaseDatos.edmx.diagram">
+      <DependentUpon>BaseDatos.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="BaseDatos\BDSistemaRegistroCitas.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="BaseDatos\BDSistemaRegistroCitas_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>BDSistemaRegistroCitas.mdf</DependentUpon>
-    </Content>
-    <Content Include="ModelBD.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelBD.edmx</DependentUpon>
-      <LastGenOutput>ModelBD.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ModelBD.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelBD.edmx</DependentUpon>
-      <LastGenOutput>ModelBD.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -216,6 +209,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BaseDatos\BaseDatos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseDatos.edmx</DependentUpon>
+      <LastGenOutput>BaseDatos.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BaseDatos\BaseDatos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BaseDatos.edmx</DependentUpon>
+      <LastGenOutput>BaseDatos.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

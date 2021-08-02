@@ -1,10 +1,10 @@
-﻿
-using Entidades;
+﻿using Entidades.BaseDatos;
 using Entidades.ClasesEntidades;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
+using System.Globalization;
 
 namespace AccesoDatos
 {
@@ -30,9 +30,10 @@ namespace AccesoDatos
                                                       usuario.PrimerApellido,
                                                       usuario.SegundoApellido,
                                                       usuario.Identificacion,
-                                                      usuario.CorreoElectronico,
+                                                      usuario.CorreoElectronico.Trim(),
                                                       usuario.Telefono,
                                                       usuario.Genero,
+                                                      usuario.TerminosYCondiciones,
                                                       usuario.IdRol,
                                                       IdUsuario,
                                                       Respuesta);
@@ -90,7 +91,7 @@ namespace AccesoDatos
             }
             catch (Exception ex)
             {
-
+                //ex.Message.ToString();
                 throw;
             }
 
@@ -102,7 +103,7 @@ namespace AccesoDatos
 
         public bool InsertarRoles(Roles roles)
         {
-            bool Respuesta = true;
+            bool Respuesta = false;
             try
             {
                 entities.PaInsertarRoles(roles.Nombre, roles.Descripcion, roles.Estado, roles.UsuarioCreacion);
@@ -118,7 +119,7 @@ namespace AccesoDatos
 
         public bool InsertarDatosServicios(Servicio servicio, int IdEmpresa)
         {
-            bool Respuesta = true;
+            bool Respuesta = false;
             try
             {
                 entities.PaInsertarServicios(servicio.Nombre, servicio.Descripcion, servicio.TiempoEstimado, servicio.TipoUnidad,servicio.UsuarioCreacion,IdEmpresa);
@@ -153,7 +154,7 @@ namespace AccesoDatos
 
         public bool InsertarUnidadMedida(UnidadMedida unidadMedida)
         {
-            bool Respuesta = true;
+            bool Respuesta = false;
             try
             {
                 entities.PaInsertarUnidadMedida(unidadMedida.Nombre, unidadMedida.Descripcion, unidadMedida.Estado, unidadMedida.UsuarioCreacion);
@@ -282,66 +283,72 @@ namespace AccesoDatos
             ObjectParameter RespuestaUsuarioXEmpresa;
             try
             {
-                IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
-                Respuesta = new ObjectParameter("Respuesta", typeof(int));
-                RespuestaUsuarioXEmpresa = new ObjectParameter("RespuestaUsuarioXEmpresa", typeof(int));
-                var info = entities.PaInsertarDatosColaborador(usuario.Nombre,
-                                                      usuario.PrimerApellido,
-                                                      usuario.SegundoApellido,
-                                                      usuario.Identificacion,
-                                                      usuario.CorreoElectronico,
-                                                      usuario.Telefono,
-                                                      usuario.Genero,
-                                                      usuario.IdRol,
-                                                      IdUsuario,
-                                                      Respuesta);
-
-              
-
-                if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
+                if (ValidarBeneficiosXPlan(usuario.IdEmpresa, usuario.IdPlan, usuario.IdRol) == 1 )
                 {
-                    switch (Respuesta.Value.ToString())
+                    IdUsuario = new ObjectParameter("IdUsuario", typeof(int));
+                    Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                    RespuestaUsuarioXEmpresa = new ObjectParameter("RespuestaUsuarioXEmpresa", typeof(int));
+                    var info = entities.PaInsertarDatosColaborador(usuario.Nombre,
+                                                          usuario.PrimerApellido,
+                                                          usuario.SegundoApellido,
+                                                          usuario.Identificacion,
+                                                          usuario.CorreoElectronico.Trim(),
+                                                          usuario.Telefono,
+                                                          usuario.Genero,
+                                                          usuario.IdRol,
+                                                          IdUsuario,
+                                                          Respuesta);
+
+
+
+                    if (!string.IsNullOrEmpty(Respuesta.Value.ToString()))
                     {
-                        case "1":
+                        switch (Respuesta.Value.ToString())
+                        {
+                            case "1":
 
-                        var infoUsuarioXEmpresa = entities.PaInsertarUsuarioXEmpresa(
-                                                    Convert.ToInt32(IdUsuario.Value.ToString()),
-                                                     usuario.IdRol,
-                                                     usuario.IdEmpresa,
-                                                     RespuestaUsuarioXEmpresa);
+                                var infoUsuarioXEmpresa = entities.PaInsertarUsuarioXEmpresa(
+                                                            Convert.ToInt32(IdUsuario.Value.ToString()),
+                                                             usuario.IdRol,
+                                                             usuario.IdEmpresa,
+                                                             RespuestaUsuarioXEmpresa);
 
-                            Login login = new Login();
-                            login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
-                            login.CorreoElectronico = usuario.CorreoElectronico;
-                            login.Contrasena = utilidades.ObtenerClaveTemporal();
+                                Login login = new Login();
+                                login.IdUsuario = Convert.ToInt32(IdUsuario.Value.ToString());
+                                login.CorreoElectronico = usuario.CorreoElectronico;
+                                login.Contrasena = utilidades.ObtenerClaveTemporal();
 
 
-                            if (InsertarLogin(login))
-                            {
+                                if (InsertarLogin(login))
+                                {
+                                    Resp = Convert.ToInt32(Respuesta.Value.ToString());
+                                    utilidades.EnviarCorreo(login.Contrasena, usuario.CorreoElectronico);
+                                }
+
+                                break;
+
+                            default:
+
                                 Resp = Convert.ToInt32(Respuesta.Value.ToString());
-                                utilidades.EnviarCorreo(login.Contrasena, usuario.CorreoElectronico);
-                            }
 
-                            break;
+                                break;
+                        }
 
-                        default:
-
-                            Resp = Convert.ToInt32(Respuesta.Value.ToString());
-
-                            break;
+                    }
+                    else
+                    {
+                        Resp = 0;
                     }
 
                 }
                 else
                 {
-                    Resp = 0;
+                    Resp = 3;
                 }
-
-
             }
             catch (Exception ex)
             {
-                Resp = 0;
+                Resp = 4;
             }
 
         }
@@ -404,8 +411,9 @@ namespace AccesoDatos
             try
             {
                 RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
-                entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, eventos.IdUsuarioCrecion, IdRol, eventos.IdServicio,eventos.Nombre, eventos.TipoUnidadEvento,
-                    eventos.HorarioInicial, eventos.HoraFinal, eventos.UsuarioCreacion,RespuestaCorrecta);
+                entities.PaInsertarEventos(IdEmpresa, eventos.IdUsuario, eventos.IdUsuarioCrecion, IdRol, eventos.IdServicio, eventos.Nombre, eventos.TipoUnidadEvento,
+                   Convert.ToDateTime(eventos.HorarioInicial), Convert.ToDateTime(eventos.HoraFinal), eventos.UsuarioCreacion, RespuestaCorrecta);
+
                 Respuesta = Convert.ToInt32(RespuestaCorrecta.Value.ToString());
             }
             catch (Exception ex)
@@ -418,6 +426,23 @@ namespace AccesoDatos
 
 
         }
+
+        public void InsertarBitacora (Bitacora bitacora)
+        {
+            try
+            {
+
+                var info = entities.paInsertarBitacora(bitacora.Clase, bitacora.Metodo, bitacora.Error, bitacora.UsuarioCreacion);
+
+            }
+            catch (Exception ex)
+            {
+        
+             
+                throw;
+            }
+        }
+
 
         #endregion
 
@@ -494,23 +519,41 @@ namespace AccesoDatos
             return SeActualizo;
         }
 
-        public bool ActualizarColaboradores(Usuario usuario)
+        public int ActualizarColaboradores(Usuario usuarios)
         {
-            bool Correcto = false;
-           
+            int valor = 0;
+            
+
             try
             {
-                
-                entities.paActualizarColaboradores(usuario.Id, usuario.Identificacion, usuario.Nombre, usuario.PrimerApellido, usuario.SegundoApellido, usuario.CorreoElectronico, usuario.Telefono,
-                    usuario.Genero, usuario.IdRol, usuario.UsuarioUltimaModificacion);
-                Correcto = true;
+                if (ValidarBeneficiosXPlan(usuarios.IdEmpresa, usuarios.IdPlan, usuarios.IdRol) == 1)
+                {
+                    if (ValidarCorreoElectronico(usuarios.Id, usuarios.CorreoElectronico.Trim()) == 0)
+                    {
+                       
+                        entities.paActualizarColaboradores(usuarios.Id, usuarios.Identificacion, usuarios.Nombre, usuarios.PrimerApellido, usuarios.SegundoApellido, usuarios.CorreoElectronico.Trim(), usuarios.Telefono,
+                        usuarios.Genero, usuarios.IdRol, usuarios.UsuarioUltimaModificacion);
+                        valor = 1;
+                        
+                    }
+                    else
+                    {
+                        valor = 3;
+                    }             
+
+                }
+                else
+                {
+                    valor = 2;
+                }
+
             }
             catch (Exception ex)
             {
-                Correcto = false;
+                throw;
             }
 
-            return Correcto;
+            return valor;
         }
         public bool DesactivarActivarColaboradores(int Id, bool Estado)
         {
@@ -563,21 +606,23 @@ namespace AccesoDatos
             return SeActualizo;
         }
 
-       public bool ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
+       public int ActualizarHorarioEmpresa(HorarioEmpresa horarioEmpresa, int IdEmpresa, bool EstadoLunes, bool EstadoMartes, bool EstadoMiercoles, bool EstadoJueves, bool EstadoViernes, bool EstadoSabado, bool EstadoDomingo)
         {
-            bool Correcto = false;
+            int Correcto = 0;
+            ObjectParameter RespuestaCorrecta;
             try
             {
+                RespuestaCorrecta = new ObjectParameter("RespuestaCorrecta", typeof(int));
                 entities.paActualizarHorarioEmpresa(horarioEmpresa.InicioLunes, horarioEmpresa.FinalLunes, EstadoLunes, horarioEmpresa.InicioMartes, horarioEmpresa.FinalMartes,EstadoMartes,
                     horarioEmpresa.InicioMiercoles, horarioEmpresa.FinalMiercoles,EstadoMiercoles, horarioEmpresa.InicioJueves, horarioEmpresa.FinalJueves,EstadoJueves,
                     horarioEmpresa.InicioViernes, horarioEmpresa.FinalViernes, EstadoViernes, horarioEmpresa.InicioSabado, horarioEmpresa.FinalSabado,EstadoSabado,
-                    horarioEmpresa.InicioDomingo, horarioEmpresa.FinalDomingo, EstadoDomingo, IdEmpresa);
-                Correcto = true;
+                    horarioEmpresa.InicioDomingo, horarioEmpresa.FinalDomingo, EstadoDomingo, IdEmpresa, RespuestaCorrecta);
+                Correcto = Convert.ToInt32(RespuestaCorrecta.Value.ToString()); 
 
             }
             catch (Exception ex)
             {
-                Correcto = false;
+                throw;
             }
 
             return Correcto;
@@ -591,7 +636,7 @@ namespace AccesoDatos
             bool Correcto = false;
             try
             {
-                entities.paActualizarDatosXIdEmpresa(empresa.Nombre, empresa.CorreoElectronico,empresa.Descripcion,empresa.Direccion,IdEmpresa);
+                entities.paActualizarDatosXIdEmpresa(empresa.Nombre, empresa.Contacto,empresa.Descripcion,empresa.Direccion,IdEmpresa);
                 Correcto = true;
 
             }
@@ -603,6 +648,67 @@ namespace AccesoDatos
             return Correcto;
 
         }
+
+        public int EditarContrasenaXCorreoElectronico(Login login, string CorreoElectronico)
+        {
+            int Respuesta = 0;
+            ObjectParameter Confirmacion;
+
+            try
+            {
+                Confirmacion = new ObjectParameter("Confirmacion", typeof(int));
+                entities.paEditarContrasenaXCorreoElectronico(CorreoElectronico, login.ContrasenaActual, login.NuevaContrasena, login.ConfirmaContrasena, Confirmacion);
+
+                Respuesta = Convert.ToInt32(Confirmacion.Value.ToString());
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Respuesta;
+        }
+
+        public bool ActualizarPerfil(Usuario perfil)
+        {
+            bool Correcto = false;
+
+            try
+            {
+                if (ValidarCorreoElectronico(perfil.Id,perfil.CorreoElectronico.Trim()) == 0)
+                {
+                    entities.paActualizarPerfil(perfil.Id, perfil.Identificacion, perfil.Nombre, perfil.PrimerApellido, perfil.SegundoApellido, perfil.CorreoElectronico.Trim(), perfil.Telefono,
+                   perfil.Genero, perfil.IdRol, perfil.UsuarioUltimaModificacion);
+                    Correcto = true;
+                }
+
+               
+            }
+            catch (Exception ex)
+            {
+                Correcto = false;
+            }
+
+            return Correcto;
+        }
+
+        public bool ActualizarContrasena(string CorreoElectronico, string ContrasenaTemporal)
+        {
+            bool Correcto = false;
+            try
+            {
+                entities.paActualizarContrasena(CorreoElectronico, ContrasenaTemporal);
+                Correcto = true;
+            }
+            catch (Exception)
+            {
+                Correcto = false;
+                throw;
+            }
+
+            return Correcto;
+        }
+
 
 
         #endregion
@@ -713,6 +819,7 @@ namespace AccesoDatos
         #endregion
 
 
+
         #region SELECTS
 
         public List<Servicio> ObtenerServiciosActivos(int IdEmpresa)
@@ -795,6 +902,8 @@ namespace AccesoDatos
                     usuario.Genero = item.Genero;
                     usuario.NombreCompleto = item.Nombre + " " + item.PrimerApellido + " " + item.SegundoApellido;
                     usuario.IdRol = item.IdRol;
+                    usuario.CTemp = item.Temporal;
+                    usuario.IdPlan = item.IdPlan;
 
                     if (item.IdRol != 4) {
 
@@ -1220,7 +1329,7 @@ namespace AccesoDatos
                 {
                     empresa.Id = item.Id;
                     empresa.Nombre = item.Nombre;            
-                    empresa.CorreoElectronico = item.CorreoElectronico;
+                    empresa.Contacto = item.Contacto;
                     empresa.Direccion = item.Direccion;
                     empresa.Descripcion = item.Descripcion;               
                 }
@@ -1388,8 +1497,8 @@ namespace AccesoDatos
                     Eventos.IdUsuario = item.IdUsuario;
                     Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
                     Eventos.IdServicio = item.IdServicio;
-                    Eventos.HorarioInicial = item.HorarioInicial;
-                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.HorarioInicial = item.HorarioInicial.ToString();
+                    Eventos.HoraFinal = item.HoraFinal.ToString();
                     Eventos.UsuarioCreacion = item.UsuarioCreacion;
                     Eventos.NombreColaborador = item.NombreColaborador;
                     Eventos.NombreServicio = item.NombreServicio;                    
@@ -1406,12 +1515,12 @@ namespace AccesoDatos
         }
 
 
-        public List<Eventos> ObtenerTodosLosEventosXIdUsuarioCreador(int IdUsuarioCreador)
+        public List<Eventos> ObtenerTodosLosEventosXIdUsuarioCreador(int IdUsuarioCreador, int IdEmpresa)
         {
             List<Eventos> ListaEventos = new List<Eventos>();
             try
             {
-                var info = entities.paObtenerTodosLosEventosXIdUsuarioCreador(IdUsuarioCreador);
+                var info = entities.paObtenerTodosLosEventosXIdUsuarioCreador(IdUsuarioCreador,IdEmpresa);
 
                 foreach (var item in info)
                 {
@@ -1420,8 +1529,8 @@ namespace AccesoDatos
                     Eventos.Id = item.Id;
                     Eventos.IdUsuario = item.Id;                   
                     Eventos.IdServicio = item.IdServicio;
-                    Eventos.HorarioInicial = item.HorarioInicial;
-                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.HorarioInicial = item.HorarioInicial.ToString();
+                    Eventos.HoraFinal = item.HoraFinal.ToString();
                     Eventos.UsuarioCreacion = item.UsuarioCreacion;
                     Eventos.NombreColaborador = item.NombreColaborador;
                     Eventos.NombreServicio = item.NombreServicio;
@@ -1453,8 +1562,8 @@ namespace AccesoDatos
                     Eventos.IdUsuario = item.IdUsuario;
                     Eventos.IdUsuarioCrecion = item.IdUsuarioCreador;
                     Eventos.IdServicio = item.IdServicio;
-                    Eventos.HorarioInicial = item.HorarioInicial;
-                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.HorarioInicial = item.HorarioInicial.ToString();
+                    Eventos.HoraFinal = item.HoraFinal.ToString();
                     Eventos.UsuarioCreacion = item.UsuarioCreacion;
                     Eventos.NombreColaborador = item.NombreColaborador;
                    
@@ -1476,7 +1585,7 @@ namespace AccesoDatos
             List<Eventos> ListaEventos = new List<Eventos>();
             try
             {
-                var info = entities.paObtenerTodosLosEventosXIdUsuario(IdUsuario);
+                var info = entities.paObtenerTodosLosEventosXIdUsuario(IdUsuario).ToList();
 
                 foreach (var item in info)
                 {
@@ -1488,8 +1597,8 @@ namespace AccesoDatos
                     Eventos.IdServicio = item.IdServicio;
                     Eventos.Nombre = item.Nombre;
                     Eventos.TipoUnidadEvento = item.TipoUnidadEvento;
-                    Eventos.HorarioInicial = item.HorarioInicial;
-                    Eventos.HoraFinal = item.HoraFinal;
+                    Eventos.HorarioInicial = item.HorarioInicial.ToString();
+                    Eventos.HoraFinal = item.HoraFinal.ToString();
                     Eventos.UsuarioCreacion = item.UsuarioCreacion;                
                   
 
@@ -1505,6 +1614,86 @@ namespace AccesoDatos
         }
 
 
+        public Usuario ObtenerPerfilColaboradorXId(int Id)
+        {
+            Usuario perfil = new Usuario();
+
+            try
+            {
+                var info = entities.paObtenerPerfilColaboradorXId(Id);
+
+                foreach (var item in info)
+                {
+                    perfil.Id = item.Id;
+                    perfil.Nombre = item.Nombre;
+                    perfil.PrimerApellido = item.PrimerApellido;
+                    perfil.SegundoApellido = item.SegundoApellido;
+                    perfil.Identificacion = item.Identificacion;
+                    perfil.CorreoElectronico = item.CorreoElectronico;
+                    perfil.Telefono = item.Telefono;
+                    perfil.Genero = item.Genero;
+                    perfil.IdRol = item.IdRol;
+                    perfil.Estado = item.Estado;
+                    perfil.UsuarioCreacion = item.UsuarioCreacion;
+                    perfil.FechaCreacion = item.FechaCreacion;
+                    perfil.UsuarioUltimaModificacion = item.UsuarioUltimaModificacion;
+                    perfil.FechaUltimaModificacion = item.FechaUltimaModificacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return perfil;
+        }
+
+
+
+        public int ValidarCorreo_OlvidoContrasena(string CorreoElectronico)
+        {
+            int valor = 0;
+            ObjectParameter Respuesta;
+
+
+            try
+            {
+                Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                entities.PaValidarCorreo_OlvidoContrasena(CorreoElectronico, Respuesta);
+
+
+                valor = Convert.ToInt32(Respuesta.Value.ToString());
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return valor;
+        }
+
+
+        public int ValidarBeneficiosXPlan(int IdEmpresa, int IdPlan, int IdRol)
+        {
+            int varlor = 0;
+            ObjectParameter Respuesta;
+
+            try
+            {
+                Respuesta = new ObjectParameter("Respuesta", typeof(int));
+                entities.paValidarBeneficiosXPlan(IdEmpresa, IdPlan, IdRol, Respuesta);
+
+                varlor = Convert.ToInt32(Respuesta.Value.ToString());
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return varlor;
+        }
 
         #endregion
 

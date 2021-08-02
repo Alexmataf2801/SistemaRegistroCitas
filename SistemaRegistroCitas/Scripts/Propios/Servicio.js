@@ -11,7 +11,7 @@
             var clasificacion = $("#Servicios");
 
             clasificacion.empty();
-            //clasificacion.append('<option value="0">Seleccione uno...</option>');
+            clasificacion.append('<option disabled selected hidden value="0">Seleccione uno...</option>');
 
             $(InfoServicios).each(function (i, v) {
                 clasificacion.append('<option value="' + v.IdServicio + '">' + v.NombreServicio + '</option>');
@@ -58,7 +58,7 @@ function ServicioXId() {
                         break;
                 }
 
-                $('#TiempoFinal').val(moment(tiempofinal).format('DD-MM-YYYY hh:mm A'));
+                $('#TiempoFinal').val(moment(tiempofinal).format('MM-DD-YYYY hh:mm A'));
                 $('#txtFinalHorarioOculto').val(moment(tiempofinal).format('YYYY-MM-DD[T]HH:mm:ss'));
             },
 
@@ -95,6 +95,9 @@ function InsertarDatosServicios() {
                 $("#lblMensajeCorrecto").html("<label>¡Información Almacenada Correctamenta!</label>");
                 $("#lblTituloCorrecto").html("<label>Información</label>");
                 $('#MsjCorrecto').modal('show');
+                var TipoUnidad = $("#TipoUnidad");
+                TipoUnidad.append('<option disabled selected hidden value="0">Tipo de Unidad</option>');
+
             } else {
                 $("#msjModalIncorrecto").html("<label>¡Fallo en la creación del servicio!</label>");
                 $('#MsjIncorrecto').modal('show');
@@ -137,7 +140,7 @@ function LlenarComboTiempos() {
 
     var Tiempo = $("#txtTiempoEstimado");
     Tiempo.empty();
-    //Tiempo.append('<option value="0">Duracion del Servicio</option>');
+   
 
     if ($("#TipoUnidad").val()== "1") { // Minutos
 
@@ -170,8 +173,4 @@ $("#TipoUnidad").change(function () {
     LlenarComboTiempos()
 });
 
-
-//$(document).ready(function () {
-//    LlenarComboTiempos();
-//});
 

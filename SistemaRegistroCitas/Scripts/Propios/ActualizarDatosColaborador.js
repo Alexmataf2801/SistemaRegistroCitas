@@ -1,5 +1,6 @@
 ﻿function ActualizarDatosColaborador() {
     var Id = sessionStorage.getItem("IdColaboradorEditar");
+    var ValidarCorreo = /^[A-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     var Usuario = {
         Id: Id,
         Identificacion: $("#txtIdentificacionColaborador").val(),
@@ -15,8 +16,9 @@
 
     if ($("#txtCorreoElectronicoColaborador").val() === "" ||
         $("#txtNombreColaborador").val() === "" ||
-        $("#txtPrimerApellidoColaborador").val() === "") {
-        $("#msjModalIncorrecto").html("<label>¡Falta complementar datos importantes!</label>");
+        $("#txtPrimerApellidoColaborador").val() === "" ||
+        ValidarCorreo.test($("#txtCorreoElectronicoColaborador").val()) === false) {
+        $("#msjModalIncorrecto").html("<label>¡Falta complementar datos importantes o el Correo Electronico no es valido!</label>");
         $('#MsjIncorrecto').modal('show');
     }
     else {
@@ -25,17 +27,34 @@
         type: "POST",
         datatype: "JSON",
         url: "/Usuario/ActualizarColaboradores/",
-        data: { usuario: Usuario },
+        data: { usuarios: Usuario },
         success: function (Info) {
-            if (Info) {
-                $("#msjCorrectoActColaborador").html("<label>¡Colaborador Actualizado Correctamente!</label>");
-                $('#ModalCorrectoActColaborador').modal('show');
-                LimpiarCampos();
-            }
-            else {
-                $("#msjModalIncorrecto").html("<label>¡Algo fallo al actualizar el Colaborador!</label>");
-                $('#MsjIncorrecto').modal('show');
-            }
+
+
+            switch (Info) {
+
+                case 0:
+                    $("#msjModalIncorrecto").html("<label>¡Algo fallo al actualizar el Colaborador!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                    break;
+                case 1:
+                     $("#msjCorrectoActColaborador").html("<label>¡Colaborador Actualizado Correctamente!</label>");
+                     $('#ModalCorrectoActColaborador').modal('show');
+                     LimpiarCampos();
+                    break;
+                case 2:
+                    $("#msjModalIncorrecto").html("<label>¡Su plan no permite mas colaboradores con ese tipo de rol!</label>");
+                    $('#MsjIncorrecto').modal('show');                 
+                    break;
+
+                case 3:
+                    $("#msjModalIncorrecto").html("<label>¡No se puede actualizar el Correo ingresado ya existe!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                    break;
+                default:
+                    $("#msjModalIncorrecto").html("<label>¡Algo fallo al actualizar el Colaborador!</label>");
+                    $('#MsjIncorrecto').modal('show');
+            }           
         },
         error: function (Error) {
             $("#msjModalIncorrecto").html("<label>¡Algo fallo al actualizar el Colaborador!</label>");
@@ -135,6 +154,3 @@ function ObtenerTodoLosRoles() {
     });
 }
 
-$(document).ready(function () {
-   // ObtenerTodoLosRoles();
-});

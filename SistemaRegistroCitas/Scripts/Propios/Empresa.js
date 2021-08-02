@@ -1,5 +1,5 @@
 ﻿var empresas = [];
-//var empresaSelecionada;
+
 function ObtenerNombresEmpresasActivas() {
 
     $.ajax({
@@ -8,11 +8,6 @@ function ObtenerNombresEmpresasActivas() {
         url: "/Empresa/ObtenerNombresEmpresasActivas/",
 
         success: function (InfoEmpresas) {
-
-
-            //$("#txtIdEmpresaLogin").typeahead({
-            //    source: InfoEmpresa
-            //});
 
             $(InfoEmpresas).each(function (i, v) {
                 empresas.push({ id: v.Id, value: v.Nombre});
@@ -48,6 +43,47 @@ function ObtenerNombresEmpresasActivas() {
 }
 
 
+function Loguear() {
+
+    var login = {
+
+        'CorreoElectronico': $("#txtCorreoElectronicoLogin").val().trim(),
+        'Contrasena': $("#txtPassword").val()
+
+    }
+    var IdEmpresa = $("#hfIdEmpresaSel").val();
+
+
+    if ($("#hfIdEmpresaSel").val() === "") {
+        $("#msjModal").html("<label>¡Selecione Correctamente la Empresa!</label>");
+        $('#MsjIncorrecto').modal('show');
+    }
+    else {
+
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/Usuario/Loguear",
+        data: { login, IdEmpresa },
+        success: function (Info) {
+            if (Info.Id > 0) {
+                //window.location.href = "/InicioEmpresas/InicioEmpresas?IdEmpresa=" + IdEmpresa
+                window.location.href = "/InicioEmpresas/InicioEmpresas"
+            } else {
+                $("#msjModal").html("<label>¡Usuario o Contraseña Invalido!</label>");
+                $('#MsjIncorrecto').modal('show');
+            }
+
+        },
+        error: function (request, error) {
+            alert("Request: " + JSON.stringify(request));
+        }
+    });
+    }
+}
+
+
+
 
 
 $(document).ready(function () {
@@ -55,43 +91,6 @@ $(document).ready(function () {
 });
 
 
-//var substringMatcher = function (strs) {
-//    return function findMatches(q, cb) {
-//        var matches, substringRegex;
 
-//        // an array that will be populated with substring matches
-//        matches = [];
-
-//        // regex used to determine if a string contains the substring `q`
-//        substrRegex = new RegExp(q, 'i');
-
-//        // iterate through the pool of strings and for any string that
-//        // contains the substring `q`, add it to the `matches` array
-//        $.each(strs, function (i, str) {
-//            if (substrRegex.test(str.Nombre)) {
-//                matches.push(str);
-//            }
-//        });
-
-//        cb(matches);
-//    };
-//};
-
-
-
-
-//$('#txtIdEmpresaLogin .typeahead').typeahead({
-//    hint: true,
-//    highlight: true,
-//    minLength: 1,
-//    onselect: function (obj) { console.log(obj) }
-//},
-//    {
-//        name: 'empresas',
-//        display: 'Nombre',
-//        source: substringMatcher(empresas),
-        
-//        //onselect: function (obj) { console.log(obj); }
-//    });
 
 
