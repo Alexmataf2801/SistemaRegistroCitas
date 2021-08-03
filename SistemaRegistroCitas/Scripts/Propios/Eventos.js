@@ -378,7 +378,7 @@ $(function () {
         locale: 'es',
         dateClick: function (info) {
             var TipoModal = ""
-            var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm:ss');
+            var FechaSeleccionada = moment(info.dateStr).format('YYYY-MM-DD[T]HH:mm');
 
             var FechaDelDia = new Date(FechaSeleccionada);
             Dia = FechaDelDia.getDay();
@@ -403,17 +403,30 @@ $(function () {
                 $('#txtHorarioOculta').val(info.dateStr);
 
             }
-         
+
+            var FechaCompletaDelDia = moment(new Date()).format('YYYY-MM-DD[T]HH:mm');               
+
             var FechaCompletaSeleccioada = new Date(FechaSeleccionada);
             Dia = FechaCompletaSeleccioada.getDay();
             HoraSeleccionada = FechaCompletaSeleccioada.getHours();
             MinutosSeleccionados = FechaCompletaSeleccioada.getMinutes();
             HoraTotalSeleccionada = FormatoHoras(HoraSeleccionada) + ":" + FormatoMinutos(MinutosSeleccionados)
 
+            //if (FechaSeleccionada < FechaCompletaDelDia) {
+            //    $("#msjModalIncorrecto").html("<label>¡No se puede ese evento esta en el pasado!</label>");
+            //    $('#MsjIncorrecto').modal('show');
+            //} else {
+            //    alert("soy del futuro");
+            //}
+
             if ($("#Colaboradores").val() == "0") {
                 $("#msjModalIncorrecto").html("<label>¡No se ha seleccionado un colaborador!</label>");
                 $('#MsjIncorrecto').modal('show');
             } else {
+                if (FechaSeleccionada < FechaCompletaDelDia) {
+                    $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita, esa hora ya paso!</label>");
+                    $('#MsjIncorrecto').modal('show');
+                } else {
                 switch (Dia) {
 
                     case 0:
@@ -519,7 +532,7 @@ $(function () {
                         $("#msjModalIncorrecto").html("<label>¡No se puede sacar una cita a esta hora!</label>");
                         $('#MsjIncorrecto').modal('show');
                 }
-
+                }
             }
 
 

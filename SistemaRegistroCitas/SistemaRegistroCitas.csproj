@@ -192,6 +192,8 @@
     <Content Include="Imagenes\Login\Fondo.jpg" />
     <Content Include="Imagenes\Login\instagram.png" />
     <Content Include="Imagenes\Login\logo.png" />
+    <Content Include="Imagenes\Login\Logo2.gif" />
+    <Content Include="Imagenes\Login\Logo3.gif" />
     <Content Include="Imagenes\Login\Youtube.png" />
     <Content Include="Imagenes\nube.gif" />
     <Content Include="Imagenes\reloj.gif" />
