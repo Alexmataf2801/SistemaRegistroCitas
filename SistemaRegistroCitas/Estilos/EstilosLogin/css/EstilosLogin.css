@@ -115,7 +115,7 @@ section .contentBx .formBx .cn{
     letter-spacing: 1px;
 }
 
-section .contentBx .formBx .inputBx span
+section .contentBx .formBx .inputBx .titulos
 {
     font-size: 16px;
     margin-bottom: 5px;
@@ -138,9 +138,18 @@ section .contentBx .formBx .inputBx input
     background: transparent;
     border-radius: 5px;
 }
-    section .contentBx .formBx .inputBx .CheckTerminosYCondiciones {
-        width: 20px;
+
+    section .contentBx .formBx .inputBx  select2-container  {
+        letter-spacing: 1px;
+        color: #607d8b;
+        background: transparent;
+        width: 100% !important;
     }
+
+
+section .contentBx .formBx .inputBx .CheckTerminosYCondiciones {
+    width: 20px;
+}
 
     section .contentBx .formBx .inputBx .enlace {
         display: flex;

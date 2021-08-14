@@ -10,10 +10,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Inicio</title>
+    <link href="~/Estilos/EstilosLogin/css/select2.min.css" rel="stylesheet" />
     <link href="~/Estilos/EstilosLogin/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Estilos/EstilosLogin/css/EstilosLogin.css" rel="stylesheet" />
+    @*<link href="~/Estilos/EstilosLogin/css/EstilosLogin.css" rel="stylesheet" />*@
     <link href="~/Estilos/EstilosLogin/fonts/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Estilos/jquery-ui.css" rel="stylesheet" />
+    @Styles.Render("~/bundles/EstilosLogin")
+
 </head>
 
 <style>
@@ -50,12 +52,13 @@
                 <h2>INICIAR SESIÓN</h2>
                 <form>
                     <div class="inputBx">
-                        <span>Nombre de la empresa</span>
-                        <input required id="txtIdEmpresaLogin" placeholder="Nombre de la empresa" type="text" name="Empresa">
-                        <input type="hidden" id="hfIdEmpresaSel" />
+                        <span class="titulos">Nombre de la empresa</span>
+                        <select id="txtIdEmpresaLogin" name="Empresa">                        
+                            <option></option>
+                        </select>
                     </div>
                     <div class="inputBx">
-                        <span>Correo electronico</span>
+                        <span class="titulos">Correo electronico</span>
                         <input type="email" required placeholder="Correo Electronico" id="txtCorreoElectronicoLogin" name="CorreoElectronico">
                     </div>
                     <span class="cn">Contraseña</span>
@@ -114,14 +117,14 @@
                                         <input type="checkbox" class="CheckTerminosYCondiciones form-check-input" id="TerminosYCondiciones">
                                         <label class="form-check-label">Acepto los <a href="#">Términos y Condiciones</a> </label>
                                     </div>
-                                    <div id="cargando" style="display:none;"><img class="d-block mx-auto" src="~/Imagenes/cargando.gif" /> </div>                                    
+                                    <div id="cargando" style="display:none;"><img class="d-block mx-auto" src="~/Imagenes/cargando.gif" /> </div>
                                     <input type="submit" class="registrar btn btn-success btn-block" onclick="InsertarUsuario()" value="Registrar">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-              
+
 
                 <div class="modal fade" id="OlvidarContrasena" tabindex="-1" role="dialog" aria-labelledby="fm-modal" aria-hidden="true">
                     <div class="modal-dialog">
@@ -256,11 +259,12 @@
     <script src="~/Js/Login/jquery-3.4.1.min.js"></script>
     <script src="~/Js/Login/popper.min.js"></script>
     <script src="~/Js/Login/bootstrap.min.js"></script>
-    @Scripts.Render("~/bundles/Usuario")
     @Scripts.Render("~/bundles/Empresa")
+    @Scripts.Render("~/bundles/Usuario")
     @Scripts.Render("~/bundles/MostrarYOcutarContrsena")
     @Scripts.Render("~/bundles/OlvidarContrasena")
-    <script src="~/Js/jquery-ui.js"></script>
+    <script src="~/Js/Login/select2.min.js"></script>
+
 
 </body>
 

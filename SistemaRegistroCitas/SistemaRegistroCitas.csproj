@@ -155,6 +155,7 @@
     <Content Include="Estilos\datatables.min.css" />
     <Content Include="Estilos\EstilosLogin\css\bootstrap.min.css" />
     <Content Include="Estilos\EstilosLogin\css\EstilosLogin.css" />
+    <Content Include="Estilos\EstilosLogin\css\select2.min.css" />
     <Content Include="Estilos\EstilosLogin\fonts\font-awesome.min.css" />
     <Content Include="Estilos\EstilosPlanes\EstilosPrecios.css" />
     <Content Include="Estilos\font-awesome.min.css" />
@@ -280,6 +281,7 @@
     <Content Include="Js\Login\bootstrap.min.js" />
     <Content Include="Js\Login\jquery-3.4.1.min.js" />
     <Content Include="Js\Login\popper.min.js" />
+    <Content Include="Js\Login\select2.min.js" />
     <Content Include="Js\moment\moment.min.js" />
     <Content Include="Js\Planes\EfectoPrecios.js" />
     <Content Include="Js\PruebaArbol.js" />

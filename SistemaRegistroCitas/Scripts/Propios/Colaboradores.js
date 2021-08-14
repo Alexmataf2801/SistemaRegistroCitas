@@ -52,7 +52,7 @@ function InsertarDatosColaborador() {
         $('#MsjIncorrecto').modal('show');
     }
     else {
-
+        mostrar();
     $.ajax({
         type: "POST",
         dataType: "JSON",
@@ -62,6 +62,7 @@ function InsertarDatosColaborador() {
             
             switch (Info) {
                 case 0:
+                    esconder();
                     $("#msjModalIncorrecto").html("<label>¡Faltan datos, vuelva a intentarlo!</label>");
                     $('#MsjIncorrecto').modal('show');
                     break;
@@ -70,20 +71,25 @@ function InsertarDatosColaborador() {
                     $("#lblMensajeCorrecto").html("<label>¡Información Almacenada Correctamenta!</label>");
                     $("#lblTituloCorrecto").html("<label>Información</label>");
                     $('#MsjCorrecto').modal('show');
+                    esconder();
                     break;
                 case 2:
+                    esconder();
                     $("#msjModalIncorrecto").html("<label>¡El Correo ingresado ya existe!</label>");
                     $('#MsjIncorrecto').modal('show');
                     break;
                 case 3:
+                    esconder();
                     $("#msjModalIncorrecto").html("<label>¡Su plan no permite mas colaboradores con ese tipo de rol!</label>");
                     $('#MsjIncorrecto').modal('show');
                     break;
                 case 4:
+                    esconder();
                     $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
                     $('#MsjIncorrecto').modal('show');
                     break;
                 default:
+                    esconder();
                     $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
                     $('#MsjIncorrecto').modal('show');
             }
@@ -139,4 +145,19 @@ function LimpiarDatosColaborador() {
     $("#txtSegundoApellido").val('');
     $("#txtCorreoElectronico").val('');
     $("#txtTelefono").val('');
+}
+
+
+function mostrar() {
+    var x = document.getElementById("cargando");
+
+    x.style.display = "block";
+
+}
+
+function esconder() {
+    var x = document.getElementById("cargando");
+
+    x.style.display = "none";
+
 }

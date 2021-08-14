@@ -1,4 +1,4 @@
-﻿var empresas = [];
+﻿//var empresas = [];
 
 function ObtenerNombresEmpresasActivas() {
 
@@ -9,29 +9,56 @@ function ObtenerNombresEmpresasActivas() {
 
         success: function (InfoEmpresas) {
 
+            var emp = $("#txtIdEmpresaLogin");
+
             $(InfoEmpresas).each(function (i, v) {
-                empresas.push({ id: v.Id, value: v.Nombre});
-            });
+                //empresas.push({ id: v.Id, value: v.Nombre });
+                emp.append('<option value="' + v.Id + '">' + v.Nombre + '</option>')
+              
 
-            $("#txtIdEmpresaLogin").autocomplete({
-                source: empresas,
-                //source: function (request, response) {
-                //    response($.map(empresas, function (item) {
-                //        return {
-                //            id: item.Id,
-                //            value: item.Nombre
+            });      
+           
 
-                //        }
 
-                //    }))
-                //},
-               // minLength: 1,
-                //autoFocus:true
-                select: function (event, ui) {
-                    $("#hfIdEmpresaSel").val(ui.item.id);
+            emp.select2({
+                minimumInputLength: 2,
+                placeholder: "Nombre de la empresa",
+                allowClear: true,
+                language: {
+                    
+                    inputTooShort: function () {
+                        return "Escriba 2 letras para mostrar resultados";
+                    },
+                    noResults: function () {
 
+                        return "No hay resultado";
+                    },
                 }
+              
             });
+
+            var lg = document.querySelector('.select2-container');
+            lg.removeAttribute('style')
+            lg.style.width = "100%";
+            //$("#txtIdEmpresaLogin").autocomplete({
+            //    source: empresas,
+            //    //source: function (request, response) {
+            //    //    response($.map(empresas, function (item) {
+            //    //        return {
+            //    //            id: item.Id,
+            //    //            value: item.Nombre
+
+            //    //        }
+
+            //    //    }))
+            //    //},
+            //   // minLength: 1,
+            //    //autoFocus:true
+            //    select: function (event, ui) {
+            //        $("#hfIdEmpresaSel").val(ui.item.id);
+
+            //    }
+            //});
 
         },
 
@@ -51,10 +78,10 @@ function Loguear() {
         'Contrasena': $("#txtPassword").val()
 
     }
-    var IdEmpresa = $("#hfIdEmpresaSel").val();
+    var IdEmpresa = $("#txtIdEmpresaLogin").val();
 
 
-    if ($("#hfIdEmpresaSel").val() === "") {
+    if ($("#txtIdEmpresaLogin").val() === "") {
         $("#msjModal").html("<label>¡Selecione Correctamente la Empresa!</label>");
         $('#MsjIncorrecto').modal('show');
     }

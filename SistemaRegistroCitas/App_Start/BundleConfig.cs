@@ -26,9 +26,8 @@ namespace SistemaRegistroCitas
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.css", "~/Content/site.css"));
 
-
-            bundles.Add(new StyleBundle("~/Estilos/bootstrap").Include(
-                            "~/Estilos/bootstrap.css"));
+            bundles.Add(new StyleBundle("~/bundles/EstilosLogin").Include("~/Estilos/EstilosLogin/css/EstilosLogin.css"));
+            bundles.Add(new StyleBundle("~/Estilos/bootstrap").Include("~/Estilos/bootstrap.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/Eventos").Include("~/Scripts/Propios/Eventos*"));
             bundles.Add(new ScriptBundle("~/bundles/Servicio").Include("~/Scripts/Propios/Servicio*"));
@@ -39,7 +38,7 @@ namespace SistemaRegistroCitas
 
             bundles.Add(new ScriptBundle("~/bundles/ListaEventos").Include("~/Scripts/Propios/ListaEventos*"));
             bundles.Add(new ScriptBundle("~/bundles/ListaEventoHorasLibres").Include("~/Scripts/Propios/ListaEventoHorasLibres*"));
-            bundles.Add(new ScriptBundle("~/bundles/ListaEventoUsuario").Include("~/Scripts/Propios/ListaEventoUsuario*"));
+            bundles.Add(new ScriptBundle("~/bundles/ListaEventoUsuario").Include("~/Scripts/Propios/ListaEventoUsuario.js"));
             bundles.Add(new ScriptBundle("~/bundles/ListaEventoUsuarioCreador").Include("~/Scripts/Propios/ListaEventoUsuarioCreador*"));
 
             bundles.Add(new ScriptBundle("~/bundles/ActualizarHorarioEmpresa").Include("~/Scripts/Propios/ActualizarHorarioEmpresa*"));
@@ -67,6 +66,8 @@ namespace SistemaRegistroCitas
             bundles.Add(new ScriptBundle("~/bundles/MostrarYOcutarContrsena").Include("~/Scripts/Propios/MostrarYOcutarContrsena*"));
             bundles.Add(new ScriptBundle("~/bundles/OlvidarContrasena").Include("~/Scripts/Propios/OlvidarContrasena*"));
 
+
+           
 
 
             BundleTable.EnableOptimizations = true;
