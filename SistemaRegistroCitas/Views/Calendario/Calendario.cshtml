@@ -174,9 +174,24 @@
 
 </div>
 
-
-
-
+<!--INICIO MODAL INFORMACION-->
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalConfirmacionEventos">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#0074D9;">
+                <h5 style="color:#ffffff;text-align:center" class="modal-title">Información</h5>
+            </div>
+            <div class="modal-body">
+                <p id="msjConfEventos" style="text-align:center"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnConfirmarEliminacion" class="btn btn-primary">Si</button>
+                <button type="button" class="btn btn-primary" id="CerrarEliminarEvento" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL INFORMACION-->
 
 
 @Scripts.Render("~/bundles/jquery")
