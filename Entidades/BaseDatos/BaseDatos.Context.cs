@@ -1238,5 +1238,14 @@ namespace Entidades.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("paEliminarColaboradores", idParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> paValidarCorreoCliente(string correoElectronico)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("paValidarCorreoCliente", correoElectronicoParameter);
+        }
     }
 }

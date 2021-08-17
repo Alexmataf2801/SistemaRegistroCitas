@@ -314,6 +314,11 @@ namespace LogicaNegocio
             return AD.ValidarCorreo_OlvidoContrasena(CorreoElectronico);
         }
 
+        public int ValidarCorreoCliente(string CorreoCliente)
+        {
+            return AD.ValidarCorreoCliente(CorreoCliente);
+        }
+
         #endregion
 
 

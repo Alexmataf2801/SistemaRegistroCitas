@@ -1674,6 +1674,27 @@ namespace AccesoDatos
         }
 
 
+        public int ValidarCorreoCliente(string CorreoCliente)
+        {
+            int IdCliente = 0;
+            try
+            {
+             var info = entities.paValidarCorreoCliente(CorreoCliente);
+
+                foreach (var item in info)
+                {
+                    IdCliente = item.Value;
+                }
+            
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return IdCliente;
+        }
+
         public int ValidarBeneficiosXPlan(int IdEmpresa, int IdPlan, int IdRol)
         {
             int varlor = 0;

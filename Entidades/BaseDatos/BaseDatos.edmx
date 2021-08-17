@@ -354,6 +354,9 @@
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="Respuesta" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="paValidarCorreoCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="PaValidarCorreoElectronico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
@@ -729,7 +732,10 @@
             <Parameter Name="Respuesta" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="paEliminarColaboradores">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="paValidarCorreoCliente" ReturnType="Collection(Int32)">
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="PaObtenerColaboradoresActivos_Result">
@@ -1440,6 +1446,7 @@
           <FunctionImportMapping FunctionImportName="PaInsertarDatosColaborador" FunctionName="BDSistemaRegistroCitasModel.Store.PaInsertarDatosColaborador" />
           <FunctionImportMapping FunctionImportName="paInsertarUsuario" FunctionName="BDSistemaRegistroCitasModel.Store.paInsertarUsuario" />
           <FunctionImportMapping FunctionImportName="paEliminarColaboradores" FunctionName="BDSistemaRegistroCitasModel.Store.paEliminarColaboradores" />
+          <FunctionImportMapping FunctionImportName="paValidarCorreoCliente" FunctionName="BDSistemaRegistroCitasModel.Store.paValidarCorreoCliente" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

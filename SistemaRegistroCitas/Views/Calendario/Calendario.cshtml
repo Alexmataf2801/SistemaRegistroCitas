@@ -43,7 +43,7 @@
 <input class="form-control" readonly type="hidden" id="DiaSeleccionado" />
 <input class="form-control" readonly type="hidden" id="ValidarEvento" />
 
-<div class="modal fade" id="NuevoEvento" tabindex="-1" role="dialog">
+<div class="modal fade" id="NuevoEvento" tabindex="-1" role="dialog"style="overflow-y: auto;">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-top-left-radius: 10px; border-top-right-radius: 10px">
             <div class="modal-header" style="background-color:#337AB7; border-top-left-radius: 10px; border-top-right-radius: 10px">
@@ -99,6 +99,14 @@
                     </div>
                 </div>
 
+                <div id="CajaCorreoCliente" class="row">
+                    <div class="form-group col-md-5">
+                        <label>Inserte el CorreoElectronico del Cliente</label>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <input class="form-control" placeholder="CorreoElectronico" type="text"  id="CorreoElectronicoCliente" />
+                    </div>
+                </div>
 
 
                 <div class="controls">
@@ -116,7 +124,7 @@
 </div>
 
 
-<div class="modal fade" id="EventoTiempo" tabindex="-1" role="dialog">
+<div class="modal fade" id="EventoTiempo" tabindex="-1" role="dialog" style="overflow-y: auto;">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-top-left-radius: 10px; border-top-right-radius: 10px">
             <div class="modal-header" style="background-color:#337AB7; border-top-left-radius: 10px; border-top-right-radius: 10px">
@@ -174,6 +182,25 @@
 
 </div>
 
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!-- Modal content-->
+        <div class="modal-content" style="border-top-left-radius: 10px; border-top-right-radius: 10px" >
+            <div class="modal-header" style="background-color:#337AB7; border-top-left-radius: 10px; border-top-right-radius: 10px">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 style="text-align:center; color:#FFFFFF" class="modal-title">Seleccione la opcion deseada</h4>
+            </div>
+            <div class="modal-body">    
+                <a href="#NuevoEvento" id="EventoCliente" role="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal">Insertar Cita Clientes</a>
+                <a href="#EventoTiempo" id="DiasLibres" role="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal">Insertar Dias Libres/Horas</a>                          
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <!--INICIO MODAL INFORMACION-->
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalConfirmacionEventos">
     <div class="modal-dialog" role="document">
@@ -197,8 +224,8 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/Servicio")
 @Scripts.Render("~/bundles/Colaboradores")
-@Scripts.Render("~/bundles/Eventos")
-
+@*@Scripts.Render("~/bundles/Eventos")*@
+<script src="~/Scripts/Propios/Eventos.js"></script>
 
 
 

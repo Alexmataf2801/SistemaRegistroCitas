@@ -18,24 +18,43 @@ namespace SistemaRegistroCitas.Controllers
         LogicaNegocio.LogicaNegocio LN = new LogicaNegocio.LogicaNegocio();
         UsuarioController usuarioControllador = new UsuarioController();
         EmpresaController empresaController = new EmpresaController();
-
+        Utilidades utilidades = new Utilidades();
         // GET: Eventos
         public ActionResult Index()
         {
             return View();
         }
 
-        public JsonResult InsertarEventos(Eventos eventos)
+        public JsonResult InsertarEventos(Eventos eventos, string CorreoElectronicoCliente, string NombreColaborador)
 
         {
             int Respuesta = 0;
-
+            int idCliente = 0;
             try
             {
                 usuario = (Usuario)Session["Usuario"];
                 eventos.UsuarioCreacion = usuario.NombreCompleto;
                 eventos.IdUsuarioCrecion = usuario.Id;
 
+
+                if (usuario.IdRol == 1)
+                {
+                    idCliente = LN.ValidarCorreoCliente(CorreoElectronicoCliente);
+
+                    if (idCliente == 0)
+                    {
+
+                        eventos.IdUsuarioCrecion = usuario.Id;
+
+                    }
+                    else
+                    {
+
+                        eventos.IdUsuarioCrecion = idCliente;
+
+                    }
+
+                }
 
                 TimeSpan HoraInicio = Convert.ToDateTime(eventos.HorarioInicial).TimeOfDay;
                 //eventos.HorarioInicial.TimeOfDay;
@@ -45,13 +64,55 @@ namespace SistemaRegistroCitas.Controllers
                 if (ValidarHoraEvento(eventos.IdDia, HoraInicio.ToString(), HoraFin.ToString()))
                 {
                     Respuesta = LN.InsertarEventos(eventos, usuario.IdEmpresa, usuario.IdRol);
+
+                    if (Respuesta == 1)
+                    {
+                        if (eventos.TipoUnidadEvento == 1)
+                        {                     
+
+                            Correo correo = new Correo();
+                            correo.Subject = "Información de Cita";
+                            correo.Body = "Informacion del evento:" + "\n" + "Nombre del Creador del evento: " + eventos.UsuarioCreacion + "\n" + "Nombre del Colaboardor: " + NombreColaborador + "\n" +"Nombre del Servicio: " + eventos.Nombre + "\n" + "Fecha Inicial de la Cita: " + eventos.HorarioInicial + "\n" + "Fecha Final de la cita: " + eventos.HoraFinal;
+                            if (idCliente == 0) // si es cero es porque no encontro ningun ID, osea la persona no estaba registrada en  el sistema
+                            {
+                                if (usuario.IdRol == 4)
+                                {
+                                    correo.To = usuario.CorreoElectronico;
+                                }
+                                else
+                                {
+                                    correo.To = CorreoElectronicoCliente;
+                                    Respuesta = 7;
+                                }
+                            
+
+                            }
+                            else
+                            {
+
+                                correo.To = CorreoElectronicoCliente;
+
+                            }
+
+
+                            bool SeEnvioCorreo = utilidades.EnviarCorreoGenerico(correo);
+
+                            if (!SeEnvioCorreo)
+                            {
+                                Respuesta = 6; // Si el valor es 6 quiere decir que se inserto el evento pero no se pudo enviar el correo
+                            }
+
+                        }
+
+                    }
+
                 }
                 else
                 {
                     Respuesta = 5;
                 }
 
-                
+
             }
             catch (Exception ex)
             {
@@ -66,7 +127,7 @@ namespace SistemaRegistroCitas.Controllers
 
                 LN.InsertarBitacora(bitacora);
 
-                
+
             }
             return Json(Respuesta, JsonRequestBehavior.AllowGet);
 

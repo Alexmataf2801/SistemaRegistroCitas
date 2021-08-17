@@ -386,6 +386,8 @@ $(function () {
             $('#DiaSeleccionado').val(Dia);
 
             if (Usuario.IdRol == 4) {
+                var CajaCorreoCliente = document.getElementById("CajaCorreoCliente");           
+                CajaCorreoCliente.style.display = "none";
 
                 TipoModal = "#NuevoEvento"
                 $('#TiempoFinal').val("");
@@ -395,12 +397,27 @@ $(function () {
 
 
             } else {
-                TipoModal = "#EventoTiempo"
+                TipoModal = "#myModal"
+                var DiasLibres = document.getElementById("DiasLibres");
+                var EventoCliente = document.getElementById("EventoCliente");
 
-                $('#TiempoFinal').val("");
-                $('#TiempoCita').val(FechaSeleccionada);
-                $('#txtHorario').val(FechaSeleccionada);
-                $('#txtHorarioOculta').val(info.dateStr);
+                DiasLibres.onclick = function ()
+                {
+                    $('#myModal').modal('hide');
+                    $('#TiempoFinal').val("");
+                    $('#TiempoCita').val(FechaSeleccionada);
+                    $('#txtHorario').val(FechaSeleccionada);
+                    $('#txtHorarioOculta').val(info.dateStr);
+                }
+
+                EventoCliente.onclick = function ()
+                {
+                    $('#myModal').modal('hide');
+                    $('#TiempoFinal').val("");
+                    $('#TiempoCita').val(FechaSeleccionada);
+                    $('#txtHorario').val(moment(info.dateStr).format('MM-DD-YYYY hh:mm A'));
+                    $('#txtHorarioOculta').val(info.dateStr);
+                }              
 
             }
 
@@ -600,11 +617,14 @@ $(function () {
 
         };
 
+        var NombreColaborador = $("#Colaboradores option:selected").text()
+        var CorreoElectronicoCliente = $("#CorreoElectronicoCliente").val()
+
         $.ajax({
             type: "POST",
             dataType: "JSON",
             url: "/Eventos/InsertarEventos/",
-            data: { eventos },
+            data: { eventos, CorreoElectronicoCliente, NombreColaborador },
             success: function (Info) {
                                
                 $("#NuevoEvento").modal('hide');
@@ -615,8 +635,7 @@ $(function () {
                         $('#MsjIncorrecto').modal('show');
                         break;
                     case 1:
-
-                        $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamente!</label>");
+                        $("#lblMensajeCorrecto").html("<label>¡Evento asignado y correo enviado Correctamente!</label>");
                         $("#lblTituloCorrecto").html("<label>Información</label>");
                         $('#MsjCorrecto').modal('show');
                         doSubmit();
@@ -631,6 +650,22 @@ $(function () {
                             ObtenerTodosLosEventosXIdUsuarioSeleccionado();
                             LimpiarEventoslientes();
                         });
+                        break;
+                    case 6:                      
+                        $("#lblMensajeCorrecto").html("<label>¡Se inserto el evento pero no se pudo enviar el correo!!</label>");
+                        $("#lblTituloCorrecto").html("<label>Información</label>");
+                        $('#MsjCorrecto').modal('show');
+                        doSubmit();
+                        LimpiarEventoslientes();
+                        ObtenerTodosLosEventosXIdUsuarioSeleccionado();
+                        break;
+                    case 7:
+                        $("#lblMensajeCorrecto").html("<label>¡Evento asignado Correctamente y correo enviado pero el cliente no esta registrado en la base de datos !</label>");
+                        $("#lblTituloCorrecto").html("<label>Información</label>");
+                        $('#MsjCorrecto').modal('show');
+                        doSubmit();
+                        LimpiarEventoslientes();
+                        ObtenerTodosLosEventosXIdUsuarioSeleccionado();
                         break;
                     default:
                         $("#msjModalIncorrecto").html("<label>¡Hubo un error, vuelva a intentarlo!</label>");
@@ -755,7 +790,7 @@ $(function () {
         $("#btnReservar").prop("disabled", true)
         $("#TiempoAprox").val("")        
         $("#Servicios").val("0")
-        
+        $("#CorreoElectronicoCliente").val("") 
 
     }
 
