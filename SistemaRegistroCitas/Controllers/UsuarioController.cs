@@ -1202,9 +1202,12 @@ namespace SistemaRegistroCitas.Controllers
                                         <p style=""color:#455056; font-size:15px;line-height:24px; margin:0;"">
                                             No podemos simplemente enviarle su contraseña anterior.
                                             Se ha generado una contraseña aleatoria para restablecerla.
-                                            Porfavor ingrese al sistema y realice el cambio por su seguridad.
-                                        </p>
-                                        <p style=""background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;"">{0}</p>
+                                            Porfavor ingrese al sistema y realice el cambio por su seguridad.                                           
+
+                                        </p>  
+                                            <p style=""height:20px; font-size:25px;"">&darr;</p>
+
+                                        <p style=""background:#20e277;text-decoration:none !important; font-weight:500; color:#fff;font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;"">{0}</p>
                                     </td>
                                 </tr>
                                 <tr>

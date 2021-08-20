@@ -77,7 +77,9 @@ namespace Entidades.ClasesEntidades
                                             Se ha generado una contraseña aleatoria para mayor seguridad.
                                             Porfavor ingrese al sistema y realice el cambio de su contraseña por su seguridad.
                                         </p>
-                                        <p style=""background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;"">{0}</p>
+                                           <p style=""height:20px; font-size:25px;"">&darr;</p>
+
+                                        <p style=""background:#20e277;text-decoration:none !important; font-weight:500; color:#fff;font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;"">{0}</p>
                                     </td>
                                 </tr>
                                 <tr>

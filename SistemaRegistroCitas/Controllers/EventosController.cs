@@ -77,125 +77,63 @@ namespace SistemaRegistroCitas.Controllers
 
                             String BODY = string.Format(@" 
                                 <html>                                                      
-                                </head>        
-<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" style=""table-layout:fixed;background-color:#f9f9f9"" id=""bodyTable"">
-	<tbody>
-		<tr>
-			<td style=""padding-right:10px;padding-left:10px;"" align=""center"" valign=""top"" id=""bodyCell"">
-				
-				<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" class=""wrapperBody"" style=""max-width:600px"">
-					<tbody>
-						<tr>
-							<td align=""center"" valign=""top"">
-								<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" class=""tableCard"" style =""background-color:#fff;border-color:#e5e5e5;border-style:solid;border-width:0 1px 1px 1px;"">
-									<tbody>
-
-                                        <tr>
-                                            <td style = ""background-color:#3c8dbc;font-size:1px;line-height:3px"" class=""topBorder"" height=""3"">&nbsp;</td>
-										</tr>
-
-                                        <tr>
-
-                                            <td style = ""padding - bottom: 20px; "" align = ""center"" valign = ""top"" class=""imgHero"">
-												<a style = ""text-decoration:none"" target=""_blank"">
-													<img border = ""0"" src=""http://email.aumfusion.com/vespro/img/hero-img/blue/heroGradient/user-account.png"" style=""width:100%;max-width:600px;height:auto;display:block;color: #f9f9f9;"" width=""600"">
-												</a>
-											</td>
-										</tr>
-
-										<tr>
-											<td style = ""padding-top: 30px; padding-bottom: 20px;"" align=""center"">																							
-												<h1 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:400px;height:auto;display:block"" width=""150"">Informacion del evento</h1>												
-											</td>
-										</tr>
-
-										<tr>
-											<td style = ""padding-top: 30px;"" align=""center"">																							
-												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Nombre de la Empresa</h2>	
-												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{0}</h3>											
-											</td>
-										</tr>
-
-										<tr>
-											<td style = ""padding-top: 30px;"" align=""center"">																							
-												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Creador del evento</h2>	
-												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{1}</h3>											
-											</td>
-										</tr>
-
-										<tr>
-											<td style = ""padding-top: 30px;"" align=""center"">																							
-												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Nombre del Colaborador</h2>	
-												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{2}</h3>											
-											</td>
-										</tr>
-
-										<tr>
-											<td style = ""padding-top: 30px;"" align=""center"">																							
-												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Nombre del Servicio</h2>	
-												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{3}</h3>											
-											</td>
-										</tr>
-										
-										<tr>
-											<td style = ""padding-top: 30px;"" align=""center"">																							
-												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Fecha Inicial de la Cita</h2>	
-												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{4}</h3>											
-											</td>
-										</tr>
-
-										<tr>
-											<td style = ""padding-top: 30px;"" align=""center"">																							
-												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Fecha Final de la Cita</h2>	
-												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{5}</h3>											
-											</td>
-										</tr>										
-										
-										<tr>
-											<td style = ""padding-left:20px;padding-right:20px"" align=""center"" valign=""top"" class=""containtTable ui-sortable"">
-												<table border = ""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" class=""tableDescription"">
-													<tbody>
-														<tr>
-															<td style = ""padding-bottom: 20px;padding-top: 20px"" align=""center"" valign=""top"" class=""description"">
-																<p class=""text"" style=""color:#666;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:22px;text-transform:none;text-align:center;padding:0;margin:0"">Gracias por agendar una cita con nosotros.Esperamos verte pronto en {0}.</p>
-															</td>
-														</tr>
-													</tbody>
-												</table>												
-											</td>
-										</tr>
-
-										<tr>
-											<td style = ""padding-bottom: 30px; padding-top: 30px; padding-left: 20px; padding-right: 20px;"" align=""center"" valign=""top"" class=""subTitle"">
-												<h4 class=""text"" style=""color:#999;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:16px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:24px;text-transform:none;text-align:center;padding:0;margin:0"">Copyright &copy {6}</h4>
-											</td>
-										</tr>
-
-										<tr>
-											<td style = ""font-size:1px;line-height:1px"" height=""20"">&nbsp;</td>
-										</tr>
-										
-									</tbody>
-									<tr>
-										<td style = ""background-color:#3c8dbc;font-size:1px;line-height:3px"" class=""topBorder"" height=""3"">&nbsp;</td>
-									</tr>
-								</table>
-								<table border = ""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" class=""space"">
-									<tbody>
-										<tr>
-											<td style = ""font-size:1px;line-height:1px"" height=""30"">&nbsp;</td>
-										</tr>
-									</tbody>
-								</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				
-			</td>
-		</tr>
-	</tbody>
-</table>      
+                                </head>
+ <body marginheight=""0"" topmargin=""0"" marginwidth=""0"" style=""margin: 0px; background-color: #f2f3f8;"" leftmargin=""0"">
+   
+    <table cellspacing=""0"" border=""0"" cellpadding=""0"" width=""100%"" bgcolor=""#f2f3f8"" style=""font-family: Open Sans,sans-serif;"">
+        <tr>
+            <td>
+                <table style=""background-color: #f2f3f8; max-width:670px;  margin:0 auto;"" width=""100%"" border=""0"" align=""center"" cellpadding=""0"" cellspacing=""0"">
+                    <tr>
+                        <td style=""height:80px;"">&nbsp;</td>
+                    </tr>
+                   
+                    <tr>
+                        <td style=""height:20px;"">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table width=""95%"" border=""0"" align=""center"" cellpadding=""0"" cellspacing=""0"" style=""max-width:670px;background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);"">
+                                <tr>
+                                    <td style=""height:40px;"">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style=""padding:0px 35px;"">
+                                        <h1 style=""color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family: Rubik,sans-serif;"">Información del Evento</h1>
+                                        <span style=""display:inline-block; vertical-align:middle; margin:29px 0px 26px; border-bottom:1px solid #cecece; width:100px;""></span>
+                                        <p style=""color:#455056;;text-align: justify; font-size:15px;line-height:24px; margin:0;"">
+                                            Estimado/a Cliente <br><br>
+                                            Usted ha recibido un comprobante de su cita de la empresa <strong>{0}</strong>
+                                            para el día y fecha del <strong>{4}</strong> al <strong>{5}</strong> para el servicio <strong>{3}</strong>
+                                            con nuestro colaborador <strong>{2}</strong>.<br><br>
+                                            Esta cita fue solicitada por <strong>{1}</strong>.<br><br>
+                                            Lo esperamos pronto, gracias por preferir nuestros servicios.
+                                        </p>
+                                       
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style=""height:40px;"">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    <tr>
+                        <td style=""height:20px;"">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style=""text-align:center;"">
+                            <p style=""font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0px 0px 0px;"">Copyright &copy; {6} </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style=""height:80px;"">&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+</body>
                                 <body> 
                                 ", empresa.Nombre, eventos.UsuarioCreacion, NombreColaborador, eventos.Nombre, eventos.HorarioInicial, eventos.HoraFinal, DateTime.Now.Year);
                             Correo correo = new Correo();
