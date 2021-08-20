@@ -13,7 +13,8 @@
 
                 if (Info) {
                     $("#lblMensajeCorrecto").html("<label>¡Contraseña enviada Correctamenta!</label>");
-                        $("#lblTituloCorrecto").html("<label>Información</label>");
+                    $("#lblTituloCorrecto").html("<label>Información</label>");
+                    LimpiarValor();
                     $('#MsjCorrecto').modal('show');
                     $('#OlvidarContrasena').modal('hide');
                 }
@@ -32,4 +33,9 @@
 
    });
 
+}
+
+function LimpiarValor() {
+    $("#txtCorreo_Olvidado").val('');
+   
 }

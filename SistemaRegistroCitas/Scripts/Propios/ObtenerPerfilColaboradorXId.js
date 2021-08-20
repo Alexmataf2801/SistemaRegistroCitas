@@ -63,7 +63,11 @@ function ActualizarPerfil() {
                 if (Info) {
                     $("#msjCorrectoActPerfil").html("<label>¡Perfil Actualizado Correctamente!</label>");
                     $('#ModalCorrectoActPerfil').modal('show');
-                    LimpiarCampos()
+                    $('#ModalCorrectoActPerfil').on('hidden.bs.modal', function () {
+                    LimpiarCampos();
+                    CerrarSession();
+                    Redireccionar();
+                    }); 
                 } 
                 else {
                     $("#msjModalIncorrecto").html("<label>¡Algo fallo al actualizar el perfil!</label>");
@@ -100,3 +104,25 @@ $(document).on('blur', '#txtCorreoElectronicoPerfil', function () {
     ValidarCorreoElectronicoPerfil();
 
 });
+
+function Redireccionar() {
+    location.href = '/Home/Login/';
+}
+
+function CerrarSession() {
+
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        url: "/Usuario/CerrarSession/",
+
+        success: function (Info) {
+
+        },
+
+        error: function () {
+            console.log('error')
+        },
+
+    });
+}

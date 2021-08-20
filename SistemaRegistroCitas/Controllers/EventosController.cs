@@ -28,6 +28,8 @@ namespace SistemaRegistroCitas.Controllers
         public JsonResult InsertarEventos(Eventos eventos, string CorreoElectronicoCliente, string NombreColaborador)
 
         {
+            Empresa empresa = new Empresa();
+            int EmpresaUsuario = 0;
             int Respuesta = 0;
             int idCliente = 0;
             try
@@ -55,6 +57,9 @@ namespace SistemaRegistroCitas.Controllers
                     }
 
                 }
+                EmpresaUsuario = Convert.ToInt32(usuario.IdEmpresa);
+
+                empresa = LN.paObtenerEmpresasXId(EmpresaUsuario);
 
                 TimeSpan HoraInicio = Convert.ToDateTime(eventos.HorarioInicial).TimeOfDay;
                 //eventos.HorarioInicial.TimeOfDay;
@@ -68,11 +73,135 @@ namespace SistemaRegistroCitas.Controllers
                     if (Respuesta == 1)
                     {
                         if (eventos.TipoUnidadEvento == 1)
-                        {                     
+                        {                       
 
+                            String BODY = string.Format(@" 
+                                <html>                                                      
+                                </head>        
+<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" style=""table-layout:fixed;background-color:#f9f9f9"" id=""bodyTable"">
+	<tbody>
+		<tr>
+			<td style=""padding-right:10px;padding-left:10px;"" align=""center"" valign=""top"" id=""bodyCell"">
+				
+				<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" class=""wrapperBody"" style=""max-width:600px"">
+					<tbody>
+						<tr>
+							<td align=""center"" valign=""top"">
+								<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" class=""tableCard"" style =""background-color:#fff;border-color:#e5e5e5;border-style:solid;border-width:0 1px 1px 1px;"">
+									<tbody>
+
+                                        <tr>
+                                            <td style = ""background-color:#3c8dbc;font-size:1px;line-height:3px"" class=""topBorder"" height=""3"">&nbsp;</td>
+										</tr>
+
+                                        <tr>
+
+                                            <td style = ""padding - bottom: 20px; "" align = ""center"" valign = ""top"" class=""imgHero"">
+												<a style = ""text-decoration:none"" target=""_blank"">
+													<img border = ""0"" src=""http://email.aumfusion.com/vespro/img/hero-img/blue/heroGradient/user-account.png"" style=""width:100%;max-width:600px;height:auto;display:block;color: #f9f9f9;"" width=""600"">
+												</a>
+											</td>
+										</tr>
+
+										<tr>
+											<td style = ""padding-top: 30px; padding-bottom: 20px;"" align=""center"">																							
+												<h1 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:400px;height:auto;display:block"" width=""150"">Informacion del evento</h1>												
+											</td>
+										</tr>
+
+										<tr>
+											<td style = ""padding-top: 30px;"" align=""center"">																							
+												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Nombre de la Empresa</h2>	
+												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{0}</h3>											
+											</td>
+										</tr>
+
+										<tr>
+											<td style = ""padding-top: 30px;"" align=""center"">																							
+												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Creador del evento</h2>	
+												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{1}</h3>											
+											</td>
+										</tr>
+
+										<tr>
+											<td style = ""padding-top: 30px;"" align=""center"">																							
+												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Nombre del Colaborador</h2>	
+												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{2}</h3>											
+											</td>
+										</tr>
+
+										<tr>
+											<td style = ""padding-top: 30px;"" align=""center"">																							
+												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Nombre del Servicio</h2>	
+												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{3}</h3>											
+											</td>
+										</tr>
+										
+										<tr>
+											<td style = ""padding-top: 30px;"" align=""center"">																							
+												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Fecha Inicial de la Cita</h2>	
+												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{4}</h3>											
+											</td>
+										</tr>
+
+										<tr>
+											<td style = ""padding-top: 30px;"" align=""center"">																							
+												<h2 style = ""text-align:center; color:#FFFFFF; background-color: #3c8dbc; border-radius: 15px; width:100%;max-width:300px;height:auto;display:block"" width=""150"">Fecha Final de la Cita</h2>	
+												<h3 style = ""text-align:center; color:#000000; font-size: 25px;"">{5}</h3>											
+											</td>
+										</tr>										
+										
+										<tr>
+											<td style = ""padding-left:20px;padding-right:20px"" align=""center"" valign=""top"" class=""containtTable ui-sortable"">
+												<table border = ""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" class=""tableDescription"">
+													<tbody>
+														<tr>
+															<td style = ""padding-bottom: 20px;padding-top: 20px"" align=""center"" valign=""top"" class=""description"">
+																<p class=""text"" style=""color:#666;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:22px;text-transform:none;text-align:center;padding:0;margin:0"">Gracias por agendar una cita con nosotros.Esperamos verte pronto en {0}.</p>
+															</td>
+														</tr>
+													</tbody>
+												</table>												
+											</td>
+										</tr>
+
+										<tr>
+											<td style = ""padding-bottom: 30px; padding-top: 30px; padding-left: 20px; padding-right: 20px;"" align=""center"" valign=""top"" class=""subTitle"">
+												<h4 class=""text"" style=""color:#999;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:16px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:24px;text-transform:none;text-align:center;padding:0;margin:0"">Copyright &copy {6}</h4>
+											</td>
+										</tr>
+
+										<tr>
+											<td style = ""font-size:1px;line-height:1px"" height=""20"">&nbsp;</td>
+										</tr>
+										
+									</tbody>
+									<tr>
+										<td style = ""background-color:#3c8dbc;font-size:1px;line-height:3px"" class=""topBorder"" height=""3"">&nbsp;</td>
+									</tr>
+								</table>
+								<table border = ""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" class=""space"">
+									<tbody>
+										<tr>
+											<td style = ""font-size:1px;line-height:1px"" height=""30"">&nbsp;</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+			</td>
+		</tr>
+	</tbody>
+</table>      
+                                <body> 
+                                ", empresa.Nombre, eventos.UsuarioCreacion, NombreColaborador, eventos.Nombre, eventos.HorarioInicial, eventos.HoraFinal, DateTime.Now.Year);
                             Correo correo = new Correo();
                             correo.Subject = "Información de Cita";
-                            correo.Body = "Informacion del evento:" + "\n" + "Nombre del Creador del evento: " + eventos.UsuarioCreacion + "\n" + "Nombre del Colaboardor: " + NombreColaborador + "\n" +"Nombre del Servicio: " + eventos.Nombre + "\n" + "Fecha Inicial de la Cita: " + eventos.HorarioInicial + "\n" + "Fecha Final de la cita: " + eventos.HoraFinal;
+                            correo.Body = BODY;                             
+
                             if (idCliente == 0) // si es cero es porque no encontro ningun ID, osea la persona no estaba registrada en  el sistema
                             {
                                 if (usuario.IdRol == 4)
@@ -611,6 +740,9 @@ namespace SistemaRegistroCitas.Controllers
             return Json(Eventos, JsonRequestBehavior.AllowGet);
 
         }
+
+
+
 
     }
 }
