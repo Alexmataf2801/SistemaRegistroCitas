@@ -107,7 +107,7 @@ namespace SistemaRegistroCitas.Controllers
                                             para el día y fecha del <strong>{4}</strong> al <strong>{5}</strong> para el servicio <strong>{3}</strong>
                                             con nuestro colaborador <strong>{2}</strong>.<br><br>
                                             Esta cita fue solicitada por <strong>{1}</strong>.<br><br>
-                                            Lo esperamos pronto, gracias por preferir nuestros servicios.
+                                            Le esperamos pronto, gracias por preferir nuestros servicios.
                                         </p>
                                        
                                     </td>
