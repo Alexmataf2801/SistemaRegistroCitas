@@ -339,6 +339,7 @@
     <Content Include="Scripts\Propios\MostrarYOcutarContrsena.js" />
     <Content Include="Scripts\Propios\ObtenerPerfilColaboradorXId.js" />
     <Content Include="Scripts\Propios\OlvidarContrasena.js" />
+    <Content Include="Scripts\Propios\PeticionDeRegistro.js" />
     <Content Include="Scripts\Propios\Roles\ActualizarDatosRol.js" />
     <Content Include="Scripts\Propios\Roles\Roles.js" />
     <Content Include="Scripts\Propios\Roles\ListaRoles.js" />

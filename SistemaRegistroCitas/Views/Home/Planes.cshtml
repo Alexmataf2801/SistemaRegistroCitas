@@ -183,19 +183,21 @@
                     <div class="col-md-4 logo">
                         <form action="" method="post">
                             <div class="form-group">
-                                <input required type="text" name="name" class="form-control" maxlength="150" placeholder="Su Nombre:" />
+                                <input id="NombreCliente" required type="text" name="name" class="form-control" maxlength="150" placeholder="Su Nombre:" />
                             </div>
                             <div class="form-group">
-                                <input required type="email" name="name" class="form-control" maxlength="150" placeholder="Su Correo Electronico:" />
+                                <input id="CorreoCliente" required type="email" name="name" class="form-control" maxlength="150" placeholder="Su Correo Electronico:" />
                             </div>
                             <div class="form-group">
-                                <input required type="text" name="name" class="form-control" maxlength="50" placeholder="Nombre del Plan:" />
+                                <input id="NombrePlan" required type="text" name="name" class="form-control" maxlength="50" placeholder="Nombre del Plan:" />
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="message" style="max-height: 300px; min-height: 80px; max-width: 100%;min-width: 100%;" maxlength="500" placeholder="Mensaje:"></textarea>
+                                <textarea id="MensajeCliente" class="form-control" name="message" style="max-height: 300px; min-height: 80px; max-width: 100%;min-width: 100%;" maxlength="500" placeholder="Mensaje:"></textarea>
                             </div>
 
-                            <div class="text-center"><button type="submit" class="btn btn-primary">Enviar</button></div>
+                            <div class="text-center">
+                                <a onclick="SolicitarPeticion();" class="btn btn-primary">Enviar</a>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -210,18 +212,63 @@
                         <li><a href=""><i class="facebook fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li><a href=""><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
                         <li><a href=""><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                      
+
                     </div>
                 </div>
             </div>
         </div>
-    </footer>  
+    </footer>
+
+    <div class="modal fade" id="MsjIncorrecto" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #dc3545">
+                    <h5 class="modal-title">Incorrecto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="msjModal"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="MsjCorrecto" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #28a745 ">
+                    <h5 class="modal-title" id="lblTituloCorrecto"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="lblMensajeCorrecto"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
 
     <script src="~/Js/Login/jquery-3.4.1.min.js"></script>
     <script src="~/Js/Planes/EfectoPrecios.js"></script>
+    <script src="~/Scripts/Propios/PeticionDeRegistro.js"></script>
     <script src="~/Js/Login/popper.min.js"></script>
     <script src="~/Js/Login/bootstrap.min.js"></script>
-
 </body>
 
 </html>

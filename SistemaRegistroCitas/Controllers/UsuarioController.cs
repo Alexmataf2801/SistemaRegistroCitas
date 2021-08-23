@@ -1264,5 +1264,102 @@ namespace SistemaRegistroCitas.Controllers
             return Json(Correcto, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult PeticionRegistro(string NombreCliente, string CorreoCliente, string NombrePlan, string MensajeCliente)
+        {
+            int Respuesta = 0;
+            try
+            {
+
+                Correo correo = new Correo();
+                correo.Subject = "Solicitud de Registro";
+                String BODY = string.Format(@" 
+                                <html>                                                      
+                                </head>
+ <body marginheight=""0"" topmargin=""0"" marginwidth=""0"" style=""margin: 0px; background-color: #f2f3f8;"" leftmargin=""0"">
+   
+    <table cellspacing=""0"" border=""0"" cellpadding=""0"" width=""100%"" bgcolor=""#f2f3f8"" style=""font-family: Open Sans,sans-serif;"">
+        <tr>
+            <td>
+                <table style=""background-color: #f2f3f8; max-width:670px;  margin:0 auto;"" width=""100%"" border=""0"" align=""center"" cellpadding=""0"" cellspacing=""0"">
+                    <tr>
+                        <td style=""height:80px;"">&nbsp;</td>
+                    </tr>
+                   
+                    <tr>
+                        <td style=""height:20px;"">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table width=""95%"" border=""0"" align=""center"" cellpadding=""0"" cellspacing=""0"" style=""max-width:670px;background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);"">
+                                <tr>
+                                    <td style=""height:40px;"">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style=""padding:0px 35px;"">
+                                        <h1 style=""color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family: Rubik,sans-serif;"">Solicitud de un plan</h1>
+                                        <span style=""display:inline-block; vertical-align:middle; margin:29px 0px 26px; border-bottom:1px solid #cecece; width:100px;""></span>
+                                        <p style=""color:#455056; font-size:15px;line-height:24px; margin:0;"">
+                                             Nombre del cliente: {0} 
+                                             <p style=""height:20px; font-size:25px;"">&nbsp;</p>
+                                            Correo del cliente: {1}
+                                               <p style=""height:20px; font-size:25px;"">&nbsp;</p>
+                                               Nombre del plan: {2}
+                                             <p style=""height:20px; font-size:25px;"">&nbsp;</p>
+                                                Mensaje del Cliente: {3}
+                                        </p>  
+                                            <p style=""height:20px; font-size:25px;"">&nbsp;</p>
+                                       
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style=""height:40px;"">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    <tr>
+                        <td style=""height:20px;"">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style=""text-align:center;"">
+                            <p style=""font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0px 0px 0px;"">Copyright &copy; {4} </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style=""height:80px;"">&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+</body>
+                     <body> 
+                                ", NombreCliente, CorreoCliente, NombrePlan, MensajeCliente, DateTime.Now.Year);
+                correo.Body = BODY;
+                correo.To = "sistemacitas11@gmail.com";
+
+                bool SeEnvioCorreo = utilidades.EnviarCorreoGenerico(correo);
+
+                if (SeEnvioCorreo)
+                {
+                    Respuesta = 1; // Si el valor es 1 quiere decir que se pudo enviar el correo
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                var bitacora = new Bitacora();
+                bitacora.Clase = this.GetType().Name;
+                bitacora.Metodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                bitacora.Error = ex.Message.ToString();
+                bitacora.UsuarioCreacion = " ";
+
+
+                LN.InsertarBitacora(bitacora);
+            }
+            return Json(Respuesta, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
